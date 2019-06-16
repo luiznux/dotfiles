@@ -5,9 +5,7 @@ Programas que luiznux possui XUBUNTU 18.04 LTS 64BITS
 
 
 
-
-###Spotify  
-----------
+### Spotify  
 
 * sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
 
@@ -19,8 +17,9 @@ Programas que luiznux possui XUBUNTU 18.04 LTS 64BITS
 
 
 
-###Team speak
 -------------
+###Team speak
+
 
 * sudo add-apt-repository ppa:materieller/teamspeak3
 
@@ -30,8 +29,9 @@ Programas que luiznux possui XUBUNTU 18.04 LTS 64BITS
 
 
 
-###Discord 
 ----------
+###Discord 
+
 
 * fazer download do .deb do site oficial
 
@@ -41,8 +41,9 @@ Programas que luiznux possui XUBUNTU 18.04 LTS 64BITS
 
 
 
-###Virtual Box 
 --------------
+###Virtual Box 
+
 
 * baixar o .deb do site oficial 
 
@@ -73,7 +74,6 @@ qualquer lugar kkkk
 
 --------
 ### Htop 
---------
 
 * sudo apt install htop
 
@@ -110,10 +110,9 @@ Editores de Texto
 * sudo apt install atom
 
 
---------
 
 Wine 
---------
+----
 * sudo apt install wine-stable
 
 
@@ -121,9 +120,9 @@ Wine
 
 * sudo apt install playonlinux
 
-
+--------
 ### light 
----------
+
 --> configurar brilho
 
 * ler o README e seguir as intruções para o arquivo tar.gz em relaeases
@@ -139,9 +138,9 @@ Wine
 
 
 
-
+--------------
 ### Boot-Repair 
----------------
+
 --> faz milagres com seu boot quebrado
 
 * sudo add-apt-repository ppa:graphics-drivers
@@ -151,8 +150,9 @@ Wine
 * sudo apt-get install boot-repair
 
 
-### Sticky notes 
 ----------------
+### Sticky notes 
+
 * sudo add-apt-repository ppa:umang/indicator-stickynotes
 
 * sudo apt-get update
@@ -160,39 +160,42 @@ Wine
 * sudo apt-get install indicator-stickynotes
 
 
-### Grub Customizer  -->Customizando seu grub desde não sei quando...
 ---------------------------------------------------------------------
+### Grub Customizer  -->Customizando seu grub desde não sei quando...
+
 * CUIDADO USANDO ISSO, PODE QUEBRAR SEU GRUB !!!
 
 * sudo add-apt-repository ppa:danielrichter2007/grub-customizer && sudo apt-get update && sudo apt-get install grub-customizer
 
 
-### Docker and Docker Compose 
 -----------------------------
+### Docker and Docker Compose 
+
 * sudo apt install docker
 
 * sudo apt install docker-compose
 
 
-### TLP and TPLUI(interface grafica pro tlp) 
 --------------------------------------------
+### TLP and TPLUI(interface grafica pro tlp) 
+
 * sudo add-apt-repository ppa:linrunner/tlp -y && sudo apt update && sudo apt install tlp tlp-rdw -y
 
 * sudo add-apt-repository ppa:linuxuprising/apps -y && sudo apt update && sudo apt install tlpui -y
 
-
-### Multibootusb 
 ----------------
+### Multibootusb 
+
 * https://github.com/mbusb/multibootusb/releases
 
-
+---------------
 ### Xfce-goodies 
-----------------
+
 * sudo apt-get install xfce-goodies 
 
-
+---------
 ### Python 
-----------
+
 * INSTALAR PIP3
 
     > sudo apt update && sudo apt install python3-pip && pip3 --version
@@ -215,9 +218,8 @@ Wine
    * sudo pip3 install scipy
    * sudo pip3 install pandas
 
-
+--------------
 ### Navegadores 
----------------
 
 * Opera
     
