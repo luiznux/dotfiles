@@ -69,22 +69,6 @@ Video e Imagem
 
 * sudo apt-get install kdenlive
 
---------
-### Htop 
-
-* sudo apt install htop
-
---------------
-### WPS-Office 
-
-* versão de 2016(acho mais bonita e simples)
-
-* wget -O wps_office_2016.deb ""http://kdl.cc.ksosoft.com/wps-community/download/6758/wps-office_10.1.0.6758_amd64.deb
-
-* cd Downloads/ && sudo dpkg -i wps_office_2016.deb
-
-* instalar pacotes de linguagem para PT-BR(procurar na net)
-
 
 -----------------
 Editores de Texto
@@ -96,7 +80,7 @@ Editores de Texto
 * sudo apt install vim
 
 
-## Emacs 
+### Emacs 
 
 * sudo apt install emacs
 
@@ -109,28 +93,55 @@ Editores de Texto
 ----
 Wine 
 ----
-* sudo apt install wine-stable
 
+* sudo apt install wine-stable
 
 ### Play on Linux 
 
 * sudo apt install playonlinux
+
+### Lutris
+
+* sudo apt install lutris
+
+
+
+
 
 --------
 ### light 
 
 --> configurar brilho
 
-* ler o README e seguir as intruções para o arquivo tar.gz em relaeases
+* ler o README e seguir as intruções para o arquivo tar.gz em releases
     
-    >https://github.com/haikarainen/light
+    * https://github.com/haikarainen/light
 
-    >https://github.com/haikarainen/light/releases
+    * https://github.com/haikarainen/light/releases
 
-    > tar xf light-x.yy.tar.gz
-      cd light-x.yy/
-      ./configure && make                                      
-      sudo make install
+    * tar xf light-x.yy.tar.gz
+    * cd light-x.yy/
+    * ./configure && make                                      
+    * sudo make install
+
+
+--------
+### Htop 
+
+* sudo apt install htop
+
+
+
+--------------
+### WPS-Office 
+
+* versão de 2016(acho mais bonita e simples)
+
+* wget -O wps_office_2016.deb ""http://kdl.cc.ksosoft.com/wps-community/download/6758/wps-office_10.1.0.6758_amd64.deb
+
+* cd Downloads/ && sudo dpkg -i wps_office_2016.deb
+
+* instalar pacotes de linguagem para PT-BR(procurar na net)
 
 
 
