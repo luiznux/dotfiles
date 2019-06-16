@@ -2,9 +2,6 @@ Programas que luiznux possui XUBUNTU 18.04 LTS 64BITS
 =====================================================
 
 
-
-
-
 ### Spotify  
 
 * sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
@@ -17,8 +14,8 @@ Programas que luiznux possui XUBUNTU 18.04 LTS 64BITS
 
 
 
--------------
-###Team speak
+--------------
+### Team speak
 
 
 * sudo add-apt-repository ppa:materieller/teamspeak3
@@ -29,8 +26,8 @@ Programas que luiznux possui XUBUNTU 18.04 LTS 64BITS
 
 
 
-----------
-###Discord 
+-----------
+### Discord 
 
 
 * fazer download do .deb do site oficial
@@ -41,8 +38,8 @@ Programas que luiznux possui XUBUNTU 18.04 LTS 64BITS
 
 
 
---------------
-###Virtual Box 
+---------------
+### Virtual Box 
 
 
 * baixar o .deb do site oficial 
@@ -50,7 +47,7 @@ Programas que luiznux possui XUBUNTU 18.04 LTS 64BITS
 * https://www.virtualbox.org/wiki/Linux_Downloads
 
 
-
+--------------
 Video e Imagem
 --------------
 
@@ -58,7 +55,7 @@ Video e Imagem
 ### Gimp 
 
 
-qualquer lugar kkkk
+* qualquer lugar kkkk
 
 
 ### VLC 
@@ -77,11 +74,10 @@ qualquer lugar kkkk
 
 * sudo apt install htop
 
-
-### WPS-Office 
 --------------
+### WPS-Office 
 
-* versao de 2016(acho mais bonita e simples)
+* versão de 2016(acho mais bonita e simples)
 
 * wget -O wps_office_2016.deb ""http://kdl.cc.ksosoft.com/wps-community/download/6758/wps-office_10.1.0.6758_amd64.deb
 
@@ -90,9 +86,9 @@ qualquer lugar kkkk
 * instalar pacotes de linguagem para PT-BR(procurar na net)
 
 
-
+-----------------
 Editores de Texto
-----------------
+-----------------
 
 
 ### Vim 
@@ -110,7 +106,7 @@ Editores de Texto
 * sudo apt install atom
 
 
-
+----
 Wine 
 ----
 * sudo apt install wine-stable
@@ -138,7 +134,7 @@ Wine
 
 
 
---------------
+---------------
 ### Boot-Repair 
 
 --> faz milagres com seu boot quebrado
@@ -188,12 +184,12 @@ Wine
 
 * https://github.com/mbusb/multibootusb/releases
 
----------------
+----------------
 ### Xfce-goodies 
 
 * sudo apt-get install xfce-goodies 
 
----------
+----------
 ### Python 
 
 * INSTALAR PIP3
@@ -218,7 +214,7 @@ Wine
    * sudo pip3 install scipy
    * sudo pip3 install pandas
 
---------------
+---------------
 ### Navegadores 
 
 * Opera
