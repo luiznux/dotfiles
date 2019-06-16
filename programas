@@ -1,0 +1,126 @@
+Programas e Pacotes que meu PC possui
+
+Spotify --> baixar do repositorio ofcial spotify (NAO USAR SNAP INSTALL)
+Team speak
+Discord
+Gimp
+VLC
+
+Kdenlive
+sudo add-apt-repository ppa:kdenlive/kdenlive-stable
+sudo apt-get install kdenlive
+
+Htop
+
+Vim
+**BUG vim abrindo com o terminal padra
+https://askubuntu.com/questions/788736/open-vim-in-xfce4-terminal-from-thunarA
+
+I edited /usr/share/applications/vim.desktop and changed the value for 'Exec' adding
+
+Exec=xfce4-terminal -e "vim %F"
+just as jbrock said. Then I changed the value for 'Terminal' to false.
+
+Terminal=false
+It worked for me.
+********************
+
+Emacs
+Spyder python
+Jupyter
+sudo apt-get install xfce-goodies
+gsettings set org.cinnamon.desktop.default-applications.terminal exec xfce4-terminal
+
+WpsOffice( procura zip com pacotes de linguagem)
+--> BUG DO FUNDO PRETO
+https://github.com/horst3180/arc-theme/issues/748
+Here is a solution that works across reboots, but probably not across subsequent installs of WPS:
+sudo vim /usr/bin/et (excel)
+sudo vim /usr/bin/wps(word)
+sudo vim /usr/bin/wpp (powepint)
+
+Find:
+${gInstallPath}/office6/${gApp} ${gOptExt} ${gOpt} "$@"
+Replace with:
+${gInstallPath}/office6/${gApp} -style motif ${gOptExt} ${gOpt} "$@"
+
+
+multbootusb programa
+
+grup cust
+sudo add-apt-repository ppa:danielrichter2007/grub-customizer && sudo apt-get update && sudo apt-get install grub-customizer
+
+
+
+Python
+
+sudo pip3 install jupyter
+sudo pip3 install matplotlib
+sudo pip3 install scipy
+sudo pip3 install pandas
+
+
+
+Oracle virtual box
+Wine
+Play on linux
+Picsinlab
+
+
+--> Configurar mouse bug que muda de tamanho
+
+--> Desabilitar o bluetooth( on start up)
+https://ubuntuforums.org/showthread.php?t=2398668
+
+
+---> configurar synacptics bug com mouse pad da dell(dois drivers dao conflito)
+https://askubuntu.com/questions/773595/how-can-i-disable-touchpad-while-typing-on-ubuntu-16-04-syndaemon-isnt-working
+
+PPAS
+
+>> sudo add-apt-repository ppa:graphics-drivers
+>> sudo add-apt-repository ppa:yannubuntu/boot-repair
+   sudo apt-get install boot-repair
+
+>> sudo add-apt-repository ppa:umang/indicator-stickynotes
+   sudo apt-get update
+   sudo apt-get install indicator-stickynotes
+
+>> sudo add-apt-repository ppa:linrunner/tlp -y && sudo apt update && sudo apt install tlp tlp-rdw -y
+>> sudo add-apt-repository ppa:linuxuprising/apps -y && sudo apt update && sudo apt install tlpui -y
+
+>> sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
+>> echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+>> sudo apt-get update
+>> sudo apt-get install spotify-client
+
+
+>> pegar as config do emacs do edison neto god, e arrumar as bibliotecas que faltam, arrumar font no init.el heith 139
+
+
+>> Docker
+    -> sudo apt install docker
+    -> sudo apt install doker-compose
+
+verificar --> dmesg
+ solução--> https://ubuntuforums.org/showthread.php?t=2400299
+
+________________________________________________________________________________
+>>How to fix slow shutdown / restart of Ubuntu 18.04
+
+Sometimes, Ubuntu 18.04 system hangs or takes very long time to shutdown.
+
+We can fix this by editing the system.conf file.
+
+For example,
+
+$ sudo vim /etc/systemd/system.conf
+
+Change the DefaultTimeoutStopSec section to around 4 or 5 seconds.
+
+#DefaultTimeoutStopSec=90s
+DefaultTimeoutStopSec=4s
+Save the file, and reboot. :)
+
+link --> https://medium.com/@sbyang/slow-shut-down-of-ubuntu-18-04-e5fcc31255e2
+________________________________________________________________________________
