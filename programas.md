@@ -14,7 +14,7 @@ Programas que luiznux possui XUBUNTU 18.04 LTS 64BITS
 
 
 
---------------
+-------------
 ### Team speak
 
 
@@ -26,7 +26,7 @@ Programas que luiznux possui XUBUNTU 18.04 LTS 64BITS
 
 
 
------------
+----------
 ### Discord 
 
 
@@ -38,7 +38,7 @@ Programas que luiznux possui XUBUNTU 18.04 LTS 64BITS
 
 
 
----------------
+--------------
 ### Virtual Box 
 
 
@@ -55,7 +55,7 @@ Video e Imagem
 ### Gimp 
 
 
-* qualquer lugar kkkk
+qualquer lugar kkkk
 
 
 ### VLC 
@@ -69,10 +69,47 @@ Video e Imagem
 
 * sudo apt-get install kdenlive
 
+### Audacity
 
------------------
+* sudo apt install audacityA
+
+### Kolour Pait
+
+* um paint para linux 
+
+* sudo apt install kolourpaint
+
+### Draw.io
+
+* ir no site oficial e instalar o .deb
+
+
+### Polarr
+
+* editor de imagens
+
+* snap install polarr
+
+--------
+### Htop 
+
+* sudo apt install htop
+
+--------------
+### WPS-Office 
+
+* versao de 2016(acho mais bonita e simples)
+
+* wget -O wps_office_2016.deb ""http://kdl.cc.ksosoft.com/wps-community/download/6758/wps-office_10.1.0.6758_amd64.deb
+
+* cd Downloads/ && sudo dpkg -i wps_office_2016.deb
+
+* instalar pacotes de linguagem para PT-BR(procurar na net)
+
+
+
 Editores de Texto
------------------
+----------------
 
 
 ### Vim 
@@ -80,7 +117,7 @@ Editores de Texto
 * sudo apt install vim
 
 
-### Emacs 
+## Emacs 
 
 * sudo apt install emacs
 
@@ -93,59 +130,32 @@ Editores de Texto
 ----
 Wine 
 ----
-
 * sudo apt install wine-stable
+
 
 ### Play on Linux 
 
 * sudo apt install playonlinux
-
-### Lutris
-
-* sudo apt install lutris
-
-
-
-
 
 --------
 ### light 
 
 --> configurar brilho
 
-* ler o README e seguir as intruções para o arquivo tar.gz em releases
+* ler o README e seguir as intruções para o arquivo tar.gz em relaeases
     
-    * https://github.com/haikarainen/light
+    >https://github.com/haikarainen/light
 
-    * https://github.com/haikarainen/light/releases
+    >https://github.com/haikarainen/light/releases
 
-    * tar xf light-x.yy.tar.gz
-    * cd light-x.yy/
-    * ./configure && make                                      
-    * sudo make install
-
-
---------
-### Htop 
-
-* sudo apt install htop
+    > tar xf light-x.yy.tar.gz
+      cd light-x.yy/
+      ./configure && make                                      
+      sudo make install
 
 
 
 --------------
-### WPS-Office 
-
-* versão de 2016(acho mais bonita e simples)
-
-* wget -O wps_office_2016.deb ""http://kdl.cc.ksosoft.com/wps-community/download/6758/wps-office_10.1.0.6758_amd64.deb
-
-* cd Downloads/ && sudo dpkg -i wps_office_2016.deb
-
-* instalar pacotes de linguagem para PT-BR(procurar na net)
-
-
-
----------------
 ### Boot-Repair 
 
 --> faz milagres com seu boot quebrado
@@ -200,7 +210,7 @@ Wine
 
 * sudo apt-get install xfce-goodies 
 
-----------
+---------
 ### Python 
 
 * INSTALAR PIP3
