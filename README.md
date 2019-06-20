@@ -11,6 +11,12 @@ Luiznux' Config Deskop and System
 Repositorio feito como forma de backup, mas também para conpartilhar programas que utilizo e outras configurações ou bugs.
 
 
+-----------------
+### Desktop Image
+
+![Desktop-img](https://github.com/luiznux/luiznux-config/blob/master/images/luiznux-desktop-img.jpg)
+
+
 
 
 
