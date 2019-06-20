@@ -95,6 +95,13 @@ qualquer lugar kkkk
 
 * sudo apt install htop
 
+### Mailspraning
+
+* client de email muito bom 
+
+
+* sudo snap install mailspring
+
 --------------
 ### WPS-Office 
 
@@ -107,9 +114,9 @@ qualquer lugar kkkk
 * instalar pacotes de linguagem para PT-BR(procurar na net)
 
 
-
+-----------------
 Editores de Texto
-----------------
+-----------------
 
 
 ### Vim 
