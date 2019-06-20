@@ -55,7 +55,7 @@ Video e Imagem
 ### Gimp 
 
 
-qualquer lugar kkkk
+* qualquer lugar kkkk
 
 
 ### VLC 
@@ -95,7 +95,7 @@ qualquer lugar kkkk
 
 * sudo apt install htop
 
-### Mailspraning
+### Mailspring
 
 * client de email muito bom 
 
