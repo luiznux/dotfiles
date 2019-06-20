@@ -4,7 +4,7 @@ Luiznux' Config Deskop and System
 
 
 ### By Luiznux
-![luiznux-img](https://github.com/luiznux/luiznux-config/blob/master/images/luiznux-img-menor.jpg)
+![luiznux-img](https://github.com/luiznux/luiznux-config/blob/master/images/luiznux-img-240px.jpg)
 
 
 
