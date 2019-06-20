@@ -8,7 +8,9 @@ Luiznux' Config Deskop and System
 
 
 
-Repositorio feito como forma de backup, mas também para conpartilhar programas que utilizo e outras configurações ou bugs.
+Repositorio feito como um backup, mas também para compartilhar programas que utilizo e outras configurações ou bugs que presenciei.
+
+
 
 
 -----------------
