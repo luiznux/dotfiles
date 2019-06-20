@@ -13,6 +13,5 @@ Repositorio feito como forma de backup, mas também para conpartilhar programas 
 
 
 
-Format: ![Alt Text](url)
 
 
