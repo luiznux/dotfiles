@@ -110,6 +110,11 @@ Video e Imagem
 
 * sudo apt install bmon
 
+--------
+### Unrar
+
+* sudo apt install unrar
+
 --------------
 ### WPS-Office 
 
