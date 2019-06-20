@@ -95,12 +95,20 @@ Video e Imagem
 
 * sudo apt install htop
 
+--------------
 ### Mailspring
 
 * client de email muito bom 
 
 
 * sudo snap install mailspring
+
+--------
+### Bmon
+
+* monitorador de trafego de rede
+
+* sudo apt install bmon
 
 --------------
 ### WPS-Office 
