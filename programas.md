@@ -166,7 +166,7 @@ Wine
 
 * instalar as bibliotecas necessarias para o funcionamento do programa:
 
-https://github.com/lutris/lutris/wiki/Installing-drivers
+    >https://github.com/lutris/lutris/wiki/Installing-drivers
 
 --------
 ### light 
