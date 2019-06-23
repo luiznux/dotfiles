@@ -63,12 +63,10 @@ set splitright
 set foldmethod=indent
 set foldlevel=99
 
-"set show mode(INSERT, VISUAL)
-
+" set show mode(INSERT, VISUAL)
 set showmode
 
-"set research highlights
-
+" set research highlights
 set hlsearch  
 
 " Enable folding with the spacebar
