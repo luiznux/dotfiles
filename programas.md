@@ -157,6 +157,17 @@ Wine
 
 * sudo apt install playonlinux
 
+
+### Lutris
+
+* aplicativo de jogos para linux
+
+* sudo apt install lutris
+
+* instalar as bibliotecas necessarias para o funcionamento do programa:
+
+https://github.com/lutris/lutris/wiki/Installing-drivers
+
 --------
 ### light 
 
