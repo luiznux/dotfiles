@@ -102,11 +102,11 @@ Problema consiste em um conflito entre o driver da dell e o synacptics, para cor
 
 1. Verificar quais dos drivers estão sendo utilizados 
 
-    ```
-    xinput list
-    ```
+```    
+xinput list
+```
 
- ```
+```
         ~  ➜ xinput list
 
     ⎡ Virtual core pointer                      	id=2	[master pointer  (3)]
@@ -149,38 +149,39 @@ Abra arquivo **/usr/share/X11/xorg.conf.d/51-synaptics-quirks.conf** como root
 
 -----------------------------------------------------------------------------
 
+Sistema
+-------
+
+### Shutdown demorado Ubuntu 
+
+
+**Fonte:** link --> https://medium.com/@sbyang/slow-shut-down-of-ubuntu-18-04-e5fcc31255e2
+
+* No ubuntu 18.04 o sistema demora muito para desligar, conseguimos arrumar isso editando o arquivo *system.conf*
+
+1. Abra o arquivo:
+
+```
+sudo vim /etc/systemd/system.conf
+```
+
+2. Mude  *DefaultTimeoutStopSec* para um valor entre 4 ou 5 segundos.
+
+```
+#DefaultTimeoutStopSec=90s
+DefaultTimeoutStopSec=4s
+```
+
+3. Reinicie o sistema.
+
+
+-------------------------------------------------------------------------------------------------------------
 
 
 
-
-
-
-
-* pegar as config do emacs do edison neto god, e arrumar as bibliotecas que faltam, arrumar font no init.el heith 139
-
-_______________________________________________________________________________
 verificar --> dmesg
  solução--> https://ubuntuforums.org/showthread.php?t=2400299
 
-________________________________________________________________________________
->>How to fix slow shutdown / restart of Ubuntu 18.04
-
-Sometimes, Ubuntu 18.04 system hangs or takes very long time to shutdown.
-
-We can fix this by editing the system.conf file.
-
-For example,
-
-$ sudo vim /etc/systemd/system.conf
-
-Change the DefaultTimeoutStopSec section to around 4 or 5 seconds.
-
-#DefaultTimeoutStopSec=90s
-DefaultTimeoutStopSec=4s
-Save the file, and reboot. :)
-
-link --> https://medium.com/@sbyang/slow-shut-down-of-ubuntu-18-04-e5fcc31255e2
-________________________________________________________________________________
 
 
-gsettings set org.cinnamon.desktop.default-applications.terminal exec xfce4-terminal
+
