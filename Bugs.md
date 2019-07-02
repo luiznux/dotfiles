@@ -106,7 +106,7 @@ Problema consiste em um conflito entre o driver da dell e o synacptics, para cor
     xinput list
     ```
 
-    ```
+ ```
     ~  ➜ xinput list
 ⎡ Virtual core pointer                      	id=2	[master pointer  (3)]
 ⎜   ↳ Virtual core XTEST pointer              	id=4	[slave  pointer  (2)]
@@ -122,7 +122,7 @@ Problema consiste em um conflito entre o driver da dell e o synacptics, para cor
     ↳ Integrated_Webcam_HD                    	id=11	[slave  keyboard (3)]
     ↳ AT Translated Set 2 keyboard            	id=13	[slave  keyboard (3)]
     ↳ Dell WMI hotkeys                        	id=15	[slave  keyboard (3)]
-    ```
+```
 
 2. No exemplo acima temos 2 drivers *"↳ SynPS/2 Synaptics TouchPad"* e  *"DLL0704:01 06CB:76AE Touchpad"*,vamos desativar um deles para evitar o conflito.
 
