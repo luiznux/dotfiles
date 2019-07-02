@@ -8,55 +8,67 @@ BUGS
 
 - [VIM](#vim)
 
+- [WPS-OFFICE](#wps-office)
 
-
+---
 VIM
 ---
 
 
-1. Vim abrindo com o terminal padrao
+##  Vim abrindo com o terminal padrão
 
 Fonte:  https://askubuntu.com/questions/788736/open-vim-in-xfce4-terminal-from-thunarA
 
 **Solução:**
 
- 1. editar o arquivo  /usr/share/applications/vim.desktop 
+1. editar o arquivo  /usr/share/applications/vim.desktop 
  
- 2. Mudar o valor de *'Exec'* adding
+2. Mudar o valor de *'Exec'* adicionando
 
-   ```
-   Exec=xfce4-terminal -e "vim %F" 
+    ```
+    Exec=xfce4-terminal -e "vim %F" 
    
-   ```
- 
+    ```
  3. Então mudar o valor de *'Terminal'*  para  *false*.
 
     ``` 
     Terminal=false 
     ```
 
+-------------------------------------------------------------------------------------------
 
+----------
+WPS-OFFICE
+----------
 
+## Fundo preto no WPS
 
-gsettings set org.cinnamon.desktop.default-applications.terminal exec xfce4-terminal
-________________________________________________________________
-WpsOffice( procura zip com pacotes de linguagem)
---> BUG DO FUNDO PRETO
-https://github.com/horst3180/arc-theme/issues/748
-Here is a solution that works across reboots, but probably not across subsequent installs of WPS:
-sudo vim /usr/bin/et (excel)
-sudo vim /usr/bin/wps(word)
-sudo vim /usr/bin/wpp (powepint)
+**Fonte:**https://github.com/horst3180/arc-theme/issues/748
 
-Find:
-${gInstallPath}/office6/${gApp} ${gOptExt} ${gOpt} "$@"
-Replace with:
-${gInstallPath}/office6/${gApp} -style motif ${gOptExt} ${gOpt} "$@"
+* Para corrigir nos 3 programas(Writer, Spreadsheets e Presentatio), basta alterar os 3 binarios :
 
+```
+sudo vim /usr/bin/et (Spreadsheets)
 
+sudo vim /usr/bin/wps(Writer)
 
+sudo vim /usr/bin/wpp (Presentatio)
+```
 
-_______________________________________________________________________
+1. Procure
+
+    ```
+    ${gInstallPath}/office6/${gApp} ${gOptExt} ${gOpt} "$@"
+    ```
+2. Substitua por
+
+    ```
+    ${gInstallPath}/office6/${gApp} -style motif ${gOptExt} ${gOpt} "$@"
+    ```
+
+3. Reinicie o programa.
+
+---------------------------------------------------------------------------------------------
 
 --> Desabilitar o bluetooth( on start up)
 https://ubuntuforums.org/showthread.php?t=2398668
@@ -92,3 +104,6 @@ Save the file, and reboot. :)
 
 link --> https://medium.com/@sbyang/slow-shut-down-of-ubuntu-18-04-e5fcc31255e2
 ________________________________________________________________________________
+
+
+gsettings set org.cinnamon.desktop.default-applications.terminal exec xfce4-terminal
