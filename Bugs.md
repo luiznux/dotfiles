@@ -1,16 +1,40 @@
+BUGS
+====
 
-**BUG vim abrindo com o terminal padrao
-https://askubuntu.com/questions/788736/open-vim-in-xfce4-terminal-from-thunarA
+* Este arquivo possui uma série de correções de bugs que encontrei com o uso de minha distro com as configurações que possuo.
 
-I edited /usr/share/applications/vim.desktop and changed the value for 'Exec' adding
+* Estão organizadas por tituto
 
-Exec=xfce4-terminal -e "vim %F"
-just as jbrock said. Then I changed the value for 'Terminal' to false.
 
-Terminal=false
-It worked for me.
-********************
-______________________________________________________
+- [VIM](#vim)
+
+
+
+VIM
+---
+
+
+1. Vim abrindo com o terminal padrao
+
+Fonte:  https://askubuntu.com/questions/788736/open-vim-in-xfce4-terminal-from-thunarA
+
+**Solução:**
+
+ 1. editar o arquivo  /usr/share/applications/vim.desktop 
+ 
+ 2. Mudar o valor de *'Exec'* adding
+
+   ```
+   Exec=xfce4-terminal -e "vim %F" 
+   
+   ```
+ 
+ 3. Então mudar o valor de *'Terminal'*  para  *false*.
+
+    ``` 
+    Terminal=false 
+    ```
+
 
 
 
