@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: printf("\n");
+# key: prin
+# --
+printf("${1:}\n");

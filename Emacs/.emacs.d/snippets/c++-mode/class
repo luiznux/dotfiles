@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: class
+# key: class
+# --
+class ${1:string} {
+private:
+    $2
+public:
+    $0
+};

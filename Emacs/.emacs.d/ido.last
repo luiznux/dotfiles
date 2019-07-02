@@ -1,0 +1,51 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/luiznux/Desktop/3-Semestre-CC/estrutura-de-dados/lab/aula05/" . "atv-lab/")
+ ("/home/luiznux/Desktop/3-Semestre-CC/estrutura-de-dados/lab/" . "aula05/")
+ ("/home/luiznux/Desktop/3-Semestre-CC/estrutura-de-dados/" . "lab/")
+ ("/home/luiznux/Desktop/3-Semestre-CC/" . "estrutura-de-dados/")
+ ("/home/luiznux/Desktop/" . "3-Semestre-CC/")
+ ("/home/luiznux/" . ".emacs.d/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/luiznux/.emacs.d/"
+ "/home/luiznux/Desktop/3-Semestre-CC/estrutura-de-dados/lab/aula05/atv-lab/"
+ "/home/luiznux/Desktop/3-Semestre-CC/estrutura-de-dados/lab/aula02/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "init.el"
+ "vetor.cpp"
+ "exercicio.cpp"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/luiznux/.emacs.d/" (23803 2237 679996 347000) "linux-style.el" "recentf~" "ido.last~" "recentf" "init.el" "init.el~" "customizations.el" "eshell/" "elpa/" "lisp/" "transient/" "irony/" "projectile-bookmarks.eld" "../" "ido.last" "code-style.el" "auto-save-list/" "scratch.el" "snippets/" "smex-items" "packages.el" "main.el" "./")
+
+ ("/home/luiznux/" (23803 2370 987992 457000) ".dmrc" ".fonts/" ".swp" ".vimrc" ".local/" ".steampid" "Games/" "Pictures/" ".vimrc_background" "wps-office-pacotes/" ".emacs.d/" ".Xdefaults" ".xsession-errors.old" "Public/" ".thunderbird/" "Templates/" ".xsession-errors" "VirtualBox VMs/" ".elfeed/" ".zshrc" ".pki/" ".Xauthority" ".bashrc" ".xscreensaver" ".gconf/" ".bash_history" ".steampath" ".vim/" ".gnupg/" ".Xresources" "projects/" ".viminfo" ".face" "Documents/" ".bash_logout" "Music/" ".mozilla/" ".steam/" "Videos/" ".dbus/" "../" ".gitignore_global" ".purple/" "linux-iso/" "linux-books/" ".kingsoft/" "snap/" "Desktop/" "Github/" ".atom/" ".profile" ".nvidia-settings-rc" "Downloads/" ".sudo_as_admin_successful" "./" ".elinks/" ".ICEauthority" ".cache/" ".config/" ".thumbnails/" ".multibootusb/")
+
+ ("/home/luiznux/Desktop/3-Semestre-CC/estrutura-de-dados/lab/aula05/atv-lab/" (23801 32165 192823 905000) "exercicio.txt" "main.cpp" ".main.cpp.swm" "bin/" "makefile" "vetor.h" "../" "anotações-importantes" "vetor.cpp" "./")
+
+ ("/home/luiznux/Desktop/3-Semestre-CC/estrutura-de-dados/lab/aula05/" (23801 32165 100824 926000) "atv-lab/" "../" "./")
+
+ ("/home/luiznux/Desktop/3-Semestre-CC/estrutura-de-dados/lab/aula02/" (23802 64389 105290 572000) "#exercicio.cpp#" "exercicio.cpp" "../" "./")
+
+ ("/home/luiznux/Desktop/3-Semestre-CC/estrutura-de-dados/lab/aula01/" (23801 32165 826 31000) "../" "./" "tutorial_C++(cplusplus.com).pdf")
+
+ ("/home/luiznux/Desktop/3-Semestre-CC/estrutura-de-dados/lab/" (23801 32165 196823 862000) "aula05/" "aula04/" "aula03/" "aula02/" "../" "aula06/" "aula01/" "./")
+
+ ("/home/luiznux/Desktop/3-Semestre-CC/estrutura-de-dados/" (23801 32165 196823 862000) "../" "lab/" "teorica/" "./")
+
+ ("/home/luiznux/Desktop/3-Semestre-CC/" (23801 32168 512787 156000) "alg-prog-2/" "org-de-pc/" "banco-de-dados/" "estrutura-de-dados/" "arquivos-do-luiz/" "../" "Introduction to Algorithms - 3rd Edition.pdf" "proj-e-analise-de-alg/" "./" "data-structures-and-algorithms-in-c.pdf" "mod-matematica/")
+
+ ("/home/luiznux/Desktop/" (23802 20924 785603 80000) "../" "testes/" "3-Semestre-CC/" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
