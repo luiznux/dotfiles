@@ -63,10 +63,12 @@ set splitright
 set foldmethod=indent
 set foldlevel=99
 
-" set show mode(INSERT, VISUAL)
+"set show mode(INSERT, VISUAL)
+
 set showmode
 
-" set research highlights
+"set research highlights
+
 set hlsearch  
 
 " Enable folding with the spacebar
@@ -106,8 +108,27 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
+
+set termguicolors
+
+
 " Sets the colorscheme to onedark
 set t_Co=256
 set background=dark
 highlight Normal ctermbg=NONE
-h
+highlight nonText ctermbg=NONE
+
+
+execute pathogen#infect()
+call pathogen#helptags()
+
+set noshowmode
+
+colorscheme base16-tomorrow-night
+
+
+" using Source Code Pro
+set anti enc=utf-8
+set guifont=Source\ Code\ Pro\ 11
+
+autocmd vimenter * NERDTree
