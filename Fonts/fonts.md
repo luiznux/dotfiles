@@ -30,6 +30,8 @@ Size 13 / Stye Bold
 ## Noto Sans
 ------------
 
+![fonte](https://github.com/luiznux/luiznux-config/blob/master/images/noto-sans-sample.jpg)
+
 * Fonte que usava anteriormente
 
 Muito provalvemente ja vem com seu sistema
