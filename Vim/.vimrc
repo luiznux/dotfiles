@@ -124,11 +124,20 @@ call pathogen#helptags()
 
 set noshowmode
 
+"theme for vim 
 colorscheme base16-tomorrow-night
 
 
-"using Source Code Pro
+" using Source Code Pro
 set anti enc=utf-8
 set guifont=Source\ Code\ Pro\ 11
 
+
+" starts nerdtree
 autocmd vimenter * NERDTree
+
+"Show hidden files on nerdtree
+"let NERDTreeShowHidden=1
+
+" close vim when the only windown open is nerdtree 
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
