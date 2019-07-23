@@ -3,7 +3,7 @@ Plugins
 
 Plugins que utilizo no vim
 
-* Vale mencionar um site que ajudou muito a vizulizar e ter uma idea de todos esses plugins:
+* Vale mencionar um site que ajudou muito a visulizar e ter uma idea de todos esses plugins:
 
 https://medium.com/@huntie/10-essential-vim-plugins-for-2018-39957190b7a9
 
