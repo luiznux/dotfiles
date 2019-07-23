@@ -16,7 +16,7 @@ https://medium.com/@huntie/10-essential-vim-plugins-for-2018-39957190b7a9
 *Fonte* https://github.com/scrooloose/nerdtree
 
 
-![img-nerdtree](https://github.com/luiznux/luiznux-config/tree/master/images/nerdtree-sample.png)
+![img-nerdtree](https://github.com/luiznux/luiznux-config/blob/master/images/nerdtree-sample.png)
 
 
 -------
@@ -25,7 +25,7 @@ https://medium.com/@huntie/10-essential-vim-plugins-for-2018-39957190b7a9
 *Fonte* https://github.com/w0rp/ale
 
 
-![img-ale](https://github.com/luiznux/luiznux-config/tree/master/images/ale-sample.gif)
+![img-ale](https://github.com/luiznux/luiznux-config/blob/master/images/ale-sample.gif)
 
 ------------
 ### Lightline
@@ -33,8 +33,7 @@ https://medium.com/@huntie/10-essential-vim-plugins-for-2018-39957190b7a9
 *Fonte* https://github.com/itchyny/lightline.vim
 
 
-![img-lightline](https://github.com/luiznux/luiznux-config/tree/master/images/powerline.png)
-
+![img-lightline](https://github.com/luiznux/luiznux-config/blob/master/images/powerline.png)
 -----------
 ### Apt Vim
 
