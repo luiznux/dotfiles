@@ -4,11 +4,11 @@ Configurações do meu terminal
 ### Terminal
 ------------
 
-!(terminal)[https://github.com/luiznux/luiznux-config/blob/master/images/terminal-sample.png]
+![terminal](https://github.com/luiznux/luiznux-config/blob/master/images/terminal-sample.png)
 
 
 
-Utilizo o (xfce-terminal)[https://pkgs.org/download/xfce4-terminal],com o tema (base16)[https://github.com/afq984/base16-xfce4-terminal]-tomorrow-night
+Utilizo o (xfce-terminal)[https://pkgs.org/download/xfce4-terminal],com o tema [base16](https://github.com/afq984/base16-xfce4-terminal)-tomorrow-night
 
 
 ### Ranger
