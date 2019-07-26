@@ -183,15 +183,15 @@ DefaultTimeoutStopSec=4s
 
 Um bug muito estranho que acontece somente com o gnome e o xfce terminal, basicamente abrindo o ranger com um deles, utilizar o img-preview com o w3m vizualizando varias imagens ou outros arquivos, a imagem fica presa na tela ou é sobreposta por outras imagens.
 
-!(bug)[https://github.com/luiznux/luiznux-config/blob/master/images/bug-ranger-img-preview.gif]
+![bug](https://github.com/luiznux/luiznux-config/blob/master/images/bug-ranger-img-preview.gif)
 
 
-* A solução é editar o arquivo actions.py:
+* A solução é editar o arquivo *actions.py*:
 
-1. Localize o arquivo actions.py :
+1. Localize o arquivo:
 
 **OBS** *O Diretorio depende da sua versão do python.*
-    
+ 
 > /usr/local/lib/*python2.7*/dist-packages/ranger/core
 
 
