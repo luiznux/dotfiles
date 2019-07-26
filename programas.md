@@ -176,6 +176,7 @@ sudo apt install vim
 sudo apt install emacs
 ```
 *OBS: ver as configs que utilizo neste repositorio na pasta emacs*
+[emacs](https://github.com/luiznux/luiznux-config/tree/master/Emacs)
 
 
 ### Atom 
@@ -303,16 +304,17 @@ sudo apt-get install xfce-goodies
 
 * INSTALAR PIP3
 
-    >  
-        sudo apt update && sudo apt install python3-pip && pip3 --version
-        
+```      
+sudo apt update && sudo apt install python3-pip && pip3 --version
+```        
 
-* Spyder << uma boa IDE para python
+* Spyder uma boa IDE para python
 
-    >  
-        sudo apt-get install spyder3
+```
+sudo apt-get install spyder3
+```
 
---> para todos os meus projetos utilizo virtualenvs para evitar conflitos de libs 
+* para todos os meus projetos utilizo virtualenvs para evitar conflitos de libs 
 
 ```
 sudo pip3 install virtualenv
