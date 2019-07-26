@@ -196,7 +196,7 @@ Um bug muito estranho que acontece somente com o gnome e o xfce terminal, basica
 
 **OBS** *O Diretorio depende da sua versão do python.*
  
-> ```sudo *editor* /usr/local/lib/*python2.7*/dist-packages/ranger/core/actions.py```
+> ```sudo editor /usr/local/lib/python2.7/dist-packages/ranger/core/actions.py```
 
 > Caso não encontre, tente o comando ``` locate actions.py```
 
