@@ -175,8 +175,8 @@ sudo apt install vim
 ```
 sudo apt install emacs
 ```
-*OBS: ver as configs que utilizo neste repositorio na pasta emacs*
-[emacs](https://github.com/luiznux/luiznux-config/tree/master/Emacs)
+*OBS: ver as configs que utilizo neste repositorio [emacs](https://github.com/luiznux/luiznux-config/tree/master/Emacs)*
+
 
 
 ### Atom 
@@ -257,7 +257,7 @@ sudo apt-get install indicator-stickynotes
 ```
 
 ---------------------------------------------------------------------
-### Grub Customizer  -->Customizando seu grub desde não sei quando...
+### Grub Customizer-Customizando seu grub desde não sei quando...
 
 * CUIDADO USANDO ISSO, PODE QUEBRAR SEU GRUB !!!
 
