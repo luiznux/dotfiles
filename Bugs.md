@@ -182,7 +182,8 @@ DefaultTimeoutStopSec=4s
 **Fonte** https://github.com/ranger/ranger/issues/1071
 
 Um bug muito estranho que acontece somente com o gnome e o xfce terminal, basicamente abrindo o ranger com um deles, utilizar o img-preview com o w3m vizualizando varias imagens ou outros arquivos, a imagem fica presa na tela ou é sobreposta por outras imagens.
-!(bug)[]
+
+!(bug)[https://github.com/luiznux/luiznux-config/blob/master/images/bug-ranger-img-preview.gif]
 
 
 * A solução é editar o arquivo actions.py:
@@ -196,11 +197,10 @@ Um bug muito estranho que acontece somente com o gnome e o xfce terminal, basica
 
 2. No arquivo adicione na antes da *linha 491* o codigo:
 
-* Aqui é necessario um teste, pois se adicionar o codigo ``self.redraw_window()`` pode ocorrer que seu terminal apos vizualizar uma imagem fique piscando, neste caso adicione ``self.ui.win.redrawwin()`` ao em vez.
+* Aqui é necessario um teste, pois se adicionar o codigo ``self.redraw_window()`` pode ocorrer que seu terminal apos visualizar uma imagem fique piscando, neste caso adicione ``self.ui.win.redrawwin()`` ao em vez.
 
-> 
-
-```python
+ 
+ ```python
 
    487         cwd = self.thisdir
    488         kw.setdefault('cycle', self.fm.settings['wrap_scroll'])
@@ -216,9 +216,9 @@ Um bug muito estranho que acontece somente com o gnome e o xfce terminal, basica
 
 ```
 
-> Então:
+ Então:
 
-```python
+ ```python
 
    487         cwd = self.thisdir
    488         kw.setdefault('cycle', self.fm.settings['wrap_scroll'])
