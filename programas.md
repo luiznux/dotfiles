@@ -247,7 +247,7 @@ sudo apt-get install boot-repair
 ----------------
 ### Sticky notes 
 
-``
+```
 sudo add-apt-repository ppa:umang/indicator-stickynotes
 
 sudo apt-get update
