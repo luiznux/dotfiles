@@ -175,7 +175,7 @@ sudo apt install vim
 ```
 sudo apt install emacs
 ```
-*OBS: ver as configs que utilizo neste repositorio na pasta emas*
+*OBS: ver as configs que utilizo neste repositorio na pasta emacs*
 
 
 ### Atom 
@@ -222,12 +222,12 @@ sudo apt install lutris
     >https://github.com/haikarainen/light/releases
 
     > 
-        ```
+        
         tar xf light-x.yy.tar.gz
         cd light-x.yy/
         ./configure && make                                      
         sudo make install
-        ```
+        
 
 
 
@@ -307,30 +307,33 @@ sudo apt-get install xfce-goodies
         ```
         sudo apt update && sudo apt install python3-pip && pip3 --version
         ```
+        
 
 
 * Spyder << uma boa IDE para python
 
     > 
+        
         ```
         sudo apt-get install spyder3
         ```
+    
 
 
 --> para todos os meus projetos utilizo virtualenvs para evitar conflitos de libs 
-
 
 ```
 sudo pip3 install virtualenv
 ```
 
 * libs utilizadas: USAR APENAS NAS ENVS!!! (a nao ser que você queira quebrar o pc)
-   ```
-   sudo pip3 install jupyter
-   sudo pip3 install matplotlib
-   sudo pip3 install scipy
-   sudo pip3 install pandas
-   ```
+
+```
+sudo pip3 install jupyter
+sudo pip3 install matplotlib
+sudo pip3 install scipy
+sudo pip3 install pandas
+```
 
 ---------------
 ### Navegadores 
@@ -346,19 +349,25 @@ sudo pip3 install virtualenv
 
 * w3m (terminal browser)
     
-    ``sudo apt-get install w3m 
+    ```
+    sudo apt-get install w3m 
+    ```
 
 
 * browsh (terminal browser)
-    
-    * wget -o browsh.deb "https://github.com/browsh-org/browsh/releases/download/v1.5.2/browsh_1.5.2_linux_amd64.deb"
 
-    * sudo dpkg -i browsh.deb 
+```    
+wget -o browsh.deb "https://github.com/browsh-org/browsh/releases/download/v1.5.2/browsh_1.5.2_linux_amd64.deb"
+
+sudo dpkg -i browsh.deb 
+```
 
 
 * Elinks (termial browser)
-    
-    * sudo apt install elinks
+
+```
+sudo apt install elinks
+```
 
 
 
