@@ -155,7 +155,7 @@ Sistema
 ### Shutdown demorado Ubuntu 
 
 
-**Fonte:** link --> https://medium.com/@sbyang/slow-shut-down-of-ubuntu-18-04-e5fcc31255e2
+**Fonte:** https://medium.com/@sbyang/slow-shut-down-of-ubuntu-18-04-e5fcc31255e2
 
 * No ubuntu 18.04 o sistema demora muito para desligar, conseguimos arrumar isso editando o arquivo *system.conf*
 
@@ -175,7 +175,71 @@ DefaultTimeoutStopSec=4s
 3. Reinicie o sistema.
 
 
--------------------------------------------------------------------------------------------------------------
+
+### Ranger
+---------
+
+**Fonte** https://github.com/ranger/ranger/issues/1071
+
+Um bug muito estranho que acontece somente com o gnome e o xfce terminal, basicamente abrindo o ranger com um deles, utilizar o img-preview com o w3m vizualizando varias imagens ou outros arquivos, a imagem fica presa na tela ou é sobreposta por outras imagens.
+!(bug)[]
+
+
+* A solução é editar o arquivo actions.py:
+
+1. Localize o arquivo actions.py :
+
+**OBS** *O Diretorio depende da sua versão do python.*
+    
+> /usr/local/lib/*python2.7*/dist-packages/ranger/core
+
+
+2. No arquivo adicione na antes da *linha 491* o codigo:
+
+* Aqui é necessario um teste, pois se adicionar o codigo ``self.redraw_window()`` pode ocorrer que seu terminal apos vizualizar uma imagem fique piscando, neste caso adicione ``self.ui.win.redrawwin()`` ao em vez.
+
+> 
+
+```python
+
+   487         cwd = self.thisdir
+   488         kw.setdefault('cycle', self.fm.settings['wrap_scroll'])
+   489         kw.setdefault('one_indexed', self.fm.settings['one_indexed'])
+   490         direction = Direction(kw)
+   491         if 'left' in direction or direction.left() > 0:
+   492             steps = direction.left()
+   493             if narg is not None:
+   494                 steps *= narg
+   495             directory = os.path.join(*(['..'] * steps))
+   496             self.thistab.enter_dir(directory)
+   497             self.change_mode('normal')
+
+```
+
+> Então:
+
+```python
+
+   487         cwd = self.thisdir
+   488         kw.setdefault('cycle', self.fm.settings['wrap_scroll'])
+   489         kw.setdefault('one_indexed', self.fm.settings['one_indexed'])
+   490         direction = Direction(kw)
+   491         #self.ui.win.redrawwin() usar em caso de bug
+   492         self.redraw_window()
+   493         if 'left' in direction or direction.left() > 0:
+   494             steps = direction.left()
+   495             if narg is not None:
+   496                 steps *= narg
+   497             directory = os.path.join(*(['..'] * steps))
+   498             self.thistab.enter_dir(directory)
+   499             self.change_mode('normal')
+```
+
+
+3. Salve e reinicie o ranger para aplicar as mudanças.
+
+  
+
 
 
 
