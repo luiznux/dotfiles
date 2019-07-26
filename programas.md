@@ -257,7 +257,7 @@ sudo apt-get install indicator-stickynotes
 ```
 
 ---------------------------------------------------------------------
-### Grub Customizer  -->Customizando seu grub desde não sei quando...
+### Grub Customizer-Customizando seu grub desde não sei quando...
 
 * CUIDADO USANDO ISSO, PODE QUEBRAR SEU GRUB !!!
 
