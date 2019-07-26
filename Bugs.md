@@ -176,8 +176,8 @@ DefaultTimeoutStopSec=4s
 
 
 
-### Ranger
----------
+Ranger
+------
 
 **Fonte** https://github.com/ranger/ranger/issues/1071
 
@@ -192,12 +192,13 @@ Um bug muito estranho que acontece somente com o gnome e o xfce terminal, basica
 
 **OBS** *O Diretorio depende da sua versão do python.*
  
-> /usr/local/lib/*python2.7*/dist-packages/ranger/core
+> ```sudo *editor* /usr/local/lib/*python2.7*/dist-packages/ranger/core/actions.py```
 
+> Caso não encontre, tente o comando ``` locate actions.py```
 
 2. No arquivo adicione na antes da *linha 491* o codigo:
 
-* Aqui é necessario um teste, pois se adicionar o codigo ``self.redraw_window()`` pode ocorrer que seu terminal apos visualizar uma imagem fique piscando, neste caso adicione ``self.ui.win.redrawwin()`` ao em vez.
+* Aqui é necessario um teste, pois se adicionar o codigo ``self.redraw_window()``  seu terminal pode ficar piscando apos visualizar uma imagem com o ranger, neste caso adicione ``self.ui.win.redrawwin()`` ao em vez.
 
  
  ```python
@@ -242,7 +243,7 @@ Um bug muito estranho que acontece somente com o gnome e o xfce terminal, basica
 
 
 
-
+---------------------------------------------------------------------------
 verificar --> dmesg
  solução--> https://ubuntuforums.org/showthread.php?t=2400299
 
