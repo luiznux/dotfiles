@@ -115,6 +115,16 @@ Video e Imagem
 
 * sudo apt install unrar
 
+-------
+### Screenfetch
+
+* sudo apt install screenfetch
+
+* Para inicia-lo sempre com o terminal, edite o arquivo *~/.bashrc* e adicione no final:
+```
+if [ -f /usr/bin/screenfetch ]; then screenfetch; fi
+```
+
 --------------
 ### WPS-Office 
 
