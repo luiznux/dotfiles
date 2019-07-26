@@ -343,10 +343,9 @@ sudo pip3 install pandas
 
 * w3m (terminal browser)
     
-    ```
-    sudo apt-get install w3m 
-    ```
-
+```
+sudo apt-get install w3m 
+```
 
 * browsh (terminal browser)
 
@@ -355,7 +354,6 @@ wget -o browsh.deb "https://github.com/browsh-org/browsh/releases/download/v1.5.
 
 sudo dpkg -i browsh.deb 
 ```
-
 
 * Elinks (termial browser)
 
