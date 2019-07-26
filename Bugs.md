@@ -9,11 +9,15 @@ BUGS
 
 - [VIM](#vim)
 
-- [WPS-OFFICE](#wps-office)
+- [WPS-Office](#wps-office)
 
-- [BLUETOOTH](#bluetooth)
+- [Bluetooth](#bluetooth)
 
-- [MOUSE](#mouse)
+- [Mouse](#mouse)
+
+- [Sistema](#sistema)
+
+- [Ranger](#ranger)
 
 
 ---
@@ -44,7 +48,7 @@ VIM
 -------------------------------------------------------------------------------------------
 
 
-WPS-OFFICE
+WPS-Office
 ----------
 
 ### Fundo preto no WPS
@@ -78,7 +82,7 @@ sudo vim /usr/bin/wpp (Presentatio)
 
 ---------------------------------------------------------------------------------------------
 
-BLUETOOTH
+Bluetooth
 ---------
 
 ### Bluetooth iniciando automaticamente
@@ -174,7 +178,7 @@ DefaultTimeoutStopSec=4s
 
 3. Reinicie o sistema.
 
-
+-------------------------------------------------------------------------------------------------------------------
 
 Ranger
 ------
