@@ -43,6 +43,11 @@ https://medium.com/@huntie/10-essential-vim-plugins-for-2018-39957190b7a9
 
 *Fonte* https://github.com/egalpin/apt-vim
 
+------------
+### Vim-Plug
+
+*Fonte* https://github.com/junegunn/vim-plug
+
 
 
 
