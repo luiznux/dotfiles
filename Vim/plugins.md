@@ -38,6 +38,12 @@ https://medium.com/@huntie/10-essential-vim-plugins-for-2018-39957190b7a9
 
 
 ![img-lightline](https://github.com/luiznux/luiznux-config/blob/master/images/powerline.png)
+
+
+### Ranger-Vim
+
+*Fonte* https://github.com/francoiscabrol/ranger.vim
+
 -----------
 ### Apt Vim
 
