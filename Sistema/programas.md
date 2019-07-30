@@ -122,7 +122,16 @@ sudo snap install mailspring
 * monitorador de trafego de rede
 
 ```
-sudo apt install bmon
+sudo apt install bmon 
+```
+
+------------
+### QdirStat
+
+* Disk manager muito interessante
+
+```
+sudo apt-get install qdirstat
 ```
 
 --------
