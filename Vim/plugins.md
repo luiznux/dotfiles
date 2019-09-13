@@ -48,20 +48,12 @@ https://medium.com/@huntie/10-essential-vim-plugins-for-2018-39957190b7a9
 ### You Complete Me
 *Fonte* https://github.com/ycm-core/YouCompleteMe
 
---------------
-### Vundle Vim
-
-*Fonte* https://github.com/VundleVim/Vundle.vim
-
 -----------
 ### Apt Vim
 
 *Fonte* https://github.com/egalpin/apt-vim
 
-------------
-### Vim-Plug
 
-*Fonte* https://github.com/junegunn/vim-plug
 
 
 
