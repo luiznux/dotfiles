@@ -1,10 +1,9 @@
 BUGS
 ====
 
-* Este arquivo possui uma série de correções de bugs que encontrei com o uso de minha distro com as configurações que possuo.
+* Este arquivo possui correções de bugs que encontrei com o uso de minha distro.
 
 * Estão organizadas por tituto
-
 
 
 - [VIM](#vim)
