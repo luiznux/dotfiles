@@ -87,9 +87,42 @@ Bluetooth
 
 ### Bluetooth iniciando automaticamente
 
-* Vale lembrar que não é uma solução para o problema, apenas desabilito ele quando o sistema inicia, caso queira usar tera que habilitar novamente.
+* Vale lembrar que não é uma solução para o problema, apenas desabilito ele quando o sistema inicia, caso queira usar, tera que habilitar novamente.
+
+1. Criar um script que desliga o bluetooth na inicialização
+```
+cd /bin
+
+sudo vim kill-bluetooth
+
+```
+2. Adicione:
+```
+#!/bin/sh -e                                                                    
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+rfkill block bluetooth
+exit 0
+```
+
+3. Deixe ele como executavel
+```
+sudo chmod +x kill-bluetooth
+```
+
+4. Deixe o script para ser executado na inicalização do sistema.
 
 https://ubuntuforums.org/showthread.php?t=2398668
+
 
 ----------------------------------------------------------------------------------------------
 
