@@ -1,4 +1,4 @@
-Programas que luiznux possui XUBUNTU 18.04 LTS 64BITS
+Programas
 =====================================================
 
 
