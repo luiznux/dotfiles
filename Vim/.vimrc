@@ -64,8 +64,7 @@ set foldmethod=indent
 set foldlevel=99
 
 "set show mode(INSERT, VISUAL)
-
-set showmode
+"set showmode
 
 "set research highlights
 
@@ -76,7 +75,6 @@ nnoremap <space> za
 
 " Specific config for python files
 let python_highlight_all = 1
-
 " Adds PEP8 proper indentation.
 au BufNewFile,BufRead *.py:
         \ set shiftwidth=4
@@ -111,33 +109,55 @@ noremap <Right> <NOP>
 
 set termguicolors
 
-
-" Sets the colorscheme to onedark
+"Sets the colorscheme to onedark
 set t_Co=256
 set background=dark
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
 
-
+"pathogen
 execute pathogen#infect()
-call pathogen#helptags()
 
-set noshowmode
-
-"theme for vim 
+"tema base16 para o vim
 colorscheme base16-tomorrow-night
 
+"Vim Plug 
+"Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugged')
 
-" using Source Code Pro
-set anti enc=utf-8
-set guifont=Source\ Code\ Pro\ 11
+"Ranger para o vim 
+Plug 'francoiscabrol/ranger.vim'
 
+"ALE plugin https://github.com/dense-analysis/ale#installation
+Plug 'dense-analysis/ale'
 
-" starts nerdtree
-autocmd vimenter * NERDTree
+"lightline.vim https://github.com/itchyny/lightline.vim
+Plug 'itchyny/lightline.vim'
 
-"Show hidden files on nerdtree
-"let NERDTreeShowHidden=1
+"plugin that makes screen art for vim https://github.com/mhinz/vim-startify
+Plug 'mhinz/vim-startify'
 
-" close vim when the only windown open is nerdtree 
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"plugin para desenhar arte nas janelas do vim
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
+
+let g:ranger_map_keys = 0
+
+"faz com que a troca de modos no vim usando o lightline seja rapida
+"e nao demore para mudar por exemplo do VISUAL para INSERT
+set ttimeoutlen=50
+
+let g:startify_files_number = 5
+
+let g:startify_list_order = [
+      \ ['   My most recently used files in the current directory:'],
+      \ 'dir',
+      \ ['   My most recently used files:'],
+      \ 'files',
+      \ ['   These are my sessions:'],
+      \ 'sessions',
+      \ ]
+let g:startify_update_oldfiles = 1
