@@ -37,6 +37,10 @@
 
 (global-hl-line-mode 1)
 
+(when window-system 
+   (set-frame-position (selected-frame) 0 0) 
+   (set-frame-size (selected-frame) 77 29)) 
+
 (load "~/.emacs.d/main.el")
 
 
