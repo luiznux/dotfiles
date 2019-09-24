@@ -12,7 +12,9 @@
     :ensure t
     :config
     (global-git-gutter-mode t)
-    (git-gutter:linum-setup)))
+    (git-gutter:linum-setup)
+    (custom-set-variables
+     '(git-gutter:update-interval 1))))
 
 (provide 'git-config)
 

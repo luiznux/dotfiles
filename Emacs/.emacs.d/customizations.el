@@ -4,7 +4,6 @@
 ;;;
 ;;; Code:
 
-
 (defun visual-config-modes()
   "Visual modes. Removes tool and menu bar,
 removes scroll bar and display line numbers."
@@ -44,26 +43,26 @@ removes scroll bar and display line numbers."
            (split-string-and-unquote path ":")
            exec-path))))
 
-(setq user-full-name "Luiz Tagliaferro"
-      user-mail-address "luiztagli@hotmail.com")
+(setq user-full-name "Edison Aguiar de S. Neto"
+      user-mail-address "ednetoali@gmail.com")
 
 (visual-config-modes)
 (set-default-indentation)
 (enable-ido-mode)
 (read-path-variable-from-zshrc)
 
+(add-hook 'term-mode-hook (lambda ()
+                            (setq show-trailing-whitespace nil)))
+
 ;; Autoclose brackets, quotes.
 (electric-pair-mode 1)
 
-;; Sets zsh to be used as shell.
-(defvar explicit-shell-file-name "/bin/zsh")
+;; Sets xfce to be used as shell.
+(setq explicit-shell-file-name "/usr/bin/xfce4-terminal")
 
 ;; Sets ibuffer as default.
 (defalias 'list-buffers 'ibuffer)
 
 (global-set-key (kbd "C-a") 'beginning-of-line++)
-
-;; Env variables
-(setenv "SCRIPTS" "/home/eldron/projects/scripts-and-config/scripts/")
 
 ;;; customizations.el ends here

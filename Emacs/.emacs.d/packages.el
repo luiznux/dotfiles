@@ -26,6 +26,9 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+(use-package all-the-icons
+  :ensure t)
+
 (use-package yasnippet
   :ensure t
   :config
@@ -36,9 +39,6 @@
   :init
   (global-flycheck-mode)
   (add-hook 'after-init-hook #'global-flycheck-mode))
-
-(use-package flycheck-mypy
-  :ensure t)
 
 (use-package company
   :ensure t
@@ -59,11 +59,6 @@
   :config
   (fancy-battery-mode))
 
-(use-package base16-theme
-  :ensure t
-  :config
-  (load-theme 'base16-tomorrow-night t))
-
 (use-package latex-preview-pane
   :ensure t
   :init
@@ -78,11 +73,10 @@
 
 (use-package highlight-indent-guides
   :ensure t
-  :defer t
-  :init
+  :config
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-  (setq highlight-indent-guides-method 'column)
-  (setq highlight-indent-guides-character ?\|))
+  (setq highlight-indent-guides-method 'character)
+  (setq highlight-indent-guides-responsive 'top))
 
 (use-package smex
   :ensure t
@@ -95,50 +89,36 @@
   (add-hook 'org-mode-hook
             (lambda () (org-bullets-mode 1))))
 
-(use-package nov
+(use-package ranger
   :ensure t
   :config
-  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+  (ranger-override-dired-mode t))
 
-(use-package elfeed
+(use-package docker
   :ensure t
-  :defer t
-  :config
-  (global-set-key (kbd "C-x w") 'elfeed)
-  (elfeed-feeds
-   '("https://undeadly.org/cgi?action=rss")))
-
-(use-package dashboard
-  :ensure t
-  :config
-  (dashboard-setup-startup-hook)
-  (setq dashboard-items '((recents  . 5)
-                        (bookmarks . 5)
-                        (projects . 5)
-                        (agenda . 5)
-                        (registers . 5))))
-
-(use-package sly
-  :ensure t
-  :config
-  (setq inferior-lisp-program "/usr/bin/sbcl"))
+  :bind ("C-c d" . docker))
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/awesome-tab"))
 
-(load "~/.emacs.d/lisp/python-config.el")
-(load "~/.emacs.d/lisp/evil-config.el")
-(load "~/.emacs.d/lisp/irony-config.el")
+(defun setup-awesome-tab()
+  (require 'awesome-tab)
+  (setq awesome-tab-display-icon t)
+  (awesome-tab-mode t))
+
 (load "~/.emacs.d/lisp/custom-modes-config.el")
+(load "~/.emacs.d/lisp/evil-config.el")
+(load "~/.emacs.d/lisp/python-config.el")
+(load "~/.emacs.d/lisp/irony-config.el")
 (load "~/.emacs.d/lisp/git-config.el")
-(load "~/.emacs.d/lisp/elixir-config.el")
 (load "~/.emacs.d/lisp/project-config.el")
 
-(setup-custom-modes-packages)
 (setup-evil-packages)
+(setup-project-packages)
+(setup-custom-modes-packages)
 (setup-python-packages)
 (setup-irony-packages)
-(setup-elixir-packages)
 (setup-git-packages)
-(setup-project-packages)
+(setup-awesome-tab)
 
 ;;; packages.el ends here
