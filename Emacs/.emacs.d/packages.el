@@ -100,11 +100,16 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/awesome-tab"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/emacs-dashboard-master"))
 
 (defun setup-awesome-tab()
   (require 'awesome-tab)
   (setq awesome-tab-display-icon t)
   (awesome-tab-mode t))
+
+(defun setup-emacs-dashboard()
+  (require 'dashboard)
+  (dashboard-setup-startup-hook))
 
 (load "~/.emacs.d/lisp/custom-modes-config.el")
 (load "~/.emacs.d/lisp/evil-config.el")
@@ -120,5 +125,6 @@
 (setup-irony-packages)
 (setup-git-packages)
 (setup-awesome-tab)
+(setup-emacs-dashboard)
 
 ;;; packages.el ends here
