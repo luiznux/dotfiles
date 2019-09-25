@@ -1,0 +1,6 @@
+[submodule "Emacs/.emacs.d/lisp/awesome-tab"]
+	path = Emacs/.emacs.d/lisp/awesome-tab
+	url = https://github.com/manateelazycat/awesome-tab.git
+[submodule "Emacs/.emacs.d/lisp/emacs-dashboard"]
+	path = Emacs/.emacs.d/lisp/emacs-dashboard
+	url = https://github.com/emacs-dashboard/emacs-dashboard.git
