@@ -43,8 +43,8 @@ removes scroll bar and display line numbers."
            (split-string-and-unquote path ":")
            exec-path))))
 
-(setq user-full-name "Edison Aguiar de S. Neto"
-      user-mail-address "ednetoali@gmail.com")
+(setq user-full-name "Luiz Tagliaferro"
+      user-mail-address "luiztagli@hotmail.com")
 
 (visual-config-modes)
 (set-default-indentation)
