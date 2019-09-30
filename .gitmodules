@@ -6,7 +6,6 @@
 	path = Emacs/.emacs.d/lisp/emacs-dashboard
     url = https://github.com/emacs-dashboard/emacs-dashboard.git
 
-[submodule "Sistema/terminal/base-16-xfce4"]
-	path = Sistema/terminal/base-16-xfce4
-	url = https://github.com/afq984/base16-xfce4-terminal.git
-
+[submodule "Sistema/terminal/xfce4-base-16"]
+	path = Sistema/terminal/xfce4-base-16
+	url = https://github.com/afq984/base16-xfce4-terminal
