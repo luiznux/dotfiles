@@ -4,7 +4,9 @@
 
 ;;; Code:
 
-
+(require 'package)
+(setq package-enable-at-startup nil)
+(setq package-check-signature nil)
 (package-initialize)
 
 (custom-set-variables
