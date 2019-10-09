@@ -9,3 +9,6 @@
 [submodule "Sistema/terminal/xfce4-base-16"]
 	path = Sistema/terminal/xfce4-base-16
 	url = https://github.com/afq984/base16-xfce4-terminal
+[submodule "Emacs/.emacs.d/lisp/page-break-lines"]
+	path = Emacs/.emacs.d/lisp/page-break-lines
+	url = https://github.com/purcell/page-break-lines.git

@@ -101,6 +101,7 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/awesome-tab"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/emacs-dashboard-master"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/page-break-lines")) 
 
 (defun setup-awesome-tab()
   (require 'awesome-tab)
@@ -110,6 +111,10 @@
 (defun setup-emacs-dashboard()
   (require 'dashboard)
   (dashboard-setup-startup-hook))
+
+(defun setup-page-break-lines()
+  (require 'page-break-lines)
+  (turn-on-page-break-lines-mode))
 
 (load "~/.emacs.d/lisp/custom-modes-config.el")
 (load "~/.emacs.d/lisp/evil-config.el")
@@ -126,5 +131,6 @@
 (setup-git-packages)
 (setup-awesome-tab)
 (setup-emacs-dashboard)
+(setup-page-break-lines)
 
 ;;; packages.el ends here
