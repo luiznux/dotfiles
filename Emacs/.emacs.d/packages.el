@@ -104,7 +104,7 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/awesome-tab"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/emacs-dashboard-master"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/emacs-dashboard"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/page-break-lines")) 
 
 (defun setup-awesome-tab()

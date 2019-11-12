@@ -12,7 +12,7 @@ removes scroll bar and display line numbers."
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (scroll-bar-mode -1)
-  (global-linum-mode t)
+  ;(global-linum-mode t)  not working on emacs 26
   (show-paren-mode 1))
 
 (defun set-default-indentation()
