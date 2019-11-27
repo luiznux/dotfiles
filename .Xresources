@@ -1,6 +1,57 @@
-! -------------------------------------------------------------------------------------------
-!                                     URxvt   Config
-! -------------------------------------------------------------------------------------------
+!
+! Xresources config luiznux
+!
+! https://github.com/luiznux/Dotfiles
+!
+! Run "xrdb -load .Xresources" to apply changes
+
+!---------------------------------------------------------------------------
+!                               EMACS
+!---------------------------------------------------------------------------
+
+Emacs.font: Source Code Pro:size=20
+
+!---------------------------------------------------------------------------
+!                     Xterm Config
+!---------------------------------------------------------------------------
+
+XTerm*termName: xterm-256color
+
+
+!Fonts -----------------------------------------
+
+!XTerm*termname: Source Code Pro
+!Xterm*faceSize: 40
+XTerm*Geometry: 76x20
+XTerm*faceName: Source Code Pro
+XTerm*faceSize: 12
+
+
+
+! Keybinding ---------------------------------------------------------------------------------
+
+! http://blog.rot13.org/2010/03/change-font-size-in-xterm-using-keyboard.html
+! - change fontsize on the fly (ctrl+plus = increase ; ctrl+minus = decrease, ctrl+0 = default)
+! - copy/paste hotkey (ctrl+shift+c = copy ; ctrl+shift+v = paste)
+! - open url (clickable links)
+!   1) double click to highlight the full url
+!   2) Shift + click it to open it
+XTerm.vt100.translations: #override \n\
+  Ctrl <Key> minus: smaller-vt-font() \n\
+  Ctrl <Key> plus: larger-vt-font() \n\
+  Ctrl <Key> 0: set-vt-font(d) \n\
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+  Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) \n\
+  <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
+  <Btn2Up>: insert-selection(PRIMARY)
+
+
+
+
+! ------------------------------------------------------------------------
+!                               URxvt   Config
+! ------------------------------------------------------------------------
 
 ! general settings
 
@@ -63,9 +114,9 @@ URxvt.matcher.button:        1
 
 
 
-!-----------------------------------
-!         perl extensions
-!-----------------------------------
+!-------------------------------------------------------------------------
+!                        perl extensions
+!-------------------------------------------------------------------------
 
 
 URxvt*perl-ext-common:  default,matcher,clipboard,url-select,keyboard-select,-tabbed,resize-font
@@ -100,7 +151,7 @@ URxvt*tabbed.tab-bg:        	4
 URxvt*buffered:         	    false
 URxvt*keysym.Control-Shift-C: 	perl:clipboard:copy
 URxvt*keysym.Control-Shift-V: 	perl:clipboard:paste
-!-------------------------------------
+!------------------------------------------------------------
 
 !! Yeah, I am one of those, who use these keys in Vim :-(
 !!"\e[7~":beginning-of-line
@@ -112,12 +163,10 @@ URxvt.keysym.Control-Down:  \033[1;5B
 URxvt.keysym.Control-Left:  \033[1;5D
 URxvt.keysym.Control-Right: \033[1;5C
 
-!Emacs font
-Emacs.font: Source Code Pro:size=20
-
-!-----------------------------------------------------------------------------------------
+!-------------------------------------------------------------------------
 !                        BASE16 THEME
-!-----------------------------------------------------------------------------------------
+!-------------------------------------------------------------------------
+
 ! colors
 URxvt*color0: #3f3f3f
 URxvt*color1: #ac3c3c
@@ -192,3 +241,4 @@ URxvt*color15: #ffffff
 *color19:      base02
 *color20:      base04
 *color21:      base06
+!-------------------------------------------------------------------------
