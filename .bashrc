@@ -125,9 +125,23 @@ f() {
 
 
 
- # Base16 Shell
- # see https://github.com/chriskempson/base16-shell
- BASE16_SHELL="$HOME/.config/base16-shell/"
- [ -n "$PS1" ] && \
-     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-         eval "$("$BASE16_SHELL/profile_helper.sh")"
+# Base16 Shell
+# BASE16_SHELL="$HOME/.config/base16-shell/"
+# [ -n "$PS1" ] && \
+#     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+#     eval "$("$BASE16_SHELL/profile_helper.sh")"
+
+
+[ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" >/dev/null
+
+
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+(cat ~/.cache/wal/sequences &)
+
+# Alternative (blocks terminal for 0-3ms)
+cat ~/.cache/wal/sequences
+
+# To add support for TTYs this line can be optionally added.
+source ~/.cache/wal/colors-tty.sh
