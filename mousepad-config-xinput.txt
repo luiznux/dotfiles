@@ -1,0 +1,45 @@
+Device 'DELL0828:00 06CB:7E7E Touchpad':
+	Device Enabled (143):	1
+	Coordinate Transformation Matrix (145):	1.000000, 0.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000, 0.000000, 1.000000
+	Device Accel Profile (272):	1
+	Device Accel Constant Deceleration (273):	1.000000
+	Device Accel Adaptive Deceleration (274):	1.000000
+	Device Accel Velocity Scaling (275):	12.500000
+	Synaptics Edges (276):	49, 1180, 40, 709
+	Synaptics Finger (277):	25, 30, 0
+	Synaptics Tap Time (278):	180
+	Synaptics Tap Move (279):	63
+	Synaptics Tap Durations (280):	180, 180, 100
+	Synaptics ClickPad (281):	1
+	Synaptics Middle Button Timeout (282):	0
+	Synaptics Two-Finger Pressure (283):	282
+	Synaptics Two-Finger Width (284):	7
+	Synaptics Scrolling Distance (285):	28, 28
+	Synaptics Edge Scrolling (286):	1, 0, 0
+	Synaptics Two-Finger Scrolling (287):	1, 0
+	Synaptics Move Speed (288):	1.000000, 1.750000, 0.138985, 0.000000
+	Synaptics Off (289):	1
+	Synaptics Locked Drags (290):	0
+	Synaptics Locked Drags Timeout (291):	5000
+	Synaptics Tap Action (292):	2, 3, 0, 0, 1, 3, 0
+	Synaptics Click Action (293):	1, 3, 0
+	Synaptics Circular Scrolling (294):	0
+	Synaptics Circular Scrolling Distance (295):	0.100000
+	Synaptics Circular Scrolling Trigger (296):	0
+	Synaptics Circular Pad (297):	0
+	Synaptics Palm Detection (298):	0
+	Synaptics Palm Dimensions (299):	10, 200
+	Synaptics Coasting Speed (300):	20.000000, 50.000000
+	Synaptics Pressure Motion (301):	30, 160
+	Synaptics Pressure Motion Factor (302):	1.000000, 1.000000
+	Synaptics Resolution Detect (303):	1
+	Synaptics Grab Event Device (304):	0
+	Synaptics Gestures (305):	1
+	Synaptics Capabilities (306):	1, 0, 0, 1, 1, 0, 0
+	Synaptics Pad Resolution (307):	12, 12
+	Synaptics Area (308):	0, 0, 0, 0
+	Synaptics Soft Button Areas (309):	614, 0, 614, 0, 0, 0, 0, 0
+	Synaptics Noise Cancellation (310):	7, 7
+	Device Product ID (269):	1739, 32382
+	Device Node (268):	"/dev/input/event10"
+
