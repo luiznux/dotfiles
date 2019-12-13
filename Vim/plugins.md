@@ -14,27 +14,26 @@ https://medium.com/@huntie/10-essential-vim-plugins-for-2018-39957190b7a9
 ![vim-sample](https://github.com/luiznux/luiznux-config/blob/master/images/my-vim-sample.jpg)
 
 
-------------
-### Nerdtree
+------
+### Vim-Plug
 
-*Fonte* https://github.com/scrooloose/nerdtree
+plugin manager
 
-
-![img-nerdtree](https://github.com/luiznux/luiznux-config/blob/master/images/nerdtree-sample.png)
-
+https://github.com/junegunn/vim-plug
 
 -------
 ### Ale
 
-*Fonte* https://github.com/w0rp/ale
+https://github.com/w0rp/ale
 
 
 ![img-ale](https://github.com/luiznux/luiznux-config/blob/master/images/ale-sample.gif)
 
+
 ------------
 ### Lightline
 
-*Fonte* https://github.com/itchyny/lightline.vim
+https://github.com/itchyny/lightline.vim
 
 
 ![img-lightline](https://github.com/luiznux/luiznux-config/blob/master/images/powerline.png)
@@ -42,22 +41,14 @@ https://medium.com/@huntie/10-essential-vim-plugins-for-2018-39957190b7a9
 --------------
 ### Ranger-Vim
 
-*Fonte* https://github.com/francoiscabrol/ranger.vim
+https://github.com/francoiscabrol/ranger.vim
 
 -------------------
 ### You Complete Me
-*Fonte* https://github.com/ycm-core/YouCompleteMe
 
------------
-### Apt Vim
+https://github.com/ycm-core/YouCompleteMe
 
-*Fonte* https://github.com/egalpin/apt-vim
+------------------
+### Wpgtk-vim
 
-
-
-
-
-
-
-
-
+https://github.com/deviantfero/wpgtk.vim
