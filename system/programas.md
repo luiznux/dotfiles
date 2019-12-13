@@ -92,14 +92,6 @@ sudo apt install kolourpaint
 * ir no site oficial e instalar o .deb
 
 
-### Polarr
-
-* editor de imagens
-
-```
-snap install polarr
-```
-
 --------
 ### Htop 
 
@@ -139,18 +131,6 @@ sudo apt-get install qdirstat
 
 ```
 sudo apt install unrar
-```
-
--------
-### Screenfetch
-
-```
-sudo apt install screenfetch
-```
-
-* Para inicia-lo sempre com o terminal, edite o arquivo *~/.bashrc* e adicione no final:
-```
-if [ -f /usr/bin/screenfetch ]; then screenfetch; fi
 ```
 
 --------------
