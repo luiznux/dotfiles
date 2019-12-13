@@ -121,19 +121,22 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 
 
-set termguicolors
-
 "Sets the colorscheme to onedark
-set t_Co=256
-set background=dark
+"set t_Co=256
+"set background=dark
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
+
+
+"set termguicolors
+
 
 "pathogen
 execute pathogen#infect()
 
+
 "tema base16 para o vim
-colorscheme base16-tomorrow-night
+"colorscheme base16-tomorrow-night
 
 "Vim Plug 
 "Plugins will be downloaded under the specified directory.
