@@ -12,6 +12,7 @@
 Emacs.font: Source Code Pro:size=20
 
 
+
 !---------------------------------------------------------------------------
 !                     Xterm Config
 !---------------------------------------------------------------------------
@@ -23,7 +24,7 @@ Emacs.font: Source Code Pro:size=20
 
 !!Geral ------------------------------------------
 XTerm*termName: xterm-256color
-XTerm*marginBell: yes
+XTerm*marginBell: yes 
 
 
 !!Fonts -----------------------------------------
@@ -88,61 +89,60 @@ XTerm*scrollTtyOutput: false
 
 !!General settings----------------------------------------------------
 
-URxvt*saveline:         5000
-URxvt*termName:         xterm-256color
-URxvt*urgentOnBell:     false
-URxvt*visualBell:       false
-URxvt*iso14755:         false
-URxvt*iso14755_52:      false
-URxvt*meta8:            false
-URxvt*metaSendsEscape:  false
+!URxvt*saveline:         5000
+!URxvt*termName:         xterm-256color
+!URxvt*urgentOnBell:     false
+!URxvt*visualBell:       false
+!URxvt*iso14755:         false
+!URxvt*iso14755_52:      false
+!URxvt*meta8:            false
+!URxvt*metaSendsEscape:  false
+!URxvt*iconFile:  		~/Pictures/icons/utilities-terminal-icon.png
 
 
 !!Appearance----------------------------------------------------------
 
-URxvt*transparent:       false
-URxvt.geometry:          69x21
-URxvt*depth:             32
-URxvt*shading:           30
-URxvt*throughColor:      Blue
-URxvt*cursorColor:       #c5c8c6
-URxvt.pointerBlank: 	  false
-URxvt.cursorBlink:       false
+!URxvt*transparent:       false
+!URxvt*underlineColor:    #4682B4
+!URxvt*highlightColor:    #4682B4
+!URxvt.geometry:          69x21
+!URxvt*depth:             32
+!URxvt*shading:           30
+!URxvt*throughColor:      Blue
+!URxvt*cursorColor:       #c5c8c6
+!URxvt.pointerBlank: 	  false
+!URxvt.cursorBlink:       false
 
-URxvt.cursorUnderline:   false
+!URxvt.cursorUnderline:   false
 
-URxvt*scrollBar:         false
-URxvt*scrollTtyOutput:   false
-URxvt*scrollWithBuffer:  false
-URxvt*scrollTtyKeypress: false
-
-URxvt.background: [80]#070B15
-URxvt.depth: 32
-
+!URxvt*scrollBar:         false
+!URxvt*scrollTtyOutput:   false
+!URxvt*scrollWithBuffer:  false
+!URxvt*scrollTtyKeypress: false
 !URxvt*colorIT:      	  #87af5f
 !URxvt*colorBD:      	  #c5c8c6
 !URxvt*colorUL:      	  #87afd7
-!URxvt*underlineColor:    #4682B4
-!URxvt*highlightColor:    #4682B4
+
+!URxvt*background:        [90]#222E35
 
 
 !!FONTS-------------------------------------------------------------------
-run :.!fc-list | grep <font-name>
-URxvt*font:               xft:Source Code Pro:style=Regular:pixelsize=16
-URxvt*imFont:             xft:Source Code Pro:style=Regular:size=16
-URxvt*boldFont:           xft:Source Code Pro:style=Bold:size=14
-URxvt*letterSpace: 	   0
-!
-Xft.dpi:        120
-Xft.antialias:  false
-Xft.rgba:       rgb
-Xft.hinting:    false
-Xft.hintstyle:  hintfull
+!run :.!fc-list | grep <font-name>
+!URxvt*font:               xft:Source Code Pro:style=Regular:pixelsize=16
+!URxvt*imFont:             xft:Source Code Pro:style=Regular:size=16
+!URxvt*boldFont:           xft:Source Code Pro:style=Bold:size=14
+!URxvt*letterSpace: 	   0
 
-URxvt*urlLauncher:      	/usr/bin/firefox
-URxvt*underlineURLs:    	false
-URxvt*urlButton:        	 1
-URxvt.matcher.button:        1
+!Xft.dpi:        120
+!Xft.antialias:  false
+!Xft.rgba:       rgb
+!Xft.hinting:    false
+!Xft.hintstyle:  hintfull
+
+!URxvt*urlLauncher:      	/usr/bin/firefox
+!URxvt*underlineURLs:    	false
+!URxvt*urlButton:        	 1
+!URxvt.matcher.button:       1
 
 
 
@@ -188,5 +188,8 @@ URxvt.matcher.button:        1
 
 
 !-------------------------------------------------------------------------
+!
 !-------------------------------------------------------------------------
+
+
 
