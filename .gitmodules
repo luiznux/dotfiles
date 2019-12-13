@@ -1,14 +1,11 @@
 [submodule "Emacs/.emacs.d/lisp/awesome-tab"]
-	path = Emacs/.emacs.d/lisp/awesome-tab
+	path = emacs/.emacs.d/lisp/awesome-tab
     url = https://github.com/manateelazycat/awesome-tab.git
 
 [submodule "Emacs/.emacs.d/lisp/emacs-dashboard"]
-	path = Emacs/.emacs.d/lisp/emacs-dashboard
+	path = emacs/.emacs.d/lisp/emacs-dashboard
     url = https://github.com/emacs-dashboard/emacs-dashboard.git
 
-[submodule "Sistema/terminal/xfce4-base-16"]
-	path = Sistema/terminal/xfce4-base-16
-	url = https://github.com/afq984/base16-xfce4-terminal
 [submodule "Emacs/.emacs.d/lisp/page-break-lines"]
-	path = Emacs/.emacs.d/lisp/page-break-lines
+	path = emacs/.emacs.d/lisp/page-break-lines
 	url = https://github.com/purcell/page-break-lines.git
