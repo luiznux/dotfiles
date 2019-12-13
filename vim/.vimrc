@@ -12,7 +12,9 @@
 "                                                                                  \______/
 
 
-let base16colorspace=256
+set nocompatible              " be iMproved, required 
+
+let base16colorspace = 256
 
 " Enable the syntax
 syntax on
@@ -121,9 +123,6 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 
 
-"Sets the colorscheme to onedark
-"set t_Co=256
-"set background=dark
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
 
