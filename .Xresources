@@ -88,7 +88,7 @@ XTerm*scrollTtyOutput: false
 
 !!General settings----------------------------------------------------
 
-URxvt*saveline:         5000
+URxvt*saveline:         50000
 URxvt*termName:         xterm-256color
 URxvt*urgentOnBell:     false
 URxvt*visualBell:       false
@@ -104,9 +104,7 @@ URxvt*transparent:       false
 URxvt.geometry:          69x21
 URxvt*depth:             32
 URxvt*shading:           30
-URxvt*throughColor:      Blue
-URxvt*cursorColor:       #c5c8c6
-URxvt.pointerBlank: 	  false
+URxvt.pointerBlank: 	 false
 URxvt.cursorBlink:       false
 
 URxvt.cursorUnderline:   false
@@ -116,14 +114,8 @@ URxvt*scrollTtyOutput:   false
 URxvt*scrollWithBuffer:  false
 URxvt*scrollTtyKeypress: false
 
-URxvt.background: [80]#070B15
+!URxvt.background: [80]#070B15
 URxvt.depth: 32
-
-!URxvt*colorIT:      	  #87af5f
-!URxvt*colorBD:      	  #c5c8c6
-!URxvt*colorUL:      	  #87afd7
-!URxvt*underlineColor:    #4682B4
-!URxvt*highlightColor:    #4682B4
 
 
 !!FONTS-------------------------------------------------------------------
@@ -188,5 +180,42 @@ URxvt.matcher.button:        1
 
 
 !-------------------------------------------------------------------------
+!                             COLORS 
 !-------------------------------------------------------------------------
 
+! special
+*.foreground:   #c5c8c6
+*.background:   #1d1f21
+*.cursorColor:  #c5c8c6
+
+! black
+*.color0:       #282a2e
+*.color8:       #373b41
+
+! red
+*.color1:       #a54242
+*.color9:       #cc6666
+
+! green
+*.color2:       #8c9440
+*.color10:      #b5bd68
+
+! yellow
+*.color3:       #de935f
+*.color11:      #f0c674
+
+! blue
+*.color4:       #5f819d
+*.color12:      #81a2be
+
+! magenta
+*.color5:       #85678f
+*.color13:      #b294bb
+
+! cyan
+*.color6:       #5e8d87
+*.color14:      #8abeb7
+
+! white
+*.color7:       #707880
+*.color15:      #c5c8c6
