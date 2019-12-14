@@ -113,8 +113,6 @@ URxvt*scrollBar:         false
 URxvt*scrollTtyOutput:   false
 URxvt*scrollWithBuffer:  false
 URxvt*scrollTtyKeypress: false
-
-!URxvt.background: [80]#070B15
 URxvt.depth: 32
 
 
