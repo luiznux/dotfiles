@@ -104,16 +104,14 @@ URxvt*transparent:       false
 URxvt.geometry:          69x21
 URxvt*depth:             32
 URxvt*shading:           30
+URxvt.internalBorder:    0
 URxvt.pointerBlank: 	 false
 URxvt.cursorBlink:       false
-
 URxvt.cursorUnderline:   false
-
 URxvt*scrollBar:         false
 URxvt*scrollTtyOutput:   false
 URxvt*scrollWithBuffer:  false
 URxvt*scrollTtyKeypress: false
-URxvt.depth: 32
 
 
 !!FONTS-------------------------------------------------------------------
@@ -216,4 +214,3 @@ URxvt.matcher.button:        1
 ! white
 *.color7:       #9db7cf
 *.color15:      #9db7cf
-
