@@ -2,9 +2,12 @@ emacs:
 	
 	cp -r emacs/.emacs.d  ~/.emacs.d/
 
+
 config:
 	cp vim/.vimrc ~/.vimrc
-	cp -r fonts/source-code-pro /usr/local/share/fonts
+	cp -r vim/.vim/ ~/.vim
+	cp -r system/fonts/source-code-pro /usr/local/share/fonts
+	cp system/.Xresources ~/.Xresources
 
 
 install:
