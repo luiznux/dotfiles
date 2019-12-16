@@ -12,3 +12,6 @@
 [submodule "emacs/.emacs.d/lisp/all-the-icons.el"]
 	path = emacs/.emacs.d/lisp/all-the-icons.el
 	url = https://github.com/domtronn/all-the-icons.el
+[submodule "fonts/source-code-pro"]
+	path = system/fonts/source-code-pro
+	url = https://github.com/adobe-fonts/source-code-pro
