@@ -1,0 +1,25 @@
+#i3-gaps config file
+# source: https://github.com/luiznux/dotfiles
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+
+set $mod	    Mod4
+set $term       urxvt
+set $browser    firefox
+
+
+# start a terminal
+bindsym $mod+Return	 exec $term
+
+# start emacs.
+bindsym $mod+e	exec emacs
+
+# start firefox 
+bindsym $mod+f    exec $browser
+
+
+#-------- Font config -----------
+font pango:Source Code Pro 13
+
+
