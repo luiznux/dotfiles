@@ -15,25 +15,29 @@ set $browser    firefox
 #-------------- Key Bindings ----------------#
 
 # start a terminal
-bindsym $mod+Return	 exec $term
+bindsym $mod+Return	    exec $term
 
 # start emacs.
-bindsym $mod+e	     exec emacs
+bindsym $mod+e	        exec emacs
 
 # start firefox 
-bindsym $mod+m       exec $browser
+bindsym $mod+m          exec $browser
 
 # start nemo filemanager
-bindsym $mod+n       exec nemo
+bindsym $mod+n          exec nemo
 
-#full screem
-bindsym $mod+f	     fullscreen toggle
+# full screem
+bindsym $mod+f	        fullscreen toggle
 
 # kill focused window.
-bindsym $mod+q	   	 kill
+bindsym $mod+q	   	    kill
 
-#-------- Window moviment
-#
+# reload the configuration file
+bindsym $mod+Shift+c	reload
+
+
+#---Window moviment
+
 # change focus
 bindsym $mod+h									focus left
 bindsym $mod+j 									focus down
@@ -61,7 +65,6 @@ bindsym $mod+Shift+l 							move right
 #     xrdb ~/.Xresources
 # This value is picked up on by other applications (e.g., the URxvt terminal
 # emulator) and can be used in i3 like this:
-#
 
 #black
 set_from_resource $black i3wm.color0
