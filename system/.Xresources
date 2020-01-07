@@ -100,7 +100,7 @@ URxvt*metaSendsEscape:  false
 
 !!Appearance----------------------------------------------------------
 
-URxvt*transparent:       false
+URxvt*transparent:       true
 URxvt.geometry:          69x21
 URxvt*depth:             32
 URxvt*shading:           30
