@@ -29,6 +29,20 @@ bindsym $mod+n       exec nemo
 #full screem
 bindsym $mod+f	     fullscreen toggle
 
+# kill focused window.
+bindsym $mod+q	   	 kill
+
+# change focus
+bindsym $mod+h									focus left
+bindsym $mod+j 									focus down
+bindsym $mod+k 									focus up
+bindsym $mod+l 									focus right
+
+bindsym $mod+Left								focus left
+bindsym $mod+Down  								focus down
+bindsym $mod+Up    								focus up
+bindsym $mod+Right 								focus right
+
 
 #---------------- workspaces ---------------#
 
