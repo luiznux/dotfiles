@@ -12,7 +12,7 @@ set $term       urxvt
 set $browser    firefox
 
 
-#-------------- Key Bindings --------------#
+#-------------- Key Bindings ----------------#
 
 # start a terminal
 bindsym $mod+Return	 exec $term
@@ -32,16 +32,68 @@ bindsym $mod+f	     fullscreen toggle
 # kill focused window.
 bindsym $mod+q	   	 kill
 
+#-------- Window moviment
+#
 # change focus
 bindsym $mod+h									focus left
 bindsym $mod+j 									focus down
 bindsym $mod+k 									focus up
 bindsym $mod+l 									focus right
 
+#other keys 
 bindsym $mod+Left								focus left
 bindsym $mod+Down  								focus down
 bindsym $mod+Up    								focus up
 bindsym $mod+Right 								focus right
+
+# move focused window
+bindsym $mod+Shift+h							move left
+bindsym $mod+Shift+j 							move down
+bindsym $mod+Shift+k 							move up
+bindsym $mod+Shift+l 							move right
+
+
+#----------------- Colors ----------------------#
+#
+# The ~/.Xresources should contain a line such as
+#     *color0: #121212
+# and must be loaded properly, e.g., by using
+#     xrdb ~/.Xresources
+# This value is picked up on by other applications (e.g., the URxvt terminal
+# emulator) and can be used in i3 like this:
+#
+
+#black
+set_from_resource $black i3wm.color0
+set_from_resource $black i3wm.color8
+
+#red
+set_from_resource $red i3wm.color1
+set_from_resource $redki3wm.color9
+
+#green
+set_from_resource $green i3wm.color2
+set_from_resource $green i3wm.color10
+
+#yellow
+set_from_resource $yellow i3wm.color3
+set_from_resource $yellow i3wm.color11
+
+#blue
+set_from_resource $blue i3wm.color4
+set_from_resource $blue i3wm.color12
+
+#magenta
+set_from_resource $magenta i3wm.color5
+set_from_resource $magenta i3wm.color13
+
+#cyan
+set_from_resource $cyan i3wm.color6
+set_from_resource $cyan i3wm.color14
+ 
+#white
+set_from_resource $white i3wm.color7
+set_from_resource $white i3wm.color15
 
 
 #---------------- workspaces ---------------#
@@ -70,7 +122,10 @@ bindsym $mod+Shift+4	move container to workspace $ws4
 bindsym $mod+Shift+5	move container to workspace $ws5
 bindsym $mod+Shift+6	move container to workspace $ws6
 
-#-------- Font config -----------#
+
+#------------- Font config --------------#
 font pango:Source Code Pro 13
 
 
+#config background
+exec_always feh --bg-scale ~/.config/wallpaper.jpg
