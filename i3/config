@@ -61,10 +61,10 @@ bindsym $mod+f	            fullscreen toggle
 bindsym $mod+q	   	    kill
 
 # Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier       $mod
+#floating_modifier       $mod
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s 			layout stacking
+#bindsym $mod+s 			layout stacking
 bindsym $mod+w 			layout tabbed
 bindsym $mod+t                  layout toggle split
 
@@ -208,9 +208,4 @@ set_from_resource $white i3wm.color7
 set_from_resource $white i3wm.color15
 
 #--------------------- Other configs ----------------------#
-
-
-for_window [title="Calculator"]		       floating enable
-
-for_window [title="video0 - mpv"]	       floating enable
 
