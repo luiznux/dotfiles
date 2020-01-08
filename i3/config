@@ -43,19 +43,19 @@ gaps outer 15
 bindsym $mod+Return	    exec $term
 
 # start emacs
-bindsym $mod+e	        exec emacs no-x-resources
+bindsym $mod+e	            exec emacs no-x-resources
 
 # start dmenu.
 bindsym $mod+d		    exec dmenu_run
 
 # start firefox 
-bindsym $mod+y          exec $browser
+bindsym $mod+y              exec $browser
 
 # start nemo filemanager
-bindsym $mod+n          exec nemo
+bindsym $mod+n              exec nemo
 
 # full screem
-bindsym $mod+f	        fullscreen toggle
+bindsym $mod+f	            fullscreen toggle
 
 # kill focused window.
 bindsym $mod+q	   	    kill
@@ -66,7 +66,7 @@ floating_modifier       $mod
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s 			layout stacking
 bindsym $mod+w 			layout tabbed
-bindsym $mod+t          layout toggle split
+bindsym $mod+t                  layout toggle split
 
 # change focus between tiling / floating windows
 bindsym $mod+space	    focus mode_toggle
@@ -77,10 +77,12 @@ bindsym $mod+Shift+space floating toggle
 #------------------- i3 options  ----------------------#
 
 # reload the configuration file
-bindsym $mod+Shift+c	reload
+bindsym $mod+Shift+c	    reload
+
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+F2		    restart
+
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -89,7 +91,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 #--------------- Gaps/window resize -------------------#
 
 #gaps
-bindsym $mod+s			    gaps inner current plus 5
+bindsym $mod+s	                gaps inner current plus 5
 bindsym $mod+Shift+s		gaps inner current minus 5
 
 # resize window (you can also use the mouse for that)
@@ -112,29 +114,29 @@ mode "resize" {
         bindsym Left resize grow width 10 px or 10 ppt
 
 # Resize and move mode
-bindsym $mod+m									mode move
-bindsym $mod+r	
+#bindsym $mod+m				mode move
+#bindsym $mod+r	
 
 
 #----------------- Window moviment ------------------#
 
 # change focus
-bindsym $mod+h								focus left
-bindsym $mod+j 								focus down
-bindsym $mod+k 								focus up
-bindsym $mod+l 								focus right
+bindsym $mod+h						focus left
+bindsym $mod+j 						focus down
+bindsym $mod+k 						focus up
+bindsym $mod+l 						focus right
 
 #other keys 
-bindsym $mod+Left							focus left
-bindsym $mod+Down  							focus down
-bindsym $mod+Up    							focus up
-bindsym $mod+Right 							focus right
+bindsym $mod+Left					focus left
+bindsym $mod+Down  					focus down
+bindsym $mod+Up    					focus up
+bindsym $mod+Right 					focus right
 
 # move focused window
-bindsym $mod+Shift+h						move left
-bindsym $mod+Shift+j 						move down
-bindsym $mod+Shift+k 						move up
-bindsym $mod+Shift+l 						move right
+bindsym $mod+Shift+h				        move left
+bindsym $mod+Shift+j 				        move down
+bindsym $mod+Shift+k 				        move up
+bindsym $mod+Shift+l 				        move right
 
 
 #---------------------- Workspaces ---------------------#
