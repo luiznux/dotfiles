@@ -9,19 +9,24 @@
 #                                                            /$$  \ $$            
 #                                                           |  $$$$$$/            
 #                                                            \______/             
-
-
+#
 # i3-gaps config file 
 #
 # source: https://github.com/luiznux/dotfiles/i3
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
+#
 
+#-------------------------------------------------------------------------#
+#------------------------- Basic Definitions -----------------------------#
 
-#---------------- Basic Definitions ------------------#
-
+#set mod key
 set $mod	    Mod4
+
+#define terminal
 set $term       urxvt
+
+#define browser
 set $browser    firefox
 
 #font config 
@@ -34,19 +39,33 @@ exec_always feh --bg-scale ~/.config/wallpaper.jpg
 new_window pixel 0
 
 #gaps size
-gaps inner 15
-gaps outer 15
+gaps inner 17
+gaps outer 17
 
-#------------------ Key Bindings ---------------------#
+#---------------------------------------------------------------------------#
+#-------------------------------- Bar --------------------------------------#
+
+bar {
+	font pango:source code pro 12
+	status_command i3blocks
+	position top
+	mode dock
+	modifier None
+}
+
+
+
+#---------------------------------------------------------------------------#
+#------------------------- Key Bindings ------------------------------------#
 
 # start a terminal
-bindsym $mod+Return	    exec $term
+bindsym $mod+Return	        exec $term
 
 # start emacs
 bindsym $mod+e	            exec emacs no-x-resources
 
 # start dmenu.
-bindsym $mod+d		    exec dmenu_run
+bindsym $mod+d		        exec dmenu_run
 
 # start firefox 
 bindsym $mod+y              exec $browser
@@ -58,42 +77,37 @@ bindsym $mod+n              exec nemo
 bindsym $mod+f	            fullscreen toggle
 
 # kill focused window.
-bindsym $mod+q	   	    kill
+bindsym $mod+q	   	        kill
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-#floating_modifier       $mod
 
-# change container layout (stacked, tabbed, toggle split)
-#bindsym $mod+s 			layout stacking
-bindsym $mod+w 			layout tabbed
-bindsym $mod+t                  layout toggle split
-
-# change focus between tiling / floating windows
-bindsym $mod+space	    focus mode_toggle
-
-# toggle floating 
-bindsym $mod+Shift+space floating toggle
-
-#------------------- i3 options  ----------------------#
+#----------------------------------------------------------------------------#
+#------------------------------ i3 options  ---------------------------------#
 
 # reload the configuration file
 bindsym $mod+Shift+c	    reload
 
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+F2		    restart
+bindsym $mod+F2		        restart
 
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 
-#--------------- Gaps/window resize -------------------#
 
-#gaps
-bindsym $mod+s	                gaps inner current plus 5
+#-------------------------------------------------------------------------#
+#----------------------- Gaps/window resize ------------------------------#
+
+#----- gaps -----#
+bindsym $mod+s	            gaps inner current plus 5
 bindsym $mod+Shift+s		gaps inner current minus 5
 
+bindsym $mod+z			    gaps outer current plus 5
+bindsym $mod+Shift+z		gaps outer current minus 5
+
+
+#---- window ----#
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -113,12 +127,31 @@ mode "resize" {
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Left resize grow width 10 px or 10 ppt
 
+
 # Resize and move mode
-#bindsym $mod+m				mode move
-#bindsym $mod+r	
+bindsym $mod+m				mode move
+bindsym $mod+r	            mode "resize"
+
+# split in horizontal orientation
+bindsym $mod+ccedilla							split h
+
+# split in vertical orientation
+bindsym $mod+v									split v
 
 
-#----------------- Window moviment ------------------#
+#----------------------------------------------------------------------#
+#--------------------------- Window moviment --------------------------#
+
+# toggle floating 
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space	    focus mode_toggle
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier       $mod
+#--------
+
 
 # change focus
 bindsym $mod+h						focus left
@@ -133,13 +166,14 @@ bindsym $mod+Up    					focus up
 bindsym $mod+Right 					focus right
 
 # move focused window
-bindsym $mod+Shift+h				        move left
-bindsym $mod+Shift+j 				        move down
-bindsym $mod+Shift+k 				        move up
-bindsym $mod+Shift+l 				        move right
+bindsym $mod+Shift+h				move left
+bindsym $mod+Shift+j 				move down
+bindsym $mod+Shift+k 				move up
+bindsym $mod+Shift+l 				move right
 
 
-#---------------------- Workspaces ---------------------#
+#------------------------------------------------------------------------#
+#------------------------------- Workspaces -----------------------------#
 
 #define workspace
 set $ws1 "1"
@@ -166,7 +200,8 @@ bindsym $mod+Shift+5	move container to workspace $ws5
 bindsym $mod+Shift+6	move container to workspace $ws6
 
 
-#--------------------------- Colors ----------------------------#
+#--------------------------------------------------------------------------#
+#-------------------------------- Colors ----------------------------------#
 #
 # The ~/.Xresources should contain a line such as
 #     *color0: #121212
