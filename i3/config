@@ -5,23 +5,38 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 
-#---------- Basic Definitions -------------#
+#---------------- Basic Definitions ------------------#
 
 set $mod	    Mod4
 set $term       urxvt
 set $browser    firefox
 
+#font config 
+font pango:Source Code Pro 12
 
-#-------------- Key Bindings ----------------#
+#background config 
+exec_always feh --bg-scale ~/.config/wallpaper.jpg
+
+#remove border 
+new_window pixel 0
+
+#gaps size
+gaps inner 15
+gaps outer 15
+
+#------------------ Key Bindings ---------------------#
 
 # start a terminal
 bindsym $mod+Return	    exec $term
 
-# start emacs.
-bindsym $mod+e	        exec emacs
+# start emacs
+bindsym $mod+e	        exec emacs no-x-resources
+
+# start dmenu.
+bindsym $mod+d		    exec dmenu_run
 
 # start firefox 
-bindsym $mod+m          exec $browser
+bindsym $mod+y          exec $browser
 
 # start nemo filemanager
 bindsym $mod+n          exec nemo
@@ -32,32 +47,111 @@ bindsym $mod+f	        fullscreen toggle
 # kill focused window.
 bindsym $mod+q	   	    kill
 
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier       $mod
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s 			layout stacking
+bindsym $mod+w 			layout tabbed
+bindsym $mod+t          layout toggle split
+
+# change focus between tiling / floating windows
+bindsym $mod+space	    focus mode_toggle
+
+# toggle floating 
+bindsym $mod+Shift+space floating toggle
+
+#------------------- i3 options  ----------------------#
+
 # reload the configuration file
 bindsym $mod+Shift+c	reload
 
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+F2		    restart
 
-#---Window moviment
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+
+#--------------- Gaps/window resize -------------------#
+
+#gaps
+bindsym $mod+s			    gaps inner current plus 5
+bindsym $mod+Shift+s		gaps inner current minus 5
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym l resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym j resize shrink height 10 px or 10 ppt
+        bindsym h resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Right resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Left resize grow width 10 px or 10 ppt
+
+# Resize and move mode
+bindsym $mod+m									mode move
+bindsym $mod+r	
+
+
+#----------------- Window moviment ------------------#
 
 # change focus
-bindsym $mod+h									focus left
-bindsym $mod+j 									focus down
-bindsym $mod+k 									focus up
-bindsym $mod+l 									focus right
+bindsym $mod+h								focus left
+bindsym $mod+j 								focus down
+bindsym $mod+k 								focus up
+bindsym $mod+l 								focus right
 
 #other keys 
-bindsym $mod+Left								focus left
-bindsym $mod+Down  								focus down
-bindsym $mod+Up    								focus up
-bindsym $mod+Right 								focus right
+bindsym $mod+Left							focus left
+bindsym $mod+Down  							focus down
+bindsym $mod+Up    							focus up
+bindsym $mod+Right 							focus right
 
 # move focused window
-bindsym $mod+Shift+h							move left
-bindsym $mod+Shift+j 							move down
-bindsym $mod+Shift+k 							move up
-bindsym $mod+Shift+l 							move right
+bindsym $mod+Shift+h						move left
+bindsym $mod+Shift+j 						move down
+bindsym $mod+Shift+k 						move up
+bindsym $mod+Shift+l 						move right
 
 
-#----------------- Colors ----------------------#
+#---------------------- Workspaces ---------------------#
+
+#define workspace
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+
+# switch to workspace
+bindsym $mod+1		workspace $ws1
+bindsym $mod+2		workspace $ws2
+bindsym $mod+3		workspace $ws3
+bindsym $mod+4		workspace $ws4
+bindsym $mod+5		workspace $ws5
+bindsym $mod+6		workspace $ws6
+
+# move focused container to workspace
+bindsym $mod+Shift+1	move container to workspace $ws1
+bindsym $mod+Shift+2	move container to workspace $ws2
+bindsym $mod+Shift+3	move container to workspace $ws3
+bindsym $mod+Shift+4	move container to workspace $ws4
+bindsym $mod+Shift+5	move container to workspace $ws5
+bindsym $mod+Shift+6	move container to workspace $ws6
+
+
+#--------------------------- Colors ----------------------------#
 #
 # The ~/.Xresources should contain a line such as
 #     *color0: #121212
@@ -98,37 +192,10 @@ set_from_resource $cyan i3wm.color14
 set_from_resource $white i3wm.color7
 set_from_resource $white i3wm.color15
 
-
-#---------------- workspaces ---------------#
-
-#define workspace
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-
-# switch to workspace
-bindsym $mod+1		workspace $ws1
-bindsym $mod+2		workspace $ws2
-bindsym $mod+3		workspace $ws3
-bindsym $mod+4		workspace $ws4
-bindsym $mod+5		workspace $ws5
-bindsym $mod+6		workspace $ws6
-
-# move focused container to workspace
-bindsym $mod+Shift+1	move container to workspace $ws1
-bindsym $mod+Shift+2	move container to workspace $ws2
-bindsym $mod+Shift+3	move container to workspace $ws3
-bindsym $mod+Shift+4	move container to workspace $ws4
-bindsym $mod+Shift+5	move container to workspace $ws5
-bindsym $mod+Shift+6	move container to workspace $ws6
+#--------------------- Other configs ----------------------#
 
 
-#------------- Font config --------------#
-font pango:Source Code Pro 13
+for_window [title="Calculator"]		       floating enable
 
+for_window [title="video0 - mpv"]	       floating enable
 
-#config background
-exec_always feh --bg-scale ~/.config/wallpaper.jpg
