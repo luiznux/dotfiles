@@ -1,16 +1,17 @@
-#  /$$ /$$$$$$                                    /$$$$$$ /$$                     
-# |__//$$__  $$                                  /$$__  $|__/                     
-#  /$|__/  \ $$        /$$$$$$$ /$$$$$$ /$$$$$$$| $$  \__//$$ /$$$$$$             
-# | $$  /$$$$$/       /$$_____//$$__  $| $$__  $| $$$$   | $$/$$__  $$            
-# | $$ |___  $$      | $$     | $$  \ $| $$  \ $| $$_/   | $| $$  \ $$            
-# | $$/$$  \ $$      | $$     | $$  | $| $$  | $| $$     | $| $$  | $$            
-# | $|  $$$$$$/      |  $$$$$$|  $$$$$$| $$  | $| $$     | $|  $$$$$$$            
-# |__/\______/        \_______/\______/|__/  |__|__/     |__/\____  $$            
-#                                                            /$$  \ $$            
-#                                                           |  $$$$$$/            
-#                                                            \______/             
 #
-# i3-gaps config file 
+#  /$$ /$$$$$$                                    /$$$$$$ /$$
+# |__//$$__  $$                                  /$$__  $|__/
+#  /$|__/  \ $$        /$$$$$$$ /$$$$$$ /$$$$$$$| $$  \__//$$ /$$$$$$
+# | $$  /$$$$$/       /$$_____//$$__  $| $$__  $| $$$$   | $$/$$__  $$
+# | $$ |___  $$      | $$     | $$  \ $| $$  \ $| $$_/   | $| $$  \ $$
+# | $$/$$  \ $$      | $$     | $$  | $| $$  | $| $$     | $| $$  | $$
+# | $|  $$$$$$/      |  $$$$$$|  $$$$$$| $$  | $| $$     | $|  $$$$$$$
+# |__/\______/        \_______/\______/|__/  |__|__/     |__/\____  $$
+#                                                            /$$  \ $$
+#                                                           |  $$$$$$/
+#                                                            \______/
+#
+# i3-gaps config file
 #
 # source: https://github.com/luiznux/dotfiles/i3
 #
@@ -29,13 +30,13 @@ set $term       urxvt
 #define browser
 set $browser    firefox
 
-#font config 
+#font config
 font pango:Source Code Pro 12
 
-#background config 
+#background config
 exec_always feh --bg-scale ~/.config/wallpaper.jpg
 
-#remove border 
+#remove border
 new_window pixel 0
 
 #gaps size
@@ -44,14 +45,14 @@ gaps outer 17
 
 #---------------------------------------------------------------------------#
 #-------------------------------- Bar --------------------------------------#
-
-bar {
-	font pango:source code pro 12
-	status_command i3blocks
-	position top
-	mode dock
-	modifier None
-}
+#
+#bar {
+#	font pango:source code pro 12
+#	status_command i3blocks
+#	position top
+#	mode dock
+#	modifier None
+#}
 
 
 
@@ -67,7 +68,7 @@ bindsym $mod+e	            exec emacs no-x-resources
 # start dmenu.
 bindsym $mod+d		        exec dmenu_run
 
-# start firefox 
+# start firefox
 bindsym $mod+y              exec $browser
 
 # start nemo filemanager
@@ -78,6 +79,14 @@ bindsym $mod+f	            fullscreen toggle
 
 # kill focused window.
 bindsym $mod+q	   	        kill
+
+
+# Screen brightness controls
+# increase screen brightness
+bindsym XF86MonBrightnessUp exec light -A 5
+
+ # decrease screen brightness
+bindsym XF86MonBrightnessDown exec light -U 5
 
 
 #----------------------------------------------------------------------------#
@@ -95,7 +104,6 @@ bindsym $mod+F2		        restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 
-
 #-------------------------------------------------------------------------#
 #----------------------- Gaps/window resize ------------------------------#
 
@@ -109,28 +117,28 @@ bindsym $mod+Shift+z		gaps outer current minus 5
 
 #---- window ----#
 # resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym l resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym j resize shrink height 10 px or 10 ppt
-        bindsym h resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Right resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Left resize grow width 10 px or 10 ppt
-
-
-# Resize and move mode
-bindsym $mod+m				mode move
-bindsym $mod+r	            mode "resize"
+#mode "resize" {
+#        # These bindings trigger as soon as you enter the resize mode
+#
+#        # Pressing left will shrink the window’s width.
+#        # Pressing right will grow the window’s width.
+#        # Pressing up will shrink the window’s height.
+#        # Pressing down will grow the window’s height.
+#        bindsym l resize shrink width 10 px or 10 ppt
+#        bindsym k resize grow height 10 px or 10 ppt
+#        bindsym j resize shrink height 10 px or 10 ppt
+#        bindsym h resize grow width 10 px or 10 ppt
+#
+#        # same bindings, but for the arrow keys
+#        bindsym Right resize shrink width 10 px or 10 ppt
+#        bindsym Down resize grow height 10 px or 10 ppt
+#        bindsym Up resize shrink height 10 px or 10 ppt
+#        bindsym Left resize grow width 10 px or 10 ppt
+#
+#
+## Resize and move mode
+#bindsym $mod+m				mode move
+#bindsym $mod+r	            mode "resize"
 
 # split in horizontal orientation
 bindsym $mod+ccedilla							split h
@@ -142,14 +150,14 @@ bindsym $mod+v									split v
 #----------------------------------------------------------------------#
 #--------------------------- Window moviment --------------------------#
 
-# toggle floating 
+# toggle floating
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space	    focus mode_toggle
 
 # Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier       $mod
+#floating_modifier       $mod
 #--------
 
 
@@ -159,17 +167,17 @@ bindsym $mod+j 						focus down
 bindsym $mod+k 						focus up
 bindsym $mod+l 						focus right
 
-#other keys 
+#other keys
 bindsym $mod+Left					focus left
 bindsym $mod+Down  					focus down
 bindsym $mod+Up    					focus up
 bindsym $mod+Right 					focus right
 
 # move focused window
-bindsym $mod+Shift+h				move left
-bindsym $mod+Shift+j 				move down
-bindsym $mod+Shift+k 				move up
-bindsym $mod+Shift+l 				move right
+bindsym $mod+Shift+h				move left 30
+bindsym $mod+Shift+j 				move down 30
+bindsym $mod+Shift+k 				move up 30
+bindsym $mod+Shift+l 				move right 30
 
 
 #------------------------------------------------------------------------#
@@ -210,37 +218,38 @@ bindsym $mod+Shift+6	move container to workspace $ws6
 # This value is picked up on by other applications (e.g., the URxvt terminal
 # emulator) and can be used in i3 like this:
 
-#black
-set_from_resource $black i3wm.color0
-set_from_resource $black i3wm.color8
-
-#red
-set_from_resource $red i3wm.color1
-set_from_resource $redki3wm.color9
-
-#green
-set_from_resource $green i3wm.color2
-set_from_resource $green i3wm.color10
-
-#yellow
-set_from_resource $yellow i3wm.color3
-set_from_resource $yellow i3wm.color11
-
-#blue
-set_from_resource $blue i3wm.color4
-set_from_resource $blue i3wm.color12
-
-#magenta
-set_from_resource $magenta i3wm.color5
-set_from_resource $magenta i3wm.color13
-
-#cyan
-set_from_resource $cyan i3wm.color6
-set_from_resource $cyan i3wm.color14
- 
-#white
-set_from_resource $white i3wm.color7
-set_from_resource $white i3wm.color15
-
+##black
+#set_from_resource $black i3wm.color0
+#set_from_resource $black i3wm.color8
+#
+##red
+#set_from_resource $red i3wm.color1
+#set_from_resource $redki3wm.color9
+#
+##green
+#set_from_resource $green i3wm.color2
+#set_from_resource $green i3wm.color10
+#
+##yellow
+#set_from_resource $yellow i3wm.color3
+#set_from_resource $yellow i3wm.color11
+#
+##blue
+#set_from_resource $blue i3wm.color4
+#set_from_resource $blue i3wm.color12
+#
+##magenta
+#set_from_resource $magenta i3wm.color5
+#set_from_resource $magenta i3wm.color13
+#
+##cyan
+#set_from_resource $cyan i3wm.color6
+#set_from_resource $cyan i3wm.color14
+#
+##white
+#set_from_resource $white i3wm.color7
+#set_from_resource $white i3wm.color15
+#
 #--------------------- Other configs ----------------------#
-
+#
+#hide_edge_borders both
