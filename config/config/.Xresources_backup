@@ -1,0 +1,195 @@
+! Xresources config luiznux
+!
+! https://github.com/luiznux/Dotfiles
+!
+! Run "xrdb -load .Xresources" to apply changes
+
+
+!---------------------------------------------------------------------------
+!                               EMACS
+!---------------------------------------------------------------------------
+
+Emacs.font: Source Code Pro:size=20
+
+
+
+!---------------------------------------------------------------------------
+!                     Xterm Config
+!---------------------------------------------------------------------------
+!see the link below to install transset-df for xterm transparent
+!http://forchheimer.se/transset-df/
+!https://wiki.archlinux.org/index.php/Xterm#Automatic_transparency
+!https://wiki.archlinux.org/index.php/Per-application_transparency
+
+
+!!Geral ------------------------------------------
+XTerm*termName: xterm-256color
+XTerm*marginBell: yes 
+
+
+!!Fonts -----------------------------------------
+!XTerm*termname: Source Code Pro
+!Xterm*faceSize: 40
+XTerm*Geometry:  76x20
+XTerm*faceName:  Source Code Pro
+XTerm*faceSize:  12
+
+
+!Ensure that your locale is set up for UTF-8. If you do not use UTF-8, you
+!may need to force xterm to more strictly follow your locale by setting
+XTerm.vt100.locale: true
+
+
+!!Cursor ----------------------------------------
+! pointer and cursor (blinking and color)
+XTerm*pointerColor:              black
+XTerm*pointerColorBackground:    white
+XTerm*cursorColor:               white
+XTerm*cursorBlink:               false
+Xterm*pointerSize:               60
+
+
+!!Keybinding ---------------------------------------------------------------------------------
+
+! http://blog.rot13.org/2010/03/change-font-size-in-xterm-using-keyboard.html
+! - change fontsize on the fly (ctrl+plus = increase ; ctrl+minus = decrease, ctrl+0 = default)
+! - copy/paste hotkey (ctrl+shift+c = copy ; ctrl+shift+v = paste)
+! - open url (clickable links)
+!   1) double click to highlight the full url
+!   2) Shift + click it to open it
+XTerm.vt100.translations: #override \n\
+  Ctrl <Key> minus: smaller-vt-font() \n\
+  Ctrl <Key> plus: larger-vt-font() \n\
+  Ctrl <Key> 0: set-vt-font(d) \n\
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+  Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) \n\
+  <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
+  <Btn2Up>: insert-selection(PRIMARY)
+
+
+! double-click to select whole URLs :D
+! https://scarygliders.net/2011/12/01/customize-xterm-the-original-and-best-terminal/
+XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+
+
+!!Scrolling -------------------------------------------------------
+! Use: Shift-Pageup / Shift-Pagedown to scroll or mousewheel
+! Lines of output that you can scroll back over
+XTerm*saveLines: 50000
+
+! Do not scroll when there is new input e.g. tail -f /var/syslog
+XTerm*scrollTtyOutput: false
+
+
+
+!-------------------------------------------------------------------------
+!                               URxvt   Config
+!-------------------------------------------------------------------------
+
+!!General settings----------------------------------------------------
+
+!URxvt*saveline:         5000
+!URxvt*termName:         xterm-256color
+!URxvt*urgentOnBell:     false
+!URxvt*visualBell:       false
+!URxvt*iso14755:         false
+!URxvt*iso14755_52:      false
+!URxvt*meta8:            false
+!URxvt*metaSendsEscape:  false
+!URxvt*iconFile:  		~/Pictures/icons/utilities-terminal-icon.png
+
+
+!!Appearance----------------------------------------------------------
+
+!URxvt*transparent:       false
+!URxvt*underlineColor:    #4682B4
+!URxvt*highlightColor:    #4682B4
+!URxvt.geometry:          69x21
+!URxvt*depth:             32
+!URxvt*shading:           30
+!URxvt*throughColor:      Blue
+!URxvt*cursorColor:       #c5c8c6
+!URxvt.pointerBlank: 	  false
+!URxvt.cursorBlink:       false
+
+!URxvt.cursorUnderline:   false
+
+!URxvt*scrollBar:         false
+!URxvt*scrollTtyOutput:   false
+!URxvt*scrollWithBuffer:  false
+!URxvt*scrollTtyKeypress: false
+!URxvt*colorIT:      	  #87af5f
+!URxvt*colorBD:      	  #c5c8c6
+!URxvt*colorUL:      	  #87afd7
+
+!URxvt*background:        [90]#222E35
+
+
+!!FONTS-------------------------------------------------------------------
+!run :.!fc-list | grep <font-name>
+!URxvt*font:               xft:Source Code Pro:style=Regular:pixelsize=16
+!URxvt*imFont:             xft:Source Code Pro:style=Regular:size=16
+!URxvt*boldFont:           xft:Source Code Pro:style=Bold:size=14
+!URxvt*letterSpace: 	   0
+
+!Xft.dpi:        120
+!Xft.antialias:  false
+!Xft.rgba:       rgb
+!Xft.hinting:    false
+!Xft.hintstyle:  hintfull
+
+!URxvt*urlLauncher:      	/usr/bin/firefox
+!URxvt*underlineURLs:    	false
+!URxvt*urlButton:        	 1
+!URxvt.matcher.button:       1
+
+
+
+!-------------------------------------------------------------------------
+!                        perl extensions
+!-------------------------------------------------------------------------
+
+
+!URxvt*perl-ext-common:  default,matcher,clipboard,url-select,keyboard-select,-tabbed,resize-font
+
+! macros for clipboard and selection
+!URxvt*copyCommand:      xclip -i -selection clipboard
+!URxvt*pasteCommand:     xclip -o -selection clipboard
+!URxvt*keysym.M-c:       perl:clipboard:copy
+!URxvt*keysym.m-v:       perl:clipboard:paste
+!URxvt*keysym.M-C-v:     perl:clipboard:paste_escaped
+!URxvt*keysym.M-Escape:  perl:keyboard-select:activate
+!URxvt*keysym.M-s:       perl:keyboard-select:search
+!URxvt*keysym.M-u:       perl:url-select:select_next
+!URxvt*resize-font.smaller:	C-Down
+!URxvt*resize-font.bigger:	C-Up
+!URxvt.resize-font.step:      2
+
+
+!! Change font size on Control-Plus/Minus
+!URxvt.keysym.C-plus:          perl:resize-font:bigger
+!URxvt.keysym.C-minus:         perl:resize-font:smaller
+!URxvt.keysym.Control-0x2f:    perl:resize-font:reset
+!URxvt.keysym.Control-0x3f:    perl:resize-font:show
+!URxvt.keysym.Control-0x2b:    perl:resize-font:bigger
+!URxvt.keysym.Control-0x5f:    perl:resize-font:smaller
+
+
+! Tabbed---------------------------------------------------
+!URxvt*tabbed.tabbar-fg:     	4
+!URxvt*tabbed.tabbar-bg:     	16
+!URxvt*tabbed.tab-fg:        	15
+!URxvt*tabbed.tab-bg:        	4
+!URxvt*buffered:         	    false
+!URxvt*keysym.Control-Shift-C: 	perl:clipboard:copy
+!URxvt*keysym.Control-Shift-V: 	perl:clipboard:paste
+
+
+
+!-------------------------------------------------------------------------
+!
+!-------------------------------------------------------------------------
+
+
+

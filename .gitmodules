@@ -10,11 +10,11 @@
 	path = emacs/.emacs.d/lisp/page-break-lines
 	url = https://github.com/purcell/page-break-lines.git
 [submodule "fonts/source-code-pro"]
-	path = system/fonts/source-code-pro
+	path = config/fonts/source-code-pro
 	url = https://github.com/adobe-fonts/source-code-pro
 [submodule "vim/.vim/bundle/base16-vim"]
 	path = vim/.vim/bundle/base16-vim
 	url = https://github.com/chriskempson/base16-vim
 [submodule "system/urxvt-resize-font"]
-	path = system/urxvt-resize-font
+	path = config/urxvt-resize-font
 	url = https://github.com/simmel/urxvt-resize-font
