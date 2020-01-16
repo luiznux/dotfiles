@@ -1,0 +1,10 @@
+[user]
+	email = luiztagli@hotmail.com
+    name = luiznux
+
+[core]
+    excludesfile = /home/luiznux/.gitignore_global
+
+[core]
+    editor = vim
+
