@@ -12,16 +12,12 @@
 #Makefile for my config
 
 
-#emcas config 
 emacs:
-
 	cp -r emacs/.emacs.d  ~/.emacs.d/
 	@echo "Emacs config {OK} "
 
 
-#general config 
 config:
-
 	#vim config setup
 	cp vim/.vimrc ~/.vimrc
 	cp -r vim/.vim/ ~/
@@ -37,7 +33,9 @@ config:
 
 	#setup gitignore global file 
 	cp config/.gitignore_global  ~/
-	@echo "Gitignore global setup {OK}"
+	@echo "Gitignore global setup {OK} "
+	cp config/.gitconfig ~/
+	@echo "Gitconfig setup {OK} "
 
 	#setup i3 and polybar
 	cp config/i3/config ~/.config/i3/
@@ -48,25 +46,14 @@ config:
 	cp config/blue-hair-girl.jpg ~/.config/wallpaper.jpg
 	@echo "Wallppaer setup {OK} "
 
-#install some packages 
 install:
-	
-	#update packages
 	sudo apt update
 	sudo apt upgrade
-	
-	#install some programs
 	sudo apt install git feh vlc vim audacity htop gnome-calculator nemo nemo-fileroller rxvt-unicode-256color sl bmon qdirstat w3m w3m-img docker docker-compose gparted
-	
-	#stickynotes install and addd repository 
 	sudo add-apt-repository ppa:umang/indicator-stickynotes
 	sudo apt-get update
 	sudo apt-get install indicator-stickynotes
-	
-	#TLPUI install and add repository
 	sudo add-apt-repository ppa:linrunner/tlp -y && sudo apt update && sudo apt install tlp tlp-rdw -y
 	sudo add-apt-repository ppa:linuxuprising/apps -y && sudo apt update && sudo apt install tlpui -y
-	
-	#configs 
 	config
 	emacs
