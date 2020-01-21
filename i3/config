@@ -17,9 +17,10 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 #
-
+#
 #-------------------------------------------------------------------------#
 #------------------------- Basic Definitions -----------------------------#
+#-------------------------------------------------------------------------#
 
 #set mod key
 set $mod	    Mod4
@@ -31,7 +32,7 @@ set $term       urxvt
 set $browser    firefox
 
 #font config
-font pango:Source Code Pro 12
+font pango:Source Code Pro 11
 
 #background config
 exec_always feh --bg-scale ~/.config/wallpaper.jpg
@@ -45,7 +46,7 @@ gaps outer 17
 
 #---------------------------------------------------------------------------#
 #-------------------------------- Bar --------------------------------------#
-
+#---------------------------------------------------------------------------#
 #bar {
 #	font pango:source code pro 12
 #	status_command i3blocks
@@ -54,10 +55,9 @@ gaps outer 17
 #	modifier None
 #}
 
-
 #---------------------------------------------------------------------------#
 #------------------------- Key Bindings ------------------------------------#
-
+#---------------------------------------------------------------------------#
 # start a terminal
 bindsym $mod+Return	        exec $term
 
@@ -80,24 +80,46 @@ bindsym $mod+f	            fullscreen toggle
 bindsym $mod+q	   	        kill
 
 
-# Screen brightness controls
-# increase screen brightness
-bindsym XF86MonBrightnessUp exec light -A 5
+#----------------------------------------------------------------------------#
+#------------------------- multimedia keys  ---------------------------------#
+#----------------------------------------------------------------------------#
+#Just remember that you might have to install the packages bellow to this config works
 
- # decrease screen brightness
-bindsym XF86MonBrightnessDown exec light -U 5
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Touchpad controls
+#bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+#
+#The script toggletouchpad.sh for toggling your touchpad should have following content:
+#!/bin/bash
+#if synclient -l | grep "TouchpadOff .*=.*0" ; then
+#    synclient TouchpadOff=1 ;
+#else
+#    synclient TouchpadOff=0 ;
+#fi
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 
 #----------------------------------------------------------------------------#
 #------------------------------ i3 options  ---------------------------------#
-
+#----------------------------------------------------------------------------#
 # reload the configuration file
 bindsym $mod+Shift+c	    reload
 
-
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+F2		        restart
-
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -105,7 +127,9 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 #-------------------------------------------------------------------------#
 #----------------------- Gaps/window resize ------------------------------#
+#-------------------------------------------------------------------------#
 
+#----------------#
 #----- gaps -----#
 bindsym $mod+s	            gaps inner current plus 5
 bindsym $mod+Shift+s		gaps inner current minus 5
@@ -114,40 +138,44 @@ bindsym $mod+z			    gaps outer current plus 5
 bindsym $mod+Shift+z		gaps outer current minus 5
 
 
+#----------------#
 #---- window ----#
 # resize window (you can also use the mouse for that)
-#mode "resize" {
-#        # These bindings trigger as soon as you enter the resize mode
-#
-#        # Pressing left will shrink the window’s width.
-#        # Pressing right will grow the window’s width.
-#        # Pressing up will shrink the window’s height.
-#        # Pressing down will grow the window’s height.
-#        bindsym l resize shrink width 10 px or 10 ppt
-#        bindsym k resize grow height 10 px or 10 ppt
-#        bindsym j resize shrink height 10 px or 10 ppt
-#        bindsym h resize grow width 10 px or 10 ppt
-#
-#        # same bindings, but for the arrow keys
-#        bindsym Right resize shrink width 10 px or 10 ppt
-#        bindsym Down resize grow height 10 px or 10 ppt
-#        bindsym Up resize shrink height 10 px or 10 ppt
-#        bindsym Left resize grow width 10 px or 10 ppt
-#
-#
-## Resize and move mode
-#bindsym $mod+m				mode move
-#bindsym $mod+r	            mode "resize"
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
 
-# split in horizontal orientation
-bindsym $mod+ccedilla							split h
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym l resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym j resize shrink height 10 px or 10 ppt
+        bindsym h resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Right resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Left resize grow width 10 px or 10 ppt
+
+        #back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+## Resize and move mode
+bindsym $mod+r	            mode "resize"
 
 # split in vertical orientation
-bindsym $mod+v									split v
+bindsym $mod+v				split v
 
 
 #----------------------------------------------------------------------#
 #--------------------------- Window moviment --------------------------#
+#----------------------------------------------------------------------#
+#move mode
+bindsym $mod+m				mode move
 
 # toggle floating
 bindsym $mod+Shift+space floating toggle
@@ -157,7 +185,6 @@ bindsym $mod+space	    focus mode_toggle
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 #floating_modifier       $mod
-#--------
 
 
 # change focus
@@ -180,7 +207,8 @@ bindsym $mod+Shift+l 				move right 30
 
 
 #------------------------------------------------------------------------#
-#------------------------------- Workspaces -----------------------------#
+#----------------------------- Workspaces -------------------------------#
+#------------------------------------------------------------------------#
 
 #define workspace
 set $ws1 "1"
@@ -209,7 +237,8 @@ bindsym $mod+Shift+6	move container to workspace $ws6
 
 #--------------------------------------------------------------------------#
 #-------------------------------- Colors ----------------------------------#
-#
+#--------------------------------------------------------------------------#
+
 # The ~/.Xresources should contain a line such as
 #     *color0: #121212
 # and must be loaded properly, e.g., by using
@@ -249,6 +278,3 @@ bindsym $mod+Shift+6	move container to workspace $ws6
 #set_from_resource $white i3wm.color7
 #set_from_resource $white i3wm.color15
 #
-#--------------------- Other configs ----------------------#
-#
-#hide_edge_borders both
