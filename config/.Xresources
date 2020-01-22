@@ -18,7 +18,7 @@
 !                               EMACS
 !---------------------------------------------------------------------------
 
-Emacs.font: Source Code Pro:size=20
+Emacs.font: Source Code Pro:size=19
 
 
 !---------------------------------------------------------------------------
@@ -112,6 +112,7 @@ URxvt*metaSendsEscape:  false
 URxvt*transparent:       true
 URxvt.geometry:          69x21
 URxvt*depth:             32
+Urxvt.background:        [80]#070b15
 URxvt*shading:           30
 URxvt.internalBorder:    0
 URxvt.pointerBlank: 	 false
@@ -131,13 +132,13 @@ URxvt*boldFont:           xft:Source Code Pro:style=Bold:size=14
 URxvt*letterSpace: 	   0
 !
 Xft.dpi:        120
-Xft.antialias:  false
+Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    false
 Xft.hintstyle:  hintfull
 
 URxvt*urlLauncher:      	/usr/bin/firefox
-URxvt*underlineURLs:    	false
+URxvt*underlineURLs:    	true
 URxvt*urlButton:        	 1
 URxvt.matcher.button:        1
 
@@ -189,7 +190,7 @@ URxvt.matcher.button:        1
 !-------------------------------------------------------------------------
 ! special
 *.foreground:   #9db7cf
-*.background:   [80]#070b15
+#*.background:   #070b15
 *.cursorColor:  #9db7cf
 
 ! black

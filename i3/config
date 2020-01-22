@@ -44,6 +44,9 @@ new_window pixel 0
 gaps inner 17
 gaps outer 17
 
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier       $mod
+
 #---------------------------------------------------------------------------#
 #-------------------------------- Bar --------------------------------------#
 #---------------------------------------------------------------------------#
@@ -81,13 +84,15 @@ bindsym $mod+q	   	        kill
 
 
 #----------------------------------------------------------------------------#
-#------------------------- multimedia keys  ---------------------------------#
+#------------------------- multimedia keys ----------------------------------#
 #----------------------------------------------------------------------------#
 #Just remember that you might have to install the packages bellow to this config works
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
@@ -113,7 +118,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 
 #----------------------------------------------------------------------------#
-#------------------------------ i3 options  ---------------------------------#
+#---------------------------- i3 options ------------------------------------#
 #----------------------------------------------------------------------------#
 # reload the configuration file
 bindsym $mod+Shift+c	    reload
@@ -124,18 +129,20 @@ bindsym $mod+F2		        restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+#i3lock config
+bindsym $mod+Shift+x exec i3lock --color="$background"
 
 #-------------------------------------------------------------------------#
-#----------------------- Gaps/window resize ------------------------------#
+#------------------------- Gaps/window resize ----------------------------#
 #-------------------------------------------------------------------------#
 
 #----------------#
 #----- gaps -----#
-bindsym $mod+s	            gaps inner current plus 5
-bindsym $mod+Shift+s		gaps inner current minus 5
+bindsym $mod+s	            gaps inner current plus 2
+bindsym $mod+Shift+s		gaps inner current minus 2
 
-bindsym $mod+z			    gaps outer current plus 5
-bindsym $mod+Shift+z		gaps outer current minus 5
+bindsym $mod+z			    gaps outer current plus 2
+bindsym $mod+Shift+z		gaps outer current minus 2
 
 
 #----------------#
@@ -170,12 +177,21 @@ bindsym $mod+r	            mode "resize"
 # split in vertical orientation
 bindsym $mod+v				split v
 
+# split in horizontal orientation
+bindsym $mod+ccedilla       split h
+
 
 #----------------------------------------------------------------------#
 #--------------------------- Window moviment --------------------------#
 #----------------------------------------------------------------------#
+
 #move mode
 bindsym $mod+m				mode move
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+a                                  layout stacking
+bindsym $mod+w                                  layout tabbed
+bindsym $mod+t                                  layout toggle split
 
 # toggle floating
 bindsym $mod+Shift+space floating toggle
@@ -183,8 +199,7 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space	    focus mode_toggle
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-#floating_modifier       $mod
+
 
 
 # change focus
@@ -247,34 +262,43 @@ bindsym $mod+Shift+6	move container to workspace $ws6
 # emulator) and can be used in i3 like this:
 
 ##black
-#set_from_resource $black i3wm.color0
-#set_from_resource $black i3wm.color8
+set_from_resource $color0 i3wm.color0
+set_from_resource $color8 i3wm.color8
 #
 ##red
-#set_from_resource $red i3wm.color1
-#set_from_resource $redki3wm.color9
+set_from_resource $color1 i3wm.color1
+set_from_resource $color9 i3wm.color9
 #
 ##green
-#set_from_resource $green i3wm.color2
-#set_from_resource $green i3wm.color10
+set_from_resource $color2 i3wm.color2
+set_from_resource $color10 i3wm.color10
 #
 ##yellow
-#set_from_resource $yellow i3wm.color3
-#set_from_resource $yellow i3wm.color11
+set_from_resource $color3 i3wm.color3
+set_from_resource $color11 i3wm.color11
 #
 ##blue
-#set_from_resource $blue i3wm.color4
-#set_from_resource $blue i3wm.color12
+set_from_resource $color4 i3wm.color4
+set_from_resource $color12 i3wm.color12
 #
 ##magenta
-#set_from_resource $magenta i3wm.color5
-#set_from_resource $magenta i3wm.color13
+set_from_resource $color5 i3wm.color5
+set_from_resource $color13 i3wm.color13
 #
 ##cyan
-#set_from_resource $cyan i3wm.color6
-#set_from_resource $cyan i3wm.color14
+set_from_resource $color6 i3wm.color6
+set_from_resource $color14 i3wm.color14
 #
 ##white
-#set_from_resource $white i3wm.color7
-#set_from_resource $white i3wm.color15
-#
+set_from_resource $color7 i3wm.color7
+set_from_resource $color15 i3wm.color15
+
+
+#--------------------------------------------------------------------------#
+#--------------------------- Exec and Others ------------------------------#
+#--------------------------------------------------------------------------#
+
+#POLYBAR
+exec_always --no-startup-id polybar main
+
+
