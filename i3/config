@@ -42,7 +42,15 @@ new_window pixel 0
 
 #gaps size
 gaps inner 9
-gaps outer 13
+gaps outer 15
+
+set $thick 1
+
+for_window [class="^.*"] border pixel 1
+
+#Default Border
+for_window [class="^.*"] border pixel $thick
+for_window [title="^.*"] border pixel $thick
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier       $mod
