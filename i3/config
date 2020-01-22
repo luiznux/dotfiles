@@ -73,7 +73,7 @@ floating_modifier       $mod
 bindsym $mod+Return	        exec $term
 
 # start emacs
-bindsym $mod+e	            exec emacs no-x-resources
+bindsym $mod+e	            exec emacs
 
 # start dmenu.
 bindsym $mod+d		        exec dmenu_run
