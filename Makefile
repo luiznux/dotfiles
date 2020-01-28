@@ -48,6 +48,14 @@ config:
 	cp config/blue-hair-girl.jpg ~/.config/wallpaper.jpg
 	@echo "Wallppaer setup {OK} "
 
+themes:
+	cd gtk-themes/gtk && tar -xvf Midnight-BlueNight-Theme.tar.xz
+	sudo mv Midnight-BlueNight-Theme.tar.xz /usr/share/themes/
+	
+	cd config/ && cp gtk-2.0 gtk-3.0 ~/.config
+	cp gtkrc-2.0 ~/.gtkrc-2.0
+
+
 install:
 	sudo apt update
 	sudo apt upgrade
@@ -75,6 +83,10 @@ install:
     # Optional. This will install the polybar executable in /usr/local/bin
     sudo make install
 
+	#gtk-config
+	sudo apt install lxappearance gtk-chtheme gt4-gtconfig
+
 	#other config 
 	config
 	emacs
+	themes
