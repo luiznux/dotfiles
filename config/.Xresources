@@ -15,7 +15,7 @@
 
 
 !---------------------------------------------------------------------------
-!----------------------------  EMACS --------------------------------------------
+!----------------------------  EMACS ---------------------------------------
 !---------------------------------------------------------------------------
 
 Emacs.font: Source Code Pro:size=14
@@ -103,14 +103,14 @@ XTerm*scrollTtyOutput: false
 !----------------------------------------------------
 !------------- General settings ---------------------
 
-URxvt*saveline:         50000
-URxvt*termName:         xterm-256color
-URxvt*urgentOnBell:     false
-URxvt*visualBell:       false
-URxvt*iso14755:         false
-URxvt*iso14755_52:      false
-URxvt*meta8:            false
-URxvt*metaSendsEscape:  false
+URxvt*saveline:           50000
+URxvt*termName:           xterm-256color
+URxvt*urgentOnBell:       false
+URxvt*visualBell:         false
+URxvt*iso14755:           false
+URxvt*iso14755_52:        false
+URxvt*meta8:              false
+URxvt*metaSendsEscape:    false
 
 
 !----------------------------------------------------
@@ -144,32 +144,40 @@ Xft.rgba:       rgb
 Xft.hinting:    false
 Xft.hintstyle:  hintfull
 
-URxvt*urlLauncher:      	/usr/bin/firefox
-URxvt*underlineURLs:    	true
-URxvt*urlButton:        	 1
-URxvt.matcher.button:        1
+!! Common Keybinds for Navigations
+!
+!Shift Up to scroll one line higher
+!Shift Down to scroll one line lower
+!Control Left to jump to the previous word
+!Control Right to jump to the next word
+!
+URxvt.keysym.Shift-Up: command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007
+URxvt.keysym.Control-Up: \033[1;5A
+URxvt.keysym.Control-Down: \033[1;5B
+URxvt.keysym.Control-Right: \033[1;5C
+URxvt.keysym.Control-Left: \033[1;5D
 
 
 !-----------------------------------------------------
 !---------------- Perl extensions --------------------
 !
-! The perl-libs should be in the ~/.urxvt/ext directory to work 
+! perl -> /usr/lib64/urxvt/perl
 
-!libs
-URxvt.perl-ext-common: font-size 
-!, keyboard-select, default, matcher, url-select, clipboard
+!Extensions
+URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select,resize-font
 
 
 !Font-size config
 !See https://github.com/simmel/urxvt-resize-font for more details
 !
 !Change font size on Control-Plus/Minus
-URxvt.keysym.C-Up:          font-size:increase
-URxvt.keysym.C-Down:        font-size:decrease
-URxvt.keysym.C-equal:       font-size:reset
-URxvt.keysym.C-slash:       font-size:show
-URxvt.keysym.C-S-Up:        font-size:incglobal
-URxvt.keysym.C-S-Down:      font-size:decglobal
+!URxvt.keysym.C-Up:          font-size:increase
+!URxvt.keysym.C-Down:        font-size:decrease
+!URxvt.keysym.C-equal:       font-size:reset
+!URxvt.keysym.C-slash:       font-size:show
+!URxvt.keysym.C-S-Up:        font-size:incglobal
+!URxvt.keysym.C-S-Down:      font-size:decglobal
 URxvt.font-size.step:       1
 
 
@@ -177,7 +185,8 @@ URxvt.font-size.step:       1
 !
 !See https://github.com/muennich/urxvt-perls for more info 
 !
-!URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s:      perl:keyboard-select:search
 !
 !Use Meta-Escape to activate selection mode, then use the following keys:
 !
@@ -194,15 +203,20 @@ URxvt.font-size.step:       1
 
 
 !url select
-!URxvt.keysym.M-u: perl:url-select:select_next
-!URxvt.url-select.launcher: /usr/bin/xdg-open
-!URxvt.url-select.underline: true
+URxvt.keysym.M-u:                perl:url-select:select_next
+URxvt.url-select.launcher:       /usr/bin/xdg-open
+URxvt.url-select.underline:      true
+URxvt*urlButton:        	 1
+URxvt.matcher.button:            1
 
 !clipboard
-!URxvt.clipboard.autocopy: true
-!URxvt.keysym.M-c: perl:clipboard:copy
-!URxvt.keysym.M-v: perl:clipboard:paste
-
+URxvt.clipboard.autocopy: true
+URxvt.clipboard.copycmd:  xclip -in -selection clipboard
+URxvt.copyCommand:        xclip -i -selection clipboard
+URxvt.pasteCommand:       xclip -o -selection clipboard
+URxvt.keysym.M-C-v:       perl:clipboard:paste_escaped
+URxvt.keysym.M-c:         perl:clipboard:copy
+URxvt.keysym.M-v:         perl:clipboard:paste
 
 !----------------------------------------------------------------
 !-------------------------- COLORS ------------------------------
