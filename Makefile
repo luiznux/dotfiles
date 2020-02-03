@@ -18,7 +18,11 @@ install:
 	sudo apt update
 	sudo apt upgrade
 	#Packages
-	sudo apt install git feh vlc vim audacity htop gnome-calculator nemo nemo-fileroller rxvt-unicode-256color sl bmon qdirstat w3m w3m-img docker docker-compose gparted tree ranger xrandr lxappearance gtk-chtheme 
+	sudo apt install git feh vlc vim audacity htop gnome-calculator nemo nemo-fileroller rxvt-unicode-256color sl bmon clang qdirstat w3m w3m-img docker docker-compose gparted tree ranger xrandr lxappearance gtk-chtheme mailutils libgnutls28-dev gnutls-bin build-essential texinfo libjpeg-dev libpng-dev libgif-dev libtiff-dev libgtk2.0-dev libncurses-dev libxpm-dev autoconf
+
+	#setup directory
+	mkdir -p ~/{Github/{luiznux,prog}, Torrents, Mangas projects}
+	@echo "    Directory tree {OK}"
 
 	#PPAS
 	sudo add-apt-repository ppa:umang/indicator-stickynotes
@@ -36,9 +40,25 @@ install:
 	sudo apt-get install cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev xcb libxcb-ewmh2 -y && git clone https://github.com/jaagr/polybar.git && cd polybar && sudo ./build.sh
 	@echo "	    Polybar install {OK}"
 
+	#setup i3 and polybar
+	cp config/i3/config ~/.config/i3/
+	cp -R config/polybar/  ~/.config/polybar/
+	@echo "        I3 and Polybar config {OK} "
+
+	#Ranger
+	git clone https://github.com/hut/ranger.git && mv ranger/ ~/Github/prog
+    cd ~/Github/prog/ranger && sudo make install
+	@echo " Ranger {OK}"
+
+	#ranger config
+	cp config/rc.conf  ~/.config/ranger/
+	@echo "     Ranger config file setup {OK} "
+
 	#EMACS
 	cp -r emacs/.emacs.d  ~/.emacs.d/
 	@echo "          Emacs config {OK} "
+	wget gnu.c3sl.ufpr.br/ftp/emacs/emacs-26.3.tar.xz && tar -xvf emacs-26.3.tar.xz && mv emacs-26.3/ ~/
+
 
 	#vim config setup
 	cp vim/.vimrc ~/.vimrc
@@ -48,13 +68,15 @@ install:
 	#setup font
 	cp -R config/fonts/source-code-pro /usr/local/share/fonts/
 	@echo "           Fount setup {OK} "
+
+	#Urxvt-perls
+	mkdir ~/.urxvt/{ext}
+	cd config && cp urxvt-resize-font/resize-font, urxvt-perls/{keyboard-select}/deprecated/{clipboard, url-select} ~/.urxvt/ext/
+	@echo"                   URXVT perls {OK}"
+
 	#setup Xresources
 	cp config/.Xresources ~/.Xresources  && xrdb -laod ~/.Xresources
 	@echo "     Xresources setup and loaded {OK} "
-
-	#ranger config
-	cp config/rc.conf  ~/.config/ranger/
-	@echo "     Ranger config file setup {OK} "
 
 	#setup gitignore global file
 	cp config/.gitignore_global  ~/
@@ -62,18 +84,9 @@ install:
 	cp config/.gitconfig ~/
 	@echo "              Gitconfig setup {OK} "
 
-	#setup i3 and polybar
-	cp config/i3/config ~/.config/i3/
-	cp -R config/polybar/  ~/.config/polybar/
-	@echo "        I3 and Polybar config {OK} "
-
 	#setup background image
 	cp config/blue-hair-girl.jpg ~/.config/wallpaper.jpg
 	@echo "              Wallppaer setup {OK} "
-
-	#setup directory
-	#cd ~/ && mkdir Pictures, Videos, Downloads, Documents, Github, Torrents, Mangas
-	#@echo "    Directory tree {OK}"
 	
 	#Themes
 	cd gtk-themes/gtk && tar -xvf Midnight-BlueNight-Theme.tar.xz
