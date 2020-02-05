@@ -42,7 +42,7 @@ alert =           #bd2c40
 
 [bar/luiznux]
 
-;colors 
+;colors
 background = ${colors.background}
 foreground = ${colors.foreground}
 
@@ -70,14 +70,14 @@ module-margin-left = 1
 module-margin-right = 1
 
 ;fonts config
-font-0 = "Source Code Pro:size=8:antialias=true;0"
-font-1 = "Source Code Pro:size=8:style=Bold:antialias=true;0"
+font-0 = "Source Code Pro:size=10:antialias=true;0"
+font-1 = "Source Code Pro:size=10:style=Bold:antialias=true;0"
 
 
 ;modules set
 modules-left = xwindow ewmh
 modules-center = 
-modules-right = xbacklight alsa pulseaudio filesystem cpu fan memory battery date weather temperature 
+modules-right = backlight alsa pulseaudio filesystem cpu fan memory battery date weather temperature 
 
 
 ; Position of the system tray window
@@ -138,25 +138,46 @@ icon-5 = 6
 icon-default = ♟
 
 
-;#---------------------------#
-;#------- Xbacklight---------#
+;;#---------------------------#
+;;#------- Xbacklight---------#
+;;
+;[module/xbacklight]
+;type = internal/xbacklight
 ;
-[module/xbacklight]
-type = internal/xbacklight
+;format = <label> <bar>
+;label = BL
+;
+;bar-width = 9
+;bar-indicator = |
+;bar-indicator-foreground = #fff
+;bar-indicator-font = 2
+;bar-fill = ─
+;bar-fill-font = 2
+;bar-fill-foreground = #9f78e1
+;bar-empty = ─
+;bar-empty-font = 2
+;bar-empty-foreground = ${colors.foreground-alt}
+;
 
-format = <label> <bar>
-label = BL
 
-bar-width = 9
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
+;;#---------------------------#
+;;#---------Backlight---------#
+;;
+[module/backlight]
+type = custom/script
+interval = 0.2
+exec = ~/.config/polybar/backlight.sh
+
+scroll-up = exec light -A 5
+scroll-down = exec light -U 5
+
+format-prefix = " "
+
+label = %output%
+label-foreground = ${colors.fg}
+format-padding = 1
+
+
 
 [module/backlight-acpi]
 inherit = module/xbacklight
