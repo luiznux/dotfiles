@@ -135,7 +135,7 @@ icon-2 = 3
 icon-3 = 4
 icon-4 = 5
 icon-5 = 6
-icon-default = ♟
+icon-default = 
 
 
 ;;#---------------------------#
@@ -163,26 +163,25 @@ icon-default = ♟
 ;;#---------------------------#
 ;;#---------Backlight---------#
 ;;
-[module/backlight]
-type = custom/script
-interval = 0.2
-exec = ~/.config/polybar/backlight.sh
-
-scroll-up = exec light -A 5
-scroll-down = exec light -U 5
-
-format-prefix = " "
-
-label = %output%
-label-foreground = ${colors.fg}
-format-padding = 1
-
-
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
+;[module/backlight]
+;type = custom/script
+;interval = 0.2
+;exec = ~/.config/polybar/backlight.sh
+;
+;scroll-up = exec light -A 10
+;scroll-down = exec light -U 10
+;
+;format-prefix = " "
+;
+;label = %output%
+;label-foreground = ${colors.fg}
+;format-padding = 1
+;
+;
+;[module/backlight-acpi]
+;inherit = module/xbacklight
+;type = internal/backlight
+;card = intel_backlight
 
 
 

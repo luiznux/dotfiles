@@ -104,8 +104,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #d
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
 
 # Touchpad controls
 #bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
@@ -240,6 +240,7 @@ set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
+set $ws7 "7"
 
 # switch to workspace
 bindsym $mod+1		workspace $ws1
@@ -248,6 +249,7 @@ bindsym $mod+3		workspace $ws3
 bindsym $mod+4		workspace $ws4
 bindsym $mod+5		workspace $ws5
 bindsym $mod+6		workspace $ws6
+bindsym $mod+7		workspace $ws7
 
 # move focused container to workspace
 bindsym $mod+Shift+1	move container to workspace $ws1
@@ -256,6 +258,7 @@ bindsym $mod+Shift+3	move container to workspace $ws3
 bindsym $mod+Shift+4	move container to workspace $ws4
 bindsym $mod+Shift+5	move container to workspace $ws5
 bindsym $mod+Shift+6	move container to workspace $ws6
+bindsym $mod+Shift+7	move container to workspace $ws7
 
 
 #--------------------------------------------------------------------------#
@@ -307,6 +310,7 @@ set_from_resource $color15 i3wm.color15
 #--------------------------------------------------------------------------#
 
 #POLYBAR
-exec_always --no-startup-id polybar main
+exec_always --no-startup-id polybar luiznux
+
 
 
