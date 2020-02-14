@@ -1,0 +1,35 @@
+Device 'DELL0828:00 06CB:7E7E Touchpad':
+	Device Enabled (155):	1
+	Coordinate Transformation Matrix (157):	1.000000, 0.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000, 0.000000, 1.000000
+	libinput Tapping Enabled (292):	1
+	libinput Tapping Enabled Default (293):	0
+	libinput Tapping Drag Enabled (294):	1
+	libinput Tapping Drag Enabled Default (295):	1
+	libinput Tapping Drag Lock Enabled (296):	0
+	libinput Tapping Drag Lock Enabled Default (297):	0
+	libinput Tapping Button Mapping Enabled (298):	1, 0
+	libinput Tapping Button Mapping Default (299):	1, 0
+	libinput Natural Scrolling Enabled (300):	0
+	libinput Natural Scrolling Enabled Default (301):	0
+	libinput Disable While Typing Enabled (302):	1
+	libinput Disable While Typing Enabled Default (303):	1
+	libinput Scroll Methods Available (304):	1, 1, 0
+	libinput Scroll Method Enabled (305):	1, 0, 0
+	libinput Scroll Method Enabled Default (306):	1, 0, 0
+	libinput Click Methods Available (307):	1, 1
+	libinput Click Method Enabled (308):	1, 0
+	libinput Click Method Enabled Default (309):	1, 0
+	libinput Middle Emulation Enabled (310):	0
+	libinput Middle Emulation Enabled Default (311):	0
+	libinput Accel Speed (312):	1.000000
+	libinput Accel Speed Default (313):	0.000000
+	libinput Left Handed Enabled (314):	0
+	libinput Left Handed Enabled Default (315):	0
+	libinput Send Events Modes Available (277):	1, 1
+	libinput Send Events Mode Enabled (278):	0, 0
+	libinput Send Events Mode Enabled Default (279):	0, 0
+	Device Node (280):	"/dev/input/event11"
+	Device Product ID (281):	1739, 32382
+	libinput Drag Lock Buttons (316):	<no items>
+	libinput Horizontal Scroll Enabled (317):	1
+
