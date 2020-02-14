@@ -28,7 +28,7 @@
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
-  (package-install 'use-package))
+  (package-ins
 
 (use-package all-the-icons
   :ensure t)
@@ -102,10 +102,21 @@
   :ensure t
   :bind ("C-c d" . docker))
 
+(use-package diff-hl
+  :ensure t
+  :config
+  (global-diff-hl-mode))
+
+(use-package nlinum
+  :ensure t
+  :config
+  (global-nlinum-mode))
+
+
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/awesome-tab"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/emacs-dashboard"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/page-break-lines")) 
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/page-break-lines"))
 
 (defun setup-awesome-tab()
   (require 'awesome-tab)
@@ -119,6 +130,7 @@
 (defun setup-page-break-lines()
   (require 'page-break-lines)
   (turn-on-page-break-lines-mode))
+
 
 (load "~/.emacs.d/lisp/custom-modes-config.el")
 (load "~/.emacs.d/lisp/evil-config.el")
