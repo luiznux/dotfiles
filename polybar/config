@@ -27,13 +27,13 @@
 ;#-----------------------------------------------------------------------------------#
 
 [colors]
-background =      #222
+background     =  #070b15
+foreground     =  #9db7cf
 background-alt =  #444
-foreground =      #dfdfdf
-foreground-alt =  #555
-primary =         #ffb52a
-secondary =       #e60053
-alert =           #bd2c40
+foreground-alt =  #9db7c
+primary        =  #914836
+secondary      =  #994a3b
+alert          =  #aa6655
 
 
 ;#-----------------------------------------------------------------------------------#
@@ -47,38 +47,41 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 ;bar dimencions and forms
-width = 100%
-height = 20
+width  = 100%
+height = 25
 radius = 5.0
 
 ;border size and colors (applied to all borders)
-border-size = 3
+border-size  = 3
 border-color = #00000000
 
 ;under-/overline pixel size and argb color
-line-size = 3
+line-size  = 3
 line-color = #f00
 
 fixed-center = false
 
-;number of spaces to add at the begimmimg/end of the bar 
-padding-left = 0
+;number of spaces to add at the begimmimg/end of the bar
+padding-left  = 0
 padding-right = 1
 
 ;number  of spaces to add before/after each module
-module-margin-left = 1
+module-margin-left  = 1
 module-margin-right = 1
 
 ;fonts config
-font-0 = "Source Code Pro:size=10:antialias=true;0"
-font-1 = "Source Code Pro:size=10:style=Bold:antialias=true;0"
-
+font-0 = "Source Code Pro:size=12:antialias=true;0"
+font-1 = "Source Code Pro:size=12:style=Bold:antialias=true;0"
+font-2 = "Font Awesome 5 Free:size=12;1"
+font-3 = "Weather Icons:size=14;1:style:Regular"
+font-4 = "Font Awesome 5 Brands:pixelsize=14;1"
+font-5 = "Font Awesome 5 Free Solid:pixelsize=14;2"
 
 ;modules set
-modules-left = xwindow ewmh
-modules-center = 
-modules-right = backlight alsa pulseaudio filesystem cpu fan memory battery date weather temperature 
-
+modules-left   = i3 spotify
+modules-center =
+modules-right  =  alsa network filesystem cpu memory system-cpu-temppercore system-fan-speed  battery date weather
+ ; networkspeedup networkspeeddown
 
 ; Position of the system tray window
 ; If empty or undefined, tray support will be disabled
@@ -91,370 +94,350 @@ modules-right = backlight alsa pulseaudio filesystem cpu fan memory battery date
 ;   none
 ;
 tray-position = right
-tray-padding = 2
+tray-padding  = 2
 
 ; Requires polybar to be built with xcursor support (xcb-util-cursor)
 ; Possible values are:
 ; - default   : The default pointer as before, can also be an empty string (default)
 ; - pointer   : Typically in the form of a hand
 ; - ns-resize : Up and down arrows, can be used to indicate scrolling
-cursor-click = pointer
+cursor-click  = pointer
 cursor-scroll = ns-resize
-
 
 ;#----------------------------------------------------------------------------#
 ;#--------------------------------- Bar Modules ------------------------------#
 ;#----------------------------------------------------------------------------#
 
-
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
-
-
-;#-------------------------------#
-;#--------- Workspaces ----------#
-[module/ewmh]
-type = internal/xworkspaces
-
-; Only show workspaces defined on the same output as the bar
+;#---------------------------------#
+;#-------------- I3 ---------------#
 ;
-; Useful if you want to show monitor specific workspaces
-; on different bars
-;
-; Default: false
-pin-workspaces = true
-
-; icon-[0-9]+ = <desktop-name>;<icon>
-; NOTE: The desktop name needs to match the name configured by the WM
-; You can get a list of the defined desktops using:
-; $ xprop -root _NET_DESKTOP_NAMES
-icon-0 = 1
-icon-1 = 2
-icon-2 = 3
-icon-3 = 4
-icon-4 = 5
-icon-5 = 6
-icon-default = 
-
-
-;;#---------------------------#
-;;#------- Xbacklight---------#
-;;
-;[module/xbacklight]
-;type = internal/xbacklight
-;
-;format = <label> <bar>
-;label = BL
-;
-;bar-width = 9
-;bar-indicator = |
-;bar-indicator-foreground = #fff
-;bar-indicator-font = 2
-;bar-fill = ─
-;bar-fill-font = 2
-;bar-fill-foreground = #9f78e1
-;bar-empty = ─
-;bar-empty-font = 2
-;bar-empty-foreground = ${colors.foreground-alt}
-;
-
-
-;;#---------------------------#
-;;#---------Backlight---------#
-;;
-;[module/backlight]
-;type = custom/script
-;interval = 0.2
-;exec = ~/.config/polybar/backlight.sh
-;
-;scroll-up = exec light -A 10
-;scroll-down = exec light -U 10
-;
-;format-prefix = " "
-;
-;label = %output%
-;label-foreground = ${colors.fg}
-;format-padding = 1
-;
-;
-;[module/backlight-acpi]
-;inherit = module/xbacklight
-;type = internal/backlight
-;card = intel_backlight
-
-
-
 [module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = false
+type                    = internal/i3
+format                  = <label-state> <label-mode>
+index-sort              = true
+wrapping-scroll         = false
 
-; Only show workspaces on the same output as the bar
+;Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
+label-mode-padding              = 1
+label-mode-foreground           = #000
+label-mode-background           = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
+label-focused                   = %index%
+label-focused-background        = ${colors.background-alt}
+label-focused-underline         = ${colors.primary}
+label-focused-padding           = 1
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
-label-unfocused-padding = 2
+label-unfocused             = %index%
+label-unfocused-padding     = 1
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
+label-visible                   = %index%
+label-visible-background        = ${self.label-focused-background}
+label-visible-underline         = ${self.label-focused-underline}
+label-visible-padding           = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent                = %index%
+label-urgent-background     = ${colors.alert}
+label-urgent-padding        = 1
 
 ; Separator in between workspaces
 ; label-separator = |
 
 
-[module/mpd]
-type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+;#-------------------------------#
+;#----------- Audio -------------#
+;
+[module/spotify]
+type            = custom/script
+exec            = ~/.config/polybar/scripts/spotify.sh %artist% - %title%
+tail            = true
+interval        = 2
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+format-foreground           = ${colors.foreground}
+format-background           = ${colors.background}
+format-padding              = 2
+format-underline            = #0f0
+format-prefix               = "  "
+format-prefix-foreground    = #0f0
+label                       = %output:0:150%
 
-label-song-maxlen = 25
-label-song-ellipsis = true
+
+[module/alsa]
+type = internal/volume
+
+format-volume           = <label-volume> <bar-volume>
+label-volume            = Vol
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix =
+format-muted-foreground = #de0000
+label-muted             =  mute
+
+bar-volume-width                = 10
+bar-volume-foreground-0         = #5ab11a
+bar-volume-foreground-1         = #5ab11a
+bar-volume-foreground-2         = #5ab11a
+bar-volume-foreground-3         = #5ab11a
+bar-volume-foreground-4         = #5ab11a
+bar-volume-foreground-5         = #d5911a
+bar-volume-foreground-6         = #f22c40
+bar-volume-gradient             = false
+bar-volume-indicator            = |
+bar-volume-indicator-font       = 2
+bar-volume-fill                 = =
+bar-volume-fill-font            = 2
+bar-volume-empty                = =
+bar-volume-empty-font           = 2
+bar-volume-empty-foreground     = ${colors.foreground-alt}
 
 
+;#-------------------------------#
+;----------- Network ------------#
+;
+[module/network]
+type = internal/network
+
+; Name of the network interface to display. You can get the names of the
+; interfaces on your machine with `ip link`
+; Wireless interfaces often start with `wl` and ethernet interface with `eno` or `eth`
+interface = wlp3s0
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 3.0
+
+; Test connectivity every Nth update
+; A value of 0 disables the feature
+; NOTE: Experimental (needs more testing)
+; Default: 0
+;ping-interval = 3
+
+; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
+; Minimum output width of upload/download rate
+; Default: 3
+udspeed-minwidth = 5
+
+; Accumulate values from all interfaces
+; when querying for up/downspeed rate
+; Default: false
+accumulate-stats = true
+
+; Consider an `UNKNOWN` interface state as up.
+; Some devices like USB network adapters have
+; an unknown state, even when they're running
+; Default: false
+unknown-as-up = true
+
+; Available tags:
+;   <label-connected> (default)
+;   <ramp-signal>
+format-connected = <label-connected>
+
+; Available tags:
+;  <label-disconnected> (default)
+format-disconnected = <label-disconnected>
+
+; Available tags:
+;   <label-connected> (default)
+;   <label-packetloss>
+;   <animation-packetloss>
+format-packetloss = <animation-packetloss> <label-connected>
+
+; All labels support the following tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+; Default: %ifname% %local_ip%
+label-connected                 = %essid%
+label-connected-foreground      = #9e00de
+label-connected-underline       = #9e00de
+
+; Default: (none)
+label-disconnected                  = not connected
+label-disconnected-foreground       = ${colors.foreground-alt}
+label-disconnected-underline        = #9e00de
+
+; Default: (none)
+;label-packetloss = %essid%
+;label-packetloss-foreground = #eefafafa
+
+; Only applies if <ramp-signal> is used
+;ramp-signal-0 = 😱
+;ramp-signal-1 = 😠
+;ramp-signal-2 = 😒
+;ramp-signal-3 = 😊
+;ramp-signal-4 = 😃
+;ramp-signal-5 = 😈
+
+; Only applies if <animation-packetloss> is used
+animation-packetloss-0            = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1            = 📶
+animation-packetloss-1-foreground = #000000
+; Framerate in milliseconds
+animation-packetloss-framerate    = 500
+
+
+;[module/networkspeedup]
+;
+;type = internal/network
+;interface = wlp3s0
+;label-conected = "%upspeed:7%"
+;format-conected = <label-conected>
+;format-conected-prefix = ""
+;format-conected-prefix-foreground = #fe552c
+;format-conected-foreground = ${colors.foreground}
+;format-conected-background = ${colors.background}
+;format-conected-underline =
+;
+;
+;[module/networkspeeddown]
+;
+;type = internal/network
+;interface = wlp3s0
+;label-conected = "%downspeed:7%"
+;format-conected = <label-conected>
+;format-conected-prefix = ""
+;format-conected-prefix-foreground = #3ec13f
+;format-conected-foreground = ${colors.foreground}
+;format-conected-background = ${colors.background}
+;format-conected-underline =
+
+;#-------------------------------#
+;#-------- Filesystem -----------#
+;
+[module/filesystem]
+type                                    = internal/fs
+mount-0                                 = /
+interval                                = 120
+fixed-values                            = true
+label-mounted                           = "%{F#914836} %{F-}%percentage_used:2%%"
+format-mounted                          = "<label-mounted>"
+format-mounted-background               = ${colors.background}
+format-mounted-foreground               = ${colors.foreground}
+format-mounted-underline                = #914836
 
 
 ;#-------------------------------#
 ;----------- PC info ------------#
-;disk usage, cpu, fan and  memory 
+;cpu, memory, cpu-temperature, fan
 ;
-[module/filesystem]
-type = internal/fs
-interval = 25
-mount-0 = /
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
-
 [module/cpu]
-type = internal/cpu
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
-label = %percentage:2%%
-
+type                        = internal/cpu
+interval                    = 2
+format-prefix               = " "
+format-prefix-foreground    = #f90000
+format-underline            = #f90000
+label                       = %percentage:2%%
 
 [module/memory]
-type = internal/memory
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
-label = %percentage_used%%
+type                        = internal/memory
+interval                    = 2
+format-prefix               = " "
+format-prefix-foreground    = #325b91
+format-underline            = #325b91
+label                       = %percentage_used%%
 
+[module/system-cpu-temppercore]
+type                        = custom/script
+exec                        = ~/.config/polybar/scripts/system-cpu-temppercore.sh
+format-prefix               = " "
+format-prefix-foreground    = #de003f
+format-underline            = #de003f
+interval                    = 20
 
-
-[module/wlan]
-type = internal/network
-interface = net1
-interval = 3.0
-
-format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
-label-connected = %essid%
-
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
-
-[module/eth]
-type = internal/network
-interface = enp0s3
-interval = 3.0
-
-format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
-
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-
-
-
-[module/pulseaudio]
-type = internal/pulseaudio
-
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
-
-label-muted = 🔇 muted
-label-muted-foreground = #666
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
-
-
-;#-------------------------#
-;#------ Alsa -------------#
-;
-[module/alsa]
-type = internal/alsa
-
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
-label-volume-foreground = ${root.foreground}
-
-format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+[module/system-fan-speed]
+type                        = custom/script
+exec                        = ~/.config/polybar/scripts/system-fan-speed.sh
+format-prefix               = " "
+format-prefix-foreground    = #9db7cf
+format-underline            = #9db7cf
+interval                    = 5
 
 
 ;#-------------------------------------#
 ;#------------- Battery----------------#
 ;
 [module/battery]
-type = internal/battery
-battery = BAT0
-adapter = AC
-full-at = 98
+type            = internal/battery
+battery         = BAT0
+adapter         = AC
+full-at         = 100
 
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
 
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+format-charging                 = <animation-charging> <label-charging>
+format-charging-underline       = #ffb52a
 
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
+format-discharging              = <ramp-capacity> <label-discharging>
+format-discharging-underline    = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+format-full-prefix              = " "
+format-full-prefix-foreground   = #008000
+format-full-underline           = ${self.format-charging-underline}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
+ramp-capacity-0     = 
+ramp-capacity-1     = 
+ramp-capacity-2     = 
+ramp-capacity-3     = 
+ramp-capacity-0-foreground = #f90000
+ramp-capacity-1-foreground = #ffff00
+ramp-capacity-2-foreground = #90ee90
+ramp-capacity-3-foreground = #008000
 
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
+animation-charging-0            = ""
+animation-charging-foreground   = #ffff00
+animation-charging-framerate    = 750
+
+animation-discharging-0             = " "
+animation-discharging-foreground    = ${colors.foreground-alt}
+animation-discharging-framerate     = 750
 
 
 ;#----------------------------#
 ;#--------- Date -------------#
 ;
 [module/date]
-type = internal/date
-interval = 5
+type        = internal/date
+interval    = 5
 
-date =
-date-alt = " %Y-%m-%d"
+date        = "%A, %d/%m"
+date-alt    = "%Y-%m-%d"
 
-time = %H:%M
-time-alt = %H:%M:%S
+time        = " %H:%M"
+time-alt    = %H:%M:%S
 
-format-prefix = 
+format-prefix =
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
-
-label = %date% %time%
+format-underline         = #0a6cf5
+label                    = %date% %time%
 
 
 ;#-------------------------------------------#
 ;#------- Temperature and weather -----------#
 ;
 [module/weather]
-type = custom/script
-exec = /path/to/polybar-forecast
-exec-if = ping openweathermap.org -c 1
-interval = 600
-label-font = 3
+type            = custom/script
+exec            = ~/.config/polybar/polybar-forecast/polybar-forecast-linux-x86_64
+exec-if         = ping openweathermap.org -c 1
+interval        = 600
+label-font      = 3
+
+format-prefix-foreground    = ${colors.foreground-alt}
+format-underline            = #0a6cf5
 
 
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
-format = <ramp> <label>
-format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
-
-
+;#-------------------------------------------#
+;#------------------ Other config -----------#
 
 [settings]
 screenchange-reload = true
@@ -465,7 +448,7 @@ screenchange-reload = true
 ;pseudo-transparency = false
 
 [global/wm]
-margin-top = 5
+margin-top    = 5
 margin-bottom = 5
 
 ; vim:ft=dosini

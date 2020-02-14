@@ -84,12 +84,16 @@ bindsym $mod+y              exec $browser
 # start nemo filemanager
 bindsym $mod+n              exec nemo
 
+# start spotify on 7 workspace
+#bindsym $mod+n              exec spotify
+
 # full screem
 bindsym $mod+f	            fullscreen toggle
 
 # kill focused window.
 bindsym $mod+q	   	        kill
 
+bindsym --release Shift+Print exec "scrot '%d-%m-%Y_$wx$h.png' -e 'mv $f ~/Pictures/Screenshots/'"
 
 #----------------------------------------------------------------------------#
 #------------------------- multimedia keys ----------------------------------#
@@ -119,11 +123,10 @@ bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
 #fi
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPlay  exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-
+bindsym XF86AudioNext  exec playerctl next
+bindsym XF86AudioPrev  exec playerctl previous
 
 #----------------------------------------------------------------------------#
 #---------------------------- i3 options ------------------------------------#
@@ -138,7 +141,7 @@ bindsym $mod+F2		        restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 #i3lock config
-bindsym $mod+Shift+x exec i3lock --color="$background"
+bindsym $mod+Shift+x exec i3lock
 
 #-------------------------------------------------------------------------#
 #------------------------- Gaps/window resize ----------------------------#
@@ -311,6 +314,3 @@ set_from_resource $color15 i3wm.color15
 
 #POLYBAR
 exec_always --no-startup-id polybar luiznux
-
-
-
