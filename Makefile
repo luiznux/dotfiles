@@ -17,7 +17,7 @@ install:
 	#UBUNTU
 
 	#Packages
-	sudo apt update && sudo apt upgrade && sudo apt install git feh vlc vim audacity htop python-pip cargo gnome-calculator nemo nemo-fileroller rxvt-unicode-256color sl bmon clang qdirstat w3m w3m-img docker docker-compose gparted tree ranger xrandr xsel xclip lxappearance gtk-chtheme mailutils libgnutls28-dev gnutls-bin build-essential texinfo libjpeg-dev libpng-dev libgif-dev libtiff-dev libgtk2.0-dev libncurses-dev libxpm-dev autoconf
+	sudo apt update && sudo apt upgrade && sudo apt install git feh vlc vim calcurse audacity htop python-pip cargo gnome-calculator smartmontools nemo nemo-fileroller rxvt-unicode-256color sl bmon clang qdirstat w3m w3m-img docker docker-compose gparted tree ranger xrandr xsel xclip lxappearance gtk-chtheme mailutils libgnutls28-dev gnutls-bin build-essential texinfo libjpeg-dev libpng-dev libgif-dev libtiff-dev libgtk2.0-dev libncurses-dev libxpm-dev autoconf libclang-dev
 
 	#setup directory
 	mkdir -p ~/{Github/{luiznux,prog}, Torrents, Mangas projects}
@@ -35,6 +35,8 @@ install:
 	#PIP
 	pip install --upgrade setuptools
 	pip install wheel
+	sudo apt-get install python3 python3-dev python3-pip libpng-dev libjpeg-dev p7zip-full pip3 install --user --upgrade pillow python-slugify psutil pyqt5 raven
+	sudo apt install python3-gi python3-setuptools python3-stdeb
 
    #I3 INSTALL
 	 cd ~/Github/prog/ && sudo apt install git libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev -y && git clone https://www.github.com/Airblader/i3 i3-gaps && cd i3-gaps && autoreconf --force --install && rm -rf build/ && mkdir -p build && cd build/ && ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers && make && sudo make install
@@ -60,10 +62,11 @@ install:
 	cp -R config/polybar/  ~/.config/polybar/
 	@echo "        I3 and Polybar config {OK} "
 
-	#Polyabar Modules
+	#Polyabar Scripts
 	cd ~/.config/polybar/modules/ && git clone https://github.com/kamek-pf/polybar-forecast.git
 	cd ~/.config/polybar/modules/polybar-forecast/ && cargo build --release
-	@echo"				   	Modules    {OK}"
+	@echo"				   	Scripts    {OK}"
+
 
 	#ranger config
 	cp config/rc.conf  ~/.config/ranger/
@@ -113,7 +116,7 @@ install:
 
 #install:
 #	#ARCH
-#	sudo pacman -S  man vim rxvt-unicode rxvt-unicode-terminfo urxvt-perls xorg-xset nemo nemo-fileroller sl feh  vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts  clang i7z cpupower  alsa
+#	sudo pacman -S  man vim rxvt-unicode rxvt-unicode-terminfo urxvt-perls xorg-xset nemo nemo-fileroller sl feh  vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts  clang i7z cpupower  alsa calcurse
 #
 #	#graphic drives
 #	sudo pacman -S xf86-video-intel vulkan-intel
