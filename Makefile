@@ -35,7 +35,7 @@ install:
 	#PIP
 	pip install --upgrade setuptools
 	pip install wheel
-	sudo apt-get install python3 python3-dev python3-pip libpng-dev libjpeg-dev p7zip-full pip3 install --user --upgrade pillow python-slugify psutil pyqt5 raven
+	sudo apt-get install python3 python3-dev python3-pip libpng-dev libjpeg-dev p7zip-full python3-pip install --user --upgrade pillow python-slugify psutil pyqt5 raven
 	sudo apt install python3-gi python3-setuptools python3-stdeb
 
    #I3 INSTALL
