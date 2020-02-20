@@ -25,7 +25,7 @@ $ fdisk -l && cfdisk /dev/sdX
 
 (4) Encrypt the "LINUX LVM" particion 
 
-$ cryptsetup -y -v luksFormat -c aes-xts-plain64 -s 512 /dev/sdX2
+$ cryptsetup -y -v luksFormat --type luks1 -c aes-xts-plain64 -s 512 /dev/sdX2
 
 -> just remember that a password will be required
 
@@ -116,7 +116,7 @@ $ arch-chroot /mnt /bin/bash
 
 (14) Install some packages 
 
-$ pacman -S bash-completion sudo wireless_tools networkmanager  network-manager-applet mtools vim  wpa_supplicant wpa_actiond ntfs-3g dialog lvm --noconfirm
+$ pacman -S bash-completion sudo  os-prober wireless_tools networkmanager  network-manager-applet mtools vim  wpa_supplicant dosfstools ntfs-3g dialog lvm2 --noconfirm
 
 ---------------------------------------
 
