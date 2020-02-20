@@ -35,7 +35,7 @@ $ cryptsetup -y -v luksFormat --type luks1 -c aes-xts-plain64 -s 512 /dev/sda3
 
 (5) open your crypt
 
-$ cryptsetup open  --type luks /dev/sdX3 linux
+$ cryptsetup open  --type luks /dev/sda3 linux
 
 -------------------------------
 
@@ -125,7 +125,7 @@ $ arch-chroot /mnt /bin/bash
 
 (14) Install some packages 
 
-$ pacman -S bash-completion sudo  os-prober wireless_tools networkmanager  network-manager-applet mtools vim  wpa_supplicant dosfstools  dialog lvm2  linux-headers linux-lts linux-lts headers --noconfirm
+$ pacman -S bash-completion sudo  os-prober wireless_tools networkmanager  network-manager-applet mtools vim  wpa_supplicant dosfstools  dialog lvm2  linux-headers linux-lts linux-lts-headers --noconfirm
 
 $ systemctl enable NetworkManager 
 
