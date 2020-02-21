@@ -16,11 +16,11 @@ install:
 
 	#ARCH LINUX 
 	#setup directory
-	mkdir -p ~/{Github/{luiznux,prog},AUR,Torrents,Mangas,Videos,Music,Downloads,Documents,projects,.vim,.config/{i3,polybar,ranger}
+	mkdir -p ~/{Github/{luiznux,prog},AUR,Torrents,Mangas,Videos,Music,Downloads,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}
 	cd ~/Github && git init
 	@echo "    Directory tree {OK}"
 
-	sudo pacman -S  man vim rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake python-sphinx libmpdclient wget 3-gaps i3lock ranger w3m xorg xorg-xinit gdm nemo nemo-fileroller sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts  clang i7z cpupower alsa calcurse  pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu
+	sudo pacman -S  man vim rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake python-sphinx libmpdclient wget 3-gaps i3lock ranger w3m xorg xorg-xinit gdm nemo nemo-fileroller sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts  clang i7z cpupower alsa calcurse  pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils
 
 	#graphic drives
 	sudo pacman -S xf86-video-intel vulkan-intel
