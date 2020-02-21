@@ -28,7 +28,7 @@
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
-  (package-ins
+  (package-install 'use-package))
 
 (use-package all-the-icons
   :ensure t)
