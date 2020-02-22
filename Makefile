@@ -15,90 +15,96 @@
 install:
 
 	#ARCH LINUX 
-	#setup directory
-	mkdir -p ~/{Github/{luiznux,prog},AUR,Torrents,Mangas,Videos,Music,Downloads,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}
+
+	#-----------------------------------------Setup directory
+	mkdir -p ~/{Github/{luiznux,prog},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}
 	cd ~/Github && git init
 	@echo "    Directory tree {OK}"
+	
+	#-----------------------------------------Packages
+	sudo pacman -S  man vim tree rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget 3-gaps i3lock ranger w3m xorg xorg-xinit gdm nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts  clang  tlp i7z cpupower alsa calcurse  pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader
 
-	sudo pacman -S  man vim rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake python-sphinx libmpdclient wget 3-gaps i3lock ranger w3m xorg xorg-xinit gdm nemo nemo-fileroller sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts  clang i7z cpupower alsa calcurse  pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils
+	#----------------------------------------PYTHON
+	sudo pacman -S python-pip python-sphinx python-dbus python2-gobject 
 
-	#graphic drives
+	#----------------------------------------Graphic drives
 	sudo pacman -S xf86-video-intel vulkan-intel
 
-	#AUR packages
-	cd ~/AUR && git clone https://aur.archlinux.org/laptop-mode-tools.git && git clone https://aur.archlinux.org/batterymon-clone.git && git clone https://aur.archlinux.org/thermald.git && git clone https://aur.archlinux.org/network-ups-tools.git && git clone https://aur.archlinux.org/tlpui-git.git && git clone https://aur.archlinux.org/polybar.git && https://aur.archlinux.org/gdm3setup-utils.git
+	#----------------------------------------AUR packages
+	cd ~/AUR && git clone https://aur.archlinux.org/laptop-mode-tools.git && git clone https://aur.archlinux.org/batterymon-clone.git && git clone https://aur.archlinux.org/thermald.git && git clone https://aur.archlinux.org/network-ups-tools.git && git clone https://aur.archlinux.org/tlpui-git.git && git clone https://aur.archlinux.org/polybar.git && https://aur.archlinux.org/gdm3setup-utils.git && https://aur.archlinux.org/ttf-weather-icons.git 
 
-	#gtk-config
+	#----------------------------------------gtk-config
 	sudo pacman -S lxappearance gtk-chtheme xorg-xinput
 
-	#laptop config
+	#----------------------------------------laptop config
 	sudo pacman -S acpi libinput xf86-input-synaptics xorg-xinput powertop xfce4-power-manager
 
-	#EMACS INSTALL
+	#----------------------------------------EMACS INSTALL
 	cp -r emacs/.emacs.d  ~/.emacs.d/
 	@echo "          Emacs config {OK} "
-	wget gnu.c3sl.ufpr.br/ftp/emacs/emacs-26.3.tar.xz && tar -xvf emacs-26.3.tar.xz && mv emacs-26.3/ ~/
+	cd ~/ && wget gnu.c3sl.ufpr.br/ftp/emacs/emacs-26.3.tar.xz && tar -xvf emacs-26.3.tar.xz && rm emacs-26.3.tar.xz
+	cd ~/emacs-26.3 && ./autogen.sh && ./configure && make && sudo make install
 	@echo "        Emacs  Install  {OK}"
 
-	#setup i3 and polybar
+	#----------------------------------------Setup i3 and polybar
 	cp config/i3/config ~/.config/i3/
 	cp -R config/polybar/  ~/.config/polybar/
 	@echo "        I3 and Polybar config {OK} "
 
-	#Polyabar Scripts
+	#----------------------------------------Polyabar Scripts
 	cd ~/.config/polybar/modules/ && git clone https://github.com/kamek-pf/polybar-forecast.git
 	cd ~/.config/polybar/modules/polybar-forecast/ && cargo build --release
 	@echo"				   	Scripts    {OK}"
 
-	#ranger config
+	#----------------------------------------Ranger config
 	mkdir ~/.config/ranger
 	cp config/rc.conf  ~/.config/ranger/
 	@echo "     Ranger config file setup {OK} "
 
-	#vim config setup
+	#----------------------------------------Vim config setup
 	mkdir ~/.vim
 	cp vim/.vimrc ~/.vimrc
 	cp -r vim/.vim/ ~/
 	@echo "             Vim setup {OK} "
 
-   #light(brithness control)
+    #----------------------------------------Light(brithness control)
 	cd ~/Github/prog/ && git clone https://github.com/haikarainen/light
 	cd ~/Github/prog/light && ./autogen.sh && ./configure && sudo make
 
-	#setup font
+	#----------------------------------------Setup font
 	sudo cp -R config/fonts/source-code-pro /usr/local/share/fonts/
 	@echo "           Fount setup {OK} "
 
-	#Urxvt-perls
-	mkdir ~/.urxvt/{ext}
-	cd config && cp urxvt-resize-font/resize-font, urxvt-perls/{keyboard-select}/deprecated/{clipboard, url-select} ~/.urxvt/ext/
-	@echo"                   URXVT perls {OK}"
-
-	#setup Xresources
+	#----------------------------------------Setup Xresources
 	cp config/.Xresources ~/.Xresources  && xrdb -laod ~/.Xresources
 	@echo "     Xresources setup and loaded {OK} "
 
-	#setup gitignore global file
+	#----------------------------------------Setup gitignore global file
 	cp config/.gitignore_global  ~/
 	@echo "       Gitignore global setup {OK} "
 	cp config/.gitconfig ~/
 	@echo "              Gitconfig setup {OK} "
 
-	#setup background image
+	#----------------------------------------Setup background image
 	cp config/blue-hair-girl.jpg ~/.config/wallpaper.jpg
 	@echo "              Wallppaer setup {OK} "
 
-	#Themes
+	#----------------------------------------Setup Themes
 	cd gtk-themes/gtk && tar -xvf Midnight-BlueNight-Theme.tar.xz
-	sudo mv Midnight-BlueNight-Theme.tar.xz /usr/share/themes/
+	sudo mv Midnight-BlueNight-Theme/  /usr/share/themes/
 	cd config/ && cp -r gtk-2.0 gtk-3.0 ~/.config
 	cp gtkrc-2.0 ~/.gtkrc-2.0
 	@echo "   GTK themes setup {OK} "
 
+	#----------------------------------------Other-Config
+	cd config/ && cp .bashrc ~/	
+	cd config/ sudo rm /etc/tlp.conf && sudo cp tlp.conf /etc/tlp.conf
+
+
 	#SYSTEMCTL INIT
 	sudo systemctl enable NetworkManager.service
 	sudo systemctl enable gdm.service
-
+	sudo systemctl enable tlp.service
 #	#UBUNTU
 #
 #	#Packages
@@ -134,3 +140,10 @@ install:
 
 	#Hide password when typing (linux mint)
 #	sudo mv /etc/sudoers.d/0pwfeedback /etc/sudoers.d/0pwfeedback.disabled
+#
+#
+#
+	#Urxvt-perls
+#	mkdir ~/.urxvt/{ext}
+#	cd config && cp urxvt-resize-font/resize-font, urxvt-perls/{keyboard-select}/deprecated/{clipboard, url-select} ~/.urxvt/ext/
+#	@echo"                   URXVT perls {OK}"

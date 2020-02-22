@@ -18,80 +18,80 @@
 !----------------------------  EMACS ---------------------------------------
 !---------------------------------------------------------------------------
 
-Emacs.font: Source Code Pro:size=14
+!Emacs.font: Source Code Pro:size=14
 
 
-!--------------------------------------------------------------------------------
-!--------------------------- Xterm Config ---------------------------------------
-!--------------------------------------------------------------------------------
+!!--------------------------------------------------------------------------------
+!!--------------------------- Xterm Config ---------------------------------------
+!!--------------------------------------------------------------------------------
+!!
+!!see the link below to install transset-df for xterm transparent
+!!http://forchheimer.se/transset-df/
+!!https://wiki.archlinux.org/index.php/Xterm#Automatic_transparency
+!!https://wiki.archlinux.org/index.php/Per-application_transparency
 !
-!see the link below to install transset-df for xterm transparent
-!http://forchheimer.se/transset-df/
-!https://wiki.archlinux.org/index.php/Xterm#Automatic_transparency
-!https://wiki.archlinux.org/index.php/Per-application_transparency
-
-!---------------------------------------
-!----------------- Geral ---------------
+!!---------------------------------------
+!!----------------- Geral ---------------
+!!
+!XTerm*termName:    xterm-256color
+!XTerm*marginBell:  yes
 !
-XTerm*termName:    xterm-256color
-XTerm*marginBell:  yes
-
-!---------------------------------------
-!---------------- Fonts ----------------
+!!---------------------------------------
+!!---------------- Fonts ----------------
+!!
+!!XTerm*termname:    Source Code Pro
+!!Xterm*faceSize:    40
+!XTerm*Geometry:     76x20
+!XTerm*faceName:     Source Code Pro
+!XTerm*faceSize:     12
 !
-!XTerm*termname:    Source Code Pro
-!Xterm*faceSize:    40
-XTerm*Geometry:     76x20
-XTerm*faceName:     Source Code Pro
-XTerm*faceSize:     12
-
-
-!Ensure that your locale is set up for UTF-8. If you do not use UTF-8, you
-!may need to force xterm to more strictly follow your locale by setting
-XTerm.vt100.locale: true
-
-!-------------------------------------
-!------------ Cursor -----------------
 !
-! pointer and cursor (blinking and color)
-XTerm*pointerColor:              black
-XTerm*pointerColorBackground:    white
-XTerm*cursorColor:               white
-XTerm*cursorBlink:               false
-Xterm*pointerSize:               60
-
-
-!--------------------------------------
-!---------- Keybinding ----------------
+!!Ensure that your locale is set up for UTF-8. If you do not use UTF-8, you
+!!may need to force xterm to more strictly follow your locale by setting
+!XTerm.vt100.locale: true
 !
-! http://blog.rot13.org/2010/03/change-font-size-in-xterm-using-keyboard.html
-! - change fontsize on the fly (ctrl+plus = increase ; ctrl+minus = decrease, ctrl+0 = default)
-! - copy/paste hotkey (ctrl+shift+c = copy ; ctrl+shift+v = paste)
-! - open url (clickable links)
-!   1) double click to highlight the full url
-!   2) Shift + click it to open it
-XTerm.vt100.translations: #override \n\
-  Ctrl <Key> minus: smaller-vt-font() \n\
-  Ctrl <Key> plus: larger-vt-font() \n\
-  Ctrl <Key> 0: set-vt-font(d) \n\
-  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
-  Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
-  Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) \n\
-  <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
-  <Btn2Up>: insert-selection(PRIMARY)
-
-! double-click to select whole URLs :D
-! https://scarygliders.net/2011/12/01/customize-xterm-the-original-and-best-terminal/
-XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
-
-!-----------------------------------------
-!------------- Scrolling -----------------
-! Use: Shift-Pageup / Shift-Pagedown to scroll or mousewheel
-! Lines of output that you can scroll back over
-XTerm*saveLines: 50000
-
-! Do not scroll when there is new input e.g. tail -f /var/syslog
-XTerm*scrollTtyOutput: false
+!!-------------------------------------
+!!------------ Cursor -----------------
+!!
+!! pointer and cursor (blinking and color)
+!XTerm*pointerColor:              black
+!XTerm*pointerColorBackground:    white
+!XTerm*cursorColor:               white
+!XTerm*cursorBlink:               false
+!Xterm*pointerSize:               60
+!
+!
+!!--------------------------------------
+!!---------- Keybinding ----------------
+!!
+!! http://blog.rot13.org/2010/03/change-font-size-in-xterm-using-keyboard.html
+!! - change fontsize on the fly (ctrl+plus = increase ; ctrl+minus = decrease, ctrl+0 = default)
+!! - copy/paste hotkey (ctrl+shift+c = copy ; ctrl+shift+v = paste)
+!! - open url (clickable links)
+!!   1) double click to highlight the full url
+!!   2) Shift + click it to open it
+!XTerm.vt100.translations: #override \n\
+!  Ctrl <Key> minus: smaller-vt-font() \n\
+!  Ctrl <Key> plus: larger-vt-font() \n\
+!  Ctrl <Key> 0: set-vt-font(d) \n\
+!  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+!  Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+!  Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) \n\
+!  <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
+!  <Btn2Up>: insert-selection(PRIMARY)
+!
+!! double-click to select whole URLs :D
+!! https://scarygliders.net/2011/12/01/customize-xterm-the-original-and-best-terminal/
+!XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+!
+!!-----------------------------------------
+!!------------- Scrolling -----------------
+!! Use: Shift-Pageup / Shift-Pagedown to scroll or mousewheel
+!! Lines of output that you can scroll back over
+!XTerm*saveLines: 50000
+!
+!! Do not scroll when there is new input e.g. tail -f /var/syslog
+!XTerm*scrollTtyOutput: false
 
 
 
@@ -120,15 +120,15 @@ URxvt*transparent:       true
 URxvt.geometry:          69x21
 URxvt*depth:             32
 Urxvt.background:        [80]#070b15
-URxvt*shading:           30
+URxvt*shading:           40
 URxvt.internalBorder:    0
 URxvt.pointerBlank: 	 false
 URxvt.cursorBlink:       false
 URxvt.cursorUnderline:   false
 URxvt*scrollBar:         false
 URxvt*scrollTtyOutput:   false
-URxvt*scrollWithBuffer:  false
-URxvt*scrollTtyKeypress: false
+URxvt*scrollWithBuffer:  true
+URxvt*scrollTtyKeypress: true
 
 
 !----------------------------------------------------
@@ -142,8 +142,10 @@ URxvt*letterSpace: 	   0
 Xft.dpi:          120
 Xft.antialias:    true
 Xft.rgba:         rgb
-Xft.hinting:      false
+Xft.hinting:      1
 Xft.hintstyle:    hintfull
+Xft.autohint:     false
+Xft.lcdfilter:    lcddefault
 
 
 !! Common Keybinds for Navigations
