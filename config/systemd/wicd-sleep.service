@@ -1,0 +1,14 @@
+[Unit]
+Description=Wicd sleep hook
+Before=sleep.target
+StopWhenUnneeded=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=-/usr/share/wicd/daemon/suspend.py
+ExecStop=-/usr/share/wicd/daemon/autoconnect.py
+
+[Install]
+WantedBy=sleep.target
+

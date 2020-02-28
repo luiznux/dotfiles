@@ -1,0 +1,10 @@
+[Unit]
+Description=Local system suspend actions
+Before=sleep.target
+
+[Service]
+Type=simple
+ExecStart=-/usr/bin/pkill sshfs
+
+[Install]
+WantedBy=sleep.target

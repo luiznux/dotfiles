@@ -1,0 +1,10 @@
+[Unit]
+Description=Local system resume actions
+After=suspend.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/systemctl restart mnt-media.automount
+
+[Install]
+WantedBy=suspend.target
