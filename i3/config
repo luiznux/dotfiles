@@ -123,8 +123,8 @@ bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
 #fi
 
 # Media player controls
-bindsym XF86AudioPlay  exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioPlay  exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl stop
 bindsym XF86AudioNext  exec playerctl next
 bindsym XF86AudioPrev  exec playerctl previous
 
@@ -314,3 +314,10 @@ set_from_resource $color15 i3wm.color15
 
 #POLYBAR
 exec_always --no-startup-id polybar luiznux
+
+#Spotify
+exec_always --no-startup-id /usr/bin/spotify 
+for_window [title="Spotify"] move workspace $ws6
+
+#Mv transmisson to workspace 5
+assign [class="Transmission"] $ws5

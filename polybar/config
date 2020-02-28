@@ -319,6 +319,7 @@ animation-packetloss-framerate    = 500
 [module/filesystem]
 type                                    = internal/fs
 mount-0                                 = /
+mount-1                                 = /home
 interval                                = 120
 fixed-values                            = true
 label-mounted                           = "%{F#914836} %{F-}%percentage_used:2%%"
@@ -353,6 +354,7 @@ type                        = custom/script
 exec                        = ~/.config/polybar/scripts/system-cpu-temppercore.sh
 format-prefix               = " "
 format-prefix-foreground    = #de003f
+
 format-underline            = #de003f
 interval                    = 20
 
@@ -376,7 +378,8 @@ full-at         = 100
 
 
 format-charging                 = <animation-charging> <label-charging>
-format-charging-underline       = #ffb52a
+format-charging-underline       = #32CD32
+;#ffb52a
 
 format-discharging              = <ramp-capacity> <label-discharging>
 format-discharging-underline    = ${self.format-charging-underline}
@@ -410,7 +413,7 @@ animation-discharging-framerate     = 750
 type        = internal/date
 interval    = 5
 
-date        = "%A, %d/%m"
+date        = " %A, %d/%m"
 date-alt    = "%Y-%m-%d"
 
 time        = " %H:%M"

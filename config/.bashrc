@@ -20,15 +20,24 @@ export LANGUAGE=en_US.UTF-8
 #---------------------------------#
 #------------ Aliases-------------#
 #
-alias   r='ranger'
-alias  ..='cd ..'
+
+alias ..='cd ..'
 alias ...='cd ../../../'
+alias r='ranger'
+alias v='vim'
+alias sv='sudo vim'
+alias ka='killall'
+alias p='sudo pacman'
+alias SS='sudo systemctl'
+alias update='sudo pacman -Syu' # update all packages(Archlinux)
 alias wifi-list='nmcli device wifi list' #list wifi networks
 alias wifi-on='nmcli r wifi on' #enable wifi
 alias wifi-off='nmcli r wifi off' # disable wifi
+alias ethspeed="speedometer -r enp0s25"
+alias wifispeed="speedometer -r wlp3s0"
 alias i3conf="vim ~/.config/i3/config"
 alias polyconf="vim ~/.config/polybar/config"
-alias update='sudo pacman -Syu' # update all packages(Archlinux)
+
 
 #---------------------------------#
 #----------- default -------------#
