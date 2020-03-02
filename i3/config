@@ -44,16 +44,14 @@ new_window pixel 0
 gaps inner 9
 gaps outer 15
 
-set $thick 1
-
-for_window [class="^.*"] border pixel 1
-
 #Default Border
+set $thick 2
 for_window [class="^.*"] border pixel $thick
 for_window [title="^.*"] border pixel $thick
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier       $mod
+
 
 #---------------------------------------------------------------------------#
 #-------------------------------- Bar --------------------------------------#
@@ -84,9 +82,6 @@ bindsym $mod+y              exec $browser
 # start nemo filemanager
 bindsym $mod+n              exec nemo
 
-# start spotify on 7 workspace
-#bindsym $mod+n              exec spotify
-
 # full screem
 bindsym $mod+f	            fullscreen toggle
 
@@ -98,6 +93,7 @@ bindsym --release Shift+Print exec "scrot '%d-%m-%Y_$wx$h.png' -e 'mv $f ~/Pictu
 #----------------------------------------------------------------------------#
 #------------------------- multimedia keys ----------------------------------#
 #----------------------------------------------------------------------------#
+#
 #Just remember that you might have to install the packages bellow to this config works
 
 # Pulse Audio controls
@@ -110,6 +106,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
+
 
 # Touchpad controls
 #bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
@@ -128,9 +125,11 @@ bindsym XF86AudioPause exec playerctl stop
 bindsym XF86AudioNext  exec playerctl next
 bindsym XF86AudioPrev  exec playerctl previous
 
+
 #----------------------------------------------------------------------------#
 #---------------------------- i3 options ------------------------------------#
 #----------------------------------------------------------------------------#
+#
 # reload the configuration file
 bindsym $mod+Shift+c	    reload
 
@@ -209,8 +208,6 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space	    focus mode_toggle
-
-
 
 
 # change focus
@@ -313,11 +310,15 @@ set_from_resource $color15 i3wm.color15
 #--------------------------------------------------------------------------#
 
 #POLYBAR
-exec_always --no-startup-id polybar luiznux
+exec_always --no-startup-id /.config/polybar/launch.sh
 
 #Spotify
-exec_always --no-startup-id /usr/bin/spotify 
-for_window [title="Spotify"] move workspace $ws6
+#exec_always --no-startup-id /usr/bin/spotify 
+for_window [title="Spotify"]      move workspace $ws6
+
+#Calculator
+for_window [title="Calculator"]   floating enable
 
 #Mv transmisson to workspace 5
-assign [class="Transmission"] $ws5
+assign [class="Transmission"]     $ws5
+

@@ -93,6 +93,7 @@ install:
 	cd gtk-themes/gtk && tar -xvf Midnight-BlueNight-Theme.tar.xz && sudo mv Midnight-BlueNight-Theme/  /usr/share/themes/
 	cd config/ && cp -r gtk-2.0 gtk-3.0 ~/.config
 	cd config/ && cp .gtkrc-2.0 ~/.gtkrc-2.0
+	gsettings set org.cinnamon.desktop.default-applications.terminal exec urxvt
 	@echo "   GTK themes setup {OK} "
 
 	#----------------------------------------Other-Config

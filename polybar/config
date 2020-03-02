@@ -63,7 +63,7 @@ fixed-center = false
 
 ;number of spaces to add at the begimmimg/end of the bar
 padding-left  = 0
-padding-right = 1
+padding-right = 0
 
 ;number  of spaces to add before/after each module
 module-margin-left  = 1
@@ -80,8 +80,7 @@ font-5 = "Font Awesome 5 Free Solid:pixelsize=14;2"
 ;modules set
 modules-left   = i3 spotify
 modules-center =
-modules-right  =  alsa network filesystem cpu memory system-cpu-temppercore system-fan-speed  battery date weather
- ; networkspeedup networkspeeddown
+modules-right  = alsa network filesystem cpu memory system-cpu-temppercore system-fan-speed  battery date weather
 
 ; Position of the system tray window
 ; If empty or undefined, tray support will be disabled
@@ -156,11 +155,11 @@ label-urgent-padding        = 1
 type            = custom/script
 exec            = ~/.config/polybar/scripts/spotify.sh %artist% - %title%
 tail            = true
-interval        = 2
+interval        = 1
 
 format-foreground           = ${colors.foreground}
 format-background           = ${colors.background}
-format-padding              = 2
+format-padding              = 1
 format-underline            = #0f0
 format-prefix               = "  "
 format-prefix-foreground    = #0f0
@@ -318,7 +317,7 @@ animation-packetloss-framerate    = 500
 ;
 [module/filesystem]
 type                                    = internal/fs
-mount-0                                 = /
+;mount-0                                 = /
 mount-1                                 = /home
 interval                                = 120
 fixed-values                            = true
@@ -411,7 +410,7 @@ animation-discharging-framerate     = 750
 ;
 [module/date]
 type        = internal/date
-interval    = 5
+interval    = 1
 
 date        = " %A, %d/%m"
 date-alt    = "%Y-%m-%d"

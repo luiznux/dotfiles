@@ -116,19 +116,19 @@ URxvt*metaSendsEscape:    false
 !----------------------------------------------------
 !---------------- Appearance ------------------------
 
-URxvt*transparent:       true
-URxvt.geometry:          69x21
-URxvt*depth:             32
-Urxvt.background:        [80]#070b15
-URxvt*shading:           40
-URxvt.internalBorder:    0
-URxvt.pointerBlank: 	 false
-URxvt.cursorBlink:       false
-URxvt.cursorUnderline:   false
-URxvt*scrollBar:         false
-URxvt*scrollTtyOutput:   false
-URxvt*scrollWithBuffer:  true
-URxvt*scrollTtyKeypress: true
+URxvt*transparent:        true
+URxvt.geometry:           69x21
+URxvt*depth:              32
+Urxvt.background:         [80]#070b15
+URxvt*shading:            40
+URxvt.internalBorder:     0
+URxvt.pointerBlank: 	  false
+URxvt.cursorBlink:        false
+URxvt.cursorUnderline:    false
+URxvt*scrollBar:          false
+URxvt*scrollTtyOutput:    false
+URxvt*scrollWithBuffer:   true
+URxvt*scrollTtyKeypress:  true
 
 
 !----------------------------------------------------
