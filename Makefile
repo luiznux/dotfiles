@@ -22,16 +22,16 @@ install:
 	@echo "    Directory tree {OK}"
 	
 	#-----------------------------------------Packages
-	sudo pacman -S  man vim tree rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget 3-gaps i3lock-color ranger w3m xorg xorg-xinit nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts  clang  tlp i7z cpupower alsa calcurse  pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw
+	sudo pacman -S  man vim tree rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget 3-gaps i3lock-color ranger w3m xorg xorg-xinit nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts  clang  tlp i7z cpupower alsa calcurse  pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src
 
 	#----------------------------------------PYTHON
-		sudo pacman -S python-pip python-sphinx python-dbus python2-gobject pygtk python-psutil python-urwid
+	sudo pacman -S python-pip python-sphinx python-dbus python2-gobject pygtk python-psutil python-urwid
 
-	#----------------------------------------Graphic drives
-	sudo pacman -S xf86-video-intel vulkan-intel nvidia nvidia-utils nvidia-settings bbswitch
+	#----------------------------------------Graphic drives and NVIDIA
+	sudo pacman -S xf86-video-intel vulkan-intel nvidia nvidia-utils nvidia-settings bumblebee bbswitch
 
 	#----------------------------------------AUR packages
-	cd ~/AUR && git clone https://aur.archlinux.org/laptop-mode-tools.git && git clone https://aur.archlinux.org/batterymon-clone.git && git clone https://aur.archlinux.org/thermald.git && git clone https://aur.archlinux.org/network-ups-tools.git && git clone https://aur.archlinux.org/tlpui-git.git && git clone https://aur.archlinux.org/polybar.git && https://aur.archlinux.org/gdm3setup-utils.git && https://aur.archlinux.org/ttf-weather-icons.git && git clone https://aur.archlinux.org/wps-office.git && git clone https://aur.archlinux.org/ttf-wps-fonts.git && git clone https://aur.archlinux.org/sublime-text-dev.git && git clone https://aur.archlinux.org/python2-distutils-extra.git && git clone https://aur.archlinux.org/packages/gdm-prime/ && git clone https://aur.archlinux.org/optimus-manager.git && git clone https://aur.archlinux.org/python-pdftotext.git && git clone spicetify-cli 0.9.7-1 && git clone https://aur.archlinux.org/speedometer.git && git clone https://aur.archlinux.org/cli-visualizer.git && git clone https://aur.archlinux.org/nvidia-xrun-pm.git
+	cd ~/AUR && git clone https://aur.archlinux.org/laptop-mode-tools.git && git clone https://aur.archlinux.org/batterymon-clone.git && git clone https://aur.archlinux.org/thermald.git && git clone https://aur.archlinux.org/network-ups-tools.git && git clone https://aur.archlinux.org/tlpui-git.git && git clone https://aur.archlinux.org/polybar.git && https://aur.archlinux.org/gdm3setup-utils.git && https://aur.archlinux.org/ttf-weather-icons.git && git clone https://aur.archlinux.org/wps-office.git && git clone https://aur.archlinux.org/ttf-wps-fonts.git && git clone https://aur.archlinux.org/sublime-text-dev.git && git clone https://aur.archlinux.org/python2-distutils-extra.git && git clone https://aur.archlinux.org/packages/gdm-prime/ && git clone https://aur.archlinux.org/optimus-manager.git && git clone https://aur.archlinux.org/optimus-manager.git && git clone https://aur.archlinux.org/python-pdftotext.git && git clone spicetify-cli 0.9.7-1 && git clone https://aur.archlinux.org/speedometer.git && git clone https://aur.archlinux.org/cli-visualizer.git && git clone https://aur.archlinux.org/nvidia-xrun-pm.git
 
 	#----------------------------------------gtk-config
 	sudo pacman -S lxappearance gtk-chtheme xorg-xinput
@@ -99,11 +99,18 @@ install:
 	cd config/ && cp .bashrc ~/	
 	cd config/ sudo rm /etc/tlp.conf && sudo cp tlp.conf /etc/tlp.conf
 
+	#----------------------------------------BUMBLEBEE CONFIG
+	sudo gpasswd -a user bumblebee
+	sudo cp /config/bbswitch.conf /etc/modprobe.d/bbswitch.conf
+	tee /proc/acpi/bbswitch <<<OFF
+
+
 	#SYSTEMCTL INIT
 	sudo systemctl enable NetworkManager.service
 	sudo systemctl enable dhcpcd@.service
 	sudo systemctl enable gdm.service
 	sudo systemctl enable tlp.service
+	#REMEMBER TO ENABLE OPTIMUS MANAGER
 	sudo systemctl enable bumblebeed.service
 
 
