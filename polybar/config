@@ -76,11 +76,12 @@ font-2 = "Font Awesome 5 Free:size=12;1"
 font-3 = "Weather Icons:size=14;1:style:Regular"
 font-4 = "Font Awesome 5 Brands:pixelsize=14;1"
 font-5 = "Font Awesome 5 Free Solid:pixelsize=14;2"
+font-6 = "Inconsolata Nerd Font:size=15;1"
 
 ;modules set
 modules-left   = i3 spotify
 modules-center =
-modules-right  = alsa network filesystem cpu memory system-cpu-temppercore system-fan-speed  battery date weather
+modules-right  = alsa eth network filesystem cpu memory system-cpu-temppercore system-fan-speed  battery date weather
 
 ; Position of the system tray window
 ; If empty or undefined, tray support will be disabled
@@ -262,8 +263,8 @@ label-connected-foreground      = #9e00de
 label-connected-underline       = #9e00de
 
 ; Default: (none)
-label-disconnected                  = not connected
-label-disconnected-foreground       = ${colors.foreground-alt}
+label-disconnected                  = " 睊 "
+label-disconnected-foreground       = #9e00de
 label-disconnected-underline        = #9e00de
 
 ; Default: (none)
@@ -285,6 +286,23 @@ animation-packetloss-1            = 📶
 animation-packetloss-1-foreground = #000000
 ; Framerate in milliseconds
 animation-packetloss-framerate    = 500
+
+;cable network
+[module/eth]
+type = internal/network
+interface = enp2s0
+interval = 3.0
+
+format-connected-underline = #9e00de
+format-connected-prefix = " "
+format-connected-prefix-foreground = #9e00de
+label-connected = %linkspeed%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected =  %ifname%
+;label-disconnected-foreground = ${colors.foreground-alt}
 
 
 ;[module/networkspeedup]

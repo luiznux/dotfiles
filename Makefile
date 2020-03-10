@@ -31,13 +31,13 @@ install:
 	sudo pacman -S xf86-video-intel vulkan-intel nvidia nvidia-utils nvidia-settings bumblebee bbswitch
 
 	#----------------------------------------AUR packages
-	cd ~/AUR && git clone https://aur.archlinux.org/laptop-mode-tools.git && git clone https://aur.archlinux.org/batterymon-clone.git && git clone https://aur.archlinux.org/thermald.git && git clone https://aur.archlinux.org/network-ups-tools.git && git clone https://aur.archlinux.org/tlpui-git.git && git clone https://aur.archlinux.org/polybar.git && https://aur.archlinux.org/gdm3setup-utils.git && https://aur.archlinux.org/ttf-weather-icons.git && git clone https://aur.archlinux.org/wps-office.git && git clone https://aur.archlinux.org/ttf-wps-fonts.git && git clone https://aur.archlinux.org/sublime-text-dev.git && git clone https://aur.archlinux.org/python2-distutils-extra.git && git clone https://aur.archlinux.org/packages/gdm-prime/ && git clone https://aur.archlinux.org/optimus-manager.git && git clone https://aur.archlinux.org/optimus-manager.git && git clone https://aur.archlinux.org/python-pdftotext.git && git clone spicetify-cli 0.9.7-1 && git clone https://aur.archlinux.org/speedometer.git && git clone https://aur.archlinux.org/cli-visualizer.git && git clone https://aur.archlinux.org/nvidia-xrun-pm.git
+	cd ~/AUR && git clone https://aur.archlinux.org/laptop-mode-tools.git && git clone https://aur.archlinux.org/batterymon-clone.git && git clone https://aur.archlinux.org/thermald.git && git clone https://aur.archlinux.org/network-ups-tools.git && git clone https://aur.archlinux.org/tlpui-git.git && git clone https://aur.archlinux.org/polybar.git && https://aur.archlinux.org/gdm3setup-utils.git && https://aur.archlinux.org/ttf-weather-icons.git && git clone https://aur.archlinux.org/wps-office.git && git clone https://aur.archlinux.org/ttf-wps-fonts.git && git clone https://aur.archlinux.org/sublime-text-dev.git && git clone https://aur.archlinux.org/python2-distutils-extra.git && git clone https://aur.archlinux.org/packages/gdm-prime/ && git clone https://aur.archlinux.org/optimus-manager.git && git clone https://aur.archlinux.org/optimus-manager.git && git clone https://aur.archlinux.org/python-pdftotext.git && git clone spicetify-cli 0.9.7-1 && git clone https://aur.archlinux.org/speedometer.git && git clone https://aur.archlinux.org/cli-visualizer.git && git clone https://aur.archlinux.org/nvidia-xrun-pm.git && git clone https://aur.archlinux.org/packages/qdirstat/
 
 	#----------------------------------------gtk-config
 	sudo pacman -S lxappearance gtk-chtheme xorg-xinput
 
 	#----------------------------------------laptop config
-	sudo pacman -S acpi libinput xf86-input-synaptics xorg-xinput powertop xfce4-power-manager
+	sudo pacman -S acpi libinput xf86-input-synaptics xorg-xinput powertop xfce4-power-manager bluez bluez-utils 
 
 	#----------------------------------------EMACS INSTALL
 	cp -r emacs/.emacs.d  ~/.emacs.d/

@@ -69,7 +69,7 @@ $ lvs
 
 (9) create the other two LV, home and /
 
-$ lvcreate -L 20G linux -n archlinux
+$ lvcreate -L 30G linux -n archlinux
 $ lvcreate -l +100%FREE linux -n home
 
 ->activate volumes
