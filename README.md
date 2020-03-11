@@ -1,4 +1,4 @@
-Luiznux' Config Deskop and System
+Luiznux' Configs
 =================================
 
 
