@@ -303,7 +303,7 @@ bindsym $mod+Shift+7	move container to workspace $ws7
 
 
 # class                 border  bground text    indicator child_border
-client.focused          #285577 #285577 #070B15 #2E9EF4   #285577
+client.focused          #285577 #285577 #070B15 #285577   #285577
 client.focused_inactive #070B15 #6D8090 #070B15 #6D8090   #495661
 client.unfocused        #070B15 #222222 #888888 #292D2E   #070B15
 client.urgent           #914836 #914836 #070B15 #914836   #914836
