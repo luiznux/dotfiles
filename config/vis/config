@@ -1,0 +1,4 @@
+colors.scheme=luiznux.scheme
+gradient = true
+visualizer.spectrum.smoothing.mode=sgs
+visualizer.sgs.smoothing.points = 7
