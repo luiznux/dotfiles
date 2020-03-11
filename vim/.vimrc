@@ -79,6 +79,13 @@ set splitright
 set foldmethod=indent
 set foldlevel=99
 
+
+"For copying to both the clipboard and primary selection 
+"vnoremap <M-c> "*y :let @+=@*<CR>
+set clipboard=unnamedplus
+vmap <C-c> "+y
+vmap <C-v> "+p
+
 "set show mode(INSERT, VISUAL)
 "set showmode
 
