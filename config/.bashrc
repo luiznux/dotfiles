@@ -30,14 +30,15 @@ alias ka='killall'
 alias p='sudo pacman'
 alias SS='sudo systemctl'
 alias update='sudo pacman -Syu' # update all packages(Archlinux)
+alias pc='sudo pacman -Scc' #clean all pacman cache 
 alias wifi-list='nmcli device wifi list' #list wifi networks
 alias wifi-on='nmcli r wifi on' #enable wifi
 alias wifi-off='nmcli r wifi off' # disable wifi
-alias ethspeed="speedometer -r enp0s25"
-alias wifispeed="speedometer -r wlp3s0"
-alias i3conf="vim ~/.config/i3/config"
-alias polyconf="vim ~/.config/polybar/config"
-
+alias i3conf='vim ~/.config/i3/config'
+alias polyconf='vim ~/.config/polybar/config'
+alias dotfiles='cd ~/Github/luiznux/dotfiles/'
+alias ethspeed='speedometer -r enp2s0'
+alias wifispeed='speedometer -r wlp3s0'
 
 #---------------------------------#
 #----------- default -------------#
