@@ -19,7 +19,7 @@ echo "                        Directory tree {OK}"
 
 echo "#----------------------------------------------- Packages"
 echo "		Installing packages"
-sudo pacman -Sy xorg man gvim tree rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang tlp i7z cpupower alsa calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme
+sudo pacman -Sy xorg man gvim tree rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang tlp i7z cpupower alsa calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool
 echo " 	                            Packages {OK}"
 
 echo "#----------------------------------------------- PYTHON CONFIG"
@@ -29,7 +29,7 @@ echo "		                        Python {OK}"
 
 echo "#----------------------------------------------- Graphic drives and NVIDIA"
 echo "		Graphic drivers"
-sudo pacman -S xf86-video-intel vulkan-intel nvidia nvidia-utils nvidia-settings bumblebee --noconfirm
+sudo pacman -S xf86-video-intel vulkan-intel mesa-demos nvidia nvidia-utils nvidia-settings bumblebee --noconfirm
 echo "		Graphic Drivers {OK}"
 
 echo "#---------------------------------------- AUR packages"
@@ -49,9 +49,9 @@ $AUR && git clone https://aur.archlinux.org/python2-distutils-extra.git && cd py
 $AUR && git clone https://aur.archlinux.org/batterymon-clone.git && cd batterymon-clone && makepkg -i --noconfirm
 
 echo "  SPORIFY AND PACKAGES"
+$AUR && git clone https://aur.archlinux.org/spotify.git && cd spotify && makepkg -i --noconfirm
 gpg --keyserver pgp.mit.edu --recv-keys FCF986EA15E6E293A5644F10B4322F04D67658D8
 $AUR && git clone https://aur.archlinux.org/ffmpeg-compat-57.git && cd ffmpeg-compat-57 && makepkg -i --noconfirm
-$AUR && git clone https://aur.archlinux.org/spotify.git && cd spotify && makepkg -i --noconfirm
 
 #------------ Other packages
 $AUR && git clone https://aur.archlinux.org/python-pdftotext.git && cd python-pdftotext/ && makepkg -i --noconfirm
