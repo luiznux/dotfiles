@@ -14,30 +14,69 @@
 #
 install:
 
-	#ARCH LINUX 
+	#ARCH LINUX
 
-	#-----------------------------------------Setup directory
-	mkdir -p ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}
+	#----------------------------------------- Setup directory tree
+	@mkdir -p ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}
 	cd ~/Github && git init
 	@echo "    Directory tree {OK}"
+
+	#----------------------------------------- Packages
+	@echo "		Installing packages"
+	sudo pacman -S  man gvim tree rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps i3lock-color ranger w3m xorg xorg-xinit nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts  clang  tlp i7z cpupower alsa calcurse  pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged  xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv  yasm
+	@echo " 	Packages {OK}"
+
+	#---------------------------------------- PYTHON CONFIG
+	@echo"		Python config"
+	@sudo pacman -S python-pip python-sphinx python-dbus python2-gobject pygtk python-psutil python-urwid \
+	@echo"		Python {OK}"
+
+	#---------------------------------------- Graphic drives and NVIDIA
+	@echo"		Graphic drivers"
+	@sudo pacman -S xf86-video-intel vulkan-intel nvidia nvidia-utils nvidia-settings bumblebee bbswitch
+	@echo"		Graphic Drivers {OK}"
+
+	#---------------------------------------- AUR packages
+	@echo "Installing some AUR Packages"
+	#&& git clone https://aur.archlinux.org/network-ups-tools.git
+
+
+	@#------------- OPTIMUS MANAGER AND GDM
+	cd ~/AUR/ && git clone https://aur.archlinux.org/gdm3setup-utils.git
+	git clone https://aur.archlinux.org/packages/gdm-prime.git
+	git clone https://aur.archlinux.org/nvidia-xrun-pm.git
+	git clone https://aur.archlinux.org/optimus-manager.git
 	
-	#-----------------------------------------Packages
-	sudo pacman -S  man gvim tree rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget 3-gaps i3lock-color ranger w3m xorg xorg-xinit nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts  clang  tlp i7z cpupower alsa calcurse  pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged  xreader xrandr calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw
+	#------------
+	git clone https://aur.archlinux.org/python-pdftotext.git
+	git clone https://aur.archlinux.org/python2-distutils-extra.git
 
-	#----------------------------------------PYTHON
-	sudo pacman -S python-pip python-sphinx python-dbus python2-gobject pygtk python-psutil python-urwid
+	git clone https://aur.archlinux.org/batterymon-clone.git
 
-	#----------------------------------------Graphic drives and NVIDIA
-	sudo pacman -S xf86-video-intel vulkan-intel nvidia nvidia-utils nvidia-settings bumblebee bbswitch
+	git clone https://aur.archlinux.org/thermald.git
 
-	#----------------------------------------AUR packages
-	cd ~/AUR && git clone https://aur.archlinux.org/laptop-mode-tools.git && git clone https://aur.archlinux.org/batterymon-clone.git && git clone https://aur.archlinux.org/thermald.git && git clone https://aur.archlinux.org/network-ups-tools.git && git clone https://aur.archlinux.org/tlpui-git.git && git clone https://aur.archlinux.org/polybar.git && https://aur.archlinux.org/gdm3setup-utils.git && https://aur.archlinux.org/ttf-weather-icons.git && git clone https://aur.archlinux.org/wps-office.git && git clone https://aur.archlinux.org/ttf-wps-fonts.git && git clone https://aur.archlinux.org/sublime-text-dev.git && git clone https://aur.archlinux.org/python2-distutils-extra.git && git clone https://aur.archlinux.org/packages/gdm-prime/ && git clone https://aur.archlinux.org/optimus-manager.git && git clone https://aur.archlinux.org/optimus-manager.git && git clone https://aur.archlinux.org/python-pdftotext.git && git clone spicetify-cli 0.9.7-1 && git clone https://aur.archlinux.org/speedometer.git && git clone https://aur.archlinux.org/cli-visualizer.git && git clone https://aur.archlinux.org/nvidia-xrun-pm.git && git clone https://aur.archlinux.org/packages/qdirstat/ && git clone https://aur.archlinux.org/jmtpfs.git 
+	#SPORIFY AND PACKAGE THAT FIX  erro
+	https://aur.archlinux.org/spotify.git
+	gpg --keyserver pgp.mit.edu --recv-keys FCF986EA15E6E293A5644F10B4322F04D67658D8
+	https://aur.archlinux.org/ffmpeg-compat-57.git
+
+
+	#------------ Other packages
+	cd ~/AUR && git clone https://aur.archlinux.org/polybar.git && cd polybar && makepkg -i
+	git clone https://aur.archlinux.org/ttf-weather-icons.git
+	git clone https://aur.archlinux.org/wps-office.git
+	git clone https://aur.archlinux.org/ttf-wps-fonts.git
+	git clone https://aur.archlinux.org/packages/qdirstat/
+	git clone https://aur.archlinux.org/jmtpfs.git
+	git clone https://aur.archlinux.org/sublime-text-dev.git
+	git clone https://aur.archlinux.org/speedometer.git
+	git clone https://aur.archlinux.org/cli-visualizer.git
 
 	#----------------------------------------gtk-config
 	sudo pacman -S lxappearance gtk-chtheme xorg-xinput
 
 	#----------------------------------------laptop config
-	sudo pacman -S acpi libinput xf86-input-synaptics xorg-xinput powertop xfce4-power-manager bluez bluez-utils 
+	sudo pacman -S acpi libinput xf86-input-synaptics xorg-xinput powertop xfce4-power-manager bluez bluez-utils
 
 	#----------------------------------------EMACS INSTALL
 	cp -r emacs/.emacs.d  ~/.emacs.d/
@@ -108,10 +147,9 @@ install:
 
 	#SYSTEMCTL INIT
 	sudo systemctl enable NetworkManager.service
-	sudo systemctl enable dhcpcd@.service
 	sudo systemctl enable gdm.service
 	sudo systemctl enable tlp.service
-	#Remenver to enable firewall $ ufw enable
+	#Remenber to enable firewall $ ufw enable
 	sudo systemctl enable ufw.service
 	#REMEMBER TO ENABLE OPTIMUS MANAGER
 	sudo systemctl enable bumblebeed.service

@@ -391,7 +391,7 @@ interval                    = 5
 type            = internal/battery
 battery         = BAT0
 adapter         = AC
-full-at         = 95
+full-at         = 98
 
 
 format-charging                 = <animation-charging> <label-charging>

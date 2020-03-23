@@ -125,7 +125,7 @@ $ arch-chroot /mnt /bin/bash
 
 (14) Install some packages 
 
-$ pacman -S bash-completion sudo  os-prober wireless_tools networkmanager  network-manager-applet mtools vim  wpa_supplicant dosfstools  dialog lvm2  linux-headers linux-lts linux-lts-headers --noconfirm
+$ pacman -S bash-completion sudo  os-prober wireless_tools networkmanager  network-manager-applet mtools vim  wpa_supplicant dosfstools  dialog lvm2  linux-headers ntfs-3g linux-lts linux-lts-headers --noconfirm
 
 $ systemctl enable NetworkManager 
 
@@ -186,7 +186,7 @@ $ vim /etc/default/grub
 
 -->look for   GRUB_CMDLINE_LINUX=”“, and the set:
 
-GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=/dev/sda3:linux:allow-discards quiet"
+GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=/dev/sda3:linux:allow-discards quiet splash pci=nomsi"
 
 --> after that, write or update those variables to:
 
