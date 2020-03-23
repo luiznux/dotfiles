@@ -12,22 +12,22 @@
 #
 #
 
-echo "#----------------------------------------- Setup directory tree"
-mkdir -p ~/Github/{luiznux,prog,other},AUR/{Done,Making},Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}
+echo "#----------------------------------------------- Setup directory tree"
+mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}}
 cd ~/Github && git init
-echo "    Directory tree {OK}"
+echo "                        Directory tree {OK}"
 
-echo "#----------------------------------------- Packages"
+echo "#----------------------------------------------- Packages"
 echo "		Installing packages"
-sudo pacman -S  man gvim tree rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps i3lock-color ranger w3m xorg xorg-xinit nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang tlp i7z cpupower alsa calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme --noconfirm
-echo " 	Packages {OK}"
+sudo pacman -Sy xorg man gvim tree rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang tlp i7z cpupower alsa calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme
+echo " 	                            Packages {OK}"
 
-echo "#---------------------------------------- PYTHON CONFIG"
+echo "#----------------------------------------------- PYTHON CONFIG"
 echo "		Python config"
-sudo pacman -S python-pip python-sphinx python-dbus python2-gobject pygtk python-psutil python-urwid --noconfirm
-echo "		Python {OK}"
+sudo pacman -S python python2 python-pip python-sphinx python-dbus python2-gobject pygtk python-psutil python-urwid --noconfirm
+echo "		                        Python {OK}"
 
-echo "#---------------------------------------- Graphic drives and NVIDIA"
+echo "#----------------------------------------------- Graphic drives and NVIDIA"
 echo "		Graphic drivers"
 sudo pacman -S xf86-video-intel vulkan-intel nvidia nvidia-utils nvidia-settings bumblebee --noconfirm
 echo "		Graphic Drivers {OK}"
@@ -39,7 +39,7 @@ echo "Installing some AUR Packages"
 AUR  = cd ~/AUR
 
 echo "#------------- OPTIMUS MANAGER AND GDM"
-$AUR && git clone https://aur.archlinux.org/gdm3setup-utils.git && cd gdm3setup-utils/ && makepkg -i --noconfirm
+#$AUR && git clone https://aur.archlinux.org/gdm3setup-utils.git && cd gdm3setup-utils/ && makepkg -i --noconfirm
 $AUR && git clone https://aur.archlinux.org/packages/gdm-prime.git && cd gdm-prime/ && makepkg -i --noconfirm
 $AUR && git clone https://aur.archlinux.org/nvidia-xrun-pm.git && cd nvidia-xrun-pm/ && makepkg -i --noconfirm
 $AUR && git clone https://aur.archlinux.org/optimus-manager.git && cd optimus-manager/ && makepkg -i --noconfirm
