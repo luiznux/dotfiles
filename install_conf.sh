@@ -39,39 +39,39 @@ echo "#---------------------------------------- AUR packages"
 echo "Installing some AUR Packages"
 
 #AUR variables and func
-exit_dir() {
+exit_dir(){
  cd ..
 }
 
 AUR= ~/AUR/
 
 echo "#------------- OPTIMUS MANAGER AND GDM"
-#$AUR && git clone https://aur.archlinux.org/gdm3setup-utils.git && cd gdm3setup-utils/ && makepkg -i --noconfirm && exit_dir
-$AUR && git clone https://aur.archlinux.org/gdm-prime.git && cd gdm-prime/ && makepkg -i --noconfirm && exit_dir return
-$AUR && git clone https://aur.archlinux.org/nvidia-xrun-pm.git && cd nvidia-xrun-pm/ && makepkg -i --noconfirm && exit_dir
-$AUR && git clone https://aur.archlinux.org/optimus-manager.git && cd optimus-manager/ && makepkg -i --noconfirm && exit_dir
+#cd $AUR && git clone https://aur.archlinux.org/gdm3setup-utils.git && cd gdm3setup-utils/ && makepkg -i --noconfirm && exit_dir
+cd $AUR && git clone https://aur.archlinux.org/gdm-prime.git && cd gdm-prime/ && makepkg -i --noconfirm && exit_dir return
+cd $AUR && git clone https://aur.archlinux.org/nvidia-xrun-pm.git && cd nvidia-xrun-pm/ && makepkg -i --noconfirm && exit_dir
+cd $AUR && git clone https://aur.archlinux.org/optimus-manager.git && cd optimus-manager/ && makepkg -i --noconfirm && exit_dir
 
 #Batterymon and depence(LAPTOP ONLY)
-$AUR && git clone https://aur.archlinux.org/python2-distutils-extra.git && cd python2-distutils-extra/ && makepkg -i --noconfirm && exit_dir
-$AUR && git clone https://aur.archlinux.org/batterymon-clone.git && cd batterymon-clone && makepkg -i --noconfirm && exit_dir
+cd $AUR && git clone https://aur.archlinux.org/python2-distutils-extra.git && cd python2-distutils-extra/ && makepkg -i --noconfirm && exit_dir
+cd $AUR && git clone https://aur.archlinux.org/batterymon-clone.git && cd batterymon-clone && makepkg -i --noconfirm && exit_dir
 
 echo "  SPORIFY AND PACKAGES"
-$AUR && git clone https://aur.archlinux.org/spotify.git && cd spotify && makepkg -i --noconfirm && exit_dir
+cd $AUR && git clone https://aur.archlinux.org/spotify.git && cd spotify && makepkg -i --noconfirm && exit_dir
 gpg --keyserver pgp.mit.edu --recv-keys FCF986EA15E6E293A5644F10B4322F04D67658D8
-$AUR && git clone https://aur.archlinux.org/ffmpeg-compat-57.git && cd ffmpeg-compat-57 && makepkg -i --noconfirm && exit_dir
+cd $AUR && git clone https://aur.archlinux.org/ffmpeg-compat-57.git && cd ffmpeg-compat-57 && makepkg -i --noconfirm && exit_dir
 
 #------------ Other packages
-$AUR && git clone https://aur.archlinux.org/python-pdftotext.git && cd python-pdftotext/ && makepkg -i --noconfirm && exit_dir
-$AUR && git clone https://aur.archlinux.org/polybar.git && cd polybar/ && makepkg -i
-$AUR && git clone https://aur.archlinux.org/thermald.git && cd thermald/ && makepkg -i --noconfirm && exit_dir
-$AUR && git clone https://aur.archlinux.org/ttf-weather-icons.git && cd ttf-weather-icons.git/ && makepkg -i --noconfirm && exit_dir
-$AUR && git clone https://aur.archlinux.org/wps-office.git && cd wps-office/ && makepkg -i --noconfirm && exit_dir
-$AUR && git clone https://aur.archlinux.org/ttf-wps-fonts.git && cd ttf-wps-fonts && makepkg -i --noconfirm && exit_dir
-$AUR && git clone https://aur.archlinux.org/qdirstat.git && cd qdirstat/ && makepkg -i --noconfirm && exit_dir --noconfirm
-$AUR && git clone https://aur.archlinux.org/jmtpfs.git && cd jmtpfs/ && makepkg -i --noconfirm && exit_dir
-$AUR && git clone https://aur.archlinux.org/sublime-text-dev.git && cd sublime-text-dev/ && makepkg -i --noconfirm && exit_dir
-$AUR && git clone https://aur.archlinux.org/speedometer.git && cd speedometer/ && makepkg -i --noconfirm && exit_dir
-$AUR && git clone https://aur.archlinux.org/cli-visualizer.git && cd cli-visualizer/ && makepkg -i --noconfirm && exit_dir
+cd $AUR && git clone https://aur.archlinux.org/python-pdftotext.git && cd python-pdftotext/ && makepkg -i --noconfirm && exit_dir
+cd $AUR && git clone https://aur.archlinux.org/polybar.git && cd polybar/ && makepkg -i
+cd $AUR && git clone https://aur.archlinux.org/thermald.git && cd thermald/ && makepkg -i --noconfirm && exit_dir
+cd $AUR && git clone https://aur.archlinux.org/ttf-weather-icons.git && cd ttf-weather-icons.git/ && makepkg -i --noconfirm && exit_dir
+cd $AUR && git clone https://aur.archlinux.org/wps-office.git && cd wps-office/ && makepkg -i --noconfirm && exit_dir
+cd $AUR && git clone https://aur.archlinux.org/ttf-wps-fonts.git && cd ttf-wps-fonts && makepkg -i --noconfirm && exit_dir
+cd $AUR && git clone https://aur.archlinux.org/qdirstat.git && cd qdirstat/ && makepkg -i --noconfirm && exit_dir --noconfirm
+cd $AUR && git clone https://aur.archlinux.org/jmtpfs.git && cd jmtpfs/ && makepkg -i --noconfirm && exit_dir
+cd $AUR && git clone https://aur.archlinux.org/sublime-text-dev.git && cd sublime-text-dev/ && makepkg -i --noconfirm && exit_dir
+cd $AUR && git clone https://aur.archlinux.org/speedometer.git && cd speedometer/ && makepkg -i --noconfirm && exit_dir
+cd $AUR && git clone https://aur.archlinux.org/cli-visualizer.git && cd cli-visualizer/ && makepkg -i --noconfirm && exit_dir
 
 echo "#----------------------------------------laptop config"
 sudo pacman -S acpi libinput xf86-input-synaptics xorg-xinput powertop xfce4-power-manager bluez bluez-utils bbswitch --noconfirm
