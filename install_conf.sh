@@ -13,7 +13,7 @@
 #
 
 #define dotfiles path
-dotfiles= $PWD
+dotfiles=$(pwd)
 
 echo "#----------------------------------------------- Setup directory tree"
 mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}}
@@ -43,7 +43,7 @@ exit_dir(){
  cd ..
 }
 
-AUR= ~/AUR/
+AUR=~/AUR/
 
 echo "#------------- OPTIMUS MANAGER AND GDM"
 #cd $AUR && git clone https://aur.archlinux.org/gdm3setup-utils.git && cd gdm3setup-utils/ && makepkg -i --noconfirm && exit_dir
@@ -86,6 +86,7 @@ echo "     Emacs  Install  {OK}"
 echo "#----------------------------------------Setup Pacman config"
 cd $dotfiles && sudo cp config/pacman/mirrorlist /etc/pacman.d/
 sudo rm /etc/pacman.conf || cd $dotfiles && sudo cp config/pacman/pacman.conf  /etc/
+echo "     Pacman config {OK} "
 
 echo "#----------------------------------------Setup i3 and polybar"
 cd $dotfiles && cp config/i3/config ~/.config/i3/
@@ -122,27 +123,27 @@ echo "     Xresources setup and loaded {OK} "
 
 echo "#----------------------------------------Setup gitignore global file"
 cd $dotfiles && cp config/.gitignore_global  ~/
-echo "       Gitignore global setup {OK} "
+echo "     Gitignore global setup {OK} "
 cd $dotfiles && cp config/.gitconfig ~/
-echo "       Gitconfig setup {OK} "
+echo "     Gitconfig setup {OK} "
 
 echo"#----------------------------------------Setup background image"
 cd $dotfiles && cp config/blue-hair-girl.jpg ~/.config/wallpaper.jpg
-echo "       Wallppaer setup {OK} "
+echo "      Wallppaer setup {OK} "
 
 echo"#----------------------------------------Setup Themes"
 cd $dotfiles && cd gtk-themes/gtk && tar -xvf Midnight-BlueNight-Theme.tar.xz && sudo mv Midnight-BlueNight-Theme/  /usr/share/themes/
 cd $dotfiles && cd config/ && cp -r gtk-2.0 gtk-3.0 ~/.config
 cd $dotfiles && cd config/ && cp .gtkrc-2.0 ~/.gtkrc-2.0
 gsettings set org.cinnamon.desktop.default-applications.terminal exec urxvt
-echo "   GTK themes setup {OK} "
+echo "      GTK themes setup {OK} "
 
 echo "#----------------------------------------Other Configs "
 cd $dotfiles && cd config/ && cp .bashrc ~/
 cd $dotfiles && cd config/ sudo rm /etc/tlp.conf && sudo cp tlp.conf /etc/tlp.conf
 
 echo "#----------------------------------------BUMBLEBEE CONFIG (LAPTOP ONLY)"
-sudo gpasswd -a user bumblebee
+sudo gpasswd -a luiznux bumblebee
 cd $dotfiles && sudo cp /config/bbswitch.conf /etc/modprobe.d/bbswitch.conf
 tee /proc/acpi/bbswitch <<<OFF
 sudo systemctl enable bumblebeed.service
@@ -154,4 +155,3 @@ sudo systemctl enable tlp.service
 sudo systemctl enable ufw.service && ufw enable #firewall enable
 #REMEMBER TO ENABLE OPTIMUS MANAGER
 sudo systemctl enable optimus-manager.service
-
