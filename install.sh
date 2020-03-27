@@ -1,30 +1,39 @@
 #!bin/bash
 #
+#     ██╗███╗   ██╗███████╗████████╗ █████╗ ██╗     ██╗
+#     ██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║     ██║
+#     ██║██╔██╗ ██║███████╗   ██║   ███████║██║     ██║
+#     ██║██║╚██╗██║╚════██║   ██║   ██╔══██║██║     ██║
+#     ██║██║ ╚████║███████║   ██║   ██║  ██║███████╗███████╗
+#     ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝
+#
+#   ██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗
+#   ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝██╔════╝
+#   ██║  ██║██║   ██║   ██║   █████╗  ██║██║     █████╗  ███████╗
+#   ██║  ██║██║   ██║   ██║   ██╔══╝  ██║██║     ██╔══╝  ╚════██║
+#   ██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗███████║
+#   ╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
 #
 #
-#  /$$      /$$           /$$                       /$$      /$$ /$$$$$$$$          /$$$
-# | $$$    /$$$          | $$                      | $$$    /$$$| $$_____/         |_  $$
-# | $$$$  /$$$$  /$$$$$$ | $$   /$$  /$$$$$$       | $$$$  /$$$$| $$             /$$ \  $$
-# | $$ $$/$$ $$ |____  $$| $$  /$$/ /$$__  $$      | $$ $$/$$ $$| $$$$$         |__/  | $$
-# | $$  $$$| $$  /$$$$$$$| $$$$$$/ | $$$$$$$$      | $$  $$$| $$| $$__/               | $$
-# | $$\  $ | $$ /$$__  $$| $$_  $$ | $$_____/      | $$\  $ | $$| $$             /$$  /$$/
-# | $$ \/  | $$|  $$$$$$$| $$ \  $$|  $$$$$$$      | $$ \/  | $$| $$$$$$$$      |__//$$$/
-# |__/     |__/ \_______/|__/  \__/ \_______/      |__/     |__/|________/         |___/
-#
-#
-#
+# source https://github.com/luiznux/dotfiles
+# This is the install scrpit that resolves most of the files in this repository.
+# It only works in Arch linux distro.
+# After you run it, a 'install.log' file will be created, in case of erros see it.
+# If some bugs or issues happen, let me know about it.
+# Have some sugestions and/or comments? just call me.
+#----------------------------------------------------------------------------------
 
 #Variables
 dotfiles=$(pwd)
 AUR=~/AUR
 errors=0
 
-#break line with echo command
+#func to break line with echo command
 break_line(){
     echo ""
 }
 
-#write all install process in the archive 'install.log'
+#write some installings  process in the archive 'install.log'
 log(){
     $*
     $* >> $dotfiles/install.log
@@ -33,7 +42,7 @@ log(){
 #this func will only write on the archive 'install.log' if a bash error occurred
 log_error(){
     $*
-    S* 2>> $dotfiles/install.log
+    $* 2>> $dotfiles/install.log
 }
 
 #print erro mgs
@@ -52,51 +61,48 @@ dir_tree(){
     log echo "#----------------------------------------------- Setup directory tree"
     mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}} \
     && cd ~/Github && git init\
-    log echo "                        Directory tree {OK}" && brek_line || erro_msg && ((errors+=1))
+    && log echo "        Directory tree {OK}" && break_line || log erro_msg && ((errors+=1))
 }
 
 
-####func to install all packages on arch linux
+####func to install packages on arch linux
 install_packages(){
 
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
     log_error sudo pacman -Sy xorg xclip man gvim tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls powerline cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang tlp i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp \
-    log && echo "     Packages {OK}" && brek_line || erro_msg && ((errors+=1))
+    && log echo "        Packages {OK}" && brek_line || log erro_msg && ((errors+=1))
 }
 
 
-####func to install my python packages
+####func to install some python packages
 Python_config(){
-    log echo "#----------------------------------------------- PYTHON CONFIG"
-    log echo "     Python config"
+    log echo "#----------------------------------------------- PYTHON CONFIG" && break_line
     log_error sudo pacman -S python-pip python-sphinx python-dbus python2-gobject pygtk python-psutil python-urwid --noconfirm \
-    && echo "	    Python {OK}" && log  Python {OK} && break_line || erro_msg && ((errors+=1))
+    && log echo "	     Python {OK}" && break_line || log erro_msg && ((errors+=1))
 }
 
 
-####func to install the graphic drivers
+####func to install the graphic drivers(depends of your hardware)
 Graphic_drivers(){
 
     log echo "#----------------------------------------------- Graphic drives and NVIDIA" && break_line
-    log echo "	   Graphic drivers" && break_line
     log_error sudo pacman -S xf86-video-intel vulkan-intel mesa-demos nvidia nvidia-utils nvidia-settings bumblebee --noconfirm \
-    && echo "	     Graphic Drivers {OK}" && break_line || erro_msg && ((errors+=1))
+    && log echo "	     Graphic Drivers {OK}" && break_line || log erro_msg && ((errors+=1))
 }
 
 
-####AUR Packges installation func
+####AUR Packges installation func(with MAKEPKG)
 AUR_install(){
 
     log echo "#---------------------------------------- AUR packages" && break_line
     log echo "Installing some AUR Packages" && break_line
-
     log echo "#OPTIMUS MANAGER AND GDM" && break_line
     log echo " gdm-prime optimus-manager optimus-manager-qt"
-    log_erro cd $AUR && git clone https://aur.archlinux.org/gdm-prime.git && cd gdm-prime/ && makepkg -i --noconfirm && exit_dir\
+    cd $AUR && git clone https://aur.archlinux.org/gdm-prime.git && cd gdm-prime/ && makepkg -i --noconfirm && exit_dir\
     && cd $AUR && git clone https://aur.archlinux.org/optimus-manager.git && cd optimus-manager/ && makepkg -i --noconfirm && exit_dir \
     && cd $AUR && git clone https://aur.archlinux.org/optimus-manager-qt.git && cd optimus-manager-qt/ && makepkg -i --noconfirm && exit_dir \
-    && echo "Done" && break_line || erro_msg && ((errors+=1))
+    && log echo "Done" && break_line || log erro_msg && ((errors+=1))
 
     #echo "  SPORIFY AND PACKAGES"
     #cd $AUR && git clone https://aur.archlinux.org/spotify.git && cd spotify && makepkg -i --noconfirm && exit_dir \
@@ -106,8 +112,8 @@ AUR_install(){
 
     log echo "#------------ Other packages" && break_line
     log echo "nvidia-xrun-pm python-pdftotext polybar thermald ttf-weather-icon wps-office.git "
-    log echo "ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer"
-    log_error cd $AUR && git clone https://aur.archlinux.org/nvidia-xrun-pm.git && cd nvidia-xrun-pm/ && makepkg -i --noconfirm && exit_dir \
+    log echo "ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer" && break_line
+    cd $AUR && git clone https://aur.archlinux.org/nvidia-xrun-pm.git && cd nvidia-xrun-pm/ && makepkg -i --noconfirm && exit_dir \
     && cd $AUR && git clone https://aur.archlinux.org/python-pdftotext.git && cd python-pdftotext/ && makepkg -i --noconfirm && exit_dir \
     && cd $AUR && git clone https://aur.archlinux.org/polybar.git && cd polybar/ && makepkg -i --noconfirm && exit_dir \
     && cd $AUR && git clone https://aur.archlinux.org/thermald.git && cd thermald/ && makepkg -i --noconfirm && exit_dir \
@@ -119,86 +125,87 @@ AUR_install(){
     && cd $AUR && git clone https://aur.archlinux.org/sublime-text-dev.git && cd sublime-text-dev/ && makepkg -i --noconfirm && exit_dir \
     && cd $AUR && git clone https://aur.archlinux.org/speedometer.git && cd speedometer/ && makepkg -i --noconfirm && exit_dir \
     && cd $AUR && git clone https://aur.archlinux.org/cli-visualizer.git && cd cli-visualizer/ && makepkg -i --noconfirm && exit_dir \
-    && echo " Done" && break_line || erro_msg && ((errors+=1))
+    && log echo " AUR pkgs Done" && break_line || log erro_msg && ((errors+=1))
 }
 
 
-####Emacs install and mv config
+####Emacs install and copy my config file
 emacs(){
 
-    log echo "#----------------------------------------EMACS INSTALL" && break_line
+    log echo "#---------------------------------------- EMACS INSTALL" && break_line
     log_error cd $dotfiles && cp -r emacs/.emacs.d  ~/.emacs.d/ \
-    && echo "     Emacs config {OK} " && break_line || erro_msg && ((errors+=1))
+    && log echo "     Emacs config {OK} " && break_line || log erro_msg && ((errors+=1))
 
     log_error cd ~/ && wget gnu.c3sl.ufpr.br/ftp/emacs/emacs-26.3.tar.xz && tar -xvf emacs-26.3.tar.xz && rm emacs-26.3.tar.xz \
     && cd ~/emacs-26.3 && ./autogen.sh && ./configure && make && sudo make install \
-    && echo "     Emacs  Install  {OK}" && break_line || erro_msg && ((errors+=1))
+    && log echo "     Emacs  Install  {OK}" && break_line || log erro_msg && ((errors+=1))
 }
 
 
-####mv all the others dotfiles
+####move all the others dotfiles
 general_config(){
 
-    log echo "#----------------------------------------Setup i3 and polybar" && break_line
+    log echo "#---------------------------------------- Setup i3 and polybar" && break_line
     cd $dotfiles && cp i3/config ~/.config/i3/ \
     && cd $dotfiles && cp -r polybar/*  ~/.config/polybar/ \
-    log && echo "     I3 and Polybar config {OK} " && break_line || erro_msg && ((errors+=1))
+    && log echo "     I3 and Polybar config {OK} " && break_line || log erro_msg && ((errors+=1))
 
-    log echo "#----------------------------------------Polyabar Scripts" && break_line
-    cd ~/.config/polybar/modules/ && git clone https://github.com/kamek-pf/polybar-forecast.git \
-    && cd ~/.config/polybar/modules/polybar-forecast/ && cargo build --release \
-    log && echo"	   Scripts {OK}" && break_line || erro_msg && ((errors+=1))
+    log echo "#---------------------------------------- Polyabar Scripts" && break_line
+    log_error cd ~/.config/polybar/ && git clone https://github.com/kamek-pf/polybar-forecast.git \
+    && cd ~/.config/polybar/polybar-forecast/ && cargo build --release \
+    && cp $dotfiles/polybar/config.toml .config/polybar/polybar-forecast \
+    && log echo"	  Scripts {OK}" && break_line || log erro_msg && ((errors+=1))
 
-    log echo "#----------------------------------------Ranger config" && break_line
+    log echo "#---------------------------------------- Ranger config" && break_line
     mkdir ~/.config/ranger \
     && cd $dotfiles && cp config/rc.conf  ~/.config/ranger/ \
-    log && echo "     Ranger config file setup {OK} " && break_line || erro_msg && ((errors+=1))
+    && log echo "     Ranger config file setup {OK} " && break_line || log erro_msg && ((errors+=1))
 
-    log echo "#----------------------------------------Vim config setup" && break_line
+    log echo "#---------------------------------------- Vim config setup" && break_line
     mkdir ~/.vim \
     && cd $dotfiles && cp vim/.vimrc ~/.vimrc \
     && cd $dotfiles && cp -r vim/.vim/ ~/ \
-    log && echo "     Vim setup {OK} " && break_line || erro_msg && ((errors+=1))
+    && log echo "     Vim setup {OK} " && break_line || log erro_msg && ((errors+=1))
 
-    log echo "#----------------------------------------Setup font" && break_line
-    mkdir -p /usr/share/fonts/
-    cd $dotfiles && sudo cp -R config/fonts/source-code-pro /usr/local/share/fonts/ \
-    log && echo "     Fount setup {OK} " && break_line || erro_msg && ((errors+=1))
+    log echo "#---------------------------------------- Setup font" && break_line
+    sudo mkdir -p /usr/share/fonts/ \
+    && cd $dotfiles && sudo cp -R config/fonts/source-code-pro /usr/local/share/fonts/ \
+    && log echo "     Fount setup {OK} " && break_line || log erro_msg && ((errors+=1))
 
-    log echo"#----------------------------------------Setup Locale" && break_line
-    cd $dotfiles && sudo cp config/locale.conf  /etc/ && sudo locale-gen \
-    log && echo "      Locale setup {OK}" && break_line || erro_msg && ((errors+=1))
+    log echo"#---------------------------------------- Setup Locale" && break_line
+    log_error cd $dotfiles && sudo cp config/locale.conf  /etc/ && log sudo locale-gen \
+    && log echo "     Locale setup {OK}" && break_line || log erro_msg && ((errors+=1))
 
-    log echo "#----------------------------------------Setup Xresources" && break_line
+    log echo "#---------------------------------------- Setup Xresources" && break_line
     cd $dotfiles && cp config/.Xresources ~/.Xresources  && xrdb -laod ~/.Xresources \
-    log && echo "     Xresources setup and loaded {OK} " && break_line || erro_msg && ((errors+=1))
+    && log echo "     Xresources setup and loaded {OK} " && break_line || log erro_msg && ((errors+=1))
 
-    log echo "#----------------------------------------Setup gitignore global file" && break_line
+    log echo "#---------------------------------------- Setup gitignore global file" && break_line
     cd $dotfiles && cp config/.gitignore_global  ~/ \
-    log && echo "     Gitignore global setup {OK} " && break_line || erro_msg && ((errors+=1))
+    && log echo "     Gitignore global setup {OK} " && break_line || log erro_msg && ((errors+=1))
     cd $dotfiles && cp config/.gitconfig ~/ \
-    log && echo "     Gitconfig setup {OK} " && break_line || erro_msg && ((errors+=1))
+    && log echo "     Gitconfig setup {OK} " && break_line || log erro_msg && ((errors+=1))
 
-    log echo"#----------------------------------------Setup background image" && break_line
+    log echo"#---------------------------------------- Setup background image" && break_line
     cd $dotfiles && cp config/blue-hair-girl.jpg ~/.config/wallpaper.jpg  \
-    log && echo "      Wallppaer setup {OK} " && break_line || erro_msg && ((errors+=1))
+    && log echo "     Wallppaer setup {OK} " && break_line || log erro_msg && ((errors+=1))
 
     log echo"#----------------------------------------Setup Themes" && break_line
     cd $dotfiles && cd config/ && cp -r gtk-2.0 gtk-3.0 ~/.config \
     && cd $dotfiles && cd config/ && cp .gtkrc-2.0 ~/.gtkrc-2.0 \
-    log && echo "      GTK themes setup {OK} " && break_line || erro_msg && ((errors+=1))
+    && log echo "     GTK themes setup {OK} " && break_line || log erro_msg && ((errors+=1))
 
-    echo "#----------------------------------------Setup Pacman config" && break_line
+    log echo "#---------------------------------------- Setup Pacman config" && break_line
     cd $dotfiles && sudo cp config/pacman/mirrorlist /etc/pacman.d/ \
     && sudo rm /etc/pacman.conf || cd $dotfiles && sudo cp config/pacman/pacman.conf  /etc/ \
-    && cd echo "     Pacman config {OK} " && break_line || erro_msg && ((errors+=1))
+    && log echo "     Pacman config {OK} " && break_line || log erro_msg && ((errors+=1))
 
-    log echo "#----------------------------------------Other Configs " && break_line
+    log echo "#---------------------------------------- Other Configs " && break_line
     cd $dotfiles && cd config/ && cp .bashrc ~/ \
     && cd $dotfiles && cd config/ sudo rm /etc/tlp.conf && sudo cp tlp.conf /etc/tlp.conf \
     && cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
-    && echo "      Done" && break_line || erro_msg && ((errors+=1))
-    echo" General config done with $[erros]" && break_line
+    && log echo "     Done" && break_line || log erro_msg && ((errors+=1)) \
+    && log echo" General config done with $[errors]" && break_line
 }
 
 
@@ -208,42 +215,44 @@ laptop_config(){
     log echo "Do you want install laptop configs ?(answer with y or n)" && break_line && echo "->"
     read option
     if [[ $option -eq "y" ]]; then
-        log echo "#----------------------------------------laptop packges" && break_line
+        log echo "#----------------------------------------- Laptop config" && break_line
+        log echo "#---------------------------------------- Laptop packges" && break_line
         log_error sudo pacman -S acpi libinput xf86-input-synaptics xorg-xinput powertop xfce4-power-manager bluez bluez-utils bbswitch --noconfirm \
-            log && echo " Done" && break_line || erro_msg && ((errors+=1))
+            && log echo " Done" && break_line || log erro_msg && ((errors+=1))
 
-        echo "#----------------------------------------BUMBLEBEE CONFIG (LAPTOP ONLY)" && break_line
-        sudo gpasswd -a luiznux bumblebee \
+        log echo "#---------------------------------------- BUMBLEBEE CONFIG (LAPTOP ONLY)" && break_line
+        log_error sudo gpasswd -a luiznux bumblebee \
             && cd $dotfiles && sudo cp /config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
             && tee /proc/acpi/bbswitch <<<OFF \
             && sudo systemctl enable bumblebeed.service \
-                    echo "Bumblebee {OK}" && break_line || erro_msg && ((errors+=1))
+                    && log echo "Bumblebee {OK}" && break_line || log erro_msg && ((errors+=1))
 
-        echo "#----------------------------------------Light(brithness control)" && break_line
+        log echo "#---------------------------------------- Light(brithness control)" && break_line
         cd ~/Github/prog/ && git clone https://github.com/haikarainen/light \
             && cd ~/Github/prog/light && ./autogen.sh && ./configure && sudo make \
-            && echo "     Light {OK}" && break_line || erro_msg && ((errors+=1))
+            && log echo "     Light {OK}" && break_line || log erro_msg && ((errors+=1))
 
         #Batterymon and depence(LAPTOP ONLY)
-        cd $AUR && git clone https://aur.archlinux.org/python2-distutils-extra.git && cd python2-distutils-extra/ && makepkg -i --noconfirm && exit_dir \
+        log_error cd $AUR && git clone https://aur.archlinux.org/python2-distutils-extra.git && cd python2-distutils-extra/ && makepkg -i --noconfirm && exit_dir \
             && cd $AUR && git clone https://aur.archlinux.org/batterymon-clone.git && cd batterymon-clone && makepkg -i --noconfirm && exit_dir \
-            && echo "Laptop configs {OK}" && break_line || erro_msg && ((errors+=1))
+            && log echo "     Laptop configs {OK}" && break_line || log erro_msg && ((errors+=1))
     else
+        log echo "#------------------------------------ Laptop config {SKIPED}" \
         break
     fi
 }
 
 
-####func that enable some services on systemd
+####func that enable some services
 systemd_init(){
 
-    echo "#----------------------------------------SENABLE YSTEMCTL SERVICES" && break_line
-    sudo systemctl enable NetworkManager.service \
+    log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
+    log_error sudo systemctl enable NetworkManager.service \
     && sudo systemctl enable gdm.service \
     && sudo systemctl enable tlp.service \
     && sudo systemctl enable ufw.service && ufw enable \
     && sudo systemctl enable optimus-manager.service \
-    && echo "Done" && break_line || erro_msg && ((errors+=1))
+    && log echo "Done" && break_line || log erro_msg && ((errors+=1))
 }
 
 
@@ -258,5 +267,5 @@ general_config
 laptop_config
 systemd_init
 
-echo "END OF INSTALL" && break_line
-echo" [$[errors]] reported, see 'install.log' for more details"
+log echo "------------- END OF INSTALL ------------" && break_line
+log echo " [$[errors]] reported, see 'install.log' for more details" && break_line
