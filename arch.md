@@ -72,7 +72,7 @@ $ lvs
 $ lvcreate -L 30G linux -n archlinux
 $ lvcreate -l +100%FREE linux -n home
 
-->activate volumes
+-> activate volumes
 
 $ vgchange -ay
 ----------------------------------------
@@ -125,9 +125,11 @@ $ arch-chroot /mnt /bin/bash
 
 (14) Install some packages 
 
-$ pacman -S bash-completion sudo  os-prober wireless_tools networkmanager  network-manager-applet mtools vim  wpa_supplicant dosfstools  dialog lvm2  linux-headers ntfs-3g linux-lts linux-lts-headers --noconfirm
-
+´´´
+$ pacman -S bash-completion sudo  os-prober wireless_tools networkmanager  network-manager-applet mtools vim  wpa_supplicant dosfstools  dialog lvm2  linux-headers ntfs-3g --noconfirm
+´´´
 $ systemctl enable NetworkManager 
+$ systemctl enable dhcpcd
 
 ---------------------------------------
 
