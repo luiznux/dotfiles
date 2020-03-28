@@ -166,9 +166,7 @@ $ arch-chroot /mnt /bin/bash
 $ pacman -S bash-completion sudo os-prober wireless_tools networkmanager  network-manager-applet mtools vim  wpa_supplicant dosfstools  dialog lvm2  linux-headers ntfs-3g --noconfirm
 ```
 
-
 ## 15. Set locale
-============
 
 ```bash
 $ rm -f /etc/localtime
@@ -180,7 +178,6 @@ $ echo KEYMAP=br-abnt2 >> /etc/vconsole.conf
 
 
 ## 16. Host and users
-
 
 ```bash
 $ echo "arch" > /etc/hostname
