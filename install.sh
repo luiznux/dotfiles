@@ -20,7 +20,7 @@
 # It only works in Arch linux distro.
 # After you run it, a 'install.log' file will be created, in case of erros see it.
 # If some bugs or issues happen, let me know about it.
-# Have some sugestions and/or comments? just call me.
+# Do you have any sugestions and/or comments? Just call me.
 #----------------------------------------------------------------------------------
 
 #Variables
@@ -55,6 +55,12 @@ exit_dir(){
     cd ..
 }
 
+#func to install aur packages
+make_pkg_AUR(){
+    $package
+    cd $AUR git clone https://aur.archlinux.org/$[package].git && cd $[package]/ && makepkg -i --noconfirm && exit_dir
+}
+
 ####func to setup my directory tree
 dir_tree(){
 
@@ -63,7 +69,6 @@ dir_tree(){
     && cd ~/Github && git init\
     && log echo "        Directory tree {OK}" && break_line || log erro_msg && ((errors+=1))
 }
-
 
 ####func to install packages on arch linux
 install_packages(){
@@ -74,14 +79,12 @@ install_packages(){
     && log echo "        Packages {OK}" && brek_line || log erro_msg && ((errors+=1))
 }
 
-
 ####func to install some python packages
 Python_config(){
     log echo "#----------------------------------------------- PYTHON CONFIG" && break_line
     log_error sudo pacman -S python-pip python-sphinx python-dbus python2-gobject pygtk python-psutil python-urwid --noconfirm \
     && log echo "	     Python {OK}" && break_line || log erro_msg && ((errors+=1))
 }
-
 
 ####func to install the graphic drivers(depends of your hardware)
 Graphic_drivers(){
@@ -91,7 +94,6 @@ Graphic_drivers(){
     && log echo "	     Graphic Drivers {OK}" && break_line || log erro_msg && ((errors+=1))
 }
 
-
 ####AUR Packges installation func(with MAKEPKG)
 AUR_install(){
 
@@ -99,35 +101,29 @@ AUR_install(){
     log echo "Installing some AUR Packages" && break_line
     log echo "#OPTIMUS MANAGER AND GDM" && break_line
     log echo " gdm-prime optimus-manager optimus-manager-qt"
-    cd $AUR && git clone https://aur.archlinux.org/gdm-prime.git && cd gdm-prime/ && makepkg -i --noconfirm && exit_dir\
-    && cd $AUR && git clone https://aur.archlinux.org/optimus-manager.git && cd optimus-manager/ && makepkg -i --noconfirm && exit_dir \
-    && cd $AUR && git clone https://aur.archlinux.org/optimus-manager-qt.git && cd optimus-manager-qt/ && makepkg -i --noconfirm && exit_dir \
+    log_error make_pkg_AUR gdm-prime \
+    && log_error make_pkg_AUR optimus-manager \
+    && log_error optimus-manager-qt \
     && log echo "Done" && break_line || log erro_msg && ((errors+=1))
-
-    #echo "  SPORIFY AND PACKAGES"
-    #cd $AUR && git clone https://aur.archlinux.org/spotify.git && cd spotify && makepkg -i --noconfirm && exit_dir \
-    #&& gpg --keyserver pgp.mit.edu --recv-keys FCF986EA15E6E293A5644F10B4322F04D67658D8 \
-    #&& cd $AUR && git clone https://aur.archlinux.org/ffmpeg-compat-57.git && cd ffmpeg-compat-57 && makepkg -i --noconfirm && exit_dir \
-    #&& echo "Done" && break_line || erro_msg && erros++
 
     log echo "#------------ Other packages" && break_line
     log echo "nvidia-xrun-pm python-pdftotext polybar thermald ttf-weather-icon wps-office.git "
-    log echo "ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer" && break_line
-    cd $AUR && git clone https://aur.archlinux.org/nvidia-xrun-pm.git && cd nvidia-xrun-pm/ && makepkg -i --noconfirm && exit_dir \
-    && cd $AUR && git clone https://aur.archlinux.org/python-pdftotext.git && cd python-pdftotext/ && makepkg -i --noconfirm && exit_dir \
-    && cd $AUR && git clone https://aur.archlinux.org/polybar.git && cd polybar/ && makepkg -i --noconfirm && exit_dir \
-    && cd $AUR && git clone https://aur.archlinux.org/thermald.git && cd thermald/ && makepkg -i --noconfirm && exit_dir \
-    && cd $AUR && git clone https://aur.archlinux.org/ttf-weather-icons.git && cd ttf-weather-icons.git/ && makepkg -i --noconfirm && exit_dir \
-    && cd $AUR && git clone https://aur.archlinux.org/wps-office.git && cd wps-office/ && makepkg -i --noconfirm && exit_dir \
-    && cd $AUR && git clone https://aur.archlinux.org/ttf-wps-fonts.git && cd ttf-wps-fonts && makepkg -i --noconfirm && exit_dir \
-    && cd $AUR && git clone https://aur.archlinux.org/qdirstat.git && cd qdirstat/ && makepkg -i --noconfirm && exit_dir \
-    && cd $AUR && git clone https://aur.archlinux.org/jmtpfs.git && cd jmtpfs/ && makepkg -i --noconfirm && exit_dir \
-    && cd $AUR && git clone https://aur.archlinux.org/sublime-text-dev.git && cd sublime-text-dev/ && makepkg -i --noconfirm && exit_dir \
-    && cd $AUR && git clone https://aur.archlinux.org/speedometer.git && cd speedometer/ && makepkg -i --noconfirm && exit_dir \
-    && cd $AUR && git clone https://aur.archlinux.org/cli-visualizer.git && cd cli-visualizer/ && makepkg -i --noconfirm && exit_dir \
-    && log echo " AUR pkgs Done" && break_line || log erro_msg && ((errors+=1))
+    log echo "ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify " && break_line
+    log_error make_pkg_AUR nvidia-xrun-pm \
+    && log_error make_pkg_AUR python-pdftotext \
+    && log_error make_pkg_AUR polybar.git \
+    && log_error make_pkg_AUR thermald.git \
+    && log_error make_pkg_AUR ttf-weather-icons.git \
+    && log_error make_pkg_AUR wps-office \
+    && log_error make_pkg_AUR ttf-wps-fonts \
+    && log_error make_pkg_AUR qdirstat \
+    && log_error make_pkg_AUR jmtpfs \
+    && log_error make_pkg_AUR sublime-text-dev \
+    && log_error make_pkg_AUR speedometer \
+    && log_error make_pkg_AUR cli-visualizer \
+    && log_error make_pkg_AUR spotify \
+    && log_error make_pkg_AUR && log echo " AUR pkgs Done" && break_line || log erro_msg && ((errors+=1))
 }
-
 
 ####Emacs install and copy my config file
 emacs(){
@@ -136,8 +132,8 @@ emacs(){
     log_error cd $dotfiles && cp -r emacs/.emacs.d  ~/.emacs.d/ \
     && log echo "     Emacs config {OK} " && break_line || log erro_msg && ((errors+=1))
 
-    log_error cd ~/ && wget gnu.c3sl.ufpr.br/ftp/emacs/emacs-26.3.tar.xz && tar -xvf emacs-26.3.tar.xz && rm emacs-26.3.tar.xz \
-    && cd ~/emacs-26.3 && ./autogen.sh && ./configure && make && sudo make install \
+    log_error cd ~/ && log_error wget gnu.c3sl.ufpr.br/ftp/emacs/emacs-26.3.tar.xz && log_error tar -xvf emacs-26.3.tar.xz && rm emacs-26.3.tar.xz \
+    && log_error cd ~/emacs-26.3 && log_error ./autogen.sh && log_error ./configure && log_error make && log_error sudo make install \
     && log echo "     Emacs  Install  {OK}" && break_line || log erro_msg && ((errors+=1))
 }
 
@@ -196,18 +192,17 @@ general_config(){
     && log echo "     GTK themes setup {OK} " && break_line || log erro_msg && ((errors+=1))
 
     log echo "#---------------------------------------- Setup Pacman config" && break_line
-    cd $dotfiles && sudo cp config/pacman/mirrorlist /etc/pacman.d/ \
-    && sudo rm /etc/pacman.conf || cd $dotfiles && sudo cp config/pacman/pacman.conf  /etc/ \
+    log_error cd $dotfiles && sudo cp config/pacman/mirrorlist /etc/pacman.d/ \
+    && sudo rm /etc/pacman.conf && cd $dotfiles && sudo cp config/pacman/pacman.conf  /etc/ \
     && log echo "     Pacman config {OK} " && break_line || log erro_msg && ((errors+=1))
 
     log echo "#---------------------------------------- Other Configs " && break_line
     cd $dotfiles && cd config/ && cp .bashrc ~/ \
     && cd $dotfiles && cd config/ sudo rm /etc/tlp.conf && sudo cp tlp.conf /etc/tlp.conf \
     && cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
-    && log echo "     Done" && break_line || log erro_msg && ((errors+=1)) \
+    && log echo "   Done" && break_line || log erro_msg && ((errors+=1)) \
     && log echo" General config done with $[errors]" && break_line
 }
-
 
 ####func that install laptoptools
 laptop_config(){
@@ -216,45 +211,44 @@ laptop_config(){
     read option
     if [[ $option -eq "y" ]]; then
         log echo "#----------------------------------------- Laptop config" && break_line
-        log echo "#---------------------------------------- Laptop packges" && break_line
+        log echo "#--------- Laptop packges" && break_line
         log_error sudo pacman -S acpi libinput xf86-input-synaptics xorg-xinput powertop xfce4-power-manager bluez bluez-utils bbswitch --noconfirm \
-            && log echo " Done" && break_line || log erro_msg && ((errors+=1))
+        && log echo " Done" && break_line || log erro_msg && ((errors+=1))
 
-        log echo "#---------------------------------------- BUMBLEBEE CONFIG (LAPTOP ONLY)" && break_line
+        log echo "#--------- BUMBLEBEE CONFIG (LAPTOP ONLY)" && break_line
         log_error sudo gpasswd -a luiznux bumblebee \
-            && cd $dotfiles && sudo cp /config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
-            && tee /proc/acpi/bbswitch <<<OFF \
-            && sudo systemctl enable bumblebeed.service \
-                    && log echo "Bumblebee {OK}" && break_line || log erro_msg && ((errors+=1))
+        && cd $dotfiles && log_error sudo cp /config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
+        && log_error tee /proc/acpi/bbswitch <<<OFF \
+        && log_error sudo systemctl enable bumblebeed.service \
+        && log echo "     Bumblebee {OK}" && break_line || log erro_msg && ((errors+=1))
 
-        log echo "#---------------------------------------- Light(brithness control)" && break_line
-        cd ~/Github/prog/ && git clone https://github.com/haikarainen/light \
-            && cd ~/Github/prog/light && ./autogen.sh && ./configure && sudo make \
-            && log echo "     Light {OK}" && break_line || log erro_msg && ((errors+=1))
+        log echo "#--------- Light(brithness control)" && break_line
+        cd ~/Github/prog/ && log_error git clone https://github.com/haikarainen/light \
+        && cd ~/Github/prog/light && log_error ./autogen.sh && log_error ./configure && sudo make \
+        && log echo "     Light {OK}" && break_line || log erro_msg && ((errors+=1))
 
-        #Batterymon and depence(LAPTOP ONLY)
-        log_error cd $AUR && git clone https://aur.archlinux.org/python2-distutils-extra.git && cd python2-distutils-extra/ && makepkg -i --noconfirm && exit_dir \
-            && cd $AUR && git clone https://aur.archlinux.org/batterymon-clone.git && cd batterymon-clone && makepkg -i --noconfirm && exit_dir \
-            && log echo "     Laptop configs {OK}" && break_line || log erro_msg && ((errors+=1))
+        #Batterymon and depence
+        log_error make_pkg_AUR makepython2-distutils-extra \
+        log_error make_pkg_AUR batterymon-clone \
+        && log echo "     Laptop configs {OK}" && break_line || log erro_msg && ((errors+=1))
+
     else
         log echo "#------------------------------------ Laptop config {SKIPED}" \
         break
     fi
 }
 
-
 ####func that enable some services
 systemd_init(){
 
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
     log_error sudo systemctl enable NetworkManager.service \
-    && sudo systemctl enable gdm.service \
-    && sudo systemctl enable tlp.service \
-    && sudo systemctl enable ufw.service && ufw enable \
-    && sudo systemctl enable optimus-manager.service \
+    && log_error sudo systemctl enable gdm.service \
+    && log_error sudo systemctl enable tlp.service \
+    && log_error sudo systemctl enable ufw.service && log_error ufw enable \
+    && log_error sudo systemctl enable optimus-manager.service \
     && log echo "Done" && break_line || log erro_msg && ((errors+=1))
 }
-
 
 #######################MAIN
 dir_tree
