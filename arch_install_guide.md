@@ -1,31 +1,34 @@
+```
  █████╗ ██████╗  ██████╗██╗  ██╗     ██████╗ ██╗   ██╗██╗██████╗ ███████╗
 ██╔══██╗██╔══██╗██╔════╝██║  ██║    ██╔════╝ ██║   ██║██║██╔══██╗██╔════╝
 ███████║██████╔╝██║     ███████║    ██║  ███╗██║   ██║██║██║  ██║█████╗
 ██╔══██║██╔══██╗██║     ██╔══██║    ██║   ██║██║   ██║██║██║  ██║██╔══╝
 ██║  ██║██║  ██║╚██████╗██║  ██║    ╚██████╔╝╚██████╔╝██║██████╔╝███████╗
 ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝     ╚═════╝  ╚═════╝ ╚═╝╚═════╝ ╚══════╝
-
+```
 
 # Arch linux Install guide
+=========================
 
 
 
 1. Set keyboard layout
-
+======================
 ``` bash
 $ loadkeys br-abnt2
 ```
-======================
+
 
 2. Load crypt modules
-
+======================
 ```bash
 $ modprobe -a dm-mod dm-crypt
 ```
 
-======================
+
 
 3. Create particions
+======================
 
 ```bash
 $ fdisk -l && cfdisk /dev/sdX
@@ -37,9 +40,8 @@ $ fdisk -l && cfdisk /dev/sdX
 | `/dev/sda3` | LINUX LVM     |  any     |EXT4      |
 
 
-======================
-
 4. Encrypt the "LINUX LVM" particion
+======================
 
 ```bash
 $ cryptsetup -y -v luksFormat --type luks1 -c aes-xts-plain64 -s 512 /dev/sda3
@@ -48,19 +50,15 @@ $ cryptsetup -y -v luksFormat --type luks1 -c aes-xts-plain64 -s 512 /dev/sda3
 * just remember that a password will be required
 
 
-======================
-
 5. Open your crypt
-
+======================
 
 ```bash
 $ cryptsetup open  --type luks /dev/sda3 linux
 ```
 
-
-======================
-
 6. PV linux
+======================
 
 * to see info about Physical Volume (PV)
 
@@ -75,18 +73,17 @@ $ pvcreate /dev/mapper/linux
 ```
 
 
+7. Create Volume Group (VG)
 ======================
 
-7. Create Volume Group (VG)
 
 ```bash
 $ vgcreate linux /dev/mapper/linux
 ```
 
 
-======================
-
 8. Create a Logical Volume (LV)
+======================
 
 ```bash
 $ lvcreate -L 1G linux -n swap
@@ -99,9 +96,8 @@ $ lvs
 ```
 
 
-======================
-
 9. Create the other two LV, "home" and "/"
+======================
 
 ```bash
 $ lvcreate -L 30G linux -n archlinux
@@ -116,9 +112,8 @@ $ vgchange -ay
 ```
 
 
-======================
-
 10. Format particions
+======================
 
 * BOOT, crypt
 
@@ -135,9 +130,8 @@ $ lsblk -f
 ```
 
 
-======================
-
 11. Mount particions
+======================
 
 ```bash
 $ mount /dev/mapper/linux-archlinux /mnt
@@ -152,9 +146,8 @@ $ mount /dev/sda1 /mnt/boot/efi
 ```
 
 
-======================
-
 12. Packages
+======================
 
 * edit mirror list
 
@@ -171,27 +164,24 @@ $ genfstab -U -p /mnt >> /mnt/etc/fstab
 ```
 
 
-======================
-
 13. Mv chroot to /mnt
+======================
 
 ```bash
 $ arch-chroot /mnt /bin/bash
 ```
 
 
-======================
-
 14. Install some packages
+======================
 
 ```bash
 $ pacman -S bash-completion sudo os-prober wireless_tools networkmanager  network-manager-applet mtools vim  wpa_supplicant dosfstools  dialog lvm2  linux-headers ntfs-3g --noconfirm
 ```
 
 
-======================
-
 15. Set locale
+======================
 
 ```bash
 $ rm -f /etc/localtime
@@ -202,9 +192,8 @@ $ echo KEYMAP=br-abnt2 >> /etc/vconsole.conf
 ```
 
 
-======================
-
 16. Host and users
+======================
 
 ```bash
 $ echo "arch" > /etc/hostname
@@ -222,9 +211,8 @@ $ passwd luiznux
 $ echo "luiznux ALL=(ALL)ALL" >> /etc/sudoers
 ```
 
-======================
-
 17. mkinitcpio.conf
+======================
 
 ```bash
 $ vim /etc/mkinitcpio.conf
@@ -243,9 +231,8 @@ $ mkinitcpio -p linux
 ```
 
 
-======================
-
 18. GRUB
+======================
 
 * USING UEFI MODE
 
@@ -290,10 +277,8 @@ $ cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 $ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-
-======================
-
 19. Exit, be happy and pray for the grub to work :)
+========================
 
 ```bash
 $ exit
