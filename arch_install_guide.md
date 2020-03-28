@@ -1,11 +1,12 @@
-   █████╗ ██████╗  ██████╗██╗  ██╗     ██████╗ ██╗   ██╗██╗██████╗ ███████╗
-  ██╔══██╗██╔══██╗██╔════╝██║  ██║    ██╔════╝ ██║   ██║██║██╔══██╗██╔════╝
-  ███████║██████╔╝██║     ███████║    ██║  ███╗██║   ██║██║██║  ██║█████╗
-  ██╔══██║██╔══██╗██║     ██╔══██║    ██║   ██║██║   ██║██║██║  ██║██╔══╝
-  ██║  ██║██║  ██║╚██████╗██║  ██║    ╚██████╔╝╚██████╔╝██║██████╔╝███████╗
-  ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝     ╚═════╝  ╚═════╝ ╚═╝╚═════╝ ╚══════╝
+ █████╗ ██████╗  ██████╗██╗  ██╗     ██████╗ ██╗   ██╗██╗██████╗ ███████╗
+██╔══██╗██╔══██╗██╔════╝██║  ██║    ██╔════╝ ██║   ██║██║██╔══██╗██╔════╝
+███████║██████╔╝██║     ███████║    ██║  ███╗██║   ██║██║██║  ██║█████╗
+██╔══██║██╔══██╗██║     ██╔══██║    ██║   ██║██║   ██║██║██║  ██║██╔══╝
+██║  ██║██║  ██║╚██████╗██║  ██║    ╚██████╔╝╚██████╔╝██║██████╔╝███████╗
+╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝     ╚═════╝  ╚═════╝ ╚═╝╚═════╝ ╚══════╝
 
 
+# Arch linux Install guide
 
 
 
@@ -14,7 +15,7 @@
 ``` bash
 $ loadkeys br-abnt2
 ```
-
+======================
 
 2. Load crypt modules
 
@@ -22,6 +23,7 @@ $ loadkeys br-abnt2
 $ modprobe -a dm-mod dm-crypt
 ```
 
+======================
 
 3. Create particions
 
@@ -35,21 +37,28 @@ $ fdisk -l && cfdisk /dev/sdX
 | `/dev/sda3` | LINUX LVM     |  any     |EXT4      |
 
 
+======================
+
 4. Encrypt the "LINUX LVM" particion
 
 ```bash
 $ cryptsetup -y -v luksFormat --type luks1 -c aes-xts-plain64 -s 512 /dev/sda3
 ```
 
-..* just remember that a password will be required
+* just remember that a password will be required
 
+
+======================
 
 5. Open your crypt
+
 
 ```bash
 $ cryptsetup open  --type luks /dev/sda3 linux
 ```
 
+
+======================
 
 6. PV linux
 
@@ -66,13 +75,18 @@ $ pvcreate /dev/mapper/linux
 ```
 
 
-7. Create VG(Volume Group)
+======================
+
+7. Create Volume Group (VG)
 
 ```bash
 $ vgcreate linux /dev/mapper/linux
 ```
 
-8. Create a LV(Logical Volume)
+
+======================
+
+8. Create a Logical Volume (LV)
 
 ```bash
 $ lvcreate -L 1G linux -n swap
@@ -84,32 +98,44 @@ $ lvcreate -L 1G linux -n swap
 $ lvs
 ```
 
+
+======================
+
 9. Create the other two LV, "home" and "/"
 
 ```bash
 $ lvcreate -L 30G linux -n archlinux
+
 $ lvcreate -l +100%FREE linux -n home
 ```
 
-* activate volumes
+* activate the volumes
 
 ```bash
 $ vgchange -ay
 ```
 
+
+======================
+
 10. Format particions
 
-* BOOT , crypt
+* BOOT, crypt
 
 ```bash
 $ mkfs.fat -F32 /dev/sda1
 $ mkfs.ext4 /dev/sda2
+
 $ mkfs -t ext4 /dev/mapper/linux-archlinux
 $ mkfs -t ext4 /dev/mapper/linux-home
+
 $ mkswap /dev/mapper/linux-swap
 $ swapon /dev/mapper/linux-swap
 $ lsblk -f
 ```
+
+
+======================
 
 11. Mount particions
 
@@ -125,7 +151,10 @@ $ mkdir /mnt/boot/efi
 $ mount /dev/sda1 /mnt/boot/efi
 ```
 
-(12) Packages
+
+======================
+
+12. Packages
 
 * edit mirror list
 
@@ -141,11 +170,17 @@ $ pacstrap -i /mnt base-devel base linux linux-firmware
 $ genfstab -U -p /mnt >> /mnt/etc/fstab
 ```
 
+
+======================
+
 13. Mv chroot to /mnt
 
 ```bash
 $ arch-chroot /mnt /bin/bash
 ```
+
+
+======================
 
 14. Install some packages
 
@@ -154,19 +189,26 @@ $ pacman -S bash-completion sudo os-prober wireless_tools networkmanager  networ
 ```
 
 
+======================
+
 15. Set locale
 
 ```bash
 $ rm -f /etc/localtime
 $ ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+
 $ locale-gen
 $ echo KEYMAP=br-abnt2 >> /etc/vconsole.conf
 ```
+
+
+======================
 
 16. Host and users
 
 ```bash
 $ echo "arch" > /etc/hostname
+
 $ passwd
 ```
 
@@ -180,6 +222,7 @@ $ passwd luiznux
 $ echo "luiznux ALL=(ALL)ALL" >> /etc/sudoers
 ```
 
+======================
 
 17. mkinitcpio.conf
 
@@ -200,6 +243,8 @@ $ mkinitcpio -p linux
 ```
 
 
+======================
+
 18. GRUB
 
 * USING UEFI MODE
@@ -215,7 +260,7 @@ $ pacman -S grub efibootmgr --noconfirm
 $ vim /etc/default/grub
 ```
 
-*look for   GRUB_CMDLINE_LINUX=”“, and the set:
+* look for   GRUB_CMDLINE_LINUX=”“, and the set:
 
 ```bash
 GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=/dev/sda3:linux:allow-discards quiet splash pci=nomsi"
@@ -224,7 +269,9 @@ GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=/dev/sda3:linux:allow-discards quiet spl
 3. after that, write or update those variables to:
 ```bash
 GRUB_PRELOAD_MODULES="lvm..."
+
 GRUB_ENABLE_CRYPTODISK=y
+
 GRUB_DISABLE_SUBMENU=y
 ```
 
@@ -242,6 +289,9 @@ $ cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 ```bash
 $ grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
+
+======================
 
 19. Exit, be happy and pray for the grub to work :)
 
