@@ -13,14 +13,16 @@
 
 
 1. Set keyboard layout
-======================
+=================
+
 ``` bash
 $ loadkeys br-abnt2
 ```
 
 
 2. Load crypt modules
-======================
+====================
+
 ```bash
 $ modprobe -a dm-mod dm-crypt
 ```
@@ -28,7 +30,7 @@ $ modprobe -a dm-mod dm-crypt
 
 
 3. Create particions
-======================
+===================
 
 ```bash
 $ fdisk -l && cfdisk /dev/sdX
@@ -58,7 +60,7 @@ $ cryptsetup open  --type luks /dev/sda3 linux
 ```
 
 6. PV linux
-======================
+=========
 
 * to see info about Physical Volume (PV)
 
@@ -74,8 +76,7 @@ $ pvcreate /dev/mapper/linux
 
 
 7. Create Volume Group (VG)
-======================
-
+=====================
 
 ```bash
 $ vgcreate linux /dev/mapper/linux
@@ -97,7 +98,7 @@ $ lvs
 
 
 9. Create the other two LV, "home" and "/"
-======================
+=====================
 
 ```bash
 $ lvcreate -L 30G linux -n archlinux
@@ -111,9 +112,8 @@ $ lvcreate -l +100%FREE linux -n home
 $ vgchange -ay
 ```
 
-
 10. Format particions
-======================
+==================
 
 * BOOT, crypt
 
@@ -129,9 +129,8 @@ $ swapon /dev/mapper/linux-swap
 $ lsblk -f
 ```
 
-
 11. Mount particions
-======================
+================
 
 ```bash
 $ mount /dev/mapper/linux-archlinux /mnt
@@ -147,7 +146,7 @@ $ mount /dev/sda1 /mnt/boot/efi
 
 
 12. Packages
-======================
+=========
 
 * edit mirror list
 
@@ -165,7 +164,7 @@ $ genfstab -U -p /mnt >> /mnt/etc/fstab
 
 
 13. Mv chroot to /mnt
-======================
+===================
 
 ```bash
 $ arch-chroot /mnt /bin/bash
@@ -181,7 +180,7 @@ $ pacman -S bash-completion sudo os-prober wireless_tools networkmanager  networ
 
 
 15. Set locale
-======================
+============
 
 ```bash
 $ rm -f /etc/localtime
@@ -193,7 +192,7 @@ $ echo KEYMAP=br-abnt2 >> /etc/vconsole.conf
 
 
 16. Host and users
-======================
+================
 
 ```bash
 $ echo "arch" > /etc/hostname
@@ -212,7 +211,7 @@ $ echo "luiznux ALL=(ALL)ALL" >> /etc/sudoers
 ```
 
 17. mkinitcpio.conf
-======================
+================
 
 ```bash
 $ vim /etc/mkinitcpio.conf
@@ -232,7 +231,7 @@ $ mkinitcpio -p linux
 
 
 18. GRUB
-======================
+======
 
 * USING UEFI MODE
 
@@ -278,7 +277,7 @@ $ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 19. Exit, be happy and pray for the grub to work :)
-========================
+=======================
 
 ```bash
 $ exit
