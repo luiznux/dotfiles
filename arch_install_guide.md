@@ -12,7 +12,7 @@
 
 
 
-# 1. Set keyboard layout
+### 1. Set keyboard layout
 =================
 
 ``` bash
@@ -20,7 +20,7 @@ $ loadkeys br-abnt2
 ```
 
 
-2. Load crypt modules
+### 2. Load crypt modules
 ====================
 
 ```bash
@@ -29,7 +29,7 @@ $ modprobe -a dm-mod dm-crypt
 
 
 
-3. Create particions
+### 3. Create particions
 ===================
 
 ```bash
@@ -42,7 +42,7 @@ $ fdisk -l && cfdisk /dev/sdX
 | `/dev/sda3` | LINUX LVM     |  any     |EXT4      |
 
 
-4. Encrypt the "LINUX LVM" particion
+### 4. Encrypt the "LINUX LVM" particion
 ======================
 
 ```bash
@@ -52,14 +52,14 @@ $ cryptsetup -y -v luksFormat --type luks1 -c aes-xts-plain64 -s 512 /dev/sda3
 * just remember that a password will be required
 
 
-5. Open your crypt
+### 5. Open your crypt
 ======================
 
 ```bash
 $ cryptsetup open  --type luks /dev/sda3 linux
 ```
 
-6. PV linux
+### 6. PV linux
 =========
 
 * to see info about Physical Volume (PV)
@@ -75,7 +75,7 @@ $ pvcreate /dev/mapper/linux
 ```
 
 
-7. Create Volume Group (VG)
+### 7. Create Volume Group (VG)
 =====================
 
 ```bash
@@ -83,7 +83,7 @@ $ vgcreate linux /dev/mapper/linux
 ```
 
 
-8. Create a Logical Volume (LV)
+### 8. Create a Logical Volume (LV)
 ======================
 
 ```bash
@@ -97,7 +97,7 @@ $ lvs
 ```
 
 
-9. Create the other two LV, "home" and "/"
+### 9. Create the other two LV, "home" and "/"
 =====================
 
 ```bash
@@ -112,7 +112,7 @@ $ lvcreate -l +100%FREE linux -n home
 $ vgchange -ay
 ```
 
-10. Format particions
+### 10. Format particions
 ==================
 
 * BOOT, crypt
@@ -129,7 +129,7 @@ $ swapon /dev/mapper/linux-swap
 $ lsblk -f
 ```
 
-11. Mount particions
+### 11. Mount particions
 ================
 
 ```bash
@@ -145,7 +145,7 @@ $ mount /dev/sda1 /mnt/boot/efi
 ```
 
 
-12. Packages
+### 12. Packages
 =========
 
 * edit mirror list
@@ -163,7 +163,7 @@ $ genfstab -U -p /mnt >> /mnt/etc/fstab
 ```
 
 
-13. Mv chroot to /mnt
+### 13. Mv chroot to /mnt
 ===================
 
 ```bash
@@ -171,7 +171,7 @@ $ arch-chroot /mnt /bin/bash
 ```
 
 
-14. Install some packages
+### 14. Install some packages
 ======================
 
 ```bash
@@ -179,7 +179,7 @@ $ pacman -S bash-completion sudo os-prober wireless_tools networkmanager  networ
 ```
 
 
-15. Set locale
+### 15. Set locale
 ============
 
 ```bash
@@ -191,7 +191,7 @@ $ echo KEYMAP=br-abnt2 >> /etc/vconsole.conf
 ```
 
 
-16. Host and users
+### 16. Host and users
 ================
 
 ```bash
@@ -210,7 +210,7 @@ $ passwd luiznux
 $ echo "luiznux ALL=(ALL)ALL" >> /etc/sudoers
 ```
 
-17. mkinitcpio.conf
+### 17. mkinitcpio.conf
 ================
 
 ```bash
@@ -230,7 +230,7 @@ $ mkinitcpio -p linux
 ```
 
 
-18. GRUB
+### 18. GRUB
 ======
 
 * USING UEFI MODE
@@ -276,7 +276,7 @@ $ cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 $ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-19. Exit, be happy and pray for the grub to work :)
+### 19. Exit, be happy and pray for the grub to work :)
 =======================
 
 ```bash
