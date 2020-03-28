@@ -28,11 +28,11 @@ $ modprobe -a dm-mod dm-crypt
 ```bash
 $ fdisk -l && cfdisk /dev/sdX
 ```
-|Device       |Type                                         |
-| ----------- |:-------------------------------------------:|
-| `/dev/sda1` | --> BIOS BOOT EFI 500MB size(FAT32 TYPE)    |
-| `/dev/sda2` | --> BOOT  500MB                             |
-| `/dev/sda3` | --> LINUX LVM TYPE any size that you want   |
+|Device       |Type           | Size     | Format   |
+| ----------- |:-------------:|:--------:|:--------:|
+| `/dev/sda1` | BIOS BOOT EFI | 500MB    |FAT32     |
+| `/dev/sda2` | BOOT          | 500MB    |EXT4      |
+| `/dev/sda3` | LINUX LVM     |  any     |EXT4      |
 
 
 4. Encrypt the "LINUX LVM" particion
@@ -46,7 +46,7 @@ $ cryptsetup -y -v luksFormat --type luks1 -c aes-xts-plain64 -s 512 /dev/sda3
 
 5. Open your crypt
 
-```
+```bash
 $ cryptsetup open  --type luks /dev/sda3 linux
 ```
 
@@ -55,44 +55,45 @@ $ cryptsetup open  --type luks /dev/sda3 linux
 
 * to see info about Physical Volume (PV)
 
-```
+```bash
 $ pvs
 ```
 
 * create one
 
-```
+```bash
 $ pvcreate /dev/mapper/linux
 ```
 
 
 7. Create VG(Volume Group)
 
-```
+```bash
 $ vgcreate linux /dev/mapper/linux
 ```
 
 8. Create a LV(Logical Volume)
 
-```
+```bash
 $ lvcreate -L 1G linux -n swap
 ```
 
 * to see lv
 
-```
+```bash
 $ lvs
 ```
 
 9. Create the other two LV, "home" and "/"
 
-```
+```bash
 $ lvcreate -L 30G linux -n archlinux
 $ lvcreate -l +100%FREE linux -n home
 ```
 
 * activate volumes
-```
+
+```bash
 $ vgchange -ay
 ```
 
@@ -100,7 +101,7 @@ $ vgchange -ay
 
 * BOOT , crypt
 
-```
+```bash
 $ mkfs.fat -F32 /dev/sda1
 $ mkfs.ext4 /dev/sda2
 $ mkfs -t ext4 /dev/mapper/linux-archlinux
@@ -112,7 +113,7 @@ $ lsblk -f
 
 11. Mount particions
 
-```
+```bash
 $ mount /dev/mapper/linux-archlinux /mnt
 $ mkdir /mnt/home
 $ mount /dev/mapper/linux-home /mnt/home
@@ -128,13 +129,13 @@ $ mount /dev/sda1 /mnt/boot/efi
 
 * edit mirror list
 
-```
+```bash
 $ vim /etc/pacman.d/mirrorlist
 ```
 
 * Install the base packages and genfstab
 
-```
+```bash
 $ pacstrap -i /mnt base-devel base linux linux-firmware
 
 $ genfstab -U -p /mnt >> /mnt/etc/fstab
@@ -142,20 +143,20 @@ $ genfstab -U -p /mnt >> /mnt/etc/fstab
 
 13. Mv chroot to /mnt
 
-```
+```bash
 $ arch-chroot /mnt /bin/bash
 ```
 
 14. Install some packages
 
-```
+```bash
 $ pacman -S bash-completion sudo os-prober wireless_tools networkmanager  network-manager-applet mtools vim  wpa_supplicant dosfstools  dialog lvm2  linux-headers ntfs-3g --noconfirm
 ```
 
 
 15. Set locale
 
-```
+```bash
 $ rm -f /etc/localtime
 $ ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 $ locale-gen
@@ -170,7 +171,8 @@ $ passwd
 ```
 
 * Add a user
-```
+
+```bash
 $ useradd -m -g users -G wheel,games,power,optical,storage,scanner,lp,audio,video -s /bin/bash luiznux
 
 $ passwd luiznux
@@ -181,19 +183,19 @@ $ echo "luiznux ALL=(ALL)ALL" >> /etc/sudoers
 
 17. mkinitcpio.conf
 
-```
+```bash
 $ vim /etc/mkinitcpio.conf
 ```
 
 * look for HOOKS="...." and add:
 
-```
+```bash
 HOOKS=(base udev autodetect keyboard keymap consolefont modconf block lvm2 encrypt filesystems fsck)
 ```
 * ADD THIS AT THE SAME ORDER
 * safe and exit and reload
 
-```
+```bash
 $ mkinitcpio -p linux
 ```
 
@@ -203,24 +205,24 @@ $ mkinitcpio -p linux
 * USING UEFI MODE
 
 1. INSTALL
-```
+```bash
 $ pacman -S grub efibootmgr --noconfirm
 ```
 
 2. CONFIG
 
-```
+```bash
 $ vim /etc/default/grub
 ```
 
 *look for   GRUB_CMDLINE_LINUX=”“, and the set:
 
-```
+```bash
 GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=/dev/sda3:linux:allow-discards quiet splash pci=nomsi"
 ```
 
 3. after that, write or update those variables to:
-```
+```bash
 GRUB_PRELOAD_MODULES="lvm..."
 GRUB_ENABLE_CRYPTODISK=y
 GRUB_DISABLE_SUBMENU=y
@@ -228,7 +230,7 @@ GRUB_DISABLE_SUBMENU=y
 
 4. INSTALLING
 
-```
+```bash
 $ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub --recheck
 
 $ cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
@@ -236,13 +238,14 @@ $ cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 
 
 5. Gen grub file
-```
+
+```bash
 $ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 19. Exit, be happy and pray for the grub to work :)
 
-```
+```bash
 $ exit
 $ umount -R /mnt
 $ systemctl reboot
