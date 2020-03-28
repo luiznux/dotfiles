@@ -28,10 +28,11 @@ $ modprobe -a dm-mod dm-crypt
 ```bash
 $ fdisk -l && cfdisk /dev/sdX
 ```
-
-|/dev/sda1 |--> |BIOS BOOT EFI 500MB size(FAT32 TYPE)|
-|/dev/sda2 |--> |BOOT  500MB|
-|/dev/sda3 |--> |LINUX LVM TYPE any size that you want|
+|Device       |Type                                         |
+| ----------- |:-------------------------------------------:|
+| `/dev/sda1` | --> BIOS BOOT EFI 500MB size(FAT32 TYPE)    |
+| `/dev/sda2` | --> BOOT  500MB                             |
+| `/dev/sda3` | --> LINUX LVM TYPE any size that you want   |
 
 
 4. Encrypt the "LINUX LVM" particion
