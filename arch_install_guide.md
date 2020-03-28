@@ -12,7 +12,7 @@
 
 
 
-1. Set keyboard layout
+# 1. Set keyboard layout
 =================
 
 ``` bash
