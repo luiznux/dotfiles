@@ -18,27 +18,25 @@ $ loadkeys br-abnt2
 
 2. Load crypt modules
 
-```
+```bash
 $ modprobe -a dm-mod dm-crypt
 ```
 
 
 3. Create particions
 
-```
+```bash
 $ fdisk -l && cfdisk /dev/sdX
 ```
 
-/dev/sda1 --> BIOS BOOT EFI 500MB size(FAT32 TYPE)
-
-/dev/sda2 --> BOOT  500MB
-
-/dev/sda3 --> LINUX LVM TYPE any size that you want
+|/dev/sda1 |--> |BIOS BOOT EFI 500MB size(FAT32 TYPE)|
+|/dev/sda2 |--> |BOOT  500MB|
+|/dev/sda3 |--> |LINUX LVM TYPE any size that you want|
 
 
 4. Encrypt the "LINUX LVM" particion
 
-```
+```bash
 $ cryptsetup -y -v luksFormat --type luks1 -c aes-xts-plain64 -s 512 /dev/sda3
 ```
 
@@ -170,7 +168,7 @@ $ echo "arch" > /etc/hostname
 $ passwd
 ```
 
-*Add a user
+* Add a user
 ```
 $ useradd -m -g users -G wheel,games,power,optical,storage,scanner,lp,audio,video -s /bin/bash luiznux
 
