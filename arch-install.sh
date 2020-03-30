@@ -17,7 +17,6 @@
 #Variables
 $BIOS
 $home
-$root
 $swap
 $filesystem
 
@@ -65,5 +64,6 @@ particions(){
 
 cryptsetup(){
 
+    echo " Please "
 
 }

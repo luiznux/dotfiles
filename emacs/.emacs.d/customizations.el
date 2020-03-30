@@ -35,8 +35,8 @@ removes scroll bar and display line numbers."
 	  (back-to-indentation)
 	(beginning-of-line)))
 
-(defun read-path-variable-from-zshrc()
-  (let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
+(defun read-path-variable-from-bashrc()
+  (let ((path (shell-command-to-string ". ~/.bashrc; echo -n $PATH")))
     (setenv "PATH" path)
     (setq exec-path
           (append
@@ -49,7 +49,7 @@ removes scroll bar and display line numbers."
 (visual-config-modes)
 (set-default-indentation)
 (enable-ido-mode)
-(read-path-variable-from-zshrc)
+(read-path-variable-from-bashrc)
 
 (add-hook 'term-mode-hook (lambda ()
                             (setq show-trailing-whitespace nil)))
@@ -57,8 +57,6 @@ removes scroll bar and display line numbers."
 ;; Autoclose brackets, quotes.
 (electric-pair-mode 1)
 
-;; Sets xfce to be used as shell.
-(setq explicit-shell-file-name "/usr/bin/xfce4-terminal")
 
 ;; Sets ibuffer as default.
 (defalias 'list-buffers 'ibuffer)
