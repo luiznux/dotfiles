@@ -233,7 +233,7 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 ! special
 *.foreground:   #9db7cf
 *.cursorColor:  #9db7cf
-!*.background:  #070b15
+*.background:  #070b15
 
 ! black
 *.color0:       #070b15
@@ -265,7 +265,7 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 ! special
 !*.foreground:    #cac8dc
 !*.cursorColor:   #cac8dc
-!!*.background:   #0b0719
+!*.background:   #0b0719
 !
 !! black
 !*.color0:        #0b0719
