@@ -18,6 +18,7 @@
 !---------------------------------------------------------------------------
 
 !Emacs.font: Source Code Pro:size=14
+emacs*background:   #0B0719
 
 
 !!--------------------------------------------------------------------------------
@@ -226,7 +227,7 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 !-------------------------- COLORS ------------------------------
 !----------------------------------------------------------------
 
-! To change the terminal transparency, change line 121 (Urxvt.background:   [80]#070b15)
+! To change the terminal transparency, change line 122 (Urxvt.background:   [80]#070b15)
 
 !------------------------- Blue hair girl wallpaper based colorscheme
 ! special
