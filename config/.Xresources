@@ -1,11 +1,10 @@
-!  __   __                                                   
-!  \ \ / /                                                   
-!   \ V /  _ __  ___  ___   ___   _   _  _ __  ___  ___  ___ 
-!    > <  | '__|/ _ \/ __| / _ \ | | | || '__|/ __|/ _ \/ __|
-!   / . \ | |  |  __/\__ \| (_) || |_| || |  | (__|  __/\__ \
-!  /_/ \_\|_|   \___||___/ \___/  \__,_||_|   \___|\___||___/
-!                                                            
-                                                           
+!
+!██╗  ██╗██████╗ ███████╗███████╗ ██████╗ ██╗   ██╗██████╗  ██████╗███████╗███████╗
+!╚██╗██╔╝██╔══██╗██╔════╝██╔════╝██╔═══██╗██║   ██║██╔══██╗██╔════╝██╔════╝██╔════╝
+! ╚███╔╝ ██████╔╝█████╗  ███████╗██║   ██║██║   ██║██████╔╝██║     █████╗  ███████╗
+! ██╔██╗ ██╔══██╗██╔══╝  ╚════██║██║   ██║██║   ██║██╔══██╗██║     ██╔══╝  ╚════██║
+!██╔╝ ██╗██║  ██║███████╗███████║╚██████╔╝╚██████╔╝██║  ██║╚██████╗███████╗███████║
+!╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚══════╝╚══════╝
 
 ! Xresources config luiznux
 !
@@ -187,7 +186,7 @@ URxvt.font-size.step:        1
 
 !Keyboard-select
 !
-!See https://github.com/muennich/urxvt-perls for more info 
+!See https://github.com/muennich/urxvt-perls for more info
 !
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s:      perl:keyboard-select:search
@@ -222,44 +221,72 @@ URxvt.keysym.M-C-v:        perl:clipboard:paste_escaped
 URxvt.keysym.M-c:          perl:clipboard:copy
 URxvt.keysym.M-v:          perl:clipboard:paste
 
+
 !----------------------------------------------------------------
 !-------------------------- COLORS ------------------------------
 !----------------------------------------------------------------
 
+! To change the terminal transparency, change line 121 (Urxvt.background:   [80]#070b15)
+
+!------------------------- Blue hair girl wallpaper based colorscheme
 ! special
 *.foreground:   #9db7cf
 *.cursorColor:  #9db7cf
 !*.background:  #070b15
 
-
 ! black
 *.color0:       #070b15
 *.color8:       #6d8090
-
 ! red
 *.color1:       #914836
 *.color9:       #914836
-
 ! green
 *.color2:       #994a3b
 *.color10:      #994a3b
-
 ! yellow
 *.color3:       #aa6655
 *.color11:      #aa6655
-
 ! blue
 *.color4:       #c58875
 *.color12:      #c58875
-
 ! magenta
 *.color5:       #325b91
 *.color13:      #325b91
-
 ! cyan
 *.color6:       #4472a3
 *.color14:      #4472a3
-
 ! white
 *.color7:       #9db7cf
 *.color15:      #9db7cf
+
+
+!------------------------- morpho.jgp wallpaper based colorscheme
+! special
+!*.foreground:    #cac8dc
+!*.cursorColor:   #cac8dc
+!!*.background:   #0b0719
+!
+!! black
+!*.color0:        #0b0719
+!*.color8:        #8d8c9a
+!! red
+!*.color1:        #74698f
+!*.color9:        #74698f
+!! green
+!*.color2:        #89769f
+!*.color10:       #89769f
+!! yellow
+!*.color3:        #9c63ca
+!*.color11:       #9c63ca
+!! blue
+!*.color4:        #7390a2
+!*.color12:       #7390a2
+!! magenta
+!*.color5:        #958cb0
+!*.color13:       #958cb0
+!! cyan
+!*.color6:        #9d96b2
+!*.color14:       #9d96b2
+!! white
+!*.color7:        #cac8dc
+!*.color15:       #cac8dc

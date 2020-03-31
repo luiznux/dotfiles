@@ -11,7 +11,7 @@
 #
 #
 
-
+export PATH="${PATH}:${HOME}/.local/bin/"
 export EDITOR=vim
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -30,7 +30,7 @@ alias ka='killall'
 alias p='sudo pacman'
 alias SS='sudo systemctl'
 alias update='sudo pacman -Syu' # update all packages(Archlinux)
-alias pc='sudo pacman -Scc' #clean all pacman cache 
+alias pc='sudo pacman -Scc' #clean all pacman cache
 alias wifi-list='nmcli device wifi list' #list wifi networks
 alias wifi-on='nmcli r wifi on' #enable wifi
 alias wifi-off='nmcli r wifi off' # disable wifi
@@ -112,7 +112,17 @@ fi
 #-------------------------------------#
 #-------------Powerline --------------#
 #
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-. /usr/share/powerline/bindings/bash/powerline.sh
+#powerline-daemon -q
+#POWERLINE_BASH_CONTINUATION=1
+#POWERLINE_BASH_SELECT=1
+#. /usr/share/powerline/bindings/bash/powerline.sh
+
+#----- Powerline-shell
+#
+function _update_ps1() {
+    PS1=$(powerline-shell $?)
+}
+
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi

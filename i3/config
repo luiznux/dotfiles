@@ -317,17 +317,17 @@ client.placeholder      #070B15 #070B15 #070B15 #070B15   #070B15
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 #Spotify
-for_window [title="Spotify"]     move workspace $ws6
+for_window [title="Spotify"]     move workspace $ws7
 
 #Calculator
 for_window [title="Calculator"]	  floating enable
 
 #Mv transmisson to workspace 5
-assign [class="Transmission"]     $ws5
+assign [class="Transmission"]     $ws6
 
 
 #Put a termial in every workspace(except 6)
-exec $term; move container to workspace $ws4
+;exec $term; move container to workspace $ws4
 #exec_always --no-startup-id i3-msg '$ws2';exec $term
 #exec_always --no-startup-id i3-msg '$ws3';exec $term
 #exec_always --no-startup-id i3-msg '$ws4';exec $term
