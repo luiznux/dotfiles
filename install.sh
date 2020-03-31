@@ -198,6 +198,7 @@ general_config(){
     && log echo "     Pacman config {OK} " && break_line || log erro_msg && ((errors+=1))
 
     log echo "#---------------------------------------- Other Configs " && break_line
+    cd $dotfiles && cd config/ && cp -r sxiv ~/.config \
     cd $dotfiles && cd config/ && cp .bashrc ~/ \
     && cd $dotfiles && cd config/ sudo rm /etc/tlp.conf && sudo cp tlp.conf /etc/tlp.conf \
     && cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
