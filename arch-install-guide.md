@@ -25,7 +25,7 @@ The figure below illustrates how my partitioning is configured.
 ```mermaid
 
 +----------------+ +----------------+ +--------------------------------------------------------------------+ 
-| Boot partition | | Boot partition | | Logical volume 1      | Logical volume 2     |  Logical volume 3   |
+| Boot partition | | Boot partition | | Logical volume 1     | Logical volume 2     |  Logical volume 3    |
 |                | |                | |                      |                      |                      |
 | /boot/efi       | | /boot          | |        /             |       /home          |      [SWAP]          |
 |                | |                | |                      |                      |                      |
