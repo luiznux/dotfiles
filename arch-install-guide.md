@@ -8,6 +8,37 @@
 ```
 
 # Arch linux Install guide
+This archive contains some of instructions for install arch linux distro.
+Remembering that all the steps that I will take can be changed at your discretion
+without any problem. The great advantage of this distro is that each one adapts the
+process to their needs, so feel free to change anything.
+The following steps serve more as an example of how I do my installation, so your best
+friend will be the [ArchWiki](https://wiki.archlinux.org/), where 99% of your problems
+and doubts will be there.
+
+# My config
+My configuration is not very sophisticated, I just partition with a separate home
+directory and two other boot partitions. In addition, I use LUKS encryption, together
+with an LVM (Logical Volume Management), so the data is organized and secure.
+The figure below illustrates how my partitioning is configured.
+
+|----------------|-------------------------------------------------------------------------------------------------|
+| Boot partition | dm-crypt plain encrypted volume | LUKS2 encrypted volume        | LUKS2 encrypted volume        |
+|                |                                 |                               |                               |
+| /boot          | [SWAP]                          | /                             | /home                         |
+|                |                                 |                               |                               |
+|                | /dev/mapper/swap                | /dev/mapper/root              | /dev/mapper/home              |
+|                |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+|                | Logical volume 1                | Logical volume 2              | Logical volume 3              |
+|                | /dev/MyVolGroup/cryptswap       | /dev/MyVolGroup/cryptroot     | /dev/MyVolGroup/crypthome     |
+|                |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+|                |                                                                                                 |
+|   /dev/sda1    |                                   /dev/sda2                                                     |
+|----------------|-------------------------------------------------------------------------------------------------|
+
+**Font**  https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LUKS_on_LVM
+
+So lets get started !
 
 
 ## 1. Set keyboard layout
