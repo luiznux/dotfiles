@@ -66,7 +66,6 @@ dir_tree(){
 
     log echo "#----------------------------------------------- Setup directory tree"
     mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}} \
-    && cd ~/Github && git init\
     && log echo "        Directory tree {OK}" && break_line || log erro_msg && ((errors+=1))
 }
 
