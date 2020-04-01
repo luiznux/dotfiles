@@ -23,7 +23,6 @@ with an LVM (Logical Volume Management), so the data is organized and secure.
 The figure below illustrates how my partitioning is configured.
 
 ```
-|----------------|-----------------------------------------------------------------------------------------|
 |   /dev/sda1    |                                   /dev/sda2                                             |
 |----------------|-----------------------------------------------------------------------------------------|
 | Boot partition | dm-crypt plain encrypted volume | LUKS2 encrypted volume    | LUKS2 encrypted volume    |
@@ -31,7 +30,7 @@ The figure below illustrates how my partitioning is configured.
 | /boot          | [SWAP]                          | /                         | /home                     |
 |                |                                 |                           |                           |
 |                | /dev/mapper/swap                | /dev/mapper/root          | /dev/mapper/home          |
-|                | --------------------------------| --------------------------| --------------------------|
+|                |---------------------------------|---------------------------|---------------------------|
 |                | Logical volume 1                | Logical volume 2          | Logical volume 3          |
 |                | /dev/MyVolGroup/cryptswap       | /dev/MyVolGroup/cryptroot | /dev/MyVolGroup/crypthome |
 |----------------|---------------------------------|---------------------------|---------------------------|
