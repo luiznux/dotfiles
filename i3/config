@@ -86,7 +86,9 @@ bindsym $mod+f	            fullscreen toggle
 # kill focused window.
 bindsym $mod+q	   	        kill
 
-bindsym --release Shift+Print exec "scrot '%d-%m-%Y_$wx$h.png' -e 'mv $f ~/Pictures/Screenshots/'"
+#bindsym --release Shift+Print exec "scrot '%d-%m-%Y_$wx$h.png' -e 'mv $f ~/Pictures/Screenshots/'"
+bindsym --release Shift+Print "exec sh ~/.config/screenshots.sh"
+
 
 #----------------------------------------------------------------------------#
 #------------------------- multimedia keys ----------------------------------#
