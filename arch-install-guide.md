@@ -22,20 +22,20 @@ directory and two other boot partitions. In addition, I use LUKS encryption, tog
 with an LVM (Logical Volume Management), so the data is organized and secure.
 The figure below illustrates how my partitioning is configured.
 
-```
-|   /dev/sda1    |                                   /dev/sda2                                             |
-|----------------|-----------------------------------------------------------------------------------------|
-| Boot partition | dm-crypt plain encrypted volume | LUKS2 encrypted volume    | LUKS2 encrypted volume    |
-|                |                                 |                           |                           |
-| /boot          | [SWAP]                          | /                         | /home                     |
-|                |                                 |                           |                           |
-|                | /dev/mapper/swap                | /dev/mapper/root          | /dev/mapper/home          |
-|                |---------------------------------|---------------------------|---------------------------|
-|                | Logical volume 1                | Logical volume 2          | Logical volume 3          |
-|                | /dev/MyVolGroup/cryptswap       | /dev/MyVolGroup/cryptroot | /dev/MyVolGroup/crypthome |
-|----------------|---------------------------------|---------------------------|---------------------------|
-```
+```mermaid
 
++-----------------------------------------------------------------------+ +----------------+
+| Logical volume 1      | Logical volume 2      | Logical volume 3      | | Boot partition |
+|                       |                       |                       | |                |
+| [SWAP]                | /                     | /home                 | | /boot          |
+|                       |                       |                       | |                |
+| /dev/MyVolGroup/swap  | /dev/MyVolGroup/root  | /dev/MyVolGroup/home  | |                |
+|_ _ _ _ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _ _ _ _| |----------------|
+|                                                                       | | (may be on     |  
+|                         LUKS2 encrypted partition                     | | other device)  |
+|                           /dev/sda1                                   | | /dev/sdb1      |
++-----------------------------------------------------------------------+ +----------------+
+```
 **Font**  https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LUKS_on_LVM
 
 So lets get started !
