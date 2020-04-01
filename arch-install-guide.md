@@ -22,19 +22,19 @@ directory and two other boot partitions. In addition, I use LUKS encryption, tog
 with an LVM (Logical Volume Management), so the data is organized and secure.
 The figure below illustrates how my partitioning is configured.
 
-|:----------------:|:-----------------------------------------------------------------------------------------------:|
+| ---------------- | ----------------------------------------------------------------------------------------------- |
 | Boot partition   | dm-crypt plain encrypted volume    | LUKS2 encrypted volume        | LUKS2 encrypted volume     |
 |                  |                                    |                               |                            |
 | /boot            | [SWAP]                             | /                             | /home                      |
 |                  |                                    |                               |                            |
 |                  | /dev/mapper/swap                   | /dev/mapper/root              | /dev/mapper/home           |
-|                  |:----------------------------------:|:------------------------------:|:-------------------------:|
+|                  | ---------------------------------- | ----------------------------- | -------------------------- |
 |                  | Logical volume 1                   | Logical volume 2              | Logical volume 3           |
 |                  | /dev/MyVolGroup/cryptswap          | /dev/MyVolGroup/cryptroot     | /dev/MyVolGroup/crypthome  |
-|                  |:----------------------------------:|:-----------------------------:|:---------------------------|
+|                  | ---------------------------------- | ----------------------------- | -------------------------- |
 |                  |                                                                                                 |
 |   /dev/sda1      |                                   /dev/sda2                                                     |
-|:----------------:|-------------------------------------------------------------------------------------------------|
+| ---------------- |-------------------------------------------------------------------------------------------------|
 
 **Font**  https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LUKS_on_LVM
 
