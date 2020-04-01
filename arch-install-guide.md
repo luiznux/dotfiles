@@ -24,20 +24,20 @@ The figure below illustrates how my partitioning is configured.
 
 ```mermaid
 
-+----------------+ +----------------+ +---------------------------------------------------------------------+ 
-| Boot partition | | Boot partition | |Logical volume 1      | Logical volume 2      |  Logical volume 3    |
-|                | |                | |                      |                       |                      |
-| /boot/efi      | | /boot          | | /                    | /home                 |  [SWAP]              |
-|                | |                | |                      |                       |                      |
-|                | |                | |/dev/MyVolGroup/root  | /dev/MyVolGroup/home  |  /dev/MyVolGroup/swap|
-|                | |                | |_ _ _ _ _ _ _ _ _ _ __|_ _ _ _ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _ _ _ | 
-|                | |                | |                                                                     |   
-|                | |                | |                     LUKS1 encrypted partition                       | 
-|  /dev/sda1     | |  /dev/sda2     | |                           /dev/sda2                                 | 
-+----------------+ +----------------+ +---------------------------------------------------------------------+ 
-|                                                                                                           |
-|                                              /dev/sda                                                     |
--------------------------------------------------------------------------------------------------------------
+
++----------------+ +----------------+ +--------------------------------------------------------------------+ 
+| Boot partition | | Boot partition | |Logical volume 1      | Logical volume 2     |  Logical volume 3    |
+|                | |                | |                      |                      |                      |
+| /boot/efi      | | /boot          | |        /             |       /home          |      [SWAP]          |
+|                | |                | |                      |                      |                      |
+|                | |                | | /dev/MyVolGroup/root | /dev/MyVolGroup/home | /dev/MyVolGroup/swap |
+|                | |                | |_ _ _ _ _ _ _ _ _ _ __|_ _ _ _ _ _ _ _ _ _ __|_ _ _ _ _ _ _ _ _ _ _ | 
+|                | |                | |                                                                    |   
+|                | |                | |                     LUKS1 encrypted partition                      | 
+|  /dev/sda1     | |  /dev/sda2     | |                           /dev/sda2                                | 
++----------------+ +----------------+ +--------------------------------------------------------------------+ 
+|                                              /dev/sda                                                    |
+------------------------------------------------------------------------------------------------------------
 ```
 
 **Font**  https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LUKS_on_LVM
