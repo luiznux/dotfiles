@@ -24,18 +24,22 @@ The figure below illustrates how my partitioning is configured.
 
 ```mermaid
 
-+-----------------------------------------------------------------------+ +----------------+
-| Logical volume 1      | Logical volume 2      | Logical volume 3      | | Boot partition |
-|                       |                       |                       | |                |
-| [SWAP]                | /                     | /home                 | | /boot          |
-|                       |                       |                       | |                |
-| /dev/MyVolGroup/swap  | /dev/MyVolGroup/root  | /dev/MyVolGroup/home  | |                |
-|_ _ _ _ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _ _ _ _| |----------------|
-|                                                                       | | (may be on     |  
-|                         LUKS2 encrypted partition                     | | other device)  |
-|                           /dev/sda1                                   | | /dev/sdb1      |
-+-----------------------------------------------------------------------+ +----------------+
++----------------+ +-----------------------------------------------------------------------+ 
+| Boot partition | | Logical volume 1      | Logical volume 2      | Logical volume 3      | 
+|                | |                       |                       |                       | 
+| /boot          | | [SWAP]                | /                     | /home                 | 
+|                | |                       |                       |                       | 
+|                | | /dev/MyVolGroup/swap  | /dev/MyVolGroup/root  | /dev/MyVolGroup/home  | 
+|                | |_ _ _ _ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _ _ _ _| 
+| (may be on     | |                                                                       |   
+| other device)  | |                         LUKS2 encrypted partition                     | 
+| /dev/sda1      | |                           /dev/sda2                                   | 
++----------------+ +-----------------------------------------------------------------------+ 
+|                                                                                          |
+|                                     /dev/sda                                             |
+--------------------------------------------------------------------------------------------
 ```
+
 **Font**  https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LUKS_on_LVM
 
 So lets get started !
