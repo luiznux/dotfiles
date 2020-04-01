@@ -19,7 +19,7 @@ and doubts will be there.
 # My config
 My configuration is not very sophisticated, I just partition with a separate home
 directory and two other boot partitions. In addition, I use LUKS encryption, together
-with an LVM (Logical Volume Management), so the data is organized and secure.
+with a  LVM (Logical Volume Management), so the data is organized and secure.
 The figure below illustrates how my partitioning is configured.
 
 ```mermaid
