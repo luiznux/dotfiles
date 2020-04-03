@@ -58,8 +58,8 @@ exit_dir(){
 
 #func to install aur packages
 make_pkg_AUR(){
-    $package
-    cd $AUR && git clone https://aur.archlinux.org/$[package].git && cd $[package] && makepkg -i --noconfirm && exit_dir
+    $1
+    cd $AUR && git clone https://aur.archlinux.org/$[1].git && cd $[1] && makepkg -i --noconfirm && exit_dir
 }
 
 ####func to setup my directory tree
@@ -75,7 +75,7 @@ install_packages(){
 
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
-    log_error sudo pacman -Sy xorg xclip man gvim tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls  cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo --noconfirm \
+    log_error sudo pacman -Sy xorg xclip man gvim tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls  cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord --noconfirm \
     && log echo "        Packages {OK}" && brek_line || log erro_msg
 }
 
