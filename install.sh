@@ -218,6 +218,7 @@ laptop_config(){
         && log echo " Done" && break_line || log erro_msg
 
         log echo "#--------- BUMBLEBEE CONFIG (LAPTOP ONLY)" && break_line
+        log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/
         log_error sudo gpasswd -a luiznux bumblebee \
         && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
         && log_error tee /proc/acpi/bbswitch <<<OFF \
