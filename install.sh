@@ -173,7 +173,7 @@ general_config(){
 
     log echo "#---------------------------------------- Setup Xresources" && break_line
     cd $dotfiles && cp config/.Xresources ~/.Xresources \
-    && log echo "     Xresources setup and loaded {OK} " && break_line || log erro_msg
+    && log echo "     Xresources setup {OK} " && break_line || log erro_msg
 
     log echo "#---------------------------------------- Setup gitignore global file" && break_line
     cd $dotfiles && cp config/.gitignore_global  ~/ \
@@ -202,16 +202,16 @@ general_config(){
     && cd $dotfiles && cp -r config/dunst ~/.config \
     && cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
     && cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
-    && log echo "   Done" && break_line || log erro_msg \
-    && log echo " General config done with [$[errors]]Erros " && break_line
+    && log echo " General config {OK}" && break_line || log error_msg
 }
 
 
 ####func that install laptoptools
 laptop_config(){
 
-    log echo "Do you want install laptop configs ?(answer with y or n)" && echo "->"
+    log echo "Do you want install laptop configs ?(answer with y or n) ->  "
     read option
+    echo $option
 
     if [$option -eq "y"]; then
         log echo "#----------------------------------------- Laptop config" && break_line
@@ -236,7 +236,7 @@ laptop_config(){
         log_error make_pkg_AUR batterymon-clone \
             && log echo "     Laptop configs {OK}" && break_line || log erro_msg
 
-    elif [$option -ne "y"]; then
+    elif [$option -eq "n"]; then
         log echo "#------------------------------------ Laptop config {SKIPED}"
     fi
 }
@@ -262,7 +262,7 @@ AUR_install
 emacs
 general_config
 laptop_config
-systemd_init
+#systemd_init
 
 log echo "------------- END OF INSTALL ------------" && break_line
-log echo " [$[errors]] reported, see 'install.log' for more details" && break_line
+log echo " [$[errors]]Errors reported, see 'install.log' for more details" && break_line
