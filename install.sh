@@ -47,7 +47,7 @@ log_error(){
 
 #print erro mgs
 erro_msg(){
-    ((errors+=1)) \
+    ((++errors)) \
     && echo "  ERROR[$[errors]]" && break_line
 }
 
@@ -59,7 +59,7 @@ exit_dir(){
 #func to install aur packages
 make_pkg_AUR(){
     $package
-    cd $AUR && git clone https://aur.archlinux.org/$[package].git && cd $[package]/ && makepkg -i --noconfirm && exit_dir
+    cd $AUR && git clone https://aur.archlinux.org/$[package].git && cd $[package] && makepkg -i --noconfirm && exit_dir
 }
 
 ####func to setup my directory tree
@@ -75,7 +75,7 @@ install_packages(){
 
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
-    log_error sudo pacman -Sy xorg xclip man gvim tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls  cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang tlp i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst --noconfirm \
+    log_error sudo pacman -Sy xorg xclip man gvim tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls  cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang tlp i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo --noconfirm \
     && log echo "        Packages {OK}" && brek_line || log erro_msg
 }
 
@@ -172,7 +172,7 @@ general_config(){
     && log echo "     Locale setup {OK}" && break_line || log erro_msg
 
     log echo "#---------------------------------------- Setup Xresources" && break_line
-    cd $dotfiles && cp config/.Xresources ~/.Xresources  && xrdb -laod ~/.Xresources \
+    cd $dotfiles && cp config/.Xresources ~/.Xresources \
     && log echo "     Xresources setup and loaded {OK} " && break_line || log erro_msg
 
     log echo "#---------------------------------------- Setup gitignore global file" && break_line
@@ -196,14 +196,14 @@ general_config(){
     && log echo "     Pacman config {OK} " && break_line || log erro_msg
 
     log echo "#---------------------------------------- Other Configs " && break_line
-    cd $dotfiles && cd config/ && cp screenshots.sh ~/.config/ \
-    cd $dotfiles && cd config/ && cp -r sxiv ~/.config \
-    cd $dotfiles && cd config/ && cp .bashrc ~/ \
-    cd $dotfiles && cd config/ && cp -r dunst ~/.config \
-    && cd $dotfiles && cd config/ sudo rm /etc/tlp.conf && sudo cp tlp.conf /etc/tlp.conf \
+    cd $dotfiles && cp config/screenshots.sh ~/.config/ \
+    && cd $dotfiles && cp -r config/sxiv ~/.config \
+    && cd $dotfiles && cp config/.bashrc ~/ \
+    && cd $dotfiles && cp -r config/dunst ~/.config \
+    && cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
     && cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
     && log echo "   Done" && break_line || log erro_msg \
-    && log echo " General config done with $[errors]Erros " && break_line
+    && log echo " General config done with [$[errors]]Erros " && break_line
 }
 
 
@@ -212,7 +212,8 @@ laptop_config(){
 
     log echo "Do you want install laptop configs ?(answer with y or n)" && echo "->"
     read option
-    if [[ $option -eq "y" ]]; then
+
+    if [$option -eq "y"]; then
         log echo "#----------------------------------------- Laptop config" && break_line
         log echo "#--------- Laptop packges" && break_line
         log_error sudo pacman -S acpi libinput xf86-input-synaptics xorg-xinput powertop xfce4-power-manager bluez bluez-utils bbswitch --noconfirm \
@@ -233,11 +234,10 @@ laptop_config(){
         #Batterymon and depence
         log_error make_pkg_AUR makepython2-distutils-extra \
         log_error make_pkg_AUR batterymon-clone \
-        && log echo "     Laptop configs {OK}" && break_line || log erro_msg
+            && log echo "     Laptop configs {OK}" && break_line || log erro_msg
 
-    else
+    elif [$option -ne "y"]; then
         log echo "#------------------------------------ Laptop config {SKIPED}"
-        break
     fi
 }
 
