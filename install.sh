@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 #
 #     ██╗███╗   ██╗███████╗████████╗ █████╗ ██╗     ██╗
 #     ██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║     ██║
@@ -147,11 +147,11 @@ general_config(){
     && cd $dotfiles && cp -r polybar/*  ~/.config/polybar/ \
     && log echo "     I3 and Polybar config {OK} " && break_line || log erro_msg
 
-    log echo "#---------------------------------------- Polyabar Scripts" && break_line
-    log_error cd ~/.config/polybar/ && git clone https://github.com/kamek-pf/polybar-forecast.git \
-    && log_error cd ~/.config/polybar/polybar-forecast/ && log_error cargo build --release \
-    && cp $dotfiles/polybar/config.toml .config/polybar/polybar-forecast/ \
-    && log echo"	  Scripts {OK}" && break_line || log erro_msg
+    #log echo "#---------------------------------------- Polyabar Forecast" && break_line
+    #log_error cd ~/.config/polybar/ && git clone https://github.com/kamek-pf/polybar-forecast.git \
+    #&& log_error cd ~/.config/polybar/polybar-forecast/ && log_error cargo build --release \
+    #&& cp $dotfiles/polybar/config.toml .config/polybar/polybar-forecast/ \
+    #&& log echo"	  Scripts {OK}" && break_line || log erro_msg
 
     log echo "#---------------------------------------- Ranger config" && break_line
     cd $dotfiles && cp config/rc.conf  ~/.config/ranger/ \
@@ -211,8 +211,6 @@ laptop_config(){
 
     log echo "Do you want install laptop configs ?(answer with y or n) ->  "
     read option
-    echo $option
-
     if [$option -eq "y"]; then
         log echo "#----------------------------------------- Laptop config" && break_line
         log echo "#--------- Laptop packges" && break_line
