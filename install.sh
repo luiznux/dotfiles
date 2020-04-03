@@ -209,8 +209,8 @@ general_config(){
 ####func that install laptoptools
 laptop_config(){
 
-    log echo "Do you want install laptop configs ?(answer with y or n) ->  "
-    read option
+    log echo "Do you want install laptop configs ?(answer with y or n) ->" && read $option
+
     if [$option -eq "y"]; then
         log echo "#----------------------------------------- Laptop config" && break_line
         log echo "#--------- Laptop packges" && break_line
