@@ -1,4 +1,5 @@
 ```ascii
+
  █████╗ ██████╗  ██████╗██╗  ██╗
 ██╔══██╗██╔══██╗██╔════╝██║  ██║
 ███████║██████╔╝██║     ███████║
@@ -19,21 +20,25 @@ and doubts will be there.
 # My config
 My configuration is not very sophisticated, I just partition with a separate home
 directory and two other boot partitions. In addition, I use LUKS encryption, together
-with an LVM (Logical Volume Management), so the data is organized and secure.
+with a  LVM (Logical Volume Management), so the data is organized and secure.
 The figure below illustrates how my partitioning is configured.
 
 ```mermaid
 
 +----------------+ +----------------+ +--------------------------------------------------------------------+ 
-| Boot partition | | Boot partition | |Logical volume 1      | Logical volume 2     |  Logical volume 3    |
+| Boot partition | | Boot partition | | Logical volume 1     | Logical volume 2     |  Logical volume 3    |
 |                | |                | |                      |                      |                      |
+<<<<<<< HEAD
 | /boot/efi      | | /boot          | |        /             |       /home          |      [SWAP]          |
+=======
+| /boot/efi       | | /boot          | |        /             |       /home          |      [SWAP]          |
+>>>>>>> 7c24d591bfff036c44f9be16ccd7d987d5102af1
 |                | |                | |                      |                      |                      |
 |                | |                | | /dev/MyVolGroup/root | /dev/MyVolGroup/home | /dev/MyVolGroup/swap |
 |                | |                | |_ _ _ _ _ _ _ _ _ _ __|_ _ _ _ _ _ _ _ _ _ __|_ _ _ _ _ _ _ _ _ _ _ | 
 |                | |                | |                                                                    |   
 |                | |                | |                     LUKS1 encrypted partition                      | 
-|  /dev/sda1     | |  /dev/sda2     | |                           /dev/sda2                                | 
+|  /dev/sda1     | |  /dev/sda2     | |                           /dev/sda3                                | 
 +----------------+ +----------------+ +--------------------------------------------------------------------+ 
 |                                              /dev/sda                                                    |
 ------------------------------------------------------------------------------------------------------------
