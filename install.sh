@@ -66,7 +66,7 @@ make_pkg_AUR(){
 dir_tree(){
 
     log echo "#----------------------------------------------- Setup directory tree"
-    mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}} \
+    mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/{Screenshots},Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}} \
     && log echo "        Directory tree {OK}" && break_line || log erro_msg
 }
 
@@ -75,7 +75,7 @@ install_packages(){
 
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
-    log_error sudo pacman -Sy xorg xclip man gvim tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls  cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang tlp i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo --noconfirm \
+    log_error sudo pacman -Sy xorg xclip man gvim tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls  cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo --noconfirm \
     && log echo "        Packages {OK}" && brek_line || log erro_msg
 }
 
@@ -185,7 +185,7 @@ general_config(){
     cd $dotfiles && cp config/morpho.jpg ~/.config/wallpaper.jpg  \
     && log echo "     Wallppaer setup {OK} " && break_line || log erro_msg
 
-    log echo "#----------------------------------------Setup Themes" && break_line
+    log echo "#---------------------------------------- Setup Themes" && break_line
     cd $dotfiles && cd config/ && cp -r gtk-2.0 gtk-3.0 ~/.config \
     && cd $dotfiles && cd config/ && cp .gtkrc-2.0 ~/.gtkrc-2.0 \
     && log echo "     GTK themes setup {OK} " && break_line || log erro_msg
@@ -197,10 +197,10 @@ general_config(){
 
     log echo "#---------------------------------------- Other Configs " && break_line
     cd $dotfiles && cp config/screenshots.sh ~/.config/ \
-    && cd $dotfiles && cp -r config/sxiv ~/.config \
+    && cd $dotfiles && cp -r config/sxiv ~/.config/ \
     && cd $dotfiles && cp config/.bashrc ~/ \
-    && cd $dotfiles && cp -r config/dunst ~/.config \
-    && cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
+    && cd $dotfiles && cp -r config/dunst ~/.config/ \
+    && cd $dotfiles && cp -r config/powerline-shell/ ~/.config/ \
     && cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
     && log echo " General config {OK}" && break_line || log error_msg
 }
@@ -214,7 +214,7 @@ laptop_config(){
     if [$option -eq "y"]; then
         log echo "#----------------------------------------- Laptop config" && break_line
         log echo "#--------- Laptop packges" && break_line
-        log_error sudo pacman -S acpi libinput xf86-input-synaptics xorg-xinput powertop xfce4-power-manager bluez bluez-utils bbswitch --noconfirm \
+        log_error sudo pacman -S acpi tlp libinput xf86-input-synaptics xorg-xinput powertop xfce4-power-manager bluez bluez-utils bbswitch --noconfirm \
         && log echo " Done" && break_line || log erro_msg
 
         log echo "#--------- BUMBLEBEE CONFIG (LAPTOP ONLY)" && break_line
@@ -231,8 +231,9 @@ laptop_config(){
 
         #Batterymon and depence
         log_error make_pkg_AUR makepython2-distutils-extra \
-        log_error make_pkg_AUR batterymon-clone \
-            && log echo "     Laptop configs {OK}" && break_line || log erro_msg
+        && log_error make_pkg_AUR batterymon-clone \
+        && cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
+        && log echo "     Laptop configs {OK}" && break_line || log erro_msg
 
     elif [$option -eq "n"]; then
         log echo "#------------------------------------ Laptop config {SKIPED}"

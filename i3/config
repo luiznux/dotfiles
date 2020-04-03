@@ -329,7 +329,7 @@ assign [class="Transmission"]     $ws6
 
 
 #Put a termial in every workspace(except 6)
-;exec $term; move container to workspace $ws4
+#exec $term; move container to workspace $ws4
 #exec_always --no-startup-id i3-msg '$ws2';exec $term
 #exec_always --no-startup-id i3-msg '$ws3';exec $term
 #exec_always --no-startup-id i3-msg '$ws4';exec $term
