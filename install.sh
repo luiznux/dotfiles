@@ -150,7 +150,7 @@ general_config(){
     log echo "#---------------------------------------- Polyabar Scripts" && break_line
     log_error cd ~/.config/polybar/ && git clone https://github.com/kamek-pf/polybar-forecast.git \
     && log_error cd ~/.config/polybar/polybar-forecast/ && log_error cargo build --release \
-    && cp $dotfiles/polybar/config.toml .config/polybar/polybar-forecast \
+    && cp $dotfiles/polybar/config.toml .config/polybar/polybar-forecast/ \
     && log echo"	  Scripts {OK}" && break_line || log erro_msg
 
     log echo "#---------------------------------------- Ranger config" && break_line
