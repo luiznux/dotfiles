@@ -57,7 +57,6 @@ exit_dir(){
 
 #func to install aur packages
 make_pkg_AUR(){
-    $1
     cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -i --noconfirm && exit_dir
 }
 
