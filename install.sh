@@ -198,7 +198,8 @@ general_config(){
     && log echo "     Pacman config {OK} " && break_line || log erro_msg
 
     log echo "#---------------------------------------- Other Configs " && break_line
-    cd $dotfiles && cp config/screenshots.sh ~/.config/ \
+    cd $dotfiles && sudo cp config/urxvt-resize-font/resize-font /usr/lib64/urxvt/perl/ &&  sudo chmod +x /usr/lib64/urxvt/perl/resize-font \
+    && cd $dotfiles && cp config/screenshots.sh ~/.config/ \
     && cd $dotfiles && cp -r config/sxiv ~/.config/ \
     && cd $dotfiles && cp config/.bashrc ~/ \
     && cd $dotfiles && cp -r config/dunst ~/.config/ \
