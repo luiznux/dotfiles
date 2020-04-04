@@ -64,7 +64,7 @@ make_pkg_AUR(){
 dir_tree(){
 
     log echo "#----------------------------------------------- Setup directory tree"
-    mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/{Screenshots},Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}} \
+    mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}} \
     && log echo "        Directory tree {OK}" && break_line || log erro_msg
 }
 
@@ -209,7 +209,7 @@ general_config(){
 ####func that install laptoptools
 laptop_config(){
 
-    log echo "Do you want install laptop configs ?(answer with y or n) ->" && read $option \
+    log echo "Do you want install laptop configs ?(answer with y or n) ->" && read $option
 
     if [[$option -eq "y"]]; then
         log echo "#----------------------------------------- Laptop config" && break_line
