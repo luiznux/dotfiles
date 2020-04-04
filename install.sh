@@ -209,9 +209,9 @@ general_config(){
 ####func that install laptoptools
 laptop_config(){
 
-    log echo "Do you want install laptop configs ?(answer with y or n) ->" && read $option
+    log echo "Do you want install laptop configs ?(answer with y or n) ->" && read $option \
 
-    if [$option -eq "y"]; then
+    if [[$option -eq "y"]]; then
         log echo "#----------------------------------------- Laptop config" && break_line
         log echo "#--------- Laptop packges" && break_line
         log_error sudo pacman -S acpi tlp libinput xf86-input-synaptics xorg-xinput powertop xfce4-power-manager bluez bluez-utils bbswitch --noconfirm \
@@ -236,7 +236,7 @@ laptop_config(){
         && cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
         && log echo "     Laptop configs {OK}" && break_line || log erro_msg
 
-    elif [$option -eq "n"]; then
+    elif [[$option -eq "n"]]; then
         log echo "#------------------------------------ Laptop config {SKIPED}"
     fi
 }
