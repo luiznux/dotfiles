@@ -41,7 +41,6 @@ log(){
 
 #this func will only write on the archive 'install.log' if a bash error occurred
 log_error(){
-    $*
     $* 2>> $dotfiles/install.log
 }
 
@@ -111,7 +110,7 @@ AUR_install(){
     log echo "nvidia-xrun-pm python-pdftotext polybar thermald ttf-weather-icon wps-office.git "
     log echo "ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify " && break_line
     log_error make_pkg_AUR nvidia-xrun-pm \
-    && log_error make_pkg_AUR spotify \
+    && log_error gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45 && log_error make_pkg_AUR spotify \
     && log_error make_pkg_AUR ffmpeg-compat-57 \
     && log_error make_pkg_AUR python-pdftotext \
     && log_error make_pkg_AUR polybar.git \
@@ -124,7 +123,6 @@ AUR_install(){
     && log_error make_pkg_AUR sublime-text-dev \
     && log_error make_pkg_AUR speedometer \
     && log_error make_pkg_AUR cli-visualizer \
-    && log_error make_pkg_AUR spotify \
     && log echo " AUR pkgs Done" && break_line || log erro_msg
 }
 
