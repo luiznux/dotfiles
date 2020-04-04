@@ -73,7 +73,7 @@ install_packages(){
 
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
-    log_error sudo pacman -Sy xorg xclip man gvim tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls  cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity --noconfirm \
+    log_error sudo pacman -Sy xorg xclip man gvim tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls  cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot  --noconfirm \
     && log echo "        Packages {OK}" && brek_line || log erro_msg
 }
 
@@ -110,7 +110,6 @@ AUR_install(){
     log echo "ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify " && break_line
     log_error make_pkg_AUR nvidia-xrun-pm \
     && log_error gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45 && log_error make_pkg_AUR spotify \
-    && log_error make_pkg_AUR ffmpeg-compat-57 \
     && log_error make_pkg_AUR python-pdftotext \
     && log_error make_pkg_AUR polybar \
     && log_error make_pkg_AUR thermald \
@@ -123,6 +122,8 @@ AUR_install(){
     && log_error make_pkg_AUR speedometer \
     && log_error make_pkg_AUR cli-visualizer \
     && log echo " AUR pkgs Done" && break_line || log erro_msg
+
+    #&& log_error make_pkg_AUR ffmpeg-compat-57 \
 }
 
 ####Emacs install and copy my config file
@@ -223,7 +224,6 @@ laptop_config(){
         log_error sudo gpasswd -a luiznux bumblebee \
         && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
         && log_error tee /proc/acpi/bbswitch <<<OFF \
-        && log_error sudo systemctl enable bumblebeed.service \
         && log echo "     Bumblebee {OK}" && break_line || log erro_msg
 
         log echo "#--------- Light(brithness control)" && break_line
@@ -248,10 +248,14 @@ systemd_init(){
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
     log_error sudo systemctl enable NetworkManager.service \
     && log_error sudo systemctl enable gdm.service \
-    && log_error sudo systemctl enable tlp.service \
-    && log_error sudo systemctl enable ufw.service && log_error ufw enable \
+    && log_error sudo systemctl enable ufw.service && log_error sudo ufw enable \
     && log_error sudo systemctl enable optimus-manager.service \
     && log echo "Done" && break_line || log erro_msg
+
+    #Laptop init
+    #log_error sudo systemctl enable tlp.service \
+    #&& log_error sudo systemctl enable bumblebeed.service
+
 }
 
 #######################MAIN
