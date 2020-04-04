@@ -58,8 +58,8 @@ exit_dir(){
 
 #func to install aur packages
 make_pkg_AUR(){
-    $package
-    cd $AUR && git clone https://aur.archlinux.org/$package.git && cd $package && makepkg -i --noconfirm && exit_dir
+    $1
+    cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -i --noconfirm && exit_dir
 }
 
 ####func to setup my directory tree
