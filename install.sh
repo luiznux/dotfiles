@@ -112,9 +112,9 @@ AUR_install(){
     && log_error gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45 && log_error make_pkg_AUR spotify \
     && log_error make_pkg_AUR ffmpeg-compat-57 \
     && log_error make_pkg_AUR python-pdftotext \
-    && log_error make_pkg_AUR polybar.git \
-    && log_error make_pkg_AUR thermald.git \
-    && log_error make_pkg_AUR ttf-weather-icons.git \
+    && log_error make_pkg_AUR polybar \
+    && log_error make_pkg_AUR thermald \
+    && log_error make_pkg_AUR ttf-weather-icons \
     && log_error make_pkg_AUR wps-office \
     && log_error make_pkg_AUR ttf-wps-fonts \
     && log_error make_pkg_AUR qdirstat \
