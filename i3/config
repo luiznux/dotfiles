@@ -326,6 +326,9 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 #Calculator
 for_window [title="Calculator"]	 floating enable
 
+#enable floating window for pavucontrol
+for_window [title="Volume Control"]	  floating enable
+
 #Mv discord to workspace 5
 for_window [title="Discord"]     move workspace $ws5
 
