@@ -436,7 +436,7 @@ date        = "%{F#0a6cf5} %{F-}%A, %d/%m"
 date-alt    = "%Y-%m-%d"
 
 time        = "%{F#0a6cf5} %{F-}%H:%M"
-time-alt    = %H:%M:%S
+time-alt    = "%H:%M:%S"
 
 format-prefix =
 format-prefix-foreground = ${colors.foreground-alt}
