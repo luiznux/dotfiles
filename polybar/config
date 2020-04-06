@@ -60,6 +60,7 @@ line-size  = 3
 line-color = #f00
 
 fixed-center = false
+wm-name = i3
 
 ;number of spaces to add at the begimmimg/end of the bar
 padding-left  = 0
