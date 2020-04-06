@@ -432,10 +432,10 @@ animation-discharging-framerate     = 750
 type        = internal/date
 interval    = 1
 
-date        = " %A, %d/%m"
+date        = "%{F#0a6cf5} %{F-}%A, %d/%m"
 date-alt    = "%Y-%m-%d"
 
-time        = " %H:%M"
+time        = "%{F#0a6cf5} %{F-}%H:%M"
 time-alt    = %H:%M:%S
 
 format-prefix =
