@@ -169,7 +169,7 @@ label                       = %output:0:150%
 
 
 [module/alsa]
-type = internal/volume
+type = internal/alsa
 
 format-volume           = <label-volume> <bar-volume>
 label-volume            = Vol
