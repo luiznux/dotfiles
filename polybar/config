@@ -73,10 +73,11 @@ module-margin-right = 1
 font-0 = "Source Code Pro:size=12:antialias=true;0"
 font-1 = "Source Code Pro:size=12:style=Bold:antialias=true;0"
 font-2 = "Font Awesome 5 Free:size=12;1"
-font-3 = "Weather Icons:size=14;1:style:Regular"
+font-3 = "Font Awesome 5 Free Solid:pixelsize=14;2"
 font-4 = "Font Awesome 5 Brands:pixelsize=14;1"
-font-5 = "Font Awesome 5 Free Solid:pixelsize=14;2"
+font-5 = "Weather Icons:size=14;1:style:Regular"
 font-6 = "Inconsolata Nerd Font:size=15;1"
+
 
 ;modules set
 modules-left   = i3 spotify
@@ -258,7 +259,7 @@ format-packetloss = <animation-packetloss> <label-connected>
 ;   %downspeed% [wireless+wired]
 ;   %linkspeed% [wired]
 ; Default: %ifname% %local_ip%
-label-connected                 = %essid%
+label-connected                 = %essid% %signal%%
 label-connected-foreground      = #9e00de
 label-connected-underline       = #9e00de
 
@@ -291,12 +292,12 @@ animation-packetloss-framerate    = 500
 [module/eth]
 type = internal/network
 interface = enp2s0
-interval = 3.0
+interval = 5.0
 
 format-connected-underline = #9e00de
-format-connected-prefix = " "
+format-connected-prefix = "   "
 format-connected-prefix-foreground = #9e00de
-label-connected = %linkspeed%
+label-connected =  %upspeed%   %downspeed%
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
@@ -330,13 +331,14 @@ format-disconnected =
 ;format-conected-background = ${colors.background}
 ;format-conected-underline =
 
+
 ;#-------------------------------#
 ;#-------- Filesystem -----------#
 ;
 [module/filesystem]
 type                                    = internal/fs
 ;mount-0                                 = /
-mount-1                                 = /home
+mount-0                                 = /home
 interval                                = 120
 fixed-values                            = true
 label-mounted                           = "%{F#914836} %{F-}%percentage_used:2%%"
@@ -450,7 +452,7 @@ type            = custom/script
 exec            = ~/.config/polybar/polybar-forecast/polybar-forecast-linux-x86_64
 exec-if         = ping openweathermap.org -c 1
 interval        = 600
-label-font      = 3
+label-font      = 6
 
 format-prefix-foreground    = ${colors.foreground-alt}
 format-underline            = #0a6cf5
