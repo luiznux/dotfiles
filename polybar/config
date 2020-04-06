@@ -75,8 +75,8 @@ font-1 = "Source Code Pro:size=12:style=Bold:antialias=true;0"
 font-2 = "Font Awesome 5 Free:size=12;1"
 font-3 = "Font Awesome 5 Free Solid:pixelsize=14;2"
 font-4 = "Font Awesome 5 Brands:pixelsize=14;1"
-font-5 = "Weather Icons:size=14;1:style:Regular"
-font-6 = "Inconsolata Nerd Font:size=15;1"
+font-5 = "Weather Icons:size=13;1:style:Regular"
+font-6 = "Inconsolata Nerd Font:size=14;1"
 
 
 ;modules set
@@ -155,7 +155,7 @@ label-urgent-padding        = 1
 ;
 [module/spotify]
 type            = custom/script
-exec            = ~/.config/polybar/scripts/spotify.sh %artist% - %title%
+exec            = ~/.config/polybar/scripts/spotify.sh %title% ;%artist% -
 tail            = true
 interval        = 1
 
@@ -163,7 +163,7 @@ format-foreground           = ${colors.foreground}
 format-background           = ${colors.background}
 format-padding              = 1
 format-underline            = #0f0
-format-prefix               = "  "
+format-prefix               = " "
 format-prefix-foreground    = #0f0
 label                       = %output:0:150%
 
@@ -264,7 +264,7 @@ label-connected-foreground      = #9e00de
 label-connected-underline       = #9e00de
 
 ; Default: (none)
-label-disconnected                  = " 睊 "
+label-disconnected                  = "睊"
 label-disconnected-foreground       = #9e00de
 label-disconnected-underline        = #9e00de
 
@@ -295,9 +295,9 @@ interface = enp2s0
 interval = 5.0
 
 format-connected-underline = #9e00de
-format-connected-prefix = "   "
+format-connected-prefix = " "
 format-connected-prefix-foreground = #9e00de
-label-connected =  %upspeed%   %downspeed%
+label-connected = %upspeed%  %downspeed%
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>

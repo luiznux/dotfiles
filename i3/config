@@ -41,8 +41,10 @@ exec_always feh --bg-scale ~/.config/wallpaper.jpg
 new_window pixel 0
 
 #gaps size
-gaps inner 9
-gaps outer 15
+#gaps inner 9
+#gaps outer 15
+gaps inner 10
+gaps outer 6
 
 #Default Border
 set $thick 2
