@@ -28,7 +28,7 @@ The figure below illustrates how my partitioning is configured.
 +----------------+ +----------------+ +--------------------------------------------------------------------+
 | Boot partition | | Boot partition | | Logical volume 1     | Logical volume 2     |  Logical volume 3    |
 |                | |                | |                      |                      |                      |
-|  /boot/efi      | | /boot          | |        /             |       /home          |      [SWAP]          |
+| /boot/efi      | | /boot          | |        /             |       /home          |      [SWAP]          |
 |                | |                | |                      |                      |                      |
 |                | |                | | /dev/MyVolGroup/root | /dev/MyVolGroup/home | /dev/MyVolGroup/swap |
 |                | |                | |_ _ _ _ _ _ _ _ _ _ __|_ _ _ _ _ _ _ _ _ _ __|_ _ _ _ _ _ _ _ _ _ _ |
@@ -65,7 +65,7 @@ $ fdisk -l && cfdisk /dev/sdX
 ```
 |Device       |Type           | Size     | Format   |
 | ----------- |:-------------:|:--------:|:--------:|
-| `/dev/sda1` | BIOS BOOT EFI | 500MB    |FAT32     |
+| `/dev/sda1` | BIOS BOOT(EFI)| 500MB    |FAT32     |
 | `/dev/sda2` | BOOT          | 500MB    |EXT4      |
 | `/dev/sda3` | LINUX LVM     |  any     |EXT4      |
 
