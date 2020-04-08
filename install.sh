@@ -57,8 +57,14 @@ exit_dir(){
 
 #func to install aur packages
 make_pkg_AUR(){
-    cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -i --noconfirm && makepkg -c && exit_dir
+    cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -is  && exit_dir
 }
+
+##func to clean AUR dir
+clean_AUR(){
+    rm -rf $AUR/*
+}
+
 
 ####func to setup my directory tree
 dir_tree(){
@@ -73,8 +79,8 @@ install_packages(){
 
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
-    log_error sudo pacman -Sy xorg xclip man gvim tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls  cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol --noconfirm \
-    && log echo "        Packages {OK}" && brek_line || log erro_msg
+    log_error sudo pacman -Sy xorg xclip man tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls  cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol --noconfirm \
+    && log echo "        Packages {OK}" && break_line || log erro_msg
 }
 
 ####func to install some python packages
@@ -106,25 +112,27 @@ AUR_install(){
     && log echo "Done" && break_line || log erro_msg
 
     log echo "#------------ Other packages" && break_line
-    log echo "nvidia-xrun-pm python-pdftotext polybar thermald ttf-weather-icon wps-office.git "
+    log echo "nvidia-xrun python-pdftotext polybar thermald ttf-weather-icon wps-office.git "
     log echo "ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify " && break_line
     log_error make_pkg_AUR nvidia-xrun-pm \
-    && log_error gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45 && log_error make_pkg_AUR spotify \
     && log_error make_pkg_AUR python-pdftotext \
     && log_error make_pkg_AUR polybar \
     && log_error make_pkg_AUR thermald \
     && log_error make_pkg_AUR ttf-weather-icons \
-    && log_error make_pkg_AUR wps-office \
-    && log_error make_pkg_AUR ttf-wps-fonts \
     && log_error make_pkg_AUR qdirstat \
     && log_error make_pkg_AUR jmtpfs \
     && log_error make_pkg_AUR sublime-text-dev \
     && log_error make_pkg_AUR speedometer \
     && log_error make_pkg_AUR cli-visualizer \
     && log echo " AUR pkgs Done" && break_line || log erro_msg
+    break_line
 
+    #&& log_error make_pkg_AUR wps-office \
+    #&& log_error make_pkg_AUR ttf-wps-fonts \
     #&& log_error make_pkg_AUR ffmpeg-compat-57 \
+    #&& log_error gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45 && log_error make_pkg_AUR spotify \
 }
+
 
 ####Emacs install and copy my config file
 emacs(){
@@ -216,14 +224,14 @@ laptop_config(){
     if [ $option == "y" ]; then
         log echo "#----------------------------------------- Laptop config" && break_line
         log echo "#--------- Laptop packges" && break_line
-        log_error sudo pacman -S acpi tlp libinput xf86-input-synaptics xorg-xinput powertop xfce4-power-manager bluez bluez-utils bbswitch --noconfirm \
+        log_error sudo pacman -S acpi tlp  xf86-input-synaptics powertop xfce4-power-manager bluez-utils bbswitch --noconfirm \
         && log echo " Done" && break_line || log erro_msg
 
         log echo "#--------- BUMBLEBEE CONFIG (LAPTOP ONLY)" && break_line
         log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/
         log_error sudo gpasswd -a luiznux bumblebee \
         && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
-        && log_error tee /proc/acpi/bbswitch <<<OFF \
+        && log_error tee /proc/acpi/bbswitch <<< OFF \
         && log echo "     Bumblebee {OK}" && break_line || log erro_msg
 
         log echo "#--------- Light(brithness control)" && break_line
@@ -231,10 +239,8 @@ laptop_config(){
         && cd ~/Github/prog/light && log_error ./autogen.sh && log_error ./configure && sudo make \
         && log echo "     Light {OK}" && break_line || log erro_msg
 
-        #Batterymon and depence
-        log_error make_pkg_AUR makepython2-distutils-extra \
-        && log_error make_pkg_AUR batterymon-clone \
-        && cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
+        #TLP config
+        cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
         && log echo "     Laptop configs {OK}" && break_line || log erro_msg
 
     elif [ $option != "n" ]; then
