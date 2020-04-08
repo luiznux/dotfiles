@@ -211,6 +211,7 @@ general_config(){
     && cd $dotfiles && cp -r config/dunst ~/.config/ \
     && cd $dotfiles && cp -r config/powerline-shell/ ~/.config/ \
     && cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
+    && cd $dotfiles && sudo cp config/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/\
     && log echo " General config {OK}" && break_line || log error_msg
 }
 
