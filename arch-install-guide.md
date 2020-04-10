@@ -45,10 +45,21 @@ The figure below illustrates how my partitioning is configured.
 So lets get started !
 
 
-## 1. Set keyboard layout
+## 1. Basics
 
+* set keyboard layout
 ``` bash
 $ loadkeys br-abnt2
+```
+
+* edit mirror list
+```bash
+vim /etc/pacman.d/mirrorlist
+```
+
+* update
+```bash
+$ pacman -Sy
 ```
 
 ## 2. Load crypt modules
@@ -56,7 +67,6 @@ $ loadkeys br-abnt2
 ```bash
 $ modprobe -a dm-mod dm-crypt
 ```
-
 
 ## 3. Create particions
 
@@ -85,21 +95,18 @@ $ cryptsetup -y -v luksFormat --type luks1 -c aes-xts-plain64 -s 512 /dev/sda3
 $ cryptsetup open  --type luks /dev/sda3 linux
 ```
 
-## 6. PV linux
-
-
-* to see info about Physical Volume (PV)
-
-```bash
-$ pvs
-```
+## 6. Create a Physical Volume (PV)
 
 * create one
 
 ```bash
 $ pvcreate /dev/mapper/linux
 ```
+* to see info about it
 
+```bash
+$ pvs
+```
 
 ## 7. Create Volume Group (VG)
 
@@ -123,9 +130,8 @@ $ lvs
 
 ## 9. Create the other two LV, "home" and "/"
 
-dasds
 ```bash
-$ lvcreate -L 30G linux -n archlinux
+$ lvcreate -L 40G linux -n archlinux
 
 $ lvcreate -l +100%FREE linux -n home
 ```
@@ -198,7 +204,7 @@ $ arch-chroot /mnt /bin/bash
 ## 14. Install some packages
 
 ```bash
-$ pacman -S bash-completion sudo os-prober wireless_tools networkmanager  network-manager-applet mtools vim  wpa_supplicant dosfstools  dialog lvm2  linux-headers ntfs-3g --noconfirm
+$ pacman -S bash-completion sudo os-prober wireless_tools networkmanager  network-manager-applet mtools wpa_supplicant dosfstools  dialog lvm2  linux-headers ntfs-3g --noconfirm
 ```
 
 ## 15. Set locale
@@ -207,6 +213,7 @@ $ pacman -S bash-completion sudo os-prober wireless_tools networkmanager  networ
 $ rm -f /etc/localtime
 $ ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 
+$ vim /etc/locale.gen
 $ locale-gen
 $ echo KEYMAP=br-abnt2 >> /etc/vconsole.conf
 ```
@@ -285,6 +292,7 @@ GRUB_DISABLE_SUBMENU=y
 ```bash
 $ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub --recheck
 
+$ mkdir -p /boot/grub/locale/
 $ cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 ```
 
