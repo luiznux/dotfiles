@@ -7,14 +7,7 @@
 #     ██║██║ ╚████║███████║   ██║   ██║  ██║███████╗███████╗
 #     ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝
 #
-#   ██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗
-#   ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝██╔════╝
-#   ██║  ██║██║   ██║   ██║   █████╗  ██║██║     █████╗  ███████╗
-#   ██║  ██║██║   ██║   ██║   ██╔══╝  ██║██║     ██╔══╝  ╚════██║
-#   ██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗███████║
-#   ╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
-#
-#
+
 # source https://github.com/luiznux/dotfiles
 # This is the install scrpit that resolves most of the files in this repository.
 # It will install some packages too and only works in Arch linux distro.
@@ -112,9 +105,9 @@ AUR_install(){
     && log echo "Done" && break_line || log erro_msg
 
     log echo "#------------ Other packages" && break_line
-    log echo "nvidia-xrun python-pdftotext polybar thermald ttf-weather-icon wps-office.git "
-    log echo "ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify " && break_line
-    log_error make_pkg_AUR nvidia-xrun-pm \
+    log echo "nvidia-xrun python-pdftotext polybar thermald ttf-weather-icon "
+    log echo "qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify" && break_line
+    log_error make_pkg_AUR nvidia-xrun \
     && log_error make_pkg_AUR python-pdftotext \
     && log_error make_pkg_AUR polybar \
     && log_error make_pkg_AUR thermald \
@@ -124,13 +117,13 @@ AUR_install(){
     && log_error make_pkg_AUR sublime-text-dev \
     && log_error make_pkg_AUR speedometer \
     && log_error make_pkg_AUR cli-visualizer \
+    && log_error gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45 && log_error make_pkg_AUR spotify \
     && log echo " AUR pkgs Done" && break_line || log erro_msg
     break_line
 
     #&& log_error make_pkg_AUR wps-office \
     #&& log_error make_pkg_AUR ttf-wps-fonts \
     #&& log_error make_pkg_AUR ffmpeg-compat-57 \
-    #&& log_error gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45 && log_error make_pkg_AUR spotify \
 }
 
 
@@ -205,6 +198,7 @@ general_config(){
 
     log echo "#---------------------------------------- Other Configs " && break_line
     cd $dotfiles && sudo cp config/urxvt-resize-font/resize-font /usr/lib64/urxvt/perl/ &&  sudo chmod +x /usr/lib64/urxvt/perl/resize-font \
+    && gsettings set org.cinnamon.desktop.default-applications.terminal exec urxvt \
     && cd $dotfiles && cp config/screenshots.sh ~/.config/ \
     && cd $dotfiles && cp -r config/sxiv ~/.config/ \
     && cd $dotfiles && cp config/.bashrc ~/ \
@@ -232,7 +226,7 @@ laptop_config(){
         log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/
         log_error sudo gpasswd -a luiznux bumblebee \
         && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
-        && log_error tee /proc/acpi/bbswitch <<< OFF \
+        && log_error tee /proc/acpi/bbswitch <<<OFF \
         && log echo "     Bumblebee {OK}" && break_line || log erro_msg
 
         log echo "#--------- Light(brithness control)" && break_line
@@ -254,9 +248,10 @@ systemd_init(){
 
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
     log_error sudo systemctl enable NetworkManager.service \
-    && log_error sudo systemctl enable gdm.service \
-    && log_error sudo systemctl enable ufw.service && log_error sudo ufw enable \
-    && log_error sudo systemctl enable optimus-manager.service \
+    && log_error systemctl enable gdm.service \
+    && log_error systemctl enable ufw.service && log_error sudo ufw enable \
+    && log_error systemctl enable optimus-manager.service \
+    && log_error systemctl disable bluetooth.service
     && log echo "Done" && break_line || log erro_msg
 
     #Laptop init
