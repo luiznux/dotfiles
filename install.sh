@@ -105,7 +105,7 @@ AUR_install(){
     && log echo "Done" && break_line || log erro_msg
 
     log echo "#------------ Other packages" && break_line
-    log echo "nvidia-xrun python-pdftotext polybar thermald ttf-weather-icon "
+    log echo "nvidia-xrun python-pdftotext polybar thermald ttf-weather-icon rar pygtk "
     log echo "qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify" && break_line
     log_error make_pkg_AUR nvidia-xrun \
     && log_error make_pkg_AUR python-pdftotext \
@@ -117,6 +117,8 @@ AUR_install(){
     && log_error make_pkg_AUR sublime-text-dev \
     && log_error make_pkg_AUR speedometer \
     && log_error make_pkg_AUR cli-visualizer \
+    && log_error make_pkg_AUR pygtk \
+    && log_error make_pkg_AUR rar \
     && log_error gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45 && log_error make_pkg_AUR spotify \
     && log echo " AUR pkgs Done" && break_line || log erro_msg
     break_line
@@ -251,7 +253,7 @@ systemd_init(){
     && log_error systemctl enable gdm.service \
     && log_error systemctl enable ufw.service && log_error sudo ufw enable \
     && log_error systemctl enable optimus-manager.service \
-    && log_error systemctl disable bluetooth.service
+    && log_error systemctl disable bluetooth.service \
     && log echo "Done" && break_line || log erro_msg
 
     #Laptop init

@@ -58,11 +58,6 @@
   :config
   (which-key-mode))
 
-(use-package fancy-battery
-  :ensure t
-  :config
-  (fancy-battery-mode))
-
 (use-package latex-preview-pane
   :ensure t
   :init
