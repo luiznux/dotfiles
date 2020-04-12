@@ -18,3 +18,6 @@
 [submodule "system/urxvt-resize-font"]
 	path = config/urxvt-resize-font
 	url = https://github.com/simmel/urxvt-resize-font
+[submodule "emacs/.emacs.d/lisp/origami.el"]
+	path = emacs/.emacs.d/lisp/origami.el
+	url = https://github.com/gregsexton/origami.el.git

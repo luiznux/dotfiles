@@ -112,6 +112,8 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/awesome-tab"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/emacs-dashboard"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/page-break-lines"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/origami.el"))
+
 
 (defun setup-awesome-tab()
   (require 'awesome-tab)
@@ -126,6 +128,9 @@
   (require 'page-break-lines)
   (turn-on-page-break-lines-mode))
 
+(defun setup-origami-mode ()
+  (require 'origami)
+  (global-origami-mode))
 
 (load "~/.emacs.d/lisp/custom-modes-config.el")
 (load "~/.emacs.d/lisp/evil-config.el")
@@ -143,5 +148,6 @@
 (setup-awesome-tab)
 (setup-emacs-dashboard)
 (setup-page-break-lines)
+(setup-origami-mode)
 
 ;;; packages.el ends here
