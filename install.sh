@@ -19,6 +19,7 @@
 #Variables
 dotfiles=$(pwd)
 AUR=~/AUR
+GIT=~/Github
 errors=0
 
 #func to break line with echo command
@@ -53,7 +54,7 @@ make_pkg_AUR(){
     cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -is  && exit_dir
 }
 
-##func to clean AUR dir
+#func to clean AUR dir
 clean_AUR(){
     rm -rf $AUR/*
 }
@@ -212,6 +213,22 @@ general_config(){
 }
 
 
+#func to clone some repositories
+git_repository_setup(){
+
+    log echo "#---------------------------------------- Git packages" && break_line
+    cd $GIT/other && git clone https://github.com/stark/Color-Scripts.git && exit_dir
+    cd $GIT/other && git clone https://github.com/khanhas/spicetify-cli.git && exit_dir
+    cd $GIT/other && git clone https://github.com/morpheusthewhite/spicetify-themes.git && exit_dir
+    cd $GIT/other && git clone https://github.com/PlusInsta/discord-plus && exit_dir
+    log echo "#---- Better discordctl"
+    cd $GIT/other && curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl\
+        && chmod +x betterdiscordctl && sudo mv betterdiscordctl /usr/local/bin && sudo betterdiscordctl upgrade
+
+    log echo "   Done"
+}
+
+
 ####func that install laptoptools
 laptop_config(){
 
@@ -271,6 +288,7 @@ AUR_install
 emacs
 general_config
 laptop_config
+git_repository_setup
 #systemd_init
 
 log echo "------------- END OF INSTALL ------------" && break_line

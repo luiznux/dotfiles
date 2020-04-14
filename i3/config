@@ -223,9 +223,9 @@ bindsym $mod+Up    					focus up
 bindsym $mod+Right 					focus right
 
 # move focused window
-bindsym $mod+Shift+h				move left 30
-bindsym $mod+Shift+j 				move down 30
-bindsym $mod+Shift+k 				move up 30
+bindsym $mod+Shift+h				move left  30
+bindsym $mod+Shift+j 				move down  30
+bindsym $mod+Shift+k 				move up    30
 bindsym $mod+Shift+l 				move right 30
 
 
@@ -308,7 +308,6 @@ bindsym $mod+Shift+8	move container to workspace $ws8
 #set_from_resource $color15 i3wm.color15
 #
 
-
 # class                 border  bground text    indicator child_border
 client.focused          #285577 #285577 #070B15 #285577   #285577
 client.focused_inactive #070B15 #6D8090 #070B15 #6D8090   #495661
@@ -316,24 +315,26 @@ client.unfocused        #070B15 #222222 #888888 #292D2E   #070B15
 client.urgent           #914836 #914836 #070B15 #914836   #914836
 client.placeholder      #070B15 #070B15 #070B15 #070B15   #070B15
 
+
 #--------------------------------------------------------------------------#
 #--------------------------- Exec and Others ------------------------------#
 #--------------------------------------------------------------------------#
+#
 
 #POLYBAR
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
-#Calculator
-for_window [title="Calculator"]	 floating enable
-
-#enable floating window for pavucontrol
-for_window [title="Volume Control"]	  floating enable
+#Mv transmisson to workspace 6
+assign [class="Transmission"]  $ws6
 
 #Mv discord to workspace 5
-for_window [title="Discord"]     move workspace $ws5
+for_window [class="discord"] move to workspace $ws5
 
-#Mv transmisson to workspace 6
-assign [class="Transmission"]    $ws6
+#Mv Spotify to workspace 7
+for_window [class="Spotify"] move to workspace $ws7
 
-#Spotify
-for_window [title="Spotify"]     move workspace $ws7
+#Enable floating window for Gnome-Calculator
+for_window [title="Calculator"]	      floating enable
+
+#Enable floating window for pavucontrol
+for_window [title="Volume Control"]	  floating enable
