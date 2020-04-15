@@ -13,17 +13,95 @@
 ! Run "xrdb -load .Xresources" to apply changes
 
 
-!---------------------------------------------------
-!-------------------  EMACS ------------------------
-!
-Emacs.font: Source Code Pro:size=10
+!---------------------------------------------------------------------------
+!----------------------------  EMACS ---------------------------------------
+!---------------------------------------------------------------------------
+
+!Emacs.font: Source Code Pro:size=14
 emacs*background:   #0B0719
 
 
-!---------------------------------------------------
-!----------------- URxvt Config --------------------
+!!--------------------------------------------------------------------------------
+!!--------------------------- Xterm Config ---------------------------------------
+!!--------------------------------------------------------------------------------
+!!
+!!see the link below to install transset-df for xterm transparent
+!!http://forchheimer.se/transset-df/
+!!https://wiki.archlinux.org/index.php/Xterm#Automatic_transparency
+!!https://wiki.archlinux.org/index.php/Per-application_transparency
+!
+!!---------------------------------------
+!!----------------- Geral ---------------
+!!
+!XTerm*termName:    xterm-256color
+!XTerm*marginBell:  yes
+!
+!!---------------------------------------
+!!---------------- Fonts ----------------
+!!
+!!XTerm*termname:    Source Code Pro
+!!Xterm*faceSize:    40
+!XTerm*Geometry:     76x20
+!XTerm*faceName:     Source Code Pro
+!XTerm*faceSize:     12
+!
+!
+!!Ensure that your locale is set up for UTF-8. If you do not use UTF-8, you
+!!may need to force xterm to more strictly follow your locale by setting
+!XTerm.vt100.locale: true
+!
+!!-------------------------------------
+!!------------ Cursor -----------------
+!!
+!! pointer and cursor (blinking and color)
+!XTerm*pointerColor:              black
+!XTerm*pointerColorBackground:    white
+!XTerm*cursorColor:               white
+!XTerm*cursorBlink:               false
+!Xterm*pointerSize:               60
+!
+!
+!!--------------------------------------
+!!---------- Keybinding ----------------
+!!
+!! http://blog.rot13.org/2010/03/change-font-size-in-xterm-using-keyboard.html
+!! - change fontsize on the fly (ctrl+plus = increase ; ctrl+minus = decrease, ctrl+0 = default)
+!! - copy/paste hotkey (ctrl+shift+c = copy ; ctrl+shift+v = paste)
+!! - open url (clickable links)
+!!   1) double click to highlight the full url
+!!   2) Shift + click it to open it
+!XTerm.vt100.translations: #override \n\
+!  Ctrl <Key> minus: smaller-vt-font() \n\
+!  Ctrl <Key> plus: larger-vt-font() \n\
+!  Ctrl <Key> 0: set-vt-font(d) \n\
+!  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+!  Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+!  Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) \n\
+!  <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
+!  <Btn2Up>: insert-selection(PRIMARY)
+!
+!! double-click to select whole URLs :D
+!! https://scarygliders.net/2011/12/01/customize-xterm-the-original-and-best-terminal/
+!XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+!
+!!-----------------------------------------
+!!------------- Scrolling -----------------
+!! Use: Shift-Pageup / Shift-Pagedown to scroll or mousewheel
+!! Lines of output that you can scroll back over
+!XTerm*saveLines: 50000
+!
+!! Do not scroll when there is new input e.g. tail -f /var/syslog
+!XTerm*scrollTtyOutput: false
 
-!------------ General settings ---------------------
+
+
+!----------------------------------------------------------------------------
+!---------------------------- URxvt Config ----------------------------------
+!----------------------------------------------------------------------------
+
+
+!----------------------------------------------------
+!------------- General settings ---------------------
 
 URxvt*saveline:           50000
 URxvt*termName:           xterm-256color
@@ -35,6 +113,7 @@ URxvt*meta8:              false
 URxvt*metaSendsEscape:    false
 
 
+!----------------------------------------------------
 !---------------- Appearance ------------------------
 
 URxvt*transparent:        true
@@ -52,6 +131,7 @@ URxvt*scrollWithBuffer:   true
 URxvt*scrollTtyKeypress:  true
 
 
+!----------------------------------------------------
 !-------------------- Fonts -------------------------
 
 run :                  .!fc-list | grep <font-name>
@@ -83,6 +163,7 @@ URxvt.keysym.Control-Right:   \033[1;5C
 URxvt.keysym.Control-Left:    \033[1;5D
 
 
+!-----------------------------------------------------
 !---------------- Perl extensions --------------------
 !
 ! perl -> /usr/lib64/urxvt/perl
@@ -142,57 +223,71 @@ URxvt.keysym.M-c:          perl:clipboard:copy
 URxvt.keysym.M-v:          perl:clipboard:paste
 
 
-!----------------------------------------------------
-!--------------- Global settings --------------------
-!
+!----------------------------------------------------------------
+!-------------------------- COLORS ------------------------------
+!----------------------------------------------------------------
 
-*font:      xft:Source Code Pro:style=Regular:size:12
+! To change the terminal transparency, change line 122 (Urxvt.background:   [80]#070b15)
 
-
-!---------------------------------------------------
-!-------------------- COLORS -----------------------
-
-!------------------- Blue hair girl wallpaper based colorscheme
-!
+!------------------------- Blue hair girl wallpaper based colorscheme
+! special
 *.foreground:   #9db7cf
 *.cursorColor:  #9db7cf
-*.background:   #070b15
+*.background:  #070b15
+
+! black
 *.color0:       #070b15
 *.color8:       #6d8090
+! red
 *.color1:       #914836
 *.color9:       #914836
+! green
 *.color2:       #994a3b
 *.color10:      #994a3b
+! yellow
 *.color3:       #aa6655
 *.color11:      #aa6655
+! blue
 *.color4:       #c58875
 *.color12:      #c58875
+! magenta
 *.color5:       #325b91
 *.color13:      #325b91
+! cyan
 *.color6:       #4472a3
 *.color14:      #4472a3
+! white
 *.color7:       #9db7cf
 *.color15:      #9db7cf
 
 
-!------------------------- Morpho.jgp wallpaper based colorscheme
-!
+!------------------------- morpho.jgp wallpaper based colorscheme
+! special
 !*.foreground:    #cac8dc
 !*.cursorColor:   #cac8dc
-!*.background:    #0b0719
+!*.background:   #0b0719
+!
+!! black
 !*.color0:        #0b0719
 !*.color8:        #8d8c9a
+!! red
 !*.color1:        #74698f
 !*.color9:        #74698f
+!! green
 !*.color2:        #89769f
 !*.color10:       #89769f
+!! yellow
 !*.color3:        #9c63ca
 !*.color11:       #9c63ca
+!! blue
 !*.color4:        #7390a2
 !*.color12:       #7390a2
+!! magenta
 !*.color5:        #958cb0
 !*.color13:       #958cb0
+!! cyan
 !*.color6:        #9d96b2
 !*.color14:       #9d96b2
+!! white
 !*.color7:        #cac8dc
 !*.color15:       #cac8dc
