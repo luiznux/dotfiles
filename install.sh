@@ -73,16 +73,14 @@ install_packages(){
 
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
-    log_error sudo pacman -Sy xorg xclip man tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls  cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol qt --noconfirm \
-=======
-    log_error sudo pacman -Sy xorg xclip man tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls  cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol gimp --noconfirm \
+    log_error sudo pacman -Sy xorg xclip man tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol qt gimp picom --noconfirm \
     && log echo "        Packages {OK}" && break_line || log erro_msg
 }
 
 ####func to install some python packages
 Python_config(){
     log echo "#----------------------------------------------- PYTHON CONFIG" && break_line
-    log_error sudo pacman -S python-pip python-sphinx python-dbus python2-gobject  python-psutil python-urwid --noconfirm \
+    log_error sudo pacman -S python-pip python-sphinx python-dbus python2-gobject  python-psutil python-urwid python-pywal --noconfirm \
     && pip install powerline-shell \
     && log echo "	     Python {OK}" && break_line || log erro_msg
 }
@@ -218,7 +216,7 @@ general_config(){
 #func to clone some repositories
 git_repository_setup(){
 
-    log echo "#---------------------------------------- Git packages" && break_line
+    log echo "#---------------------------------------- Git Repositories" && break_line
     cd $GIT/other && git clone https://github.com/stark/Color-Scripts.git && exit_dir
     cd $GIT/other && git clone https://github.com/khanhas/spicetify-cli.git && exit_dir
     cd $GIT/other && git clone https://github.com/morpheusthewhite/spicetify-themes.git && exit_dir
@@ -226,9 +224,8 @@ git_repository_setup(){
     log echo "#---- Better discordctl"
     cd $GIT/other && curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl\
         && chmod +x betterdiscordctl && sudo mv betterdiscordctl /usr/local/bin && sudo betterdiscordctl upgrade
-    https://github.com/sebastiencs/icons-in-terminal.git
-
-    log echo "   Done"
+    cd $GIT/other && git clone https://github.com/sebastiencs/icons-in-terminal.git && exit_dir
+    log echo " Git rep  Done"
 }
 
 

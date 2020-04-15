@@ -146,7 +146,7 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 !--------------- Global settings --------------------
 !
 
-*font:      xft:Source Code Pro:style=Regular:size:12
+*font:     Source Code Pro:pixelsize=16:antialias=true:autohint=true
 
 
 !---------------------------------------------------
