@@ -120,6 +120,7 @@ AUR_install(){
     && log_error make_pkg_AUR cli-visualizer \
     && log_error make_pkg_AUR pygtk \
     && log_error make_pkg_AUR rar \
+    && log_error make_pkg_AUR jetbrains-toolbox \
     && log_error gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45 && log_error make_pkg_AUR spotify \
     && log echo " AUR pkgs Done" && break_line || log erro_msg
     break_line
