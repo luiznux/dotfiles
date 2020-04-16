@@ -46,7 +46,6 @@
  '(default ((t (:inherit nil :stipple nil :background "#0b0719" :foreground "#c5c8c6" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "ADBO" :family "Source Code Pro")))))
 ;old background "#1d1f21"
 
-(global-hl-line-mode 1)
 
 (load "~/.emacs.d/main.el")
 
