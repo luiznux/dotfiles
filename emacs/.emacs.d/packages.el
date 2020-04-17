@@ -2,12 +2,13 @@
 ;;; Commentary:
 ;;; Emacs Packages configuration --- Package configuration for Emacs
 ;;;
-;;;                   _
-;;;  _ __   __ _  ___| | ____ _  __ _  ___  ___
-;;; | '_ \ / _` |/ __| |/ / _` |/ _` |/ _ \/ __|
-;;; | |_) | (_| | (__|   < (_| | (_| |  __/\__ \
-;;; | .__/ \__,_|\___|_|\_\__,_|\__, |\___||___/
-;;; |_|                         |___/
+;;;
+;;; ██████╗  █████╗  ██████╗██╗  ██╗ █████╗  ██████╗ ███████╗███████╗
+;;; ██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██╔════╝ ██╔════╝██╔════╝
+;;; ██████╔╝███████║██║     █████╔╝ ███████║██║  ███╗█████╗  ███████╗
+;;; ██╔═══╝ ██╔══██║██║     ██╔═██╗ ██╔══██║██║   ██║██╔══╝  ╚════██║
+;;; ██║     ██║  ██║╚██████╗██║  ██╗██║  ██║╚██████╔╝███████╗███████║
+;;; ╚═╝     ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝
 ;;;
 ;;; Code:
 
@@ -211,9 +212,17 @@
   (setq awesome-tab-display-icon t)
   (awesome-tab-mode t))
 
+
 (defun setup-emacs-dashboard()
   (require 'dashboard)
-  (dashboard-setup-startup-hook))
+  (dashboard-setup-startup-hook)
+  (setq dashboard-set-heading-icons  t
+        dashboard-set-file-icons     t
+        dashboard-startup-banner     'logo)
+  (setq dashboard-itens '((recents   .  7)
+                          (agenda    .  6)
+                          (bookmarks .  3))))
+
 
 (defun setup-page-break-lines()
   (require 'page-break-lines)
