@@ -1,0 +1,5 @@
+#!/bin/bahs
+
+spicetify config current_theme Material-Ocean
+spicetify apply
+
