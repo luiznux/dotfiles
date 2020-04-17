@@ -107,7 +107,7 @@ AUR_install(){
 
     log echo "#------------ Other packages" && break_line
     log echo "nvidia-xrun python-pdftotext polybar thermald ttf-weather-icon rar pygtk python2-twodict-git youtube-dl-gui-git"
-    log echo "jetbrains-toolbox wps-office ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify" && break_line
+    log echo "jetbrains-toolbox wps-office ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify spicetify-cli" && break_line
     log_error make_pkg_AUR nvidia-xrun \
     && log_error make_pkg_AUR python-pdftotext \
     && log_error make_pkg_AUR polybar \
@@ -126,6 +126,8 @@ AUR_install(){
     && log_error make_pkg_AUR wps-office \
     && log_error make_pkg_AUR ttf-wps-fonts \
     && log_error gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45 && log_error make_pkg_AUR spotify \
+    && log_error make_pkg_AUR spicetify-cli \
+    && log_error make_pkg_AUR spicetify-themes-git \
     && log echo " AUR pkgs Done" && break_line || log erro_msg
     break_line
 
@@ -221,7 +223,6 @@ git_repository_setup(){
 
     log echo "#---------------------------------------- Git Repositories" && break_line
     cd $GIT/other && git clone https://github.com/stark/Color-Scripts.git && exit_dir
-    cd $GIT/other && git clone https://github.com/khanhas/spicetify-cli.git && exit_dir
     cd $GIT/other && git clone https://github.com/morpheusthewhite/spicetify-themes.git && exit_dir
     cd $GIT/other && git clone https://github.com/PlusInsta/discord-plus && exit_dir
     log echo "#---- Better discordctl"
