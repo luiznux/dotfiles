@@ -4,8 +4,7 @@
 #     ██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║     ██║
 #     ██║██╔██╗ ██║███████╗   ██║   ███████║██║     ██║
 #     ██║██║╚██╗██║╚════██║   ██║   ██╔══██║██║     ██║
-#     ██║██║ ╚████║███████║   ██║   ██║  ██║███████╗███████╗
-#     ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝
+#     ██║██║ ╚████║███████║   ██║   ██║  ██║███████╗███████╗ #     ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝
 #
 
 # source https://github.com/luiznux/dotfiles
@@ -106,8 +105,8 @@ AUR_install(){
     && log echo "Done" && break_line || log erro_msg
 
     log echo "#------------ Other packages" && break_line
-    log echo "nvidia-xrun python-pdftotext polybar thermald ttf-weather-icon rar pygtk "
-    log echo "qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify" && break_line
+    log echo "nvidia-xrun python-pdftotext polybar thermald ttf-weather-icon rar pygtk python2-twodict-git youtube-dl-gui-git"
+    log echo "jetbrains-toolbox wps-office ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify" && break_line
     log_error make_pkg_AUR nvidia-xrun \
     && log_error make_pkg_AUR python-pdftotext \
     && log_error make_pkg_AUR polybar \
@@ -120,13 +119,15 @@ AUR_install(){
     && log_error make_pkg_AUR cli-visualizer \
     && log_error make_pkg_AUR pygtk \
     && log_error make_pkg_AUR rar \
+    && log_error make_pkg_AUR python2-twodict-git \
+    && log_error make_pkg_AUR youtube-dl-gui-git \
     && log_error make_pkg_AUR jetbrains-toolbox \
+    && log_error make_pkg_AUR wps-office \
+    && log_error make_pkg_AUR ttf-wps-fonts \
     && log_error gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45 && log_error make_pkg_AUR spotify \
     && log echo " AUR pkgs Done" && break_line || log erro_msg
     break_line
 
-    #&& log_error make_pkg_AUR wps-office \
-    #&& log_error make_pkg_AUR ttf-wps-fonts \
     #&& log_error make_pkg_AUR ffmpeg-compat-57 \
 }
 
