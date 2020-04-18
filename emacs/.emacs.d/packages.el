@@ -37,7 +37,8 @@
 (use-package yasnippet
   :ensure t
   :config
-  (yas-global-mode 1))
+  (yas-global-mode 1)
+  :hook (go-mode . yas-minor-mode))
 
 (use-package flycheck
   :ensure t
@@ -45,14 +46,33 @@
   (global-flycheck-mode)
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
+(use-package lsp-mode
+  :ensure t
+  :commands (lsp lsp-deferred)
+  :hook (go-mode . lsp-deferred))
+
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+
 (use-package company
   :ensure t
   :init
   (add-hook 'after-init-hook 'global-company-mode)
   :config
   (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 1)
   (define-key company-active-map (kbd "M-j") 'company-select-next-or-abort)
   (define-key company-active-map (kbd "M-k") 'company-select-previous-or-abort))
+
+(use-package company-lsp
+  :ensure t
+  :commands company-lsp)
 
 (use-package which-key
   :ensure t
@@ -128,7 +148,7 @@
           treemacs-follow-after-init             t
           treemacs-git-command-pipe              ""
           treemacs-goto-tag-strategy             'refetch-index
-          treemacs-indentation                   2
+          treemacs-indentation                   1
           treemacs-indentation-string            " "
           treemacs-is-never-other-window         nil
           treemacs-max-git-entries               5000
@@ -152,7 +172,7 @@
           treemacs-tag-follow-cleanup            t
           treemacs-tag-follow-delay              1.5
           treemacs-user-mode-line-format         nil
-          treemacs-width                         28)
+          treemacs-width                         27)
 
     ;; The default width and height of the icons is 22 pixels. If you are
     ;; using a Hi-DPI display, uncomment this to double the icon size.
