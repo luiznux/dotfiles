@@ -16,8 +16,8 @@
 !---------------------------------------------------
 !-------------------  EMACS ------------------------
 !
-Emacs.font: Source Code Pro:size=10
-emacs*background:   #0B0719
+Emacs.font:         Source Code Pro:size=10
+Emacs*background:   #0B0719
 
 
 !---------------------------------------------------
@@ -156,7 +156,7 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 !
 *.foreground:   #9db7cf
 *.cursorColor:  #9db7cf
-*.background:   #070b15
+*.background:   #000000
 *.color0:       #070b15
 *.color8:       #6d8090
 *.color1:       #914836
