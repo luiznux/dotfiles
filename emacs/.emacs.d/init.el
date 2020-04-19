@@ -32,7 +32,7 @@
  '(line-spacing 0.2)
  '(package-selected-packages
    (quote
-    (page-break-lines dashboard dash-functional 2048-game company-lsp lsp-ui lsp-mode go-mode evil-surround docker treemacs-icons-dired treemacs-magit treemacs-evil treemacs-projectile treemacs ranger hydra tldr flycheck-mypy multi-term git-gutter counsel org-bullets smex evil-matchit projectile ggtags flycheck-irony company-irony python-docstring irony gitignore-mode dumb-jump ag mmm-mode popwin color-identifiers-mode highlight-indent-guides telephone-line dockerfile-mode pyenv-mode all-the-icons gh-md evil-magit async magit flycheck ## python-doctring markdown-mode evil py-autopep8 goto-chg undo-tree elpy which-key use-package)))
+    (page-break-lines dashboard dash-functional company-lsp lsp-ui lsp-mode go-mode evil-surround docker treemacs-icons-dired treemacs-magit treemacs-evil treemacs-projectile treemacs ranger hydra tldr flycheck-mypy multi-term git-gutter counsel org-bullets smex evil-matchit projectile ggtags flycheck-irony company-irony python-docstring irony gitignore-mode dumb-jump ag mmm-mode popwin color-identifiers-mode highlight-indent-guides telephone-line dockerfile-mode pyenv-mode all-the-icons gh-md evil-magit async magit flycheck ## python-doctring markdown-mode evil py-autopep8 goto-chg undo-tree elpy which-key use-package)))
  '(send-mail-function (quote mailclient-send-it))
  '(standard-indent 4))
 
