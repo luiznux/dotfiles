@@ -191,7 +191,7 @@ general_config(){
     && log echo "     Gitconfig setup {OK} " && break_line || log erro_msg && ((errors+=1))
 
     log echo "#---------------------------------------- Setup background image" && break_line
-    cd $dotfiles && cp config/morpho.jpg ~/.config/wallpaper.jpg  \
+    cd $dotfiles && cp config/wallpapers/morpho.jpg  ~/.config/wallpaper.jpg  \
     && log echo "     Wallppaer setup {OK} " && break_line || log erro_msg
 
     log echo "#---------------------------------------- Setup Themes" && break_line
@@ -205,9 +205,9 @@ general_config(){
     && log echo "     Pacman config {OK} " && break_line || log erro_msg
 
     log echo "#---------------------------------------- Other Configs " && break_line
-    cd $dotfiles && sudo cp config/urxvt-resize-font/resize-font /usr/lib64/urxvt/perl/ &&  sudo chmod +x /usr/lib64/urxvt/perl/resize-font \
+    cd $dotfiles && sudo cp config/urxvt/urxvt-resize-font/resize-font /usr/lib64/urxvt/perl/ &&  sudo chmod +x /usr/lib64/urxvt/perl/resize-font \
     && gsettings set org.cinnamon.desktop.default-applications.terminal exec urxvt \
-    && cd $dotfiles && cp config/screenshots.sh ~/.config/ \
+    && cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
     && cd $dotfiles && cp -r config/sxiv ~/.config/ \
     && cd $dotfiles && cp config/.bashrc ~/ \
     && cd $dotfiles && cp -r config/dunst ~/.config/ \
