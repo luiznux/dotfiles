@@ -1,6 +1,0 @@
-#!/bin/bash
-
-#obs, caso seja outro dispsitivo , troque o "DELL" pelo nome do seu dispositivo
-#para listar os dispositivos digite "xinput list"
-
-xinput --set-prop 'DELL0828:00 06CB:7E7E Touchpad' 'Device Accel Constant Deceleration' 1.0
