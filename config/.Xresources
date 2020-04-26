@@ -16,7 +16,7 @@
 !---------------------------------------------------
 !-------------------  EMACS ------------------------
 !
-Emacs.font:         Source Code Pro:size=10
+Emacs.font:         Source Code Pro:size=9
 Emacs*background:   #0B0719
 
 
@@ -152,27 +152,58 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 !---------------------------------------------------
 !-------------------- COLORS -----------------------
 
-!------------------- Blue hair girl wallpaper based colorscheme
-!
-*.foreground:   #9db7cf
-*.cursorColor:  #9db7cf
+!------------------- Custom(luiznux)
+! special
+*.foreground:   #c5c8c6
+*.cursorColor:  #7e7eae
 *.background:   #000000
-*.color0:       #070b15
-*.color8:       #6d8090
-*.color1:       #914836
-*.color9:       #914836
-*.color2:       #994a3b
-*.color10:      #994a3b
-*.color3:       #aa6655
-*.color11:      #aa6655
-*.color4:       #c58875
-*.color12:      #c58875
-*.color5:       #325b91
-*.color13:      #325b91
-*.color6:       #4472a3
-*.color14:      #4472a3
-*.color7:       #9db7cf
-*.color15:      #9db7cf
+! black
+*.color0:       #282a2e
+*.color8:       #373b41
+! red
+*.color1:       #6d3030
+*.color9:       #ce4e4e
+! green
+*.color2:       #8fff8b
+*.color10:      #00ff8b
+! yellow
+*.color3:       #df9f2d
+*.color11:      #ffcd00
+! blue
+*.color4:       #4e4e8f
+*.color12:      #4b208f
+! magenta
+*.color5:       #cc66cc
+*.color13:      #ff8bff
+! cyan
+*.color6:       #409090
+*.color14:      #66cccc
+! white
+*.color7:       #707880
+*.color15:      #c5c8c6
+
+
+!------------------- blue-hair-girl.jpg wallpaper based colorscheme
+!
+!*.foreground:   #9db7cf
+!*.cursorColor:  #9db7cf
+!*.background:   #000000
+!*.color0:       #070b15
+!*.color8:       #6d8090
+!*.color1:       #914836
+!*.color9:       #914836
+!*.color2:       #994a3b
+!*.color10:      #994a3b
+!*.color3:       #aa6655
+!*.color11:      #aa6655
+!*.color4:       #c58875
+!*.color12:      #c58875
+!*.color5:       #325b91
+!*.color13:      #325b91
+!*.color6:       #4472a3
+!*.color14:      #4472a3
+!*.color7:       #9db7cf
+!*.color15:      #9db7cf
 
 
 !------------------------- Morpho.jgp wallpaper based colorscheme
