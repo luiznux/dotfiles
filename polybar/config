@@ -338,8 +338,7 @@ format-disconnected =
 ;
 [module/filesystem]
 type                                    = internal/fs
-;mount-0                                 = /
-mount-0                                 = /home
+mount-0                                 = /
 interval                                = 120
 fixed-values                            = true
 label-mounted                           = "%{F#914836} %{F-}%percentage_used:2%%"

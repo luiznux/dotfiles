@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+#
 #     ██╗███╗   ██╗███████╗████████╗ █████╗ ██╗     ██╗
 #     ██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║     ██║
 #     ██║██╔██╗ ██║███████╗   ██║   ███████║██║     ██║
@@ -24,7 +24,7 @@ errors=0
 
 #func to break line with echo command
 break_line(){
-    echo ""
+    echo " "
 }
 
 #write some installings  process in the archive 'install.log'
@@ -51,7 +51,7 @@ exit_dir(){
 
 #func to install aur packages
 make_pkg_AUR(){
-    cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -is  && exit_dir
+    cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -is --noconfirm && exit_dir
 }
 
 #func to clean AUR dir
@@ -59,10 +59,14 @@ clean_AUR(){
     rm -rf $AUR/*
 }
 
+#remove old log files
+clean_log(){
+    cd $dotfiles && rm -f install.log && echo "cleaned old log files" || break_line
+}
+
 
 ####func to setup my directory tree
 dir_tree(){
-
     log echo "#----------------------------------------------- Setup directory tree"
     mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}} \
     && log echo "        Directory tree {OK}" && break_line || log erro_msg
@@ -70,7 +74,6 @@ dir_tree(){
 
 ####func to install packages on arch linux
 install_packages(){
-
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
     log_error sudo pacman -Sy xorg xclip man tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol youtube-dl qt gimp picom --noconfirm \
@@ -87,7 +90,6 @@ Python_config(){
 
 ####func to install the graphic drivers(depends of your hardware)
 Graphic_drivers(){
-
     log echo "#----------------------------------------------- Graphic drives and NVIDIA" && break_line
     log_error sudo pacman -S xf86-video-intel vulkan-intel mesa-demos nvidia nvidia-utils nvidia-settings bumblebee --noconfirm \
     && log echo "	     Graphic Drivers {OK}" && break_line || log erro_msg
@@ -95,11 +97,11 @@ Graphic_drivers(){
 
 ####AUR Packges installation func(with MAKEPKG)
 AUR_install(){
-
     log echo "#---------------------------------------- AUR packages" && break_line
     log echo "Installing some AUR Packages" && break_line
     log echo "#OPTIMUS MANAGER AND GDM" && break_line
     log echo " gdm-prime optimus-manager optimus-manager-qt"
+    log_error sudo pacman -Rs libgdm \
     log_error make_pkg_AUR gdm-prime \
     && log_error make_pkg_AUR optimus-manager \
     && log_error make_pkg_AUR optimus-manager-qt \
@@ -137,7 +139,6 @@ AUR_install(){
 
 ####Emacs install and copy my config file
 emacs(){
-
     log echo "#---------------------------------------- EMACS INSTALL" && break_line
     log_error cd $dotfiles && cp -r emacs/.emacs.d  ~/.emacs.d/ \
     && log echo "     Emacs config {OK} " && break_line || log erro_msg
@@ -150,7 +151,6 @@ emacs(){
 
 ####move all the others dotfiles
 general_config(){
-
     log echo "#---------------------------------------- Setup i3 and polybar" && break_line
     cd $dotfiles && cp i3/config ~/.config/i3/ \
     && cd $dotfiles && cp -r polybar/*  ~/.config/polybar/ \
@@ -217,27 +217,38 @@ general_config(){
     && log echo " General config {OK}" && break_line || log error_msg
 }
 
+#fun to run nvidia xconfig
+nvidia_xorg_config(){
+    log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
+    log echo "Only answer "y" if you are using nvidia graphic card and have the drivers"
+    log echo "->" && read option
+
+    if [ $option == "y" ]; then
+        sudo nvidia-xconfig
+        echo "Done!" && break_line
+        else:
+        echo "nvidia xconfig spiked" && break_line
+        fi
+}
+
 
 #func to clone some repositories
 git_repository_setup(){
-
     log echo "#---------------------------------------- Git Repositories" && break_line
     cd $GIT/other && git clone https://github.com/stark/Color-Scripts.git && exit_dir
     cd $GIT/other && git clone https://github.com/morpheusthewhite/spicetify-themes.git && exit_dir
     cd $GIT/other && git clone https://github.com/PlusInsta/discord-plus && exit_dir
-    log echo "#---- Better discordctl"
     cd $GIT/other && curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl\
         && chmod +x betterdiscordctl && sudo mv betterdiscordctl /usr/local/bin && sudo betterdiscordctl upgrade
     cd $GIT/other && git clone https://github.com/sebastiencs/icons-in-terminal.git && exit_dir
-    log echo " Git rep  Done"
+    log echo " Git rep  Done" && break_line
 }
 
 
 ####func that install laptoptools
 laptop_config(){
-
-    log echo "Do you want install laptop configs ?(answer with y or n) ->"
-    read option
+    log echo "Do you want install laptop configs ?(answer with y or n)"\
+    && echo "-> "read option
 
     if [ $option == "y" ]; then
         log echo "#----------------------------------------- Laptop config" && break_line
@@ -245,12 +256,12 @@ laptop_config(){
         log_error sudo pacman -S acpi tlp  xf86-input-synaptics xfce4-power-manager bluez-utils bbswitch --noconfirm \
         && log echo " Done" && break_line || log erro_msg
 
-        log echo "#--------- BUMBLEBEE CONFIG (LAPTOP ONLY)" && break_line
+        log echo "#--------- bbswitch CONFIG (LAPTOP ONLY)" && break_line
         log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/
         log_error sudo gpasswd -a luiznux bumblebee \
         && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
         && log_error tee /proc/acpi/bbswitch <<<OFF \
-        && log echo "     Bumblebee {OK}" && break_line || log erro_msg
+        && log echo "     bbswitch {OK}" && break_line || log erro_msg
 
         log echo "#--------- Light(brithness control)" && break_line
         cd ~/Github/prog/ && log_error git clone https://github.com/haikarainen/light \
@@ -259,37 +270,32 @@ laptop_config(){
 
         #TLP config
         cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
-        && log echo "     Laptop configs {OK}" && break_line || log erro_msg
+            && log echo "     Laptop configs {OK}" && break_line || log erro_msg
 
-    elif [ $option != "n" ]; then
+        log echo "Systemctl for laptop services"
+        log_error sudo systemctl enable tlp.service  \
+        && log_error systemctl disable bluetooth.service \
+
+    else
         log echo "#------------------------------------ Laptop config {SKIPED}"
+        break_line
     fi
 }
 
 
-#gaming(){
-#
-#    echo "Do you wanna install gaming drivers and steam?"
-#}
-
 ####func that enable some services
 systemd_init(){
-
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
-    log_error sudo systemctl enable NetworkManager.service \
-    && log_error systemctl enable gdm.service \
-    && log_error systemctl enable ufw.service && log_error sudo ufw enable \
-    && log_error systemctl enable optimus-manager.service \
-    && log_error systemctl disable bluetooth.service \
+    log_error systemctl enable gdm.service ufw.service optimus-manager.service \
+    log_error sudo ufw enable \
     && log echo "Done" && break_line || log erro_msg
 
-    #Laptop init
-    #log_error sudo systemctl enable tlp.service \
-    #&& log_error sudo systemctl enable bumblebeed.service
-
+    
 }
 
+
 #######################MAIN
+clean_log
 dir_tree
 install_packages
 Python_config
@@ -299,7 +305,7 @@ emacs
 general_config
 laptop_config
 git_repository_setup
-#systemd_init
+systemd_init
 
 log echo "------------- END OF INSTALL ------------" && break_line
-log echo " [$[errors]]Errors reported, see 'install.log' for more details" && break_line
+log echo " [$[errors]] Errors reported, see 'install.log' for more details" && break_line
