@@ -34,6 +34,9 @@
 (use-package all-the-icons
   :ensure t)
 
+(use-package rainbow-mode
+  :ensure t)
+
 (use-package yasnippet
   :ensure t
   :config
