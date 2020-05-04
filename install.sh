@@ -245,6 +245,7 @@ git_repository_setup(){
     cd $GIT/other && curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl\
         && chmod +x betterdiscordctl && sudo mv betterdiscordctl /usr/local/bin && sudo betterdiscordctl upgrade
     cd $GIT/other && git clone https://github.com/sebastiencs/icons-in-terminal.git && exit_dir
+    cd $GIT/other && git clone https://github.com/Brettm12345/github-moonlight  && exit_dir
     log echo " Git rep  Done" && break_line
 }
 
