@@ -89,7 +89,6 @@ install_packages(){
 Python_config(){
     log echo "#----------------------------------------------- PYTHON CONFIG" && break_line
     log_error sudo pacman -S python-pip python-sphinx python-dbus python2-gobject  python-psutil python-urwid python-pywal --noconfirm \
-    && pip install powerline-shell \
     && log echo "	     Python {OK}" && break_line || log erro_msg
 }
 
