@@ -198,8 +198,9 @@ general_config(){
     && log echo "     Wallppaer setup {OK} " && break_line || log erro_msg
 
     log echo "#---------------------------------------- Setup Themes" && break_line
-    cd $dotfiles && cd config/ && cp -r gtk-2.0 gtk-3.0 ~/.config \
-    && cd $dotfiles && cd config/ && cp .gtkrc-2.0 ~/.gtkrc-2.0 \
+    cd $dotfiles/themes/gtk/ && tar -xvf Sweet-Dark.tar.xz  && sudo mv Sweet-Dark/ /usr/share/themes/
+    cd $dotfiles && cd config/gtk/ && cp -r gtk-2.0 gtk-3.0 ~/.config \
+    && cd $dotfiles && cd config/gtk/ && cp .gtkrc-2.0 ~/.gtkrc-2.0 \
     && log echo "     GTK themes setup {OK} " && break_line || log erro_msg
 
     log echo "#---------------------------------------- Setup Pacman config" && break_line
