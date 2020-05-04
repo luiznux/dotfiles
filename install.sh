@@ -24,7 +24,12 @@ errors=0
 
 #func to break line with echo command
 break_line(){
-    echo " "
+    echo $'\n\n'
+}
+
+#delete old log file
+clean_log(){
+    rm -f $dotfiles/install.log
 }
 
 #write some installings  process in the archive 'install.log'
@@ -101,8 +106,7 @@ AUR_install(){
     log echo "Installing some AUR Packages" && break_line
     log echo "#OPTIMUS MANAGER AND GDM" && break_line
     log echo " gdm-prime optimus-manager optimus-manager-qt"
-    log_error sudo pacman -Rs libgdm \
-    log_error make_pkg_AUR gdm-prime \
+    log_error cd $AUR && git clone https://aur.archlinux.org/gdm-prime.git && cd gdm-prime && makepkg -is && exit_dir \
     && log_error make_pkg_AUR optimus-manager \
     && log_error make_pkg_AUR optimus-manager-qt \
     && log echo "Done" && break_line || log erro_msg
@@ -125,11 +129,11 @@ AUR_install(){
     && log_error make_pkg_AUR python2-twodict-git \
     && log_error make_pkg_AUR youtube-dl-gui-git \
     && log_error make_pkg_AUR jetbrains-toolbox \
-    && log_error make_pkg_AUR wps-office \
-    && log_error make_pkg_AUR ttf-wps-fonts \
     && log_error gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45 && log_error make_pkg_AUR spotify \
     && log_error sudo chmod 777 /opt/spotify -R && log_error make_pkg_AUR spicetify-cli \
     && log_error make_pkg_AUR spicetify-themes-git \
+    && log_error make_pkg_AUR wps-office \
+    && log_error make_pkg_AUR ttf-wps-fonts \
     && log echo " AUR pkgs Done" && break_line || log erro_msg
     break_line
 
@@ -248,7 +252,7 @@ git_repository_setup(){
 ####func that install laptoptools
 laptop_config(){
     log echo "Do you want install laptop configs ?(answer with y or n)"\
-    && echo "-> "read option
+    && echo "-> " && read option
 
     if [ $option == "y" ]; then
         log echo "#----------------------------------------- Laptop config" && break_line
@@ -290,7 +294,6 @@ systemd_init(){
     log_error sudo ufw enable \
     && log echo "Done" && break_line || log erro_msg
 
-    
 }
 
 
@@ -305,6 +308,7 @@ emacs
 general_config
 laptop_config
 git_repository_setup
+nvidia_xorg_config
 systemd_init
 
 log echo "------------- END OF INSTALL ------------" && break_line

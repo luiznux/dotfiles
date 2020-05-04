@@ -197,6 +197,7 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 !*.foreground:   #c5c8c6
 !*.cursorColor:  #7e7eae
 !*.background:   #000000
+!
 !! black
 !*.color0:       #282a2e
 !*.color8:       #373b41

@@ -26,7 +26,7 @@
 set $mod	    Mod4
 
 #define terminal
-set $term       urxvt
+set $term       st
 
 #define browser
 set $browser    firefox
@@ -323,6 +323,9 @@ client.placeholder      #070B15 #070B15 #070B15 #070B15   #070B15
 
 #POLYBAR
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+#Picom
+exec_always --no-startup-id picom
 
 #Mv transmisson to workspace 6
 assign [class="Transmission"]  $ws6
