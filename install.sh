@@ -81,7 +81,11 @@ dir_tree(){
 install_packages(){
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
+<<<<<<< HEAD
     log_error sudo pacman -Sy xorg xclip man tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol youtube-dl qt gimp picom cups cups-pdf system-config-printer --noconfirm \
+=======
+    log_error sudo pacman -Sy xorg xclip man tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol youtube-dl qt gimp picom code --noconfirm \
+>>>>>>> 1f675e161def47e612c8fa432222d17ccce84a58
     && log echo "        Packages {OK}" && break_line || log erro_msg
 }
 
@@ -89,7 +93,6 @@ install_packages(){
 Python_config(){
     log echo "#----------------------------------------------- PYTHON CONFIG" && break_line
     log_error sudo pacman -S python-pip python-sphinx python-dbus python2-gobject  python-psutil python-urwid python-pywal --noconfirm \
-    && pip install powerline-shell \
     && log echo "	     Python {OK}" && break_line || log erro_msg
 }
 
@@ -199,8 +202,9 @@ general_config(){
     && log echo "     Wallppaer setup {OK} " && break_line || log erro_msg
 
     log echo "#---------------------------------------- Setup Themes" && break_line
-    cd $dotfiles && cd config/ && cp -r gtk-2.0 gtk-3.0 ~/.config \
-    && cd $dotfiles && cd config/ && cp .gtkrc-2.0 ~/.gtkrc-2.0 \
+    cd $dotfiles/themes/gtk/ && tar -xvf Sweet-Dark.tar.xz  && sudo mv Sweet-Dark/ /usr/share/themes/
+    cd $dotfiles && cd config/gtk/ && cp -r gtk-2.0 gtk-3.0 ~/.config \
+    && cd $dotfiles && cd config/gtk/ && cp .gtkrc-2.0 ~/.gtkrc-2.0 \
     && log echo "     GTK themes setup {OK} " && break_line || log erro_msg
 
     log echo "#---------------------------------------- Setup Pacman config" && break_line
@@ -245,6 +249,7 @@ git_repository_setup(){
     cd $GIT/other && curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl\
         && chmod +x betterdiscordctl && sudo mv betterdiscordctl /usr/local/bin && sudo betterdiscordctl upgrade
     cd $GIT/other && git clone https://github.com/sebastiencs/icons-in-terminal.git && exit_dir
+    cd $GIT/other && git clone https://github.com/Brettm12345/github-moonlight  && exit_dir
     log echo " Git rep  Done" && break_line
 }
 
