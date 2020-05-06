@@ -7,7 +7,7 @@
 #     ██║██║ ╚████║███████║   ██║   ██║  ██║███████╗███████╗
 #     ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝
 #
-
+#
 # source https://github.com/luiznux/dotfiles
 # This is the install scrpit that resolves most of the files in this repository.
 # It will install some packages too and only works in Arch linux distro.
@@ -16,94 +16,94 @@
 # Do you have any sugestions and/or comments? Just call me.
 #----------------------------------------------------------------------------------
 
-#Variables
+# Variables
 dotfiles=$(pwd)
 AUR=~/AUR
 GIT=~/Github
 errors=0
 
-#func to break line with echo command
+# func to break line with echo command
 break_line(){
     echo $'\n\n'
 }
 
-#delete old log file
+# delete old log file
 clean_log(){
     rm -f $dotfiles/install.log
 }
 
-#write some installings  process in the archive 'install.log'
+# write some installings  process in the archive 'install.log'
 log(){
     $*
     $* >> $dotfiles/install.log
 }
 
-#this func will only write on the archive 'install.log' if a bash error occurred
+# this func will only write on the archive 'install.log' if a bash error occurred
 log_error(){
     $* 2>> $dotfiles/install.log
 }
 
-#print erro mgs
+# print erro mgs
 erro_msg(){
     ((++errors)) \
     && echo "  ERROR[$[errors]]" && break_line
 }
 
-#exit dir func
+# exit dir func
 exit_dir(){
     cd ..
 }
 
-#func to install aur packages
+# func to install aur packages
 make_pkg_AUR(){
     cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -is --noconfirm && exit_dir
 }
 
-#func to clean AUR dir
+# func to clean AUR dir
 clean_AUR(){
     rm -rf $AUR/*
 }
 
-#remove old log files
+# remove old log files
 clean_log(){
     cd $dotfiles && rm -f install.log && echo "cleaned old log files" || break_line
 }
 
 
-####func to setup my directory tree
+#### func to setup my directory tree
 dir_tree(){
     log echo "#----------------------------------------------- Setup directory tree"
     mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}} \
     && log echo "        Directory tree {OK}" && break_line || log erro_msg
 }
 
-####func to install packages on arch linux
+
+#### func to install packages on arch linux
 install_packages(){
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
-<<<<<<< HEAD
     log_error sudo pacman -Sy xorg xclip man tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol youtube-dl qt gimp picom cups cups-pdf system-config-printer --noconfirm \
-=======
-    log_error sudo pacman -Sy xorg xclip man tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol youtube-dl qt gimp picom code --noconfirm \
->>>>>>> 1f675e161def47e612c8fa432222d17ccce84a58
     && log echo "        Packages {OK}" && break_line || log erro_msg
 }
 
-####func to install some python packages
+
+#### func to install some python packages
 Python_config(){
     log echo "#----------------------------------------------- PYTHON CONFIG" && break_line
     log_error sudo pacman -S python-pip python-sphinx python-dbus python2-gobject  python-psutil python-urwid python-pywal --noconfirm \
     && log echo "	     Python {OK}" && break_line || log erro_msg
 }
 
-####func to install the graphic drivers(depends of your hardware)
+
+#### func to install the graphic drivers(depends of your hardware)
 Graphic_drivers(){
     log echo "#----------------------------------------------- Graphic drives and NVIDIA" && break_line
     log_error sudo pacman -S xf86-video-intel vulkan-intel mesa-demos nvidia nvidia-utils nvidia-settings bumblebee --noconfirm \
     && log echo "	     Graphic Drivers {OK}" && break_line || log erro_msg
 }
 
-####AUR Packges installation func(with MAKEPKG)
+
+#### AUR Packges installation func(with MAKEPKG)
 AUR_install(){
     log echo "#---------------------------------------- AUR packages" && break_line
     log echo "Installing some AUR Packages" && break_line
@@ -139,12 +139,10 @@ AUR_install(){
     && log_error make_pkg_AUR ttf-wps-fonts \
     && log echo " AUR pkgs Done" && break_line || log erro_msg
     break_line
-
-    #&& log_error make_pkg_AUR ffmpeg-compat-57 \
 }
 
 
-####Emacs install and copy my config file
+#### Emacs install and copy my config file
 emacs(){
     log echo "#---------------------------------------- EMACS INSTALL" && break_line
     log_error cd $dotfiles && cp -r emacs/.emacs.d  ~/.emacs.d/ \
@@ -156,18 +154,12 @@ emacs(){
 }
 
 
-####move all the others dotfiles
+#### move all the others dotfiles
 general_config(){
     log echo "#---------------------------------------- Setup i3 and polybar" && break_line
     cd $dotfiles && cp i3/config ~/.config/i3/ \
     && cd $dotfiles && cp -r polybar/*  ~/.config/polybar/ \
     && log echo "     I3 and Polybar config {OK} " && break_line || log erro_msg
-
-    #log echo "#---------------------------------------- Polyabar Forecast" && break_line
-    #log_error cd ~/.config/polybar/ && git clone https://github.com/kamek-pf/polybar-forecast.git \
-    #&& log_error cd ~/.config/polybar/polybar-forecast/ && log_error cargo build --release \
-    #&& cp $dotfiles/polybar/config.toml .config/polybar/polybar-forecast/ \
-    #&& log echo"	  Scripts {OK}" && break_line || log erro_msg
 
     log echo "#---------------------------------------- Ranger config" && break_line
     cd $dotfiles && cp config/rc.conf  ~/.config/ranger/ \
@@ -223,26 +215,18 @@ general_config(){
     && cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
     && cd $dotfiles && sudo cp config/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/\
     && log echo " General config {OK}" && break_line || log error_msg
-}
 
-#fun to run nvidia xconfig
-nvidia_xorg_config(){
-    log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
-    log echo "Only answer "y" if you are using nvidia graphic card and have the drivers"
-    log echo "->" && read option
-
-    if [ $option == "y" ]; then
-        sudo nvidia-xconfig
-        echo "Done!" && break_line
-        else:
-        echo "nvidia xconfig spiked" && break_line
-        fi
+    #log echo "#---------------------------------------- Polyabar Forecast" && break_line
+    #log_error cd ~/.config/polybar/ && git clone https://github.com/kamek-pf/polybar-forecast.git \
+    #&& log_error cd ~/.config/polybar/polybar-forecast/ && log_error cargo build --release \
+    #&& cp $dotfiles/polybar/config.toml .config/polybar/polybar-forecast/ \
+    #&& log echo"	  Scripts {OK}" && break_line || log erro_msg
 }
 
 
-#func to clone some repositories
+### func to clone some repositories
 git_repository_setup(){
-    log echo "#---------------------------------------- Git Repositories" && break_line
+    log echo "#---------------------------------------- Git Repositories Clone " && break_line
     cd $GIT/other && git clone https://github.com/stark/Color-Scripts.git && exit_dir
     cd $GIT/other && git clone https://github.com/morpheusthewhite/spicetify-themes.git && exit_dir
     cd $GIT/other && git clone https://github.com/PlusInsta/discord-plus && exit_dir
@@ -254,7 +238,23 @@ git_repository_setup(){
 }
 
 
-####func that install laptoptools
+### run nvidia xconfig
+nvidia_xorg_config(){
+    log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
+    log echo "Only answer 'y' if you are using nvidia graphic card and have the drivers"
+    log echo "->" && read option
+
+    if [ $option == "y" ]; then
+        sudo nvidia-xconfig
+        echo "Done!" && break_line
+
+        else:
+        echo "Nvidia xconfig {SKIPED} " && break_line
+        fi
+}
+
+
+#### func to install laptoptools
 laptop_config(){
     log echo "Do you want install laptop configs ?(answer with y or n)"\
     && echo "-> " && read option
@@ -292,17 +292,16 @@ laptop_config(){
 }
 
 
-####func that enable some services
+#### func to enable some services
 systemd_init(){
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
     log_error systemctl enable gdm.service ufw.service optimus-manager.service \
     log_error sudo ufw enable \
     && log echo "Done" && break_line || log erro_msg
-
 }
 
 
-#######################MAIN
+####################### MAIN
 clean_log
 dir_tree
 install_packages
