@@ -305,12 +305,13 @@ $ grub-mkconfig -o /boot/grub/grub.cfg
 
 ## 19. Exit, be happy and pray for the grub to work :)
 
+* Remeber to enable network
+```bash
+$ systemctl enable NetworkManager
+```
 
 ```bash
 $ exit
 $ umount -R /mnt
 $ systemctl reboot
-
-$ systemctl enable NetworkManager
-$ systemctl enable dhcpcd
 ```
