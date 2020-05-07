@@ -45,8 +45,7 @@ log_error(){
 
 # print erro mgs
 erro_msg(){
-    ((++errors)) \
-    && echo "  ERROR[$[errors]]" && break_line
+    ((errors+=1)) && echo "  ERROR[$[errors]]" && break_line
 }
 
 # exit dir func
@@ -112,7 +111,7 @@ AUR_install(){
     log_error cd $AUR && git clone https://aur.archlinux.org/gdm-prime.git && cd gdm-prime && makepkg -is && exit_dir \
     && log_error make_pkg_AUR optimus-manager \
     && log_error make_pkg_AUR optimus-manager-qt \
-    && log echo "Done" && break_line || log erro_msg
+    && log echo "----- Done" && break_line || log erro_msg
 
     log echo "#------------ Other packages" && break_line
     log echo "nvidia-xrun python-pdftotext polybar thermald ttf-weather-icon rar pygtk python2-twodict-git youtube-dl-gui-git"
@@ -137,7 +136,7 @@ AUR_install(){
     && log_error make_pkg_AUR spicetify-themes-git \
     && log_error make_pkg_AUR wps-office \
     && log_error make_pkg_AUR ttf-wps-fonts \
-    && log echo " AUR pkgs Done" && break_line || log erro_msg
+    && log echo "--------- AUR pkgs Done " && break_line || log erro_msg
     break_line
 }
 
@@ -214,12 +213,6 @@ general_config(){
     && cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
     && cd $dotfiles && sudo cp config/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/\
     && log echo " General config {OK}" && break_line || log error_msg
-
-    #log echo "#---------------------------------------- Polyabar Forecast" && break_line
-    #log_error cd ~/.config/polybar/ && git clone https://github.com/kamek-pf/polybar-forecast.git \
-    #&& log_error cd ~/.config/polybar/polybar-forecast/ && log_error cargo build --release \
-    #&& cp $dotfiles/polybar/config.toml .config/polybar/polybar-forecast/ \
-    #&& log echo"	  Scripts {OK}" && break_line || log erro_msg
 }
 
 
@@ -229,7 +222,7 @@ git_repository_setup(){
     cd $GIT/other && git clone https://github.com/stark/Color-Scripts.git && exit_dir
     cd $GIT/other && git clone https://github.com/morpheusthewhite/spicetify-themes.git && exit_dir
     cd $GIT/other && git clone https://github.com/PlusInsta/discord-plus && exit_dir
-    cd $GIT/other && curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl\
+    cd $GIT/other && curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl \
         && chmod +x betterdiscordctl && sudo mv betterdiscordctl /usr/local/bin && sudo betterdiscordctl upgrade
     cd $GIT/other && git clone https://github.com/sebastiencs/icons-in-terminal.git && exit_dir
     cd $GIT/other && git clone https://github.com/Brettm12345/github-moonlight  && exit_dir
@@ -241,7 +234,7 @@ git_repository_setup(){
 nvidia_xorg_config(){
     log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
     log echo "Only answer 'y' if you are using nvidia graphic card and have the drivers"
-    log echo "->" && read option
+    log read -p  "--> "  option
 
     if [ $option == "y" ]; then
         sudo nvidia-xconfig
@@ -255,8 +248,8 @@ nvidia_xorg_config(){
 
 #### func to install laptoptools
 laptop_config(){
-    log echo "Do you want install laptop configs ?(answer with y or n)"\
-    && echo "-> " && read option
+    log echo "Do you want install laptop configs ?(answer with y or n)"
+    log read -p  "--> "  option
 
     if [ $option == "y" ]; then
         log echo "#----------------------------------------- Laptop config" && break_line
