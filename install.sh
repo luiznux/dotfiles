@@ -97,7 +97,7 @@ Python_config(){
 #### func to install the graphic drivers(depends of your hardware)
 Graphic_drivers(){
     log echo "#----------------------------------------------- Graphic drives and NVIDIA" && break_line
-    log_error sudo pacman -S xf86-video-intel vulkan-intel mesa-demos nvidia nvidia-utils nvidia-settings bumblebee --noconfirm \
+    log_error sudo pacman -S xf86-video-intel vulkan-intel mesa-demos nvidia nvidia-utils nvidia-settings --noconfirm \
     && log echo "	     Graphic Drivers {OK}" && break_line || log erro_msg
 }
 
@@ -114,10 +114,9 @@ AUR_install(){
     && log echo "----- Done" && break_line || log erro_msg
 
     log echo "#------------ Other packages" && break_line
-    log echo "nvidia-xrun python-pdftotext polybar thermald ttf-weather-icon rar pygtk python2-twodict-git youtube-dl-gui-git"
-    log echo "jetbrains-toolbox wps-office ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify spicetify-cli" && break_line
-    log_error make_pkg_AUR nvidia-xrun \
-    && log_error make_pkg_AUR python-pdftotext \
+    log echo "python-pdftotext polybar thermald ttf-weather-icon rar pygtk python2-twodict-git youtube-dl-gui-git jetbrains-toolbox "
+    log echo " wps-office ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify spicetify-cli" && break_line
+    log_error make_pkg_AUR python-pdftotext \
     && log_error make_pkg_AUR polybar \
     && log_error make_pkg_AUR thermald \
     && log_error make_pkg_AUR ttf-weather-icons \
@@ -230,6 +229,45 @@ git_repository_setup(){
 }
 
 
+#### func to install laptoptools
+laptop_config(){
+    log echo "Do you want install laptop configs ?(answer with y or n)"
+    log read -p  "--> "  option
+
+    if [ $option == "y" ]; then
+        log echo "#----------------------------------------- Laptop config" && break_line
+        log echo "#--------- Laptop packges" && break_line
+        log_error sudo pacman -S acpi tlp bumblebee xf86-input-synaptics xfce4-power-manager bluez-utils --noconfirm \
+        && log_error make_pkg_AUR nvidia-xrun \
+        && log echo " Done" && break_line || log erro_msg
+
+        log echo "#--------- bbswitch CONFIG (LAPTOP ONLY)" && break_line
+        log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/
+        log_error sudo gpasswd -a luiznux bumblebee \
+        && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
+        && log_error sudo tee /proc/acpi/bbswitch <<<OFF \
+        && log echo "     bbswitch {OK}" && break_line || log erro_msg
+
+        log echo "#--------- Light(brithness control)" && break_line
+        cd ~/Github/prog/ && log_error git clone https://github.com/haikarainen/light \
+        && cd ~/Github/prog/light && log_error ./autogen.sh && log_error ./configure && sudo make \
+        && log echo "     Light {OK}" && break_line || log erro_msg
+
+        #TLP config
+        cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
+            && log echo "     Laptop configs {OK}" && break_line || log erro_msg
+
+        log echo "Systemctl for laptop services"
+        log_error systemctl enable tlp.service bumblebeed.service \
+        && log_error systemctl disable bluetooth.service \
+
+    else
+        log echo "#------------------------------------ Laptop config {SKIPED}"
+        break_line
+    fi
+}
+
+
 ### run nvidia xconfig
 nvidia_xorg_config(){
     log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
@@ -243,44 +281,6 @@ nvidia_xorg_config(){
         else:
         echo "Nvidia xconfig {SKIPED} " && break_line
         fi
-}
-
-
-#### func to install laptoptools
-laptop_config(){
-    log echo "Do you want install laptop configs ?(answer with y or n)"
-    log read -p  "--> "  option
-
-    if [ $option == "y" ]; then
-        log echo "#----------------------------------------- Laptop config" && break_line
-        log echo "#--------- Laptop packges" && break_line
-        log_error sudo pacman -S acpi tlp  xf86-input-synaptics xfce4-power-manager bluez-utils bbswitch --noconfirm \
-        && log echo " Done" && break_line || log erro_msg
-
-        log echo "#--------- bbswitch CONFIG (LAPTOP ONLY)" && break_line
-        log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/
-        log_error sudo gpasswd -a luiznux bumblebee \
-        && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
-        && log_error tee /proc/acpi/bbswitch <<<OFF \
-        && log echo "     bbswitch {OK}" && break_line || log erro_msg
-
-        log echo "#--------- Light(brithness control)" && break_line
-        cd ~/Github/prog/ && log_error git clone https://github.com/haikarainen/light \
-        && cd ~/Github/prog/light && log_error ./autogen.sh && log_error ./configure && sudo make \
-        && log echo "     Light {OK}" && break_line || log erro_msg
-
-        #TLP config
-        cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
-            && log echo "     Laptop configs {OK}" && break_line || log erro_msg
-
-        log echo "Systemctl for laptop services"
-        log_error sudo systemctl enable tlp.service  \
-        && log_error systemctl disable bluetooth.service \
-
-    else
-        log echo "#------------------------------------ Laptop config {SKIPED}"
-        break_line
-    fi
 }
 
 
@@ -302,8 +302,8 @@ Graphic_drivers
 AUR_install
 emacs
 general_config
-laptop_config
 git_repository_setup
+laptop_config
 nvidia_xorg_config
 systemd_init
 
