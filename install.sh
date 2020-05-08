@@ -194,7 +194,7 @@ general_config(){
     && log echo "     Wallppaer setup {OK} " && break_line || log erro_msg
 
     log echo "#---------------------------------------- Setup Themes" && break_line
-    cd $dotfiles/themes/gtk/ && tar -xvf Sweet-Dark.tar.xz  && sudo mv Sweet-Dark/ /usr/share/themes/
+    cd $dotfiles/themes/gtk/ && tar -xvf Sweet-Dark.tar.xz  && sudo mv Sweet-Dark /usr/share/themes/
     cd $dotfiles && cd config/gtk/ && cp -r gtk-2.0 gtk-3.0 ~/.config \
     && cd $dotfiles && cd config/gtk/ && cp .gtkrc-2.0 ~/.gtkrc-2.0 \
     && log echo "     GTK themes setup {OK} " && break_line || log erro_msg
@@ -211,7 +211,6 @@ general_config(){
     && cd $dotfiles && cp -r config/sxiv ~/.config/ \
     && cd $dotfiles && cp config/.bashrc ~/ \
     && cd $dotfiles && cp -r config/dunst ~/.config/ \
-    && cd $dotfiles && cp -r config/powerline-shell/ ~/.config/ \
     && cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
     && cd $dotfiles && sudo cp config/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/\
     && log echo " General config {OK}" && break_line || log error_msg
@@ -296,7 +295,7 @@ laptop_config(){
 systemd_init(){
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
     log_error systemctl enable gdm.service ufw.service optimus-manager.service \
-    log_error sudo ufw enable \
+    && log_error sudo ufw enable \
     && log echo "Done" && break_line || log erro_msg
 }
 
