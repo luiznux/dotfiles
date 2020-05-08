@@ -54,8 +54,13 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 
-# vi mode
+# vim  mode
 bindkey -v
+
+# no delay entering normal mode
+# https://coderwall.com/p/h63etq
+# https://github.com/pda/dotzsh/blob/master/keyboard.zsh#L10
+# 10ms for key sequences
 export KEYTIMEOUT=1
 
 #auto cd into typed directory
@@ -64,13 +69,19 @@ setopt autocd
 setopt nomatch notify 
 unsetopt autocd beep extendedglob
 
-
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/luiznux/.zshrc'
+#autocomplete config
+setopt globdots
 autoload -Uz compinit
 compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
 _comp_options+=(globdots)	#include hidden files
-# End of lines added by compinstall
+#vim keys to navigation on menu completion
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+
 
 
 # If not running interactively, don't do anything
@@ -106,7 +117,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 #----------- Oh My Zsh -----------#
 #
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/luiznux/.oh-my-zsh"
@@ -180,6 +191,7 @@ plugins=(
     colorize
     colored-man-pages
     extract
+    vi-mode
     history
 )
 
