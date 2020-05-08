@@ -8,11 +8,13 @@
 #                                          
 #  
 
+
 export PATH="${PATH}:${HOME}/.local/bin/"
 export EDITOR=vim
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
+
 
 #---------------------------------#
 #------------ Aliases-------------#
@@ -21,6 +23,9 @@ alias ..='cd ..'
 alias ...='cd ../../../'
 alias r='ranger'
 alias v='vim'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 alias sv='sudo vim'
 alias ka='killall'
 alias p='sudo pacman'
@@ -39,35 +44,41 @@ alias dotfiles='cd ~/Github/luiznux/dotfiles/'
 alias ethspeed='speedometer -r enp2s0'
 alias wifispeed='speedometer -r wlp3s0'
 
+
 #---------------------------------#
 #----------- Config --------------#
 #
 
-
-#emacs keys
-bindkey -e
-
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/luiznux/.zshrc'
-
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-
-
-setopt nomatch notify
-unsetopt autocd beep extendedglob
-
-# Lines configured by zsh-newuser-install
+#history  cache
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
+
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+#auto cd into typed directory
+setopt autocd	
+
+setopt nomatch notify 
+unsetopt autocd beep extendedglob
+
+
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/luiznux/.zshrc'
+autoload -Uz compinit
+compinit
+_comp_options+=(globdots)	#include hidden files
+# End of lines added by compinstall
+
 
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
+
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -81,13 +92,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -97,8 +105,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 #---------------------------------#
 #----------- Oh My Zsh -----------#
 #
-
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -194,7 +200,7 @@ source $ZSH/oh-my-zsh.sh
  fi
 
 # Compilation flags
- export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -206,4 +212,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
+#Syntax highlighting path
 source /home/luiznux/Github/prog/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
