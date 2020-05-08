@@ -198,7 +198,6 @@ general_config(){
     log sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
     && cp $dotfiles/config/.zshrc ~/ \
     && cd $GIT/prog/ && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-    && echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc \
     && log echo "     Zsh config {OK} " && break_line || log erro_msg
 
     log echo "#---------------------------------------- Other Configs " && break_line
