@@ -81,7 +81,7 @@ dir_tree(){
 install_packages(){
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
-    log_error sudo pacman -Sy xorg xclip man tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol youtube-dl qt gimp picom cups cups-pdf system-config-printer --noconfirm \
+    log_error sudo pacman -Sy xorg xclip man tree neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol youtube-dl qt gimp picom cups cups-pdf system-config-printer gdm --noconfirm \
     && log echo "        Packages {OK}" && break_line || log erro_msg
 }
 
@@ -106,16 +106,8 @@ Graphic_drivers(){
 AUR_install(){
     log echo "#---------------------------------------- AUR packages" && break_line
     log echo "Installing some AUR Packages" && break_line
-    log echo "#OPTIMUS MANAGER AND GDM" && break_line
-    log echo " gdm-prime optimus-manager optimus-manager-qt"
-    log_error cd $AUR && git clone https://aur.archlinux.org/gdm-prime.git && cd gdm-prime && makepkg -is && exit_dir \
-    && log_error make_pkg_AUR optimus-manager \
-    && log_error make_pkg_AUR optimus-manager-qt \
-    && log echo "----- Done" && break_line || log erro_msg
-
-    log echo "#------------ Other packages" && break_line
     log echo "python-pdftotext polybar thermald ttf-weather-icon rar pygtk python2-twodict-git youtube-dl-gui-git jetbrains-toolbox "
-    log echo " wps-office ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify spicetify-cli" && break_line
+    log echo "wps-office ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify spicetify-cli" && break_line
     log_error make_pkg_AUR python-pdftotext \
     && log_error make_pkg_AUR polybar \
     && log_error make_pkg_AUR thermald \
@@ -239,14 +231,20 @@ laptop_config(){
         log echo "#--------- Laptop packges" && break_line
         log_error sudo pacman -S acpi tlp bumblebee xf86-input-synaptics xfce4-power-manager bluez-utils --noconfirm \
         && log_error make_pkg_AUR nvidia-xrun \
-        && log echo " Done" && break_line || log erro_msg
+        && log echo " Lapto packages {OK}" && break_line || log erro_msg
 
-        log echo "#--------- bbswitch CONFIG (LAPTOP ONLY)" && break_line
+        log echo "#----------------------------------------- Optimus Manager and Gdm prime(AUR)" && break_line
+        log_error cd $AUR && git clone https://aur.archlinux.org/gdm-prime.git && cd gdm-prime && makepkg -is && exit_dir \
+        && log_error make_pkg_AUR optimus-manager \
+        && log_error make_pkg_AUR optimus-manager-qt \
+        && log echo " Optimus  {OK}" && break_line || log erro_msg
+
+        log echo "#--------- Bbswitch CONFIG (LAPTOP ONLY)" && break_line
         log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/
         log_error sudo gpasswd -a luiznux bumblebee \
         && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
         && log_error sudo tee /proc/acpi/bbswitch <<<OFF \
-        && log echo "     bbswitch {OK}" && break_line || log erro_msg
+        && log echo "     Bbswitch {OK}" && break_line || log erro_msg
 
         log echo "#--------- Light(brithness control)" && break_line
         cd ~/Github/prog/ && log_error git clone https://github.com/haikarainen/light \
@@ -255,10 +253,10 @@ laptop_config(){
 
         #TLP config
         cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
-            && log echo "     Laptop configs {OK}" && break_line || log erro_msg
+        && log echo "     Laptop configs {OK}" && break_line || log erro_msg
 
         log echo "Systemctl for laptop services"
-        log_error systemctl enable tlp.service bumblebeed.service \
+        log_error systemctl enable tlp.service optimus-manager.service bumblebeed.service \
         && log_error systemctl disable bluetooth.service \
 
     else
@@ -287,7 +285,7 @@ nvidia_xorg_config(){
 #### func to enable some services
 systemd_init(){
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
-    log_error systemctl enable gdm.service ufw.service optimus-manager.service \
+    log_error systemctl enable gdm.service ufw.service \
     && log_error sudo ufw enable \
     && log echo "Done" && break_line || log erro_msg
 }
