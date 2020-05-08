@@ -25,6 +25,7 @@
 #set mod key
 set $mod	    Mod4
 
+
 #define terminal
 set $term       st
 
@@ -97,12 +98,21 @@ bindsym --release $mod+Shift+Return "exec sh ~/.config/screenshots.sh"
 #----------------------------------------------------------------------------#
 #Just remember that you might have to install the packages bellow to this config works
 
-# Pulse Audio controls
+# Pulse Audio controls(laptop)
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Media volume controls(desktop)
+#bindsym XF86AudioMute exec amixer sset 'Master' toggle
+#bindsym XF86AudioLowerVolume exec amixer sset 'Master' 5%-
+#bindsym XF86AudioRaiseVolume exec amixer sset 'Master' 5%+
+
+# Media player controls
+bindsym XF86AudioPlay  exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl stop
+bindsym XF86AudioNext  exec playerctl next
+bindsym XF86AudioPrev  exec playerctl previous
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
@@ -119,11 +129,6 @@ bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
 #    synclient TouchpadOff=0 ;
 #fi
 
-# Media player controls
-bindsym XF86AudioPlay  exec playerctl play-pause
-bindsym XF86AudioPause exec playerctl stop
-bindsym XF86AudioNext  exec playerctl next
-bindsym XF86AudioPrev  exec playerctl previous
 
 
 #----------------------------------------------------------------------------#
