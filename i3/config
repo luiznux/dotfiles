@@ -193,8 +193,8 @@ bindsym $mod+r	            mode "resize"
 bindsym $mod+v				split v
 
 # split in horizontal orientation
-bindsym $mod+ccedilla       split h
-
+#bindsym $mod+ccedilla       split h
+bindsym $mod+semicolon      split h
 
 #----------------------------------------------------------------------#
 #--------------------------- Window moviment --------------------------#
