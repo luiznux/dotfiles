@@ -32,6 +32,7 @@ alias p='sudo pacman'
 alias o='xdg-open'
 alias SS='sudo systemctl'
 alias ca='gnome-calculator &'
+alias diff=colordiff
 alias volume='pavucontrol &'
 alias pc='sudo pacman -Scc' #clean all pacman cache
 alias update='sudo pacman -Syu' # update all packages(Archlinux)
@@ -205,11 +206,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
- else
-   export EDITOR='mvim'
- fi
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
