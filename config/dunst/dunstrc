@@ -191,7 +191,7 @@ context = ctrl+shift+period
 frame_color =  "#9c63ca"
 foreground  =  "#c5c8c6"
 background  =  "#0b0719"
-timeout = 6
+timeout = 7
 
 [urgency_normal]
 frame_color =  "#9c63ca"
