@@ -12,7 +12,9 @@ font = Source Code Pro 9
 # <http://developer.gnome.org/pango/stable/PangoMarkupFormat.html>.
 # If markup is not allowed, those tags will be stripped out of the
 # message.
-markup = yes
+#markup = yes
+markup = full
+
 plain_text = no
 
 # The format of the message.  Possible variables are:
@@ -23,7 +25,8 @@ plain_text = no
 #   %I  iconname (without its path)
 #   %p  progress value if set ([  0%] to [100%]) or nothing
 # Markup is allowed
-format = "%i<b> %s</b> \n%b"
+#format = "%i<b> %s</b> \n%b"
+format = "<b>%s</b>\n%b"
 
 # Sort messages by urgency.
 sort = no
@@ -201,6 +204,8 @@ frame_color = "a54242"
 foreground = "#a54242"
 background = "#191311"
 timeout = 11
+#icon for critical notifications
+icon =/home/luiznux/.config/dunst/critical.png
 
 
 # Every section that isn't one of the above is interpreted as a rules to
