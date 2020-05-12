@@ -55,7 +55,13 @@ exit_dir(){
 
 # func to install aur packages
 make_pkg_AUR(){
-    cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -is --noconfirm && exit_dir
+    #in case the dir already exists
+    if [ -d "$AUR/$1" ];then
+        cd $AUR/$1 && makepkg -is --noconfirm && exit_dir
+
+    else
+        cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -is --noconfirm && exit_dir
+    fi
 }
 
 # func to clean AUR dir
