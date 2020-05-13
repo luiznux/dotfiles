@@ -43,6 +43,9 @@
   (yas-global-mode 1)
   :hook (go-mode . yas-minor-mode))
 
+(use-package yasnippet-snippets
+  :ensure t)
+
 (use-package flycheck
   :ensure t
   :init
