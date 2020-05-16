@@ -1,10 +1,10 @@
 !
-!██╗  ██╗██████╗ ███████╗███████╗ ██████╗ ██╗   ██╗██████╗  ██████╗███████╗███████╗
-!╚██╗██╔╝██╔══██╗██╔════╝██╔════╝██╔═══██╗██║   ██║██╔══██╗██╔════╝██╔════╝██╔════╝
-! ╚███╔╝ ██████╔╝█████╗  ███████╗██║   ██║██║   ██║██████╔╝██║     █████╗  ███████╗
-! ██╔██╗ ██╔══██╗██╔══╝  ╚════██║██║   ██║██║   ██║██╔══██╗██║     ██╔══╝  ╚════██║
-!██╔╝ ██╗██║  ██║███████╗███████║╚██████╔╝╚██████╔╝██║  ██║╚██████╗███████╗███████║
-!╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚══════╝╚══════╝
+!   ██╗  ██╗██████╗ ███████╗███████╗ ██████╗ ██╗   ██╗██████╗  ██████╗███████╗███████╗
+!   ╚██╗██╔╝██╔══██╗██╔════╝██╔════╝██╔═══██╗██║   ██║██╔══██╗██╔════╝██╔════╝██╔════╝
+!    ╚███╔╝ ██████╔╝█████╗  ███████╗██║   ██║██║   ██║██████╔╝██║     █████╗  ███████╗
+!    ██╔██╗ ██╔══██╗██╔══╝  ╚════██║██║   ██║██║   ██║██╔══██╗██║     ██╔══╝  ╚════██║
+!   ██╔╝ ██╗██║  ██║███████╗███████║╚██████╔╝╚██████╔╝██║  ██║╚██████╗███████╗███████║
+!   ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚══════╝╚══════╝
 
 ! Xresources config luiznux
 !
@@ -33,6 +33,7 @@ URxvt*iso14755:           false
 URxvt*iso14755_52:        false
 URxvt*meta8:              false
 URxvt*metaSendsEscape:    false
+
 
 
 !---------------- Appearance ------------------------
@@ -67,7 +68,6 @@ Xft.hintstyle:    hintfull
 Xft.autohint:     false
 Xft.lcdfilter:    lcddefault
 
-
 !! Common Keybinds for Navigations
 !
 !Shift Up to scroll one line higher
@@ -90,7 +90,6 @@ URxvt.keysym.Control-Left:    \033[1;5D
 !Extensions
 URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select,resize-font
 
-
 !Font-size config
 !See https://github.com/simmel/urxvt-resize-font for more details
 !
@@ -102,7 +101,6 @@ URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select,resize-font
 !URxvt.keysym.C-S-Up:        font-size:incglobal
 !URxvt.keysym.C-S-Down:      font-size:decglobal
 URxvt.font-size.step:        1
-
 
 !Keyboard-select
 !
@@ -123,7 +121,6 @@ URxvt.keysym.M-s:      perl:keyboard-select:search
 !y/Return:   Copy selection to primary buffer, Return: quit afterwards
 !Y:          Copy selected lines to primary buffer or cursor line and quit
 !q/Escape:   Quit keyboard selection mode
-
 
 !url select
 URxvt.keysym.M-u:                perl:url-select:select_next
@@ -146,46 +143,39 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 !--------------- Global settings --------------------
 !
 
-*font:     Source Code Pro:pixelsize=16:antialias=true:autohint=true
+*font:     Source Code Pro:pixelsize=15:antialias=true:autohint=true
 
 
 !---------------------------------------------------
 !-------------------- COLORS -----------------------
 
 !----------------------- Custom(luiznux)
+!
 ! special
 *.foreground:   #c5c8c6
 *.cursorColor:  #4e4e8f
 *.background:   #000000
-
 ! black
 *.color0:       #282a2e
 *.color8:       #373b41
-
 ! red
 *.color1:       #ce4e4e
 *.color9:       #6d3030
-
 ! green
 *.color2:       #ff5aff
 *.color10:      #cc66cc
-
 ! yellow
 *.color3:       #ffcd00
 *.color11:      #df9f2d
-
 ! blue
 *.color4:       #5a00e8
 *.color12:      #4e4e8f
-
 ! magenta
 *.color5:       #00f9f9
 *.color13:      #409090
-
 ! cyan
 *.color6:       #00ff8b
 *.color14:      #8fff8b
-
 ! white
 *.color7:       #707880
 *.color15:      #c5c8c6
@@ -222,6 +212,45 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 !! white
 !*.color7:       #707880
 !*.color15:      #c5c8c6
+
+
+!-------------------------- Sourcery
+!
+! special
+!*.foreground:   #bbc5ff
+!*.background:   #282a36
+!*.cursorColor:  #bbc5ff
+!
+!! black
+!*.color0:       #282a36
+!*.color8:       #434758
+!! red
+!*.color1:       #f07178
+!*.color9:       #ff8b92
+!! green
+!*.color2:       #c3e88d
+!*.color10:      #ddffa7
+!! yellow
+!*.color3:       #ffcb6b
+!*.color11:      #ffe585
+!! blue
+!*.color4:       #82aaff
+!*.color12:      #9cc4ff
+!! magenta
+!*.color5:       #c792ea
+!*.color13:      #e1acff
+!! cyan
+!*.color6:       #89ddff
+!*.color14:      #a3f7ff
+!! white
+!*.color7:       #d0d0d0
+!*.color15:      #ffffff
+!
+!!!! DMENU !!!
+!Dmenu.background:	        #282a36
+!Dmenu.foreground:	        #bbc5ff
+!Dmenu.selbackground: 	    #bbc5ff
+!Dmenu.selforeground: 	    #282a36
 
 
 !------------------- blue-hair-girl.jpg wallpaper based colorscheme
@@ -268,3 +297,4 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 !*.color14:       #9d96b2
 !*.color7:        #cac8dc
 !*.color15:       #cac8dc
+
