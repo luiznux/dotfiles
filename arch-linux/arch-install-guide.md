@@ -71,7 +71,7 @@ $ modprobe -a dm-mod dm-crypt
 ## 3. Create particions
 
 
-# UEFI
+### UEFI
 * In case of using uefi bios, use GPT partition table with a separate boot partition
 
 ```bash
@@ -84,19 +84,19 @@ $ fdisk -l && cfdisk /dev/sdx
 | `/dev/sda3` | LINUX LVM     |  any     |EXT4      |
 
 
-# Non-UEFI
+### Non-UEFI
 * In case of using a non-uefi bios, use MRB(or DOS) partition table with a separe boot particion too
 
 ```bash
 $ fdisk -l && cfdisk /dev/sdx
 ```
-***Note** You will need to specify the boot partition when using cfdisk in MRB(or DOS) table, in this case is /dev/sda1
+**Note**: You will need to specify the boot partition when using cfdisk in MRB(or DOS) table, in this case is /dev/sda1
 |Device       |Type           | Size     | Format   |
 | ----------- |:-------------:|:--------:|:--------:|
 | `/dev/sda1` | BOOT          | 500MB    |EXT4      |
 | `/dev/sda2` | LINUX LVM     |  any     |EXT4      |
 
-***OBS**: if you misstype the partition table type with cfdisk, use **wipefs** to clear old tables
+**OBS**: if you misstype the partition table type with cfdisk, use **wipefs** to clear old tables
 ```bash
 $ wipefs -a /dev/sdX
 ```
@@ -298,9 +298,7 @@ $ mkinitcpio -p linux
 
 ## 18. GRUB
 
-* USING UEFI MODE
-
-1. INSTALL
+1. Install packages
 
 **UEFI**
 ```bash
@@ -333,7 +331,7 @@ GRUB_ENABLE_CRYPTODISK=y
 GRUB_DISABLE_SUBMENU=y
 ```
 
-4. INSTALLING
+4. Installing
 
 **UEFI**
 ```bash
@@ -361,7 +359,7 @@ $ grub-mkconfig -o /boot/grub/grub.cfg
 ```bash
 $ systemctl enable NetworkManager
 ```
-*Exit
+* Exit
 ```bash
 $ exit
 $ umount -R /mnt
