@@ -70,14 +70,36 @@ $ modprobe -a dm-mod dm-crypt
 
 ## 3. Create particions
 
+
+# UEFI
+* In case of using uefi bios, use GPT partition table with a separate boot partition
+
 ```bash
-$ fdisk -l && cfdisk /dev/sdX
+$ fdisk -l && cfdisk /dev/sdx
 ```
 |Device       |Type           | Size     | Format   |
 | ----------- |:-------------:|:--------:|:--------:|
 | `/dev/sda1` | BIOS BOOT(EFI)| 500MB    |FAT32     |
 | `/dev/sda2` | BOOT          | 500MB    |EXT4      |
 | `/dev/sda3` | LINUX LVM     |  any     |EXT4      |
+
+
+# Non-UEFI
+* In case of using a non-uefi bios, use MRB(or DOS) partition table with a separe boot particion too
+
+```bash
+$ fdisk -l && cfdisk /dev/sdx
+```
+***Note** You will need to specify the boot partition when using cfdisk in MRB(or DOS) table, in this case is /dev/sda1
+|Device       |Type           | Size     | Format   |
+| ----------- |:-------------:|:--------:|:--------:|
+| `/dev/sda1` | BOOT          | 500MB    |EXT4      |
+| `/dev/sda2` | LINUX LVM     |  any     |EXT4      |
+
+***OBS**: if you misstype the partition table type with cfdisk, use **wipefs** to clear old tables
+```bash
+$ wipefs -a /dev/sdX
+```
 
 
 ## 4. Encrypt the "LINUX LVM" particion
@@ -147,10 +169,19 @@ $ vgchange -ay
 
 * BOOT, crypt
 
+**UEFI**
 ```bash
 $ mkfs.fat -F32 /dev/sda1
 $ mkfs.ext4 /dev/sda2
+```
 
+**NON-UEFI**
+```
+$ mkfs.ext4 /dev/sda1
+```
+
+**Crypt**
+```
 $ mkfs -t ext4 /dev/mapper/linux-archlinux
 $ mkfs -t ext4 /dev/mapper/linux-home
 
@@ -161,9 +192,8 @@ $ lsblk -f
 
 ## 11. Mount particions
 
-
+**UEFI**
 ```bash
-
 $ mount /dev/mapper/linux-archlinux /mnt
 $ mkdir /mnt/home
 $ mount /dev/mapper/linux-home /mnt/home
@@ -175,6 +205,15 @@ $ mkdir /mnt/boot/efi
 $ mount /dev/sda1 /mnt/boot/efi
 ```
 
+**NON-UEFI**
+```bash
+$ mount /dev/mapper/linux-archlinux /mnt
+$ mkdir /mnt/home
+$ mount /dev/mapper/linux-home /mnt/home
+
+$ mkdir /mnt/boot/
+$ mount /dev/sda1 /mnt/boot
+```
 
 ## 12. Packages
 
@@ -204,7 +243,7 @@ $ arch-chroot /mnt /bin/bash
 ## 14. Install some packages
 
 ```bash
-$ pacman -S bash-completion sudo os-prober wireless_tools networkmanager  network-manager-applet mtools wpa_supplicant dosfstools  dialog lvm2  linux-headers ntfs-3g --noconfirm
+$ pacman -S bash-completion gvim sudo os-prober wireless_tools networkmanager network-manager-applet mtools wpa_supplicant dosfstools dialog lvm2 linux-headers ntfs-3g --noconfirm
 ```
 
 ## 15. Set locale
@@ -249,8 +288,8 @@ $ vim /etc/mkinitcpio.conf
 ```bash
 HOOKS=(base udev autodetect keyboard keymap consolefont modconf block lvm2 encrypt filesystems fsck)
 ```
-* ADD THIS AT THE SAME ORDER
-* safe and exit and reload
+* **ADD THIS AT THE SAME ORDER**
+* save, exit and reload
 
 ```bash
 $ mkinitcpio -p linux
@@ -262,8 +301,15 @@ $ mkinitcpio -p linux
 * USING UEFI MODE
 
 1. INSTALL
+
+**UEFI**
 ```bash
 $ pacman -S grub efibootmgr --noconfirm
+```
+
+**NON-UEFI**
+```bash
+$ pacman -S grub --noconfirm
 ```
 
 2. CONFIG
@@ -289,13 +335,19 @@ GRUB_DISABLE_SUBMENU=y
 
 4. INSTALLING
 
+**UEFI**
 ```bash
 $ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub --recheck
-
 $ mkdir -p /boot/grub/locale/
 $ cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 ```
 
+**NON UEFI**
+```bash
+$ grub-install --target=i386-pc /dev/sda1 --recheck
+$ mkdir -p /boot/grub/locale/
+$ cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
+```
 
 5. Gen grub file
 
@@ -305,11 +357,11 @@ $ grub-mkconfig -o /boot/grub/grub.cfg
 
 ## 19. Exit, be happy and pray for the grub to work :)
 
-* Remeber to enable network
+* Remember to enable network
 ```bash
 $ systemctl enable NetworkManager
 ```
-
+*Exit
 ```bash
 $ exit
 $ umount -R /mnt
