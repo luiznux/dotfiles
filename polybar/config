@@ -434,7 +434,7 @@ type        = internal/date
 interval    = 1
 
 date        = "%{F#0a6cf5} %{F-}%A, %d/%m"
-date-alt    = "%Y-%m-%d"
+date-alt    = "%d/%m/%Y"
 
 time        = "%{F#0a6cf5} %{F-}%H:%M"
 time-alt    = "%H:%M:%S"
