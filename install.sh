@@ -78,7 +78,7 @@ clean_log(){
 #### func to setup my directory tree
 dir_tree(){
     log echo "#----------------------------------------------- Setup directory tree"
-    mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}} \
+    mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,org,projects,.vim,.config/{i3,polybar,ranger}} \
     && log echo "        Directory tree {OK}" && break_line || log erro_msg
 }
 
