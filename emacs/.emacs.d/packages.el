@@ -226,6 +226,13 @@
   :ensure t
   :config (treemacs-set-scope-type 'Perspectives))
 
+(use-package evil-leader
+  :ensure t)
+(use-package evil-org
+  :ensure t)
+(use-package evil-mode
+  :hook (org-mode . evil-org-mode))
+
 
 ;Local packages(github)
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
