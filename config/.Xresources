@@ -142,7 +142,6 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 !----------------------------------------------------
 !--------------- Global settings --------------------
 !
-
 *font:     Source Code Pro:pixelsize=15:antialias=true:autohint=true
 
 
@@ -214,7 +213,47 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 !*.color15:      #c5c8c6
 
 
-!-------------------------- Sourcery
+!-------------------------------- daivasmara's colorscheme
+!--- https://github.com/Daivasmara/daivasmara.zsh-theme
+! special
+!*.foreground:   #cbe3e7
+!*.background:   #1e1c31
+!*.cursorColor:  #fbfcfc
+!
+!! black
+!*.color0:       #565575
+!*.color8:       #100e23
+!
+!! red
+!*.color1:       #ff8080
+!*.color9:       #ff5458
+!
+!! green
+!*.color2:       #95ffa4
+!*.color10:      #62d196
+!
+!! yellow
+!*.color3:       #ffe9aa
+!*.color11:      #ffb378
+!
+!! blue
+!*.color4:       #91ddff
+!*.color12:      #65b2ff
+!
+!! magenta
+!*.color5:       #c991e1
+!*.color13:      #906cff
+!
+!! cyan
+!*.color6:       #aaffe4
+!*.color14:      #63f2f1
+!
+!! white
+!*.color7:       #cbe3e7
+!*.color15:      #a6b3cc
+
+
+!-------------------------- Sourcery colorscheme
 !
 ! special
 !*.foreground:   #bbc5ff
@@ -224,24 +263,31 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 !! black
 !*.color0:       #282a36
 !*.color8:       #434758
+!
 !! red
 !*.color1:       #f07178
 !*.color9:       #ff8b92
+!
 !! green
 !*.color2:       #c3e88d
 !*.color10:      #ddffa7
+!
 !! yellow
 !*.color3:       #ffcb6b
 !*.color11:      #ffe585
+!
 !! blue
 !*.color4:       #82aaff
 !*.color12:      #9cc4ff
+!
 !! magenta
 !*.color5:       #c792ea
 !*.color13:      #e1acff
+!
 !! cyan
 !*.color6:       #89ddff
 !*.color14:      #a3f7ff
+!
 !! white
 !*.color7:       #d0d0d0
 !*.color15:      #ffffff
@@ -274,7 +320,6 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 !*.color14:      #4472a3
 !*.color7:       #9db7cf
 !*.color15:      #9db7cf
-
 
 !------------------------- Morpho.jgp wallpaper based colorscheme
 !
