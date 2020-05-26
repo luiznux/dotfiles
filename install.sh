@@ -134,7 +134,7 @@ AUR_install(){
     && log_error make_pkg_AUR spicetify-themes-git \
     && log_error make_pkg_AUR ttf-wps-fonts \
     && log_error make_pkg_AUR wps-office \
-    && log_error make_pkg_AUR wps-office-mui \
+    && log_error make_pkg_AUR wps -office-mui \
     && log echo "--------- AUR pkgs Done " && break_line || log erro_msg
     break_line
 }
