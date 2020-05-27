@@ -35,8 +35,8 @@ removes scroll bar and display line numbers."
 	  (back-to-indentation)
 	(beginning-of-line)))
 
-(defun read-path-variable-from-bashrc()
-  (let ((path (shell-command-to-string ". ~/.bashrc; echo -n $PATH")))
+(defun read-path-variable-from-zshrc()
+  (let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
     (setenv "PATH" path)
     (setq exec-path
           (append
@@ -49,7 +49,7 @@ removes scroll bar and display line numbers."
 (visual-config-modes)
 (set-default-indentation)
 (enable-ido-mode)
-(read-path-variable-from-bashrc)
+(read-path-variable-from-zshrc)
 
 (add-hook 'term-mode-hook (lambda ()
                             (setq show-trailing-whitespace nil)))
