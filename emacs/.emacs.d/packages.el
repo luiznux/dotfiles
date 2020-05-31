@@ -14,13 +14,13 @@
 
 (require 'package)
 (setq package-enable-at-startup nil)
-
-
 (setq packages-check-signature nil)
 
 
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
+
+
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
@@ -30,12 +30,6 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
-
-(use-package all-the-icons
-  :ensure t)
-
-(use-package rainbow-mode
-  :ensure t)
 
 (use-package yasnippet
   :ensure t
@@ -60,7 +54,7 @@
 (defun lsp-go-install-save-hooks ()
   (add-hook 'before-save-hook #'lsp-format-buffer t t)
   (add-hook 'before-save-hook #'lsp-organize-imports t t)
-  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks))
+  (add-hook 'so-mode-hook #'lsp-go-install-save-hooks))
 
 (use-package lsp-ui
   :ensure t
@@ -79,6 +73,10 @@
 (use-package company-lsp
   :ensure t
   :commands company-lsp)
+
+(use-package ccls
+  :hook ((c-mode c++-mode objc-mode cuda-mode) .
+         (lambda () (require 'ccls) (lsp))))
 
 (use-package which-key
   :ensure t
@@ -137,9 +135,6 @@
 (use-package treemacs
   :ensure t
   :defer t
-  :init
-  (with-eval-after-load 'winum
-    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
   :config
   (progn
     (setq treemacs-collapse-dirs                 (if treemacs-python-executable 3 0)
@@ -149,7 +144,9 @@
           treemacs-eldoc-display                 t
           treemacs-file-event-delay              5000
           treemacs-file-extension-regex          treemacs-last-period-regex-value
+          treemacs-follow-mode                   t
           treemacs-file-follow-delay             0.1
+          treemacs-filewatch-mode                nil
           treemacs-file-name-transformer         #'identity
           treemacs-follow-after-init             t
           treemacs-git-command-pipe              ""
@@ -160,13 +157,14 @@
           treemacs-max-git-entries               5000
           treemacs-missing-project-action        'ask
           treemacs-no-png-images                 nil
+          treemacs-fringe-indicator-mode         t
           treemacs-no-delete-other-windows       t
-          treemacs-project-follow-cleanup        nil
+          treemacs-project-follow-cleanup        1
           treemacs-persist-file                  (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
           treemacs-position                      'left
           treemacs-recenter-distance             0.1
-          treemacs-recenter-after-file-follow    nil
-          treemacs-recenter-after-tag-follow     nil
+          treemacs-recenter-after-file-follow    1
+          treemacs-recenter-after-tag-follow     1
           treemacs-recenter-after-project-jump   'always
           treemacs-recenter-after-project-expand 'on-distance
           treemacs-show-cursor                   t
@@ -176,17 +174,12 @@
           treemacs-sorting                       'alphabetic-asc
           treemacs-space-between-root-nodes      t
           treemacs-tag-follow-cleanup            t
-          treemacs-tag-follow-delay              1.5
+          treemacs-tag-follow-delay              0.1
           treemacs-user-mode-line-format         nil
           treemacs-width                         15)
-
     ;; The default width and height of the icons is 22 pixels. If you are
     ;; using a Hi-DPI display, uncomment this to double the icon size.
     ;;(treemacs-resize-icons 44)
-
-    (treemacs-follow-mode t)
-    (treemacs-filewatch-mode t)
-    (treemacs-fringe-indicator-mode t)
     (treemacs-get-icon-value 'root nil "Default")
     (treemacs-get-icon-value "org" t)
     (pcase (cons (not (null (executable-find "git")))
@@ -226,10 +219,18 @@
   :ensure t
   :config (treemacs-set-scope-type 'Perspectives))
 
+(use-package all-the-icons
+  :ensure t)
+
+(use-package rainbow-mode
+  :ensure t)
+
 (use-package evil-leader
   :ensure t)
+
 (use-package evil-org
   :ensure t)
+
 (use-package evil-mode
   :hook (org-mode . evil-org-mode))
 
@@ -240,13 +241,12 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/emacs-dashboard"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/page-break-lines"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/origami.el"))
-
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/nerd-fonts.el"))
 
 (defun setup-awesome-tab()
   (require 'awesome-tab)
   (setq awesome-tab-display-icon t)
   (awesome-tab-mode t))
-
 
 (defun setup-emacs-dashboard()
   (require 'dashboard)
@@ -256,8 +256,7 @@
         dashboard-startup-banner     'logo)
   (setq dashboard-itens '((recents   .  7)
                           (agenda    .  6)
-                          (bookmarks .  3))))
-
+                          (bookmarks .  5))))
 
 (defun setup-page-break-lines()
   (require 'page-break-lines)
@@ -266,6 +265,9 @@
 (defun setup-origami-mode ()
   (require 'origami)
   (global-origami-mode))
+
+(defun setup-nerd-fonts-el()
+  (require 'nerd-fonts))
 
 
 (load "~/.emacs.d/lisp/custom-modes-config.el")
@@ -286,5 +288,5 @@
 (setup-emacs-dashboard)
 (setup-page-break-lines)
 (setup-origami-mode)
-
+(setup-nerd-fonts-el)
 ;;; packages.el ends here
