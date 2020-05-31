@@ -54,7 +54,7 @@
 (defun lsp-go-install-save-hooks ()
   (add-hook 'before-save-hook #'lsp-format-buffer t t)
   (add-hook 'before-save-hook #'lsp-organize-imports t t)
-  (add-hook 'so-mode-hook #'lsp-go-install-save-hooks))
+  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks))
 
 (use-package lsp-ui
   :ensure t
@@ -289,4 +289,5 @@
 (setup-page-break-lines)
 (setup-origami-mode)
 (setup-nerd-fonts-el)
+
 ;;; packages.el ends here
