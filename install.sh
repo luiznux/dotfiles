@@ -210,7 +210,7 @@ general_config(){
 
     log echo "#---------------------------------------- Other Configs " && break_line
     cd $dotfiles && sudo cp config/urxvt/urxvt-resize-font/resize-font /usr/lib64/urxvt/perl/ &&  sudo chmod +x /usr/lib64/urxvt/perl/resize-font \
-    && gsettings set org.cinnamon.desktop.default-applications.terminal exec urxvt \
+    && gsettings set org.cinnamon.desktop.default-applications.terminal exec st \
     && cd $GIT/prog && git clone https://github.com/luiznux/st && cd st/ && make && sudo make clean install \
     && cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
     && cd $dotfiles && cp -r config/sxiv ~/.config/ \
