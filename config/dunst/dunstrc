@@ -200,9 +200,9 @@ background  =  "#0b0719"
 timeout = 9
 
 [urgency_critical]
-frame_color = "a54242"
-foreground = "#a54242"
-background = "#191311"
+frame_color = "#a54242"
+foreground  = "#a54242"
+background  = "#191311"
 timeout = 11
 #icon for critical notifications
 icon =/home/luiznux/.config/dunst/critical.png
