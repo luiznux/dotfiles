@@ -46,17 +46,26 @@ removes scroll bar and display line numbers."
 (setq user-full-name "Luiz Tagliaferro"
       user-mail-address "luiztagli@hotmail.com")
 
+(defun org-custom-config()
+ (setq org-todo-keywords
+       '((sequence "TODO"  "DONE"  "IN-PROGRESS" "NOTE" "WAITING")))
+
+ (setq org-todo-keyword-faces '(("TODO"         . (:foreground "#ff8080" :weight bold))
+                                ("DONE"         . (:foreground "#1E90FF" :weight bold))
+                                ("IN-PROGRESS"  . (:foreground "#A020F0" :weight bold))
+                                ("NOTE"         . (:foreground "#ffe9aa" :weight bold))
+                                ("WAITING"      . (:foreground "#ffb378" :weight bold)))))
+
 (visual-config-modes)
 (set-default-indentation)
 (enable-ido-mode)
 (read-path-variable-from-zshrc)
-
+(org-custom-config)
 (add-hook 'term-mode-hook (lambda ()
                             (setq show-trailing-whitespace nil)))
 
 ;; Autoclose brackets, quotes.
 (electric-pair-mode 1)
-
 
 ;; Sets ibuffer as default.
 (defalias 'list-buffers 'ibuffer)
