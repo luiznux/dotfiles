@@ -78,7 +78,7 @@ clean_log(){
 #### func to setup my directory tree
 dir_tree(){
     log echo "#----------------------------------------------- Setup directory tree"
-    mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,org,projects,.vim,.config/{i3,polybar,ranger}} \
+    mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}} \
     && log echo "        Directory tree {OK}" && break_line || log erro_msg
 }
 
@@ -212,6 +212,7 @@ general_config(){
     cd $dotfiles && sudo cp config/urxvt/urxvt-resize-font/resize-font /usr/lib64/urxvt/perl/ &&  sudo chmod +x /usr/lib64/urxvt/perl/resize-font \
     && gsettings set org.cinnamon.desktop.default-applications.terminal exec st \
     && cd $GIT/prog && git clone https://github.com/luiznux/st && cd st/ && make && sudo make clean install \
+    && cd $GIT/luiznux && git clone https://github.com/luiznux/org.git && ln -s $GIT/luiznux/org ~/org && exit_dir \
     && cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
     && cd $dotfiles && cp -r config/sxiv ~/.config/ \
     && cd $dotfiles && cp config/.bashrc ~/ \
