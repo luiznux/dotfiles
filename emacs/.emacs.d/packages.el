@@ -78,6 +78,9 @@
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
          (lambda () (require 'ccls) (lsp))))
 
+(use-package lsp-java
+ :hook 'java-mode-hook #'lsp)
+
 (use-package which-key
   :ensure t
   :config
@@ -234,6 +237,10 @@
 (use-package evil-mode
   :hook (org-mode . evil-org-mode))
 
+(use-package org-super-agenda
+  :ensure t
+  :config (org-super-agenda-mode t))
+
 
 ;Local packages(github)
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
@@ -248,15 +255,27 @@
   (setq awesome-tab-display-icon t)
   (awesome-tab-mode t))
 
+
 (defun setup-emacs-dashboard()
   (require 'dashboard)
   (dashboard-setup-startup-hook)
   (setq dashboard-set-heading-icons  t
         dashboard-set-file-icons     t
+        show-week-agenda-p           t
+        dashboard-set-navigator      t
         dashboard-startup-banner     'logo)
   (setq dashboard-itens '((recents   .  7)
-                          (agenda    .  6)
-                          (bookmarks .  5))))
+                          (agenda    .  7)
+                          (bookmarks .  4)))
+
+ ;; Format: "(icon title help action face prefix suffix)"
+(setq dashboard-navigator-buttons
+      `(;;line1
+        ((,(all-the-icons-octicon "mark-github" :height 1.1 :v-adjust 0.0)
+           "Homepage"
+           "Browse homepage"
+           (lambda (&rest _) (browse-url "https://github.com/luiznux")))
+         (" " "Refresh" "Refresh" (lambda (&rest _) (dashboard-refresh-buffer)) nil)))))
 
 (defun setup-page-break-lines()
   (require 'page-break-lines)
