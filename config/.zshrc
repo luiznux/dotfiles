@@ -28,14 +28,16 @@ alias la='ls -A'
 alias l='ls -CF'
 alias sv='sudo vim'
 alias ka='killall'
-alias p='sudo pacman'
 alias o='xdg-open'
 alias SS='sudo systemctl'
 alias ca='gnome-calculator &'
 alias diff=colordiff
 alias volume='pavucontrol &'
-alias pc='sudo pacman -Scc' #clean all pacman cache
+alias p='sudo pacman'
 alias update='sudo pacman -Syu' # update all packages(Archlinux)
+alias pc='sudo pacman -Scc' #clean all pacman cache
+alias clean-old-packg='sudo pacman -Rns $(pacman -Qtdq) || echo No old packages to remove!'
+alias font-update='sudo fc-cache -fv'
 alias wifi-list='nmcli device wifi list' #list wifi networks
 alias wifi-on='nmcli r wifi on' #enable wifi
 alias wifi-off='nmcli r wifi off' # disable wifi
@@ -118,7 +120,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 #----------- Oh My Zsh -----------#
 #
 # If you come from bash you might have to change your $PATH.
- export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/luiznux/.oh-my-zsh"
