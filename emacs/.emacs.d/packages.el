@@ -75,6 +75,7 @@
   :commands company-lsp)
 
 (use-package ccls
+  :ensure t
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
          (lambda () (require 'ccls) (lsp))))
 
@@ -307,6 +308,6 @@
 (setup-emacs-dashboard)
 (setup-page-break-lines)
 (setup-origami-mode)
-(setup-nerd-fonts-el)
+;(setup-nerd-fonts-el)
 
 ;;; packages.el ends here
