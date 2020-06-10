@@ -256,10 +256,11 @@
   (setq awesome-tab-display-icon t)
   (awesome-tab-mode t))
 
-
 (defun setup-emacs-dashboard()
   (require 'dashboard)
   (dashboard-setup-startup-hook)
+  (add-hook 'dashboard-mode-hook (lambda () (org-agenda t "x")) (lambda () (ace-window)))
+
   (setq dashboard-set-heading-icons  t
         dashboard-set-file-icons     t
         show-week-agenda-p           t

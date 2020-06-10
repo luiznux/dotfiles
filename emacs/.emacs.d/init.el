@@ -30,6 +30,11 @@
  '(fci-rule-color "#dedede")
  '(git-gutter:update-interval 1)
  '(line-spacing 0.2)
+ '(org-agenda-custom-commands
+   (quote
+    (("x" "Describe command here" agenda ""
+      ((org-agenda-span
+        (quote month)))))))
  '(org-agenda-files (quote ("~/org/agenda.org")))
  '(package-selected-packages
    (quote
