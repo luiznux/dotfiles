@@ -1,11 +1,10 @@
 ;;;; Emacs Bookmark Format Version 1 ;;;; -*- coding: utf-8-emacs -*-
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
 
-
-(
- ("Git files"
- (filename . "~/Github/")
+(("Git files"
+ (filename . "~/Github")
  (front-context-string . " *   lock_sched:")
  (rear-context-string . "he ready queues\n"))
 
@@ -14,4 +13,4 @@
  (front-context-string . " *   lock_sched:")
  (rear-context-string . "he ready queues\n"))
 )
-;;; -*- End Of Bookmark File Format Version Stamp -*-
+
