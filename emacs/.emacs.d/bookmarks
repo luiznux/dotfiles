@@ -8,8 +8,8 @@
  (front-context-string . " *   lock_sched:")
  (rear-context-string . "he ready queues\n"))
 
- ("College"
- (filename . "~/Github/luiznux/college/")
+ ("Projects"
+ (filename . "~/projects")
  (front-context-string . " *   lock_sched:")
  (rear-context-string . "he ready queues\n"))
 )
