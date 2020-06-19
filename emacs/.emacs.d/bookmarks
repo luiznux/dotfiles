@@ -8,6 +8,11 @@
  (front-context-string . " *   lock_sched:")
  (rear-context-string . "he ready queues\n"))
 
+ ("Org files"
+ (filename . "~/org")
+ (front-context-string . " *   lock_sched:")
+ (rear-context-string . "he ready queues\n"))
+
  ("Projects"
  (filename . "~/projects")
  (front-context-string . " *   lock_sched:")
