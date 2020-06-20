@@ -72,10 +72,17 @@
 
 (use-package company-lsp
   :ensure t
+  :config
+  (company-lsp-enable-snippet t)
+  (company-lsp-cache-candidates 'auto)
   :commands company-lsp)
+
+(use-package company-quickhelp
+  :hook 'after-init-hook company-quickhelp-mode)
 
 (use-package ccls
   :ensure t
+  :config (setq ccls-executable "/usr/bin/ccls")
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
          (lambda () (require 'ccls) (lsp))))
 
@@ -303,7 +310,7 @@
 (setup-project-packages)
 (setup-custom-modes-packages)
 (setup-python-packages)
-(setup-irony-packages)
+;(setup-irony-packages)
 (setup-git-packages)
 (setup-awesome-tab)
 (setup-emacs-dashboard)
