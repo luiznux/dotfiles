@@ -30,9 +30,6 @@ alias sv='sudo vim'
 alias ka='killall'
 alias o='xdg-open'
 alias SS='sudo systemctl'
-alias ca='gnome-calculator &'
-alias diff=colordiff
-alias volume='pavucontrol &'
 alias p='sudo pacman'
 alias update='sudo pacman -Syu' # update all packages(Archlinux)
 alias pc='sudo pacman -Scc' #clean all pacman cache
@@ -46,7 +43,9 @@ alias polyconf='vim ~/.config/polybar/config'
 alias dotfiles='cd ~/Github/luiznux/dotfiles/'
 alias ethspeed='speedometer -r enp2s0'
 alias wifispeed='speedometer -r wlp3s0'
-
+alias diff=colordiff
+#alias volume='pavucontrol &'
+#alias ca='gnome-calculator &'
 
 #---------------------------------#
 #----------- Config --------------#
@@ -67,9 +66,9 @@ bindkey -v
 export KEYTIMEOUT=1
 
 #auto cd into typed directory
-setopt autocd	
+setopt autocd
 
-setopt nomatch notify 
+setopt nomatch notify
 unsetopt autocd beep extendedglob
 
 #autocomplete config
