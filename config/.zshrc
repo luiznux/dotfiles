@@ -53,8 +53,8 @@ alias diff=colordiff
 
 #history  cache
 HISTFILE=~/.histfile
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=1000000
+SAVEHIST=1000000
 
 # vim  mode
 bindkey -v
