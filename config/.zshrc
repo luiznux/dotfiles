@@ -31,6 +31,7 @@ alias ka='killall'
 alias o='xdg-open'
 alias SS='sudo systemctl'
 alias p='sudo pacman'
+alias fans='sensors | grep -i fan'
 alias update='sudo pacman -Syu' # update all packages(Archlinux)
 alias pc='sudo pacman -Scc' #clean all pacman cache
 alias clean-old-packg='sudo pacman -Rns $(pacman -Qtdq) || echo No old packages to remove!'
