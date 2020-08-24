@@ -52,8 +52,8 @@ height = 25
 radius = 5.0
 
 ;border size and colors (applied to all borders)
-border-size  = 3
-border-color = #00000000
+border-size  = 2
+border-color = ${colors.background}
 
 ;under-/overline pixel size and argb color
 line-size  = 3
