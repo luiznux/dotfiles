@@ -34,8 +34,7 @@
 (use-package yasnippet
   :ensure t
   :config
-  (yas-global-mode 1)
-  :hook (go-mode . yas-minor-mode))
+  (yas-global-mode 1))
 
 (use-package yasnippet-snippets
   :ensure t)
