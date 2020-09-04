@@ -23,7 +23,7 @@ removes scroll bar and display line numbers."
   (global-set-key (kbd "RET") 'newline-and-indent))
 
 (defun enable-ido-mode()
-  "Enables ido-mode."
+  "Enables 'ido-mode'."
   (setq-default ido-enable-flex-matching t)
   (setq-default ido-everyehere t)
   (ido-mode 1))
@@ -46,7 +46,12 @@ removes scroll bar and display line numbers."
 (setq user-full-name "Luiz Tagliaferro"
       user-mail-address "luiztagli@hotmail.com")
 
+
 (defun org-custom-config()
+  "Some org custom configs."
+
+ (global-set-key (kbd "M-s s") 'company-yasnippet)
+
  (setq org-todo-keywords
        '((sequence "TODO"  "DONE"  "IN-PROGRESS" "NOTE" "WAITING")))
 
