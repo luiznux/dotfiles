@@ -25,15 +25,17 @@
 #set mod key
 set $mod	    Mod4
 
-
 #define terminal
 set $term       st
 
 #define browser
 set $browser    firefox
 
+#define mailclient
+set $mail       thunderbird
+
 #font config
-font pango:Source Code Pro 11
+font pango:Source Code Pro 10
 
 #background config
 exec_always feh --bg-scale ~/.config/wallpaper.jpg
@@ -79,6 +81,9 @@ bindsym $mod+e	            exec emacs
 bindsym $mod+d exec "dmenu_run -nf '#325B91' -nb '#070B15' -sb '#914836' -sf '#EEEEEE' -fn 'monospace-10' -p 'dmenu prompt &gt;'"
 # start firefox
 bindsym $mod+y              exec $browser
+
+#start mailclient
+bindsym $mod+Shift+m        exec $mail
 
 # start nemo filemanager
 bindsym $mod+n              exec nemo
