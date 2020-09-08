@@ -64,7 +64,7 @@ wm-name = i3
 
 ;number of spaces to add at the begimmimg/end of the bar
 padding-left  = 0
-padding-right = 0
+padding-right = 1
 
 ;number  of spaces to add before/after each module
 module-margin-left  = 1
