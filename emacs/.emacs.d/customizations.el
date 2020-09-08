@@ -53,13 +53,13 @@ removes scroll bar and display line numbers."
  (global-set-key (kbd "M-s s") 'company-yasnippet)
 
  (setq org-todo-keywords
-       '((sequence "TODO"  "DONE"  "IN-PROGRESS" "NOTE" "WAITING")))
+       '((sequence "TODO" "NOTE" "IN-PROGRESS" "WAITING" "DONE")))
 
  (setq org-todo-keyword-faces '(("TODO"         . (:foreground "#ff8080" :weight bold))
-                                ("DONE"         . (:foreground "#1E90FF" :weight bold))
-                                ("IN-PROGRESS"  . (:foreground "#A020F0" :weight bold))
                                 ("NOTE"         . (:foreground "#ffe9aa" :weight bold))
-                                ("WAITING"      . (:foreground "#ffb378" :weight bold)))))
+                                ("IN-PROGRESS"  . (:foreground "#A020F0" :weight bold))
+                                ("WAITING"      . (:foreground "#ffb378" :weight bold))
+                                ("DONE"         . (:foreground "#1E90FF" :weight bold)))))
 
 (visual-config-modes)
 (set-default-indentation)
