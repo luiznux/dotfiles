@@ -32,7 +32,7 @@ set $term       st
 set $browser    firefox
 
 #define mailclient
-set $mail       thunderbird
+set $mail       mailspring
 
 #font config
 font pango:Source Code Pro 10
