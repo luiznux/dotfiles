@@ -47,25 +47,10 @@ removes scroll bar and display line numbers."
       user-mail-address "luiztagli@hotmail.com")
 
 
-(defun org-custom-config()
-  "Some org custom configs."
-
- (global-set-key (kbd "M-s s") 'company-yasnippet)
-
- (setq org-todo-keywords
-       '((sequence "TODO" "NOTE" "IN-PROGRESS" "WAITING" "DONE")))
-
- (setq org-todo-keyword-faces '(("TODO"         . (:foreground "#ff8080" :weight bold))
-                                ("NOTE"         . (:foreground "#ffe9aa" :weight bold))
-                                ("IN-PROGRESS"  . (:foreground "#A020F0" :weight bold))
-                                ("WAITING"      . (:foreground "#ffb378" :weight bold))
-                                ("DONE"         . (:foreground "#1E90FF" :weight bold)))))
-
 (visual-config-modes)
 (set-default-indentation)
 (enable-ido-mode)
 (read-path-variable-from-zshrc)
-(org-custom-config)
 (add-hook 'term-mode-hook (lambda ()
                             (setq show-trailing-whitespace nil)))
 
