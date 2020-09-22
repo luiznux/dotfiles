@@ -226,6 +226,14 @@ icon =/home/luiznux/.config/dunst/critical.png
 # to "".
 # NOTE: It might be helpful to run dunst -print in a terminal in order
 # to find fitting options for rules.
+#
+
+#config for deepin screenshot 
+[deepin-screenshot]
+frame_color =  "#9c63ca"
+foreground  =  "#c5c8c6"
+background  =  "#0b0719"
+timeout = 7
 
 #[espeak]
 #    summary = "*"
