@@ -35,7 +35,7 @@
     (("x" "Describe command here" agenda ""
       ((org-agenda-span
         (quote month)))))))
- '(org-agenda-files (quote ("~/org/agenda.org" "~/org/college.org" "~/org/notes.org")))
+ '(org-agenda-files (quote ("~/org/agenda.org" "~/org/personal.org" "~/org/capture.org")))
  '(org-agenda-prefix-format
    (quote
     ((agenda . "%-3i%?-12t% s")
