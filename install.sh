@@ -152,13 +152,16 @@ emacs(){
     && log echo "     Emacs  Install  {OK}" && break_line || log erro_msg
 }
 
+polybar_config(){
 
-#### move all the others dotfiles
-general_config(){
     log echo "#---------------------------------------- Setup i3 and polybar" && break_line
     cd $dotfiles && cp i3/config ~/.config/i3/ \
     && cd $dotfiles && cp -r polybar/*  ~/.config/polybar/ \
     && log echo "     I3 and Polybar config {OK} " && break_line || log erro_msg
+}
+
+#### move all the others dotfiles
+general_config(){
 
     log echo "#---------------------------------------- Ranger config" && break_line
     cd $dotfiles && cp config/rc.conf  ~/.config/ranger/ \
@@ -224,7 +227,6 @@ general_config(){
     && cd $dotfiles && sudo cp config/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/\
     && log echo " General config {OK}" && break_line || log error_msg
 }
-
 
 
 ### func to clone some repositories
