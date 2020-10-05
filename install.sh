@@ -32,7 +32,7 @@ clean_log(){
     rm -f $dotfiles/install.log
 }
 
-# write some installings  process in the archive 'install.log'
+#### write some installings  process in the archive 'install.log'
 log(){
     $*
     $* >> $dotfiles/install.log
@@ -48,12 +48,12 @@ erro_msg(){
     ((errors+=1)) && echo "  ERROR[$[errors]]" && break_line
 }
 
-# exit dir func
+#### exit dir
 exit_dir(){
     cd ..
 }
 
-# func to install aur packages
+#### install aur packages
 make_pkg_AUR(){
     #in case the dir already exists
     if [ -d "$AUR/$1" ];then
@@ -64,18 +64,18 @@ make_pkg_AUR(){
     fi
 }
 
-# func to clean AUR dir
+#### clean AUR dir
 clean_AUR(){
     rm -rf $AUR/*
 }
 
-# remove old log files
+#### remove old log files
 clean_log(){
     cd $dotfiles && rm -f install.log && echo "cleaned old log files" || break_line
 }
 
 
-#### func to setup my directory tree
+#### setup my directory tree
 dir_tree(){
     log echo "#----------------------------------------------- Setup directory tree"
     mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}} \
@@ -94,6 +94,7 @@ install_packages(){
 
 #### func to install some python packages
 Python_config(){
+
     log echo "#----------------------------------------------- PYTHON CONFIG" && break_line
     log_error sudo pacman -S python-pip python-sphinx python-dbus python2-gobject  python-psutil python-urwid python-pywal --noconfirm \
     && log echo "	     Python {OK}" && break_line || log erro_msg
@@ -102,6 +103,7 @@ Python_config(){
 
 #### func to install the graphic drivers(depends of your hardware)
 Graphic_drivers(){
+
     log echo "#----------------------------------------------- Graphic drives and NVIDIA" && break_line
     log_error sudo pacman -S xf86-video-intel vulkan-intel mesa-demos nvidia nvidia-utils nvidia-settings --noconfirm \
     && log echo "	     Graphic Drivers {OK}" && break_line || log erro_msg
@@ -110,6 +112,7 @@ Graphic_drivers(){
 
 #### AUR Packges installation func(with MAKEPKG)
 AUR_install(){
+
     log echo "#---------------------------------------- AUR packages" && break_line
     log echo "Installing some AUR Packages" && break_line
     log echo "python-pdftotext polybar thermald ttf-weather-icon rar pygtk python2-twodict-git youtube-dl-gui-git jetbrains-toolbox "
@@ -143,6 +146,7 @@ AUR_install(){
 
 #### Emacs install and copy my config file
 emacs(){
+
     log echo "#---------------------------------------- EMACS INSTALL" && break_line
     log_error cd $dotfiles && cp -r emacs/.emacs.d  ~/.emacs.d/ \
     && log echo "     Emacs config {OK} " && break_line || log erro_msg
@@ -152,84 +156,152 @@ emacs(){
     && log echo "     Emacs  Install  {OK}" && break_line || log erro_msg
 }
 
-polybar_config(){
+#### I3 and Polybar config
+i3_polybar_setup(){
 
     log echo "#---------------------------------------- Setup i3 and polybar" && break_line
     cd $dotfiles && cp i3/config ~/.config/i3/ \
     && cd $dotfiles && cp -r polybar/*  ~/.config/polybar/ \
-    && log echo "     I3 and Polybar config {OK} " && break_line || log erro_msg
+    && log echo "     i3 and Polybar config {OK} " && break_line || log erro_msg
 }
 
-#### move all the others dotfiles
-general_config(){
+#### Setup ranger files
+ranger_setup(){
 
-    log echo "#---------------------------------------- Ranger config" && break_line
+    log echo "#---------------------------------------- Ranger Setup" && break_line
     cd $dotfiles && cp config/rc.conf  ~/.config/ranger/ \
     && log echo "     Ranger config file setup {OK} " && break_line || log erro_msg
+}
+
+#### Vim setup files
+vim_setup(){
 
     log echo "#---------------------------------------- Vim config setup" && break_line
     cd $dotfiles && cp vim/.vimrc ~/.vimrc \
     && cd $dotfiles && cp -r vim/.vim/ ~/ \
     && log echo "     Vim setup {OK} " && break_line || log erro_msg
+}
+
+#### Setup system fonts
+font_setup(){
 
     log echo "#---------------------------------------- Setup font" && break_line
     sudo mkdir -p /usr/share/fonts/ \
     && cd $dotfiles && sudo cp -R config/fonts/source-code-pro /usr/local/share/fonts/ \
     && log echo "     Fount setup {OK} " && break_line || log erro_msg
+}
+
+#### Setup locale files
+locale_setup(){
 
     log echo "#---------------------------------------- Setup Locale" && break_line
     log_error cd $dotfiles && sudo cp config/locale.conf  /etc/ && log sudo locale-gen \
     && log echo "     Locale setup {OK}" && break_line || log erro_msg
+}
+
+#### Setup xresources file
+xresources_setup(){
 
     log echo "#---------------------------------------- Setup Xresources" && break_line
     cd $dotfiles && cp config/.Xresources ~/.Xresources \
     && log echo "     Xresources setup {OK} " && break_line || log erro_msg
+}
+
+#### Setup git ignore file
+gitignore_setup(){
 
     log echo "#---------------------------------------- Setup gitignore global file" && break_line
     cd $dotfiles && cp config/.gitignore_global  ~/ \
     && log echo "     Gitignore global setup {OK} " && break_line || log erro_msg
     cd $dotfiles && cp config/.gitconfig ~/ \
     && log echo "     Gitconfig setup {OK} " && break_line || log erro_msg && ((errors+=1))
+}
+
+#### Setup background img
+background_img_setup(){
 
     log echo "#---------------------------------------- Setup background image" && break_line
     cd $dotfiles && cp config/wallpapers/morpho.jpg  ~/.config/wallpaper.jpg  \
     && log echo "     Wallppaer setup {OK} " && break_line || log erro_msg
+}
+
+#### Setup gtk themes files
+theme_setup(){
 
     log echo "#---------------------------------------- Setup Themes" && break_line
     cd $dotfiles/themes/gtk/ && tar -xvf Sweet-Dark.tar.xz  && sudo mv Sweet-Dark /usr/share/themes/
     cd $dotfiles && cd config/gtk/ && cp -r gtk-2.0 gtk-3.0 ~/.config \
     && cd $dotfiles && cd config/gtk/ && cp .gtkrc-2.0 ~/.gtkrc-2.0 \
     && log echo "     GTK themes setup {OK} " && break_line || log erro_msg
+}
+
+#### Setup pacman files
+pacman_setup(){
 
     log echo "#---------------------------------------- Setup Pacman config" && break_line
     cd $dotfiles && log_error sudo cp config/pacman/mirrorlist /etc/pacman.d/ \
     && sudo rm /etc/pacman.conf && cd $dotfiles && sudo cp config/pacman/pacman.conf  /etc/ \
     && log echo "     Pacman config {OK} " && break_line || log erro_msg
+}
+
+#### Zsh install and setup config files
+zsh_setup(){
 
     log echo "#---------------------------------------- Setup Zsh" && break_line
     log sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
     && cp $dotfiles/config/.zshrc ~/ \
     && cd $GIT/prog/ && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
     && log echo "     Zsh config {OK} " && break_line || log erro_msg
+}
+
+#### St terminal install and setup
+st_terminal_setup(){
+
+    log echo "#---------------------------------------- Setup st-terminal" && break_line
+    cd $GIT/prog && git clone https://github.com/luiznux/st && cd st/ && make && sudo make clean install \
+    && gsettings set org.cinnamon.desktop.default-applications.terminal exec st \
+    && log echo "     Zsh config {OK} " && break_line || log erro_msg
+}
+
+#### Setup xorg config files
+xorg_config(){
+
+    log echo "#---------------------------------------- Setup Xorg config files" && break_line
+    cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
+    && sudo cp config/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/\
+    && log echo "     Xorg config {OK} " && break_line || log erro_msg
+}
+
+#### Config
+urxvt_package(){
 
     log echo "#---------------------------------------- Other Configs " && break_line
     cd $dotfiles && sudo cp config/urxvt/urxvt-resize-font/resize-font /usr/lib64/urxvt/perl/ &&  sudo chmod +x /usr/lib64/urxvt/perl/resize-font \
-    && gsettings set org.cinnamon.desktop.default-applications.terminal exec st \
-    && cd $GIT/prog && git clone https://github.com/luiznux/st && cd st/ && make && sudo make clean install \
-    && cd $GIT/luiznux && git clone https://github.com/luiznux/org.git && ln -s $GIT/luiznux/org ~/org && exit_dir \
-    && cd $GIT/luiznux && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir \
-    && cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
+    && log echo "     Xorg config {OK} " && break_line || log erro_msg
+
+}
+
+#### move all the others dotfiles
+other_config(){
+
+    log echo "#---------------------------------------- Other Configs " && break_line
+    cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
     && cd $dotfiles && sudo cp config/scripts/{ca,simple-push,volume} /usr/local/bin/ \
     && cd $dotfiles && cp -r config/sxiv ~/.config/ \
     && cd $dotfiles && cp config/.bashrc ~/ \
     && cd $dotfiles && cp -r config/dunst ~/.config/ \
-    && cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
-    && cd $dotfiles && sudo cp config/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/\
-    && log echo " General config {OK}" && break_line || log error_msg
+    && log echo " Other config {OK}" && break_line || log error_msg
+}
+
+clone_my_rep(){
+
+    cd $GIT/luiznux && git clone https://github.com/luiznux/org.git && ln -s $GIT/luiznux/org ~/org && exit_dir \
+    && cd $GIT/luiznux && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir \
+
 }
 
 
-### func to clone some repositories
+#### Clone other repositories
 git_repository_setup(){
     log echo "#---------------------------------------- Git Repositories Clone " && break_line
     cd $GIT/other && git clone https://github.com/stark/Color-Scripts.git && exit_dir
@@ -288,7 +360,7 @@ laptop_config(){
 }
 
 
-### run nvidia xconfig
+#### run nvidia xconfig
 nvidia_xorg_config(){
     log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
     log echo "Only answer 'y' if you are using nvidia graphic card and have the drivers"
