@@ -16,23 +16,23 @@
 # Do you have any sugestions and/or comments? Just call me.
 #----------------------------------------------------------------------------------
 
-# Variables
+#### Variables
 dotfiles=$(pwd)
 AUR=~/AUR
 GIT=~/Github
 errors=0
 
-# func to break line with echo command
+#### break line with echo command
 break_line(){
     echo $'\n\n'
 }
 
-# delete old log file
+#### delete old log file
 clean_log(){
     rm -f $dotfiles/install.log
 }
 
-# write some installings  process in the archive 'install.log'
+#### write some installings  process in the archive 'install.log'
 log(){
     $*
     $* >> $dotfiles/install.log
@@ -43,17 +43,17 @@ log_error(){
     $* 2>> $dotfiles/install.log
 }
 
-# print erro mgs
+#### print erro mgs
 erro_msg(){
     ((errors+=1)) && echo "  ERROR[$[errors]]" && break_line
 }
 
-# exit dir func
+#### exit dir func
 exit_dir(){
     cd ..
 }
 
-# func to install aur packages
+#### install aur packages
 make_pkg_AUR(){
     #in case the dir already exists
     if [ -d "$AUR/$1" ];then
@@ -64,18 +64,18 @@ make_pkg_AUR(){
     fi
 }
 
-# func to clean AUR dir
+#### clean AUR dir
 clean_AUR(){
     rm -rf $AUR/*
 }
 
-# remove old log files
+#### remove old log files
 clean_log(){
     cd $dotfiles && rm -f install.log && echo "cleaned old log files" || break_line
 }
 
 
-#### func to setup my directory tree
+#### setup my directory tree
 dir_tree(){
     log echo "#----------------------------------------------- Setup directory tree"
     mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}} \
@@ -83,7 +83,7 @@ dir_tree(){
 }
 
 
-#### func to install packages on arch linux
+#### install packages on arch linux
 install_packages(){
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
@@ -92,7 +92,7 @@ install_packages(){
 }
 
 
-#### func to install some python packages
+#### to install some python packages
 Python_config(){
     log echo "#----------------------------------------------- PYTHON CONFIG" && break_line
     log_error sudo pacman -S python-pip python-sphinx python-dbus python2-gobject  python-psutil python-urwid python-pywal --noconfirm \
@@ -100,7 +100,7 @@ Python_config(){
 }
 
 
-#### func to install the graphic drivers(depends of your hardware)
+#### install the graphic drivers(depends of your hardware)
 Graphic_drivers(){
     log echo "#----------------------------------------------- Graphic drives and NVIDIA" && break_line
     log_error sudo pacman -S xf86-video-intel vulkan-intel mesa-demos nvidia nvidia-utils nvidia-settings --noconfirm \
@@ -226,7 +226,7 @@ general_config(){
 }
 
 
-### func to clone some repositories
+### to clone some repositories
 git_repository_setup(){
     log echo "#---------------------------------------- Git Repositories Clone " && break_line
     cd $GIT/other && git clone https://github.com/stark/Color-Scripts.git && exit_dir
@@ -240,7 +240,7 @@ git_repository_setup(){
 }
 
 
-#### func to install laptoptools
+#### to install laptoptools
 laptop_config(){
     log echo "Do you want install laptop configs ?(answer with y or n)"
     log read -p  "--> "  option
@@ -285,7 +285,7 @@ laptop_config(){
 }
 
 
-### run nvidia xconfig
+#### run nvidia xconfig
 nvidia_xorg_config(){
     log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
     log echo "Only answer 'y' if you are using nvidia graphic card and have the drivers"
@@ -301,7 +301,7 @@ nvidia_xorg_config(){
 }
 
 
-#### func to enable some services
+#### enable some services
 systemd_init(){
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
     log_error systemctl enable gdm.service ufw.service ntpd.service \
