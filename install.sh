@@ -16,18 +16,18 @@
 # Do you have any sugestions and/or comments? Just call me.
 #----------------------------------------------------------------------------------
 
-# Variables
+#### Variables
 dotfiles=$(pwd)
 AUR=~/AUR
 GIT=~/Github
 errors=0
 
-# func to break line with echo command
+#### break line with echo command
 break_line(){
     echo $'\n\n'
 }
 
-# delete old log file
+#### delete old log file
 clean_log(){
     rm -f $dotfiles/install.log
 }
@@ -38,12 +38,12 @@ log(){
     $* >> $dotfiles/install.log
 }
 
-# this func will only write on the archive 'install.log' if a bash error occurred
+#### this func will only write on the archive 'install.log' if a bash error occurred
 log_error(){
     $* 2>> $dotfiles/install.log
 }
 
-# print erro mgs
+#### print erro mgs
 erro_msg(){
     ((errors+=1)) && echo "  ERROR[$[errors]]" && break_line
 }
@@ -83,7 +83,7 @@ dir_tree(){
 }
 
 
-#### func to install packages on arch linux
+#### install packages on arch linux
 install_packages(){
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
@@ -92,7 +92,7 @@ install_packages(){
 }
 
 
-#### func to install some python packages
+#### install some python packages
 Python_config(){
 
     log echo "#----------------------------------------------- PYTHON CONFIG" && break_line
@@ -101,7 +101,7 @@ Python_config(){
 }
 
 
-#### func to install the graphic drivers(depends of your hardware)
+#### install the graphic drivers(depends of your hardware)
 Graphic_drivers(){
 
     log echo "#----------------------------------------------- Graphic drives and NVIDIA" && break_line
@@ -272,7 +272,7 @@ xorg_config(){
     && log echo "     Xorg config {OK} " && break_line || log erro_msg
 }
 
-#### Config
+#### Urxvt Config
 urxvt_package(){
 
     log echo "#---------------------------------------- Other Configs " && break_line
@@ -299,7 +299,6 @@ clone_my_rep(){
     && cd $GIT/luiznux && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir \
 
 }
-
 
 #### Clone other repositories
 git_repository_setup(){
