@@ -24,37 +24,44 @@ errors=0
 
 #### break line with echo command
 break_line(){
+
     echo $'\n\n'
 }
 
 #### delete old log file
 clean_log(){
+
     rm -f $dotfiles/install.log
 }
 
 #### write some installings  process in the archive 'install.log'
 log(){
+
     $*
     $* >> $dotfiles/install.log
 }
 
 #### this func will only write on the archive 'install.log' if a bash error occurred
 log_error(){
+
     $* 2>> $dotfiles/install.log
 }
 
 #### print erro mgs
 erro_msg(){
+
     ((errors+=1)) && echo "  ERROR[$[errors]]" && break_line
 }
 
 #### exit dir
 exit_dir(){
+
     cd ..
 }
 
 #### install aur packages
 make_pkg_AUR(){
+
     #in case the dir already exists
     if [ -d "$AUR/$1" ];then
         cd $AUR/$1 && makepkg -is --noconfirm && exit_dir
@@ -66,17 +73,20 @@ make_pkg_AUR(){
 
 #### clean AUR dir
 clean_AUR(){
+
     rm -rf $AUR/*
 }
 
 #### remove old log files
 clean_log(){
+
     cd $dotfiles && rm -f install.log && echo "cleaned old log files" || break_line
 }
 
 
 #### setup my directory tree
 dir_tree(){
+
     log echo "#----------------------------------------------- Setup directory tree"
     mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,projects,.vim,.config/{i3,polybar,ranger}} \
     && log echo "        Directory tree {OK}" && break_line || log erro_msg
@@ -85,6 +95,7 @@ dir_tree(){
 
 #### install packages on arch linux
 install_packages(){
+
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
     log_error sudo pacman -Sy xorg xclip man tree colordiff zsh zsh-completions neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang ccls i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol code youtube-dl qt gimp picom cups cups-pdf system-config-printer gdm pandoc texlive-most rofi gnome-keyring nmap deepin-screenshot ntp --noconfirm \
@@ -293,24 +304,18 @@ other_config(){
     && log echo " Other config {OK}" && break_line || log error_msg
 }
 
+#### clone some of my repositories
 clone_my_rep(){
 
     log echo "#---------------------------------------- Clone my repositories " && break_line
-    cd $GIT/luiznux && git clone https://github.com/luiznux/org.git && ln -s $GIT/luiznux/org ~/org && exit_dir \
-    && cd $GIT/luiznux && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir \
+    cd $GIT/luiznux && git clone https://github.com/luiznux/org.git && ln -s $GIT/luiznux/org ~/org \
+    && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ \
     && log echo "   Clone my-rep config {OK}" && break_line || log error_msg
-
-}
-
-clone_my_rep(){
-
-    cd $GIT/luiznux && git clone https://github.com/luiznux/org.git && ln -s $GIT/luiznux/org ~/org && exit_dir \
-    && cd $GIT/luiznux && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir \
-
 }
 
 #### Clone other repositories
 git_repository_setup(){
+
     log echo "#---------------------------------------- Git Repositories Clone " && break_line
     cd $GIT/other && git clone https://github.com/stark/Color-Scripts.git && exit_dir
     cd $GIT/other && git clone https://github.com/morpheusthewhite/spicetify-themes.git && exit_dir
@@ -323,8 +328,9 @@ git_repository_setup(){
 }
 
 
-#### func to install laptoptools
+#### install laptoptools
 laptop_config(){
+
     log echo "Do you want install laptop configs ?(answer with y or n)"
     log read -p  "--> "  option
 
@@ -370,6 +376,7 @@ laptop_config(){
 
 #### run nvidia xconfig
 nvidia_xorg_config(){
+
     log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
     log echo "Only answer 'y' if you are using nvidia graphic card and have the drivers"
     log read -p  "--> "  option
@@ -384,7 +391,7 @@ nvidia_xorg_config(){
 }
 
 
-#### func to enable some services
+#### enable some services
 systemd_init(){
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
     log_error systemctl enable gdm.service ufw.service ntpd.service \
