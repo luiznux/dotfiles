@@ -283,11 +283,7 @@ xorg_config(){
     && log echo "     Xorg config {OK} " && break_line || log erro_msg
 }
 
-<<<<<<< Updated upstream
 #### Urxvt Config
-=======
-#### Config
->>>>>>> Stashed changes
 urxvt_package(){
 
     log echo "#---------------------------------------- Other Configs " && break_line
