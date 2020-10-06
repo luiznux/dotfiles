@@ -295,6 +295,15 @@ other_config(){
 
 clone_my_rep(){
 
+    log echo "#---------------------------------------- Clone my repositories " && break_line
+    cd $GIT/luiznux && git clone https://github.com/luiznux/org.git && ln -s $GIT/luiznux/org ~/org && exit_dir \
+    && cd $GIT/luiznux && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir \
+    && log echo "   Clone my-rep config {OK}" && break_line || log error_msg
+
+}
+
+clone_my_rep(){
+
     cd $GIT/luiznux && git clone https://github.com/luiznux/org.git && ln -s $GIT/luiznux/org ~/org && exit_dir \
     && cd $GIT/luiznux && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir \
 
