@@ -14,6 +14,12 @@
       (define-key evil-normal-state-map (kbd "M-.") nil)
       (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)))
 
+  (use-package undo-tree ;fix C-r undo on evil mode
+    :ensure t
+    :config
+    (global-undo-tree-mode)
+    (setq evil-undo-system 'undo-tree))
+
   (use-package evil-magit
     :ensure t
     :config
