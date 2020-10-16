@@ -141,7 +141,10 @@
 (use-package nlinum
   :ensure t
   :config
-  (global-nlinum-mode))
+  (global-nlinum-mode)
+  (set-face-background 'linum "#303030")
+  (set-face-foreground 'linum "#8b8bcd")
+  (set-face-foreground 'highlight nil))
 
 (use-package treemacs
   :ensure t
