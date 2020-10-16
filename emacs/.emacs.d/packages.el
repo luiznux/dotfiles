@@ -248,6 +248,11 @@
 (use-package evil-mode
   :hook (org-mode . evil-org-mode))
 
+(use-package undo-tree ;dependency for evil-undo-system
+  :ensure t
+  :config
+  (global-undo-tree-mode))
+
 (use-package org-super-agenda
   :ensure t
   :config (org-super-agenda-mode t))
