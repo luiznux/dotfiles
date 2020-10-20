@@ -141,10 +141,10 @@
 (use-package nlinum
   :ensure t
   :config
-  (global-nlinum-mode)
-  (set-face-background 'linum "#303030")
-  (set-face-foreground 'linum "#8b8bcd")
-  (set-face-foreground 'highlight nil))
+  (global-nlinum-mode))
+;  (set-face-background 'linum "#303030")
+;  (set-face-foreground 'linum "#8b8bcd")
+;  (set-face-foreground 'highlight nil))
 
 (use-package treemacs
   :ensure t
@@ -256,6 +256,30 @@
 (use-package org-super-agenda
   :ensure t
   :config (org-super-agenda-mode t))
+
+;;--------------------JAVASCRIPTU
+(use-package rjsx-mode
+  :ensure t
+  :mode "\\.js\\'")
+
+(defun setup-tide-mode()
+  "Setup funcion for tide."
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (tide-hl-identifier-mode +1)
+  (company-mode +1))
+
+(use-package tide
+  :ensure t
+  :after (rjsx-mode company flycheck)
+  :hook (rjsx-mode . setup-tide-mode))
+
+(use-package prettier-js
+  :ensure t
+  :after (rjsx-mode)
+  :hook (rjsx-mode . prettier-js-mode))
 
 
 ;Local packages(github)
