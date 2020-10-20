@@ -152,6 +152,16 @@ emacs(){
     && log echo "     Emacs  Install  {OK}" && break_line || log erro_msg
 }
 
+#### Config my dropbox sync folder
+dropbox_setup(){
+
+    log echo "#---------------------------------------- Setup Dropbox Folder and Install" && break_line
+    log_error cd $AUR && mkdir -p dropbox && log_error wget https://linux.dropbox.com/fedora/rpm-public-key.asc \
+    && log_error gpg --import rpm-public-key.asc && break_line && log_echo " Key imported" \
+    && log_error make_pkg_AUR dropbox \
+    && log_error make_pkg_AUR nemo-dropbox \
+    && log echo"     Dropbox Setup    {OK}" && break_line || log erro_msg
+}
 
 #### move all the others dotfiles
 general_config(){
