@@ -22,6 +22,7 @@ AUR=~/AUR
 GIT=~/Github
 errors=0
 
+
 #### break line with echo command
 break_line(){
     echo $'\n\n'
