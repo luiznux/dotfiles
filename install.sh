@@ -336,6 +336,7 @@ Python_config
 Graphic_drivers
 AUR_install
 emacs
+dropbox_setup
 general_config
 git_repository_setup
 laptop_config
