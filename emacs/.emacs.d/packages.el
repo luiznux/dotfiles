@@ -316,14 +316,13 @@
   (dashboard-setup-startup-hook)
   (add-hook 'dashboard-mode-hook (lambda () (org-agenda t "x")) (lambda () (ace-window)))
 
+  (setq dashboard-itens '((bookmarks .  5)))
+
   (setq dashboard-set-heading-icons  t
         dashboard-set-file-icons     t
         show-week-agenda-p           t
         dashboard-set-navigator      t
         dashboard-startup-banner     'logo)
-  (setq dashboard-itens '((recents   .  7)
-                          (agenda    .  7)
-                          (bookmarks .  4)))
 
  ;; Format: "(icon title help action face prefix suffix)"
 (setq dashboard-navigator-buttons
