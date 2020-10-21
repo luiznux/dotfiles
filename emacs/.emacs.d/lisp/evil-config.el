@@ -28,7 +28,18 @@
   (use-package evil-surround
     :ensure t
     :config
-    (global-evil-surround-mode 1)))
+    (global-evil-surround-mode 1))
+
+  (use-package evil-leader
+    :ensure t)
+
+  (use-package evil-org
+    :ensure t)
+
+  (use-package undo-tree ;dependency for evil-undo-system
+    :ensure t
+    :config
+    (global-undo-tree-mode)))
 
 (provide 'evil-config)
 
