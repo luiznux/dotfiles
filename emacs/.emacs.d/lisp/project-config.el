@@ -75,7 +75,7 @@
             treemacs-space-between-root-nodes      t
             treemacs-tag-follow-cleanup            t
             treemacs-tag-follow-delay              1.5
-            treemacs-width                         45)
+            treemacs-width                         37)
 
       (treemacs-follow-mode t)
       (treemacs-filewatch-mode t)
@@ -110,7 +110,12 @@
 
   (use-package treemacs-magit
     :after treemacs magit
-    :ensure t))
+    :ensure t)
+
+  (use-package treemacs-persp
+    :after treemacs persp-mode
+    :ensure t
+    :config (treemacs-set-scope-type 'Perspectives)))
 
 (provide 'project-config)
 
