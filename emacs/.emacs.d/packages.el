@@ -163,8 +163,9 @@
   :ensure t
   :init
   (progn
-    (setq dashboard-items '((recents  . 7)
-                            (projects . 6))))
+    (setq dashboard-items '((bookmarks . 4)
+                            (recents   . 7)
+                            (projects  . 6))))
   :config
   (dashboard-setup-startup-hook)
   (add-hook 'dashboard-mode-hook (lambda () (org-agenda t "x")) (lambda () (ace-window)))
