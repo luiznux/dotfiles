@@ -257,6 +257,22 @@
   :ensure t
   :config (org-super-agenda-mode t))
 
+(use-package minimap
+  :ensure t
+  :custom
+  (minimap-major-modes '(prog-mode))
+  :config
+  (custom-set-faces
+   '(minimap-window-location 'right)
+   '(minimap-update-delay 0.2)
+   '(minimap-highlight-line  t)
+   '(minimap-hide-scroll-bar nil)
+   '(minimap-highlight-line t)
+   '(minimap-display-semantic-overlays t)
+   '(minimap-font-face ((t (:height 32 :family "DejaVu Sans Mono"))))
+   '(minimap-active-region-background ((t (:extend t :background "#232526"))))
+   '(minimap-current-line-face ((t (:background "#344256"))))))
+
 ;;--------------------JAVASCRIPTU
 (use-package rjsx-mode
   :ensure t
