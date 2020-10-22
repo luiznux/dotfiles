@@ -188,13 +188,13 @@
   :custom
   (minimap-major-modes '(prog-mode))
   :config
+  (setq minimap-window-location 'right
+        minimap-update-delay 0.2
+        minimap-highlight-line  t
+        minimap-hide-scroll-bar nil
+        minimap-highlight-line t
+        minimap-display-semantic-overlays t)
   (custom-set-faces
-   '(minimap-window-location 'right)
-   '(minimap-update-delay 0.2)
-   '(minimap-highlight-line  t)
-   '(minimap-hide-scroll-bar nil)
-   '(minimap-highlight-line t)
-   '(minimap-display-semantic-overlays t)
    '(minimap-font-face ((t (:height 32 :family "DejaVu Sans Mono"))))
    '(minimap-active-region-background ((t (:extend t :background "#232526"))))
    '(minimap-current-line-face ((t (:background "#344256"))))))
