@@ -72,6 +72,16 @@
          "g\\" 'org-agenda-filter-by-tag-refine
          "]" 'org-agenda-manipulate-query-subtract))))
 
+(defun schedule-and-deadline-config ()
+  "Set delays and prewarnings for its."
+  (setq org-agenda-skip-scheduled-delay-if-deadline t
+        org-agenda-skip-deadline-prewarning-if-scheduled t))
+
+(defun org-capture-config ()
+  "Org caputer config."
+  (setq org-default-notes-file "~/org/capture.org")
+  (global-set-key (kbd "C-c c") 'org-capture))
+
 (defun org-TODO-keywords ()
   "Add and customize org TODO keywords."
 
@@ -84,19 +94,10 @@
                                  ("WAITING"      . (:foreground "#ffb378" :weight bold))
                                  ("DONE"         . (:foreground "#1E90FF" :weight bold)))))
 
-(defun schedule-and-deadline-config ()
-  "Set delays and prewarnings for its."
-  (setq org-agenda-skip-scheduled-delay-if-deadline t
-        org-agenda-skip-deadline-prewarning-if-scheduled t))
-
-(defun org-capture-config ()
-  "Org caputer config."
-  (setq org-default-notes-file "~/org/capture.org")
-  (global-set-key (kbd "C-c c") 'org-capture))
-
 (agenda-vim-mode)
-(org-TODO-keywords)
 (schedule-and-deadline-config)
 (org-capture-config)
+(org-TODO-keywords)
 
-;;; agenda.el ends here.
+(provide 'agenda-config)
+;;; agenda-config.el ends here
