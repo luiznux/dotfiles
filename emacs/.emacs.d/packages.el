@@ -136,6 +136,7 @@
 (use-package diff-hl
   :ensure t
   :config
+  (global-hl-line-mode)
   (global-diff-hl-mode))
 
 (use-package nlinum
@@ -154,10 +155,6 @@
 
 (use-package evil-mode
   :hook (org-mode . evil-org-mode))
-
-(use-package org-super-agenda
-  :ensure t
-  :config (org-super-agenda-mode t))
 
 (use-package dashboard
   :ensure t
@@ -254,6 +251,7 @@
 (load "~/.emacs.d/lisp/irony-config.el")
 (load "~/.emacs.d/lisp/git-config.el")
 (load "~/.emacs.d/lisp/project-config.el")
+(load"~/.emacs.d/lisp/agenda-config.el")
 
 
 (setup-evil-packages)
