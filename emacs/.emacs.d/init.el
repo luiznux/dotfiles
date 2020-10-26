@@ -32,20 +32,6 @@
  '(evil-undo-system 'undo-tree);fix C-r undo on evil mode
  '(git-gutter:update-interval 1)
  '(line-spacing 0.2)
- '(org-agenda-custom-commands
-   (quote
-    (("x" "Describe command here" agenda ""
-      ((org-agenda-span
-        (quote month)))))))
- '(org-agenda-files
-   (quote
-    ("~/org/agenda.org" "~/org/college.org" "~/org/work.org" "~/org/notes.org")))
- '(org-agenda-prefix-format
-   (quote
-    ((agenda . "%-3i%?-12t% s")
-     (todo . " %i %-12:c")
-     (tags . " %i %-12:c")
-     (search . " %i %-12:c"))))
  '(package-selected-packages
    (quote
     (page-break-lines dashboard dash-functional company-lsp lsp-ui lsp-mode go-mode evil-surround docker treemacs-icons-dired treemacs-magit treemacs-evil treemacs-projectile treemacs ranger hydra tldr flycheck-mypy multi-term git-gutter counsel org-bullets smex evil-matchit projectile ggtags flycheck-irony company-irony python-docstring irony gitignore-mode dumb-jump ag mmm-mode popwin color-identifiers-mode highlight-indent-guides telephone-line dockerfile-mode pyenv-mode all-the-icons gh-md evil-magit async magit flycheck ## python-doctring markdown-mode evil py-autopep8 goto-chg undo-tree elpy which-key use-package)))
@@ -60,8 +46,6 @@
  '(default ((t (:inherit nil :stipple nil :background "#0b0719" :foreground "#c5c8c6" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "ADBO" :family "Source Code Pro")))))
 
 ;old background "#1d1f21"
-
-(global-hl-line-mode)
 
 (load "~/.emacs.d/main.el")
 
