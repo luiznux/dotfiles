@@ -160,6 +160,7 @@
   :ensure t
   :init
   (progn
+    (setq recentf-exclude '("/org/*")) ;prevent  show recent org-agenda files
     (setq dashboard-items '((bookmarks . 4)
                             (recents   . 7)
                             (projects  . 6))))
