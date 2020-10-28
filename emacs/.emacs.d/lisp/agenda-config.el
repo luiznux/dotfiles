@@ -92,7 +92,6 @@
                                  ("WAITING"      . (:foreground "#ffb378" :weight bold))
                                  ("DONE"         . (:foreground "#1E90FF" :weight bold)))))
 
-
 (defun org-agenda-custom-config ()
   (setq org-agenda-custom-commands
         '(("x" "Describe command here" agenda "")))
