@@ -100,7 +100,9 @@
   (setq org-agenda-skip-scheduled-delay-if-deadline t
         org-agenda-skip-deadline-prewarning-if-scheduled t
         org-agenda-span 10 ; show 10 days in agenda
-        org-agenda-compact-blocks t)
+        org-agenda-compact-blocks t
+        org-agenda-show-future-repeats nil
+        org-agenda-prefer-last-repeat t)
 
   (setq org-agenda-files ;set org agenda files
         '("~/org/agenda.org" "~/org/college.org" "~/org/work.org" "~/org/notes.org")))
