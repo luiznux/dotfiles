@@ -84,12 +84,13 @@
 (defun org-TODO-keywords ()
   "Add and customize org TODO keywords."
   (setq org-todo-keywords
-        '((sequence "TODO" "NOTE" "IN-PROGRESS" "WAITING" "DONE")))
+        '((sequence "TODO" "NOTE" "IN-PROGRESS" "WAITING" "IMPORTANT" "DONE")))
 
   (setq org-todo-keyword-faces '(("TODO"         . (:foreground "#ff8080" :weight bold))
                                  ("NOTE"         . (:foreground "#ffe9aa" :weight bold))
                                  ("IN-PROGRESS"  . (:foreground "#A020F0" :weight bold))
                                  ("WAITING"      . (:foreground "#ffb378" :weight bold))
+                                 ("IMPORTANT"    . (:foreground "#f32020" :weight bold))
                                  ("DONE"         . (:foreground "#1E90FF" :weight bold)))))
 
 (defun org-agenda-custom-config ()
@@ -104,7 +105,7 @@
         org-agenda-prefer-last-repeat t)
 
   (setq org-agenda-files ;set org agenda files
-        '("~/org/agenda.org" "~/org/college.org" "~/org/work.org" "~/org/notes.org")))
+        '("~/org/agenda.org" "~/org/college.org" "~/org/work.org" "~/org/personal.org")))
 
 ;-----------custom funcs
 (defun ll/org/agenda/color-headers-with (tag col col2)
@@ -122,7 +123,7 @@
                              `(face (:foreground ,col :background ,col2 :weight bold))))))
 ;; Helper definitions
 (setq ll/org/agenda-todo-words
-      '("work:" "college:" "personal"))
+      '("work:" "college:" "personal:" "agenda:"))
 
 (defun find-in-line (needle &optional beginning count)
   "Find the position of the start of NEEDLE in the current line.
@@ -146,7 +147,9 @@ from the left."
   "Color all headings with :pers: colors."
   (ll/org/agenda/color-headers-with "work:"  "#2d2d2d" "#FA74B2")
   (ll/org/agenda/color-headers-with "college:" "#2d2d2d" "#c792ea")
-  (ll/org/agenda/color-headers-with "personal:" "#2d2d2d"  "#839ce4"))
+  (ll/org/agenda/color-headers-with "personal:" "#2d2d2d"  "#839ce4")
+  (ll/org/agenda/color-headers-with "agenda:" "#2d2d2d"  "#da8548")
+  )
 ;;-------------------
 
 
