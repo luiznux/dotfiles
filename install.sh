@@ -87,7 +87,7 @@ dir_tree(){
 install_packages(){
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
-    log_error sudo pacman -Sy xorg xclip man tree colordiff zsh zsh-completions neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang ccls i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol code youtube-dl qt gimp picom cups cups-pdf system-config-printer gdm pandoc texlive-most rofi gnome-keyring nmap deepin-screenshot ntp bash-language-server --noconfirm \
+    log_error sudo pacman -Sy xorg xclip ufw man tree colordiff zsh zsh-completions neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang ccls i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol code youtube-dl qt gimp picom cups cups-pdf system-config-printer gdm pandoc texlive-most rofi gnome-keyring nmap deepin-screenshot ntp bash-language-server --noconfirm \
     && log echo "        Packages {OK}" && break_line || log erro_msg
 }
 
@@ -116,6 +116,7 @@ AUR_install(){
     log echo "wps-office ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify spicetify-cli" && break_line
     log_error make_pkg_AUR python-pdftotext \
     && log_error make_pkg_AUR polybar \
+    && log_error make_pkg_AUR i3lock-color-git \
     && log_error make_pkg_AUR thermald \
     && log_error make_pkg_AUR ttf-weather-icons \
     && log_error make_pkg_AUR qdirstat \
@@ -130,8 +131,8 @@ AUR_install(){
     && log_error make_pkg_AUR python2-twodict-git \
     && log_error make_pkg_AUR youtube-dl-gui-git \
     && log_error make_pkg_AUR jetbrains-toolbox \
-    && log_error gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45 && log_error make_pkg_AUR spotify \
-    && log_error sudo chmod 777 /opt/spotify -R && log_error make_pkg_AUR spicetify-cli \
+    #&& log_error gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45 && log_error make_pkg_AUR spotify \
+    #&& log_error sudo chmod 777 /opt/spotify -R && log_error make_pkg_AUR spicetify-cli \
     && log_error make_pkg_AUR spicetify-themes-git \
     && log_error make_pkg_AUR ttf-wps-fonts \
     && log_error make_pkg_AUR wps-office \
@@ -261,7 +262,7 @@ git_repository_setup(){
 #### to install laptoptools
 laptop_config(){
     log echo "Do you want install laptop configs ?(answer with y or n)"
-    log read -p  "--> "  option
+    log read -p  "-->  "  option
 
     if [ $option == "y" ]; then
         log echo "#----------------------------------------- Laptop config" && break_line
@@ -307,7 +308,7 @@ laptop_config(){
 nvidia_xorg_config(){
     log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
     log echo "Only answer 'y' if you are using nvidia graphic card and have the drivers"
-    log read -p  "--> "  option
+    log read -p  "-->  "  option
 
     if [ $option == "y" ]; then
         sudo nvidia-xconfig
