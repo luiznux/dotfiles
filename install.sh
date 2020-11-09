@@ -312,9 +312,9 @@ nvidia_xorg_config(){
         sudo nvidia-xconfig
         echo "Done!" && break_line
 
-        else:
+    else
         echo "Nvidia xconfig {SKIPED} " && break_line
-        fi
+    fi
 }
 
 
