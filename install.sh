@@ -231,7 +231,6 @@ general_config(){
     cd $dotfiles && sudo cp config/urxvt/urxvt-resize-font/resize-font /usr/lib64/urxvt/perl/ &&  sudo chmod +x /usr/lib64/urxvt/perl/resize-font \
     && gsettings set org.cinnamon.desktop.default-applications.terminal exec st \
     && cd $GIT/prog && git clone https://github.com/luiznux/st && cd st/ && make && sudo make clean install \
-    && cd $GIT/luiznux && git clone https://github.com/luiznux/org.git && ln -s $GIT/luiznux/org ~/org && exit_dir \
     && cd $GIT/luiznux && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir \
     && cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
     && cd $dotfiles && sudo cp config/scripts/{ca,simple-push,volume} /usr/local/bin/ \
