@@ -170,6 +170,7 @@ dropbox_setup(){
     && log echo "     Dropbox install packages {OK}" && break_line || log erro_msg
 }
 
+
 #### move all the others dotfiles
 general_config(){
     log echo "#---------------------------------------- Setup i3 and polybar" && break_line
@@ -279,22 +280,16 @@ laptop_config(){
         log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/
         log_error sudo gpasswd -a luiznux bumblebee \
         && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
-        && sudo touch /proc/acpi/bbswitch \
         && log_error sudo tee /proc/acpi/bbswitch <<<OFF \
         && log echo "     Bbswitch {OK}" && break_line || log erro_msg
-
-        log echo "#--------- Light(brithness control)" && break_line
-        cd ~/Github/prog/ && log_error git clone https://github.com/haikarainen/light \
-        && cd ~/Github/prog/light && log_error ./autogen.sh && log_error ./configure && sudo make \
-        && log echo "     Light {OK}" && break_line || log erro_msg
 
         #TLP config
         cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
         && log echo "     Laptop configs {OK}" && break_line || log erro_msg
 
         log echo "Systemctl for laptop services"
-        log_error systemctl enable tlp.service optimus-manager.service bumblebeed.service \
-        && log_error systemctl disable bluetooth.service \
+        log_error sudo systemctl enable tlp.service optimus-manager.service bumblebeed.service \
+        && log_error sudo systemctl disable bluetooth.service \
 
     else
         log echo "#------------------------------------ Laptop config {SKIPED}"
@@ -321,7 +316,7 @@ nvidia_xorg_config(){
 #### enable some services
 systemd_init(){
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
-    log_error systemctl enable gdm.service ufw.service ntpd.service \
+    log_error sudo systemctl enable gdm.service ufw.service ntpd.service \
     && log_error sudo ufw enable \
     && log echo "Done" && break_line || log erro_msg
 }
