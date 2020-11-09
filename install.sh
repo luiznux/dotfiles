@@ -131,8 +131,6 @@ AUR_install(){
     && log_error make_pkg_AUR python2-twodict-git \
     && log_error make_pkg_AUR youtube-dl-gui-git \
     && log_error make_pkg_AUR jetbrains-toolbox \
-    #&& log_error gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45 && log_error make_pkg_AUR spotify \
-    #&& log_error sudo chmod 777 /opt/spotify -R && log_error make_pkg_AUR spicetify-cli \
     && log_error make_pkg_AUR spicetify-themes-git \
     && log_error make_pkg_AUR ttf-wps-fonts \
     && log_error make_pkg_AUR wps-office \
