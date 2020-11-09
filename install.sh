@@ -260,12 +260,12 @@ git_repository_setup(){
 #### to install laptoptools
 laptop_config(){
     log echo "Do you want install laptop configs ?(answer with y or n)"
-    log read -p  "-->  "  option
+    log read -p "-->" option
 
     if [ $option == "y" ]; then
         log echo "#----------------------------------------- Laptop config" && break_line
         log echo "#--------- Laptop packges" && break_line
-        log_error sudo pacman -S acpi tlp bumblebee xf86-input-synaptics xfce4-power-manager bluez-utils --noconfirm \
+        log_error sudo pacman -S acpi tlp bumblebee xf86-input-synaptics xfce4-power-manager light bluez-utils --noconfirm \
         && log_error make_pkg_AUR nvidia-xrun \
         && log echo " Lapto packages {OK}" && break_line || log erro_msg
 
@@ -279,6 +279,7 @@ laptop_config(){
         log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/
         log_error sudo gpasswd -a luiznux bumblebee \
         && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
+        && sudo touch /proc/acpi/bbswitch \
         && log_error sudo tee /proc/acpi/bbswitch <<<OFF \
         && log echo "     Bbswitch {OK}" && break_line || log erro_msg
 
@@ -306,12 +307,11 @@ laptop_config(){
 nvidia_xorg_config(){
     log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
     log echo "Only answer 'y' if you are using nvidia graphic card and have the drivers"
-    log read -p  "-->  "  option
+    log read -p "-->" option
 
     if [ $option == "y" ]; then
         sudo nvidia-xconfig
         echo "Done!" && break_line
-
     else
         echo "Nvidia xconfig {SKIPED} " && break_line
     fi
