@@ -315,7 +315,7 @@ nvidia_xorg_config(){
 #### enable some services
 systemd_init(){
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
-    log_error sudo systemctl enable gdm.service ufw.service ntpd.service \
+    log_error sudo systemctl enable gdm.service ufw.service ntpd.service org.cups.cupsd.service \
     && log_error sudo ufw enable \
     && log echo "Done" && break_line || log erro_msg
 }
