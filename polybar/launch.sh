@@ -8,5 +8,6 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch example
 polybar luiznux &
+#polybar monitor-2
 
 echo "Bars launched..."
