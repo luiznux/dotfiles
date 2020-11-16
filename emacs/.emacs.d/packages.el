@@ -161,9 +161,8 @@
   :init
   (progn
     (setq recentf-exclude '("/org/*")) ;prevent  show recent org-agenda files
-    (setq dashboard-items '((bookmarks . 4)
-                            (recents   . 7)
-                            (projects  . 6))))
+    (setq dashboard-items '((recents   . 10)
+                            (projects  . 8))))
   :config
   (dashboard-setup-startup-hook)
   (add-hook 'dashboard-mode-hook (lambda () (org-agenda t "x")) (lambda () (ace-window)))
