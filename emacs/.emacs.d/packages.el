@@ -133,20 +133,6 @@
   :ensure t
   :bind ("C-c d" . docker))
 
-(use-package diff-hl
-  :ensure t
-  :config
-  (global-hl-line-mode)
-  (global-diff-hl-mode))
-
-(use-package nlinum
-  :ensure t
-  :config
-  (global-nlinum-mode))
-;  (set-face-background 'linum "#303030")
-;  (set-face-foreground 'linum "#8b8bcd")
-;  (set-face-foreground 'highlight nil))
-
 (use-package all-the-icons
   :ensure t)
 
@@ -162,7 +148,7 @@
   (progn
     (setq recentf-exclude '("/org/*")) ;prevent  show recent org-agenda files
     (setq dashboard-items '((recents   . 10)
-                            (projects  . 8))))
+                            (projects  .  8))))
   :config
   (dashboard-setup-startup-hook)
   (add-hook 'dashboard-mode-hook (lambda () (org-agenda t "x")) (lambda () (ace-window)))
