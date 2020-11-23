@@ -379,4 +379,18 @@ for_window [title="Volume Control"]	  floating enable
 #exec --no-startup-id xrandr --output DP-2 --mode 1920x1080 --rate 144 --right-of HDMI-0 --auto
 #
 ## assign a workspace to a Monitor
-#workspace $ws11 output $secondMonitor
+#
+##First Monitor
+#workspace $ws1  output  $firstMonitor
+#workspace $ws2  output  $firstMonitor
+#workspace $ws3  output  $firstMonitor
+#workspace $ws4  output  $firstMonitor
+#workspace $ws5  output  $firstMonitor
+#workspace $ws6  output  $firstMonitor
+#workspace $ws7  output  $firstMonitor
+#workspace $ws8  output  $firstMonitor
+#workspace $ws9  output  $firstMonitor
+#workspace $ws10 output  $firstMonitor
+#
+##Second Monitor
+#workspace $ws11 output  $secondMonitor
