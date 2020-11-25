@@ -112,8 +112,6 @@ Graphic_drivers(){
 AUR_install(){
     log echo "#---------------------------------------- AUR packages" && break_line
     log echo "Installing some AUR Packages" && break_line
-    log echo "python-pdftotext polybar thermald ttf-weather-icon rar pygtk python2-twodict-git youtube-dl-gui-git jetbrains-toolbox "
-    log echo "wps-office ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify spicetify-cli" && break_line
     log_error make_pkg_AUR python-pdftotext \
     && log_error make_pkg_AUR polybar \
     && log_error make_pkg_AUR i3lock-color-git \
