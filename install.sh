@@ -122,7 +122,6 @@ AUR_install(){
     && log_error make_pkg_AUR sublime-text-dev \
     && log_error make_pkg_AUR speedometer \
     && log_error make_pkg_AUR cli-visualizer \
-    && log_error make_pkg_AUR mailspring \
     && log_error make_pkg_AUR pygtk \
     && log_error make_pkg_AUR rar \
     && log_error make_pkg_AUR python-ueberzug \
