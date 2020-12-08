@@ -256,7 +256,7 @@ git_repository_setup(){
 #### to install laptoptools
 laptop_config(){
     log echo "Do you want install laptop configs ?(answer with y or n)"
-    log read -p "-->" option
+    read -p "--> " option
 
     if [ $option == "y" ]; then
         log echo "#----------------------------------------- Laptop config" && break_line
@@ -297,7 +297,7 @@ laptop_config(){
 nvidia_xorg_config(){
     log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
     log echo "Only answer 'y' if you are using nvidia graphic card and have the drivers"
-    log read -p "-->" option
+    read -p "--> " option
 
     if [ $option == "y" ]; then
         sudo nvidia-xconfig
