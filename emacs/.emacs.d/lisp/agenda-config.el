@@ -1,4 +1,3 @@
-;;; agenda.el --- Configs Vim keymaps for agenda.
 ;;; Commentary:
 ;;;
 ;;; Code:
@@ -72,26 +71,94 @@
          "g\\" 'org-agenda-filter-by-tag-refine
          "]" 'org-agenda-manipulate-query-subtract))))
 
+
+(defun org-capture-config ()
+  "Org caputer config."
+  (setq org-default-notes-file "~/org/capture.org")
+  (global-set-key (kbd "C-c c") 'org-capture))
+
+(defun org-tags-set ()
+  "Set org agenda custom tags."
+ (setq org-tag-alist '(("work" . ?w) ("college" . ?c) ("personal" . ?p))))
+
 (defun org-TODO-keywords ()
   "Add and customize org TODO keywords."
-
   (setq org-todo-keywords
-        '((sequence "TODO" "NOTE" "IN-PROGRESS" "WAITING" "DONE")))
+        '((sequence "TODO" "NOTE" "IN-PROGRESS" "WAITING" "IMPORTANT" "DONE")))
 
   (setq org-todo-keyword-faces '(("TODO"         . (:foreground "#ff8080" :weight bold))
                                  ("NOTE"         . (:foreground "#ffe9aa" :weight bold))
                                  ("IN-PROGRESS"  . (:foreground "#A020F0" :weight bold))
                                  ("WAITING"      . (:foreground "#ffb378" :weight bold))
+                                 ("IMPORTANT"    . (:foreground "#f32020" :weight bold))
                                  ("DONE"         . (:foreground "#1E90FF" :weight bold)))))
 
-(defun schedule-and-deadline-config ()
-  "Set delays and prewarnings for its."
+(defun org-agenda-custom-config ()
+  (setq org-agenda-custom-commands
+        '(("x" "Describe command here" agenda "")))
+
   (setq org-agenda-skip-scheduled-delay-if-deadline t
-        org-agenda-skip-deadline-prewarning-if-scheduled t))
+        org-agenda-skip-deadline-prewarning-if-scheduled t
+        org-agenda-span 10 ; show 10 days in agenda
+        org-agenda-compact-blocks t
+        org-agenda-show-future-repeats nil
+        org-agenda-prefer-last-repeat t)
+
+  (setq org-agenda-files ;set org agenda files
+        '("~/org/agenda.org" "~/org/college.org" "~/org/work.org" "~/org/personal.org")))
+
+;-----------custom funcs
+(defun ll/org/agenda/color-headers-with (tag col col2)
+  "Color agenda lines matching TAG with color COL(foreground) and COL2(background)."
+  (interactive)
+  (goto-char (point-min))
+  (while (re-search-forward tag nil t)
+    ;(Unless (find-in-line "\\[#[A-Z]\\]")
+      (let ((todo-end (or (ll/org/agenda/find-todo-word-end)
+                          (point-at-bol)))
+            (tags-beginning (or (find-in-line " :" t)
+                                (point-at-eol))))
+        (add-text-properties todo-end
+                             tags-beginning
+                             `(face (:foreground ,col :background ,col2 :weight bold))))))
+;; Helper definitions
+(setq ll/org/agenda-todo-words
+      '("work:" "college:" "personal:" "agenda:"))
+
+(defun find-in-line (needle &optional beginning count)
+  "Find the position of the start of NEEDLE in the current line.
+If BEGINNING is non-nil, find the beginning of NEEDLE in the
+current line.  If COUNT is non-nil, find the COUNT'th occurrence
+from the left."
+  (save-excursion
+    (beginning-of-line)
+
+    (let ((found (re-search-forward needle (point-at-eol) t count)))
+      (if beginning
+          (match-beginning 0)
+        found))))
+
+(defun ll/org/agenda/find-todo-word-end ()
+  "Find TODO keyword on the end."
+  (reduce (lambda (a b) (or a b))
+          (mapcar #'find-in-line ll/org/agenda-todo-words)))
+
+(defun ll/org/colorize-headings ()
+  "Color all headings with :pers: colors."
+  (ll/org/agenda/color-headers-with "work:"  "#2d2d2d" "#FA74B2")
+  (ll/org/agenda/color-headers-with "college:" "#2d2d2d" "#c792ea")
+  (ll/org/agenda/color-headers-with "personal:" "#2d2d2d"  "#839ce4")
+  (ll/org/agenda/color-headers-with "agenda:" "#2d2d2d"  "#da8548")
+  )
+;;-------------------
 
 
 (agenda-vim-mode)
+(org-capture-config)
+(org-tags-set)
 (org-TODO-keywords)
-(schedule-and-deadline-config)
+(org-agenda-custom-config)
+(add-hook 'org-agenda-finalize-hook #'ll/org/colorize-headings)
 
-;;; agenda.el ends here.
+(provide 'agenda-config)
+;;; agenda-config.el ends here

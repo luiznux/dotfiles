@@ -42,6 +42,7 @@
     (with-eval-after-load 'winum
       (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
     :config
+    (add-hook 'treemacs-mode-hook (lambda() (display-line-numbers-mode -1)))
     (progn
       (setq treemacs-collapse-dirs                 (if (treemacs--find-python3) 3 0)
             treemacs-deferred-git-apply-delay      0.5
@@ -75,7 +76,7 @@
             treemacs-space-between-root-nodes      t
             treemacs-tag-follow-cleanup            t
             treemacs-tag-follow-delay              1.5
-            treemacs-width                         45)
+            treemacs-width                         37)
 
       (treemacs-follow-mode t)
       (treemacs-filewatch-mode t)
@@ -110,7 +111,12 @@
 
   (use-package treemacs-magit
     :after treemacs magit
-    :ensure t))
+    :ensure t)
+
+  (use-package treemacs-persp
+    :after treemacs persp-mode
+    :ensure t
+    :config (treemacs-set-scope-type 'Perspectives)))
 
 (provide 'project-config)
 

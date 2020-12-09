@@ -18,9 +18,12 @@
 ;  :ensure t
 ;  :config (load-theme 'exotica t))
 
-(use-package inkpot-theme
-  :ensure t
-  :config (load-theme 'inkpot t))
+;(use-package inkpot-theme
+;  :ensure t
+;  :config (load-theme 'inkpot t))
 
+(use-package doom-themes
+  :ensure t
+  :config (load-theme 'doom-one t))
 
 ;;; theme.el ends here

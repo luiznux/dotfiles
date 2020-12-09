@@ -53,6 +53,7 @@ erro_msg(){
     ((errors+=1)) && echo "  ERROR[$[errors]]" && break_line
 }
 
+
 #### exit dir
 exit_dir(){
 
@@ -98,9 +99,10 @@ install_packages(){
 
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
-    log_error sudo pacman -Sy xorg xclip man tree colordiff zsh zsh-completions neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps i3lock-color ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang ccls i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol code youtube-dl qt gimp picom cups cups-pdf system-config-printer gdm pandoc texlive-most rofi gnome-keyring nmap deepin-screenshot ntp --noconfirm \
+    log_error sudo pacman -Sy xorg xclip ufw man tree colordiff zsh zsh-completions neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang ccls i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol code youtube-dl qt gimp picom cups cups-pdf system-config-printer gdm pandoc texlive-most rofi gnome-keyring nmap deepin-screenshot ntp bash-language-server --noconfirm \
     && log echo "        Packages {OK}" && break_line || log erro_msg
 }
+
 
 
 #### install some python packages
@@ -126,10 +128,9 @@ AUR_install(){
 
     log echo "#---------------------------------------- AUR packages" && break_line
     log echo "Installing some AUR Packages" && break_line
-    log echo "python-pdftotext polybar thermald ttf-weather-icon rar pygtk python2-twodict-git youtube-dl-gui-git jetbrains-toolbox "
-    log echo "wps-office ttf-wps-fonts qdirstat jmtpfs sublime-text-dev speedometer cli-visualizer spotify spicetify-cli" && break_line
     log_error make_pkg_AUR python-pdftotext \
     && log_error make_pkg_AUR polybar \
+    && log_error make_pkg_AUR i3lock-color-git \
     && log_error make_pkg_AUR thermald \
     && log_error make_pkg_AUR ttf-weather-icons \
     && log_error make_pkg_AUR qdirstat \
@@ -137,16 +138,12 @@ AUR_install(){
     && log_error make_pkg_AUR sublime-text-dev \
     && log_error make_pkg_AUR speedometer \
     && log_error make_pkg_AUR cli-visualizer \
-    && log_error make_pkg_AUR mailspring \
     && log_error make_pkg_AUR pygtk \
     && log_error make_pkg_AUR rar \
     && log_error make_pkg_AUR python-ueberzug \
     && log_error make_pkg_AUR python2-twodict-git \
     && log_error make_pkg_AUR youtube-dl-gui-git \
     && log_error make_pkg_AUR jetbrains-toolbox \
-    && log_error gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45 && log_error make_pkg_AUR spotify \
-    && log_error sudo chmod 777 /opt/spotify -R && log_error make_pkg_AUR spicetify-cli \
-    && log_error make_pkg_AUR spicetify-themes-git \
     && log_error make_pkg_AUR ttf-wps-fonts \
     && log_error make_pkg_AUR wps-office \
     && log_error make_pkg_AUR wps-office-mui \
@@ -167,9 +164,29 @@ emacs(){
     && log echo "     Emacs  Install  {OK}" && break_line || log erro_msg
 }
 
+
+#### Config my dropbox sync folder
+dropbox_setup(){
+
+    log echo "#---------------------------------------- Setup Dropbox Packages " && break_line
+    #in case the dir already exists
+    if [ -d "$AUR/dropbox" ];then
+        log echo " directory already exists and its not empty !" && break_line
+
+    else
+        log_error cd $AUR && log_error git clone https://aur.archlinux.org/dropbox.git && exit_dir
+    fi
+
+    log_error cd $AUR/dropbox && log_error wget https://linux.dropbox.com/fedora/rpm-public-key.asc \
+    && log_error gpg --import rpm-public-key.asc && break_line && log echo " Key imported" \
+    && log_error make_pkg_AUR dropbox \
+    && log_error make_pkg_AUR nemo-dropbox \
+    && log echo "     Dropbox install packages {OK}" && break_line || log erro_msg
+}
+
+
 #### I3 and Polybar config
 i3_polybar_setup(){
-
     log echo "#---------------------------------------- Setup i3 and polybar" && break_line
     cd $dotfiles && cp i3/config ~/.config/i3/ \
     && cd $dotfiles && cp -r polybar/*  ~/.config/polybar/ \
@@ -286,9 +303,9 @@ xorg_config(){
 #### Urxvt Config
 urxvt_package(){
 
-    log echo "#---------------------------------------- Other Configs " && break_line
+    log echo "#---------------------------------------- URXVT Configs " && break_line
     cd $dotfiles && sudo cp config/urxvt/urxvt-resize-font/resize-font /usr/lib64/urxvt/perl/ &&  sudo chmod +x /usr/lib64/urxvt/perl/resize-font \
-    && log echo "     Xorg config {OK} " && break_line || log erro_msg
+    && log echo "     URXVT Config {OK} " && break_line || log erro_msg
 
 }
 
@@ -297,6 +314,10 @@ other_config(){
 
     log echo "#---------------------------------------- Other Configs " && break_line
     cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
+    && gsettings set org.cinnamon.desktop.default-applications.terminal exec st \
+    && cd $GIT/prog && git clone https://github.com/luiznux/st && cd st/ && make && sudo make clean install \
+    && cd $GIT/luiznux && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir \
+    && cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
     && cd $dotfiles && sudo cp config/scripts/{ca,simple-push,volume} /usr/local/bin/ \
     && cd $dotfiles && cp -r config/sxiv ~/.config/ \
     && cd $dotfiles && cp config/.bashrc ~/ \
@@ -311,6 +332,7 @@ clone_my_rep(){
     && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ \
     && log echo "   Clone my-rep config {OK}" && break_line || log error_msg
 }
+
 
 #### Clone other repositories
 git_repository_setup(){
@@ -327,16 +349,17 @@ git_repository_setup(){
 }
 
 
+
 #### install laptoptools
 laptop_config(){
 
     log echo "Do you want install laptop configs ?(answer with y or n)"
-    log read -p  "--> "  option
+    read -p "--> " option
 
     if [ $option == "y" ]; then
         log echo "#----------------------------------------- Laptop config" && break_line
         log echo "#--------- Laptop packges" && break_line
-        log_error sudo pacman -S acpi tlp bumblebee xf86-input-synaptics xfce4-power-manager bluez-utils --noconfirm \
+        log_error sudo pacman -S acpi tlp bumblebee xf86-input-synaptics xfce4-power-manager light bluez-utils --noconfirm \
         && log_error make_pkg_AUR nvidia-xrun \
         && log echo " Lapto packages {OK}" && break_line || log erro_msg
 
@@ -353,18 +376,13 @@ laptop_config(){
         && log_error sudo tee /proc/acpi/bbswitch <<<OFF \
         && log echo "     Bbswitch {OK}" && break_line || log erro_msg
 
-        log echo "#--------- Light(brithness control)" && break_line
-        cd ~/Github/prog/ && log_error git clone https://github.com/haikarainen/light \
-        && cd ~/Github/prog/light && log_error ./autogen.sh && log_error ./configure && sudo make \
-        && log echo "     Light {OK}" && break_line || log erro_msg
-
         #TLP config
         cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
         && log echo "     Laptop configs {OK}" && break_line || log erro_msg
 
         log echo "Systemctl for laptop services"
-        log_error systemctl enable tlp.service optimus-manager.service bumblebeed.service \
-        && log_error systemctl disable bluetooth.service \
+        log_error sudo systemctl enable tlp.service optimus-manager.service bumblebeed.service \
+        && log_error sudo systemctl disable bluetooth.service \
 
     else
         log echo "#------------------------------------ Laptop config {SKIPED}"
@@ -378,15 +396,14 @@ nvidia_xorg_config(){
 
     log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
     log echo "Only answer 'y' if you are using nvidia graphic card and have the drivers"
-    log read -p  "--> "  option
+    read -p "--> " option
 
     if [ $option == "y" ]; then
         sudo nvidia-xconfig
         echo "Done!" && break_line
-
-        else:
+    else
         echo "Nvidia xconfig {SKIPED} " && break_line
-        fi
+    fi
 }
 
 
@@ -394,7 +411,7 @@ nvidia_xorg_config(){
 systemd_init(){
 
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
-    log_error systemctl enable gdm.service ufw.service ntpd.service \
+    log_error sudo systemctl enable gdm.service ufw.service ntpd.service \
     && log_error sudo ufw enable \
     && log echo "Done" && break_line || log erro_msg
 }
@@ -408,6 +425,7 @@ Python_config
 Graphic_drivers
 AUR_install
 emacs
+dropbox_setup
 general_config
 git_repository_setup
 laptop_config
