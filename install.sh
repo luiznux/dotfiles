@@ -314,8 +314,6 @@ other_config(){
 
     log echo "#---------------------------------------- Other Configs " && break_line
     cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
-    && gsettings set org.cinnamon.desktop.default-applications.terminal exec st \
-    && cd $GIT/prog && git clone https://github.com/luiznux/st && cd st/ && make && sudo make clean install \
     && cd $GIT/luiznux && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir \
     && cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
     && cd $dotfiles && sudo cp config/scripts/{ca,simple-push,volume} /usr/local/bin/ \
