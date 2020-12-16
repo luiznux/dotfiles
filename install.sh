@@ -321,6 +321,7 @@ other_config(){
     && cd $dotfiles && cp config/.bashrc ~/ \
     && cd $dotfiles && cp -r config/dunst ~/.config/ \
     && log echo " Other config {OK}" && break_line || log error_msg
+}
 
 #### clone some of my repositories
 clone_my_rep(){
@@ -424,7 +425,20 @@ Graphic_drivers
 AUR_install
 emacs
 dropbox_setup
-general_config
+i3_polybar_setup
+ranger_setup
+vim_setup
+font_setup
+locale_setup
+xresources_setup
+gitignore_setup
+theme_setup
+pacman_setup
+zsh_setup
+st_terminal_setup
+xorg_config
+urxvt_package
+other_config
 git_repository_setup
 laptop_config
 nvidia_xorg_config
