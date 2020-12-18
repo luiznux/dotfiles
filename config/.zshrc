@@ -17,6 +17,13 @@ export LANGUAGE=en_US.UTF-8
 
 
 #---------------------------------#
+#----------- Variables -----------#
+#
+dotfiles="home/luiznux/Github/luiznux/dotfiles"
+work="/home/luiznux/projects/work/"
+
+
+#---------------------------------#
 #------------ Aliases-------------#
 #
 alias ..='cd ..'
@@ -45,11 +52,9 @@ alias polyconf='vim ~/.config/polybar/config'
 alias dotfiles='cd ~/Github/luiznux/dotfiles/'
 alias ethspeed='speedometer -r enp2s0'
 alias wifispeed='speedometer -r wlp3s0'
-alias pullorg="git pull origin master; git pull dropbox master"
-alias pushorg="git push origin master; git push dropbox master"
+alias sample='pacmd list-sinks | grep "sample spec"'
 alias diff=colordiff
-#alias volume='pavucontrol &'
-#alias ca='gnome-calculator &'
+
 
 #---------------------------------#
 #----------- Config --------------#
