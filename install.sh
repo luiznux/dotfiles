@@ -431,6 +431,7 @@ font_setup
 locale_setup
 xresources_setup
 gitignore_setup
+background_img_setup
 theme_setup
 pacman_setup
 zsh_setup
@@ -438,6 +439,7 @@ st_terminal_setup
 xorg_config
 urxvt_package
 other_config
+clone_my_rep
 git_repository_setup
 laptop_config
 nvidia_xorg_config
