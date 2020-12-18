@@ -99,7 +99,7 @@ install_packages(){
 
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
-    log_error sudo pacman -Sy xorg xclip ufw man tree colordiff zsh zsh-completions neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang ccls i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol code youtube-dl qt gimp picom cups cups-pdf system-config-printer gdm pandoc texlive-most rofi gnome-keyring nmap deepin-screenshot ntp bash-language-server --noconfirm \
+    log_error sudo pacman -Sy xorg xclip ufw man tree colordiff zsh zsh-completions neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang ccls i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol code youtube-dl qt gimp picom cups cups-pdf system-config-printer gdm pandoc texlive-most rofi gnome-keyring nmap deepin-screenshot ntp bash-language-server pulseeffects --noconfirm \
     && log echo "        Packages {OK}" && break_line || log erro_msg
 }
 
@@ -187,6 +187,7 @@ dropbox_setup(){
 
 #### I3 and Polybar config
 i3_polybar_setup(){
+
     log echo "#---------------------------------------- Setup i3 and polybar" && break_line
     cd $dotfiles && cp i3/config ~/.config/i3/ \
     && cd $dotfiles && cp -r polybar/*  ~/.config/polybar/ \
@@ -306,7 +307,6 @@ urxvt_package(){
     log echo "#---------------------------------------- URXVT Configs " && break_line
     cd $dotfiles && sudo cp config/urxvt/urxvt-resize-font/resize-font /usr/lib64/urxvt/perl/ &&  sudo chmod +x /usr/lib64/urxvt/perl/resize-font \
     && log echo "     URXVT Config {OK} " && break_line || log erro_msg
-
 }
 
 #### move all the others dotfiles
@@ -346,7 +346,6 @@ git_repository_setup(){
     cd $GIT/other && git clone https://github.com/Brettm12345/github-moonlight  && exit_dir
     log echo " Git rep  Done" && break_line
 }
-
 
 
 #### install laptoptools
