@@ -1,3 +1,4 @@
+;;; package --- Summary
 ;;; Commentary:
 ;;;
 ;;; Code:
@@ -95,6 +96,7 @@
                                  ("DONE"         . (:foreground "#1E90FF" :weight bold)))))
 
 (defun org-agenda-custom-config ()
+  "Agenda custom config."
   (setq org-agenda-custom-commands
         '(("x" "Describe command here" agenda "")))
 

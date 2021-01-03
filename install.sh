@@ -277,7 +277,7 @@ pacman_setup(){
 zsh_setup(){
 
     log echo "#---------------------------------------- Setup Zsh" && break_line
-    log sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
+    log sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
     && cp $dotfiles/config/.zshrc ~/ \
     && cd $GIT/prog/ && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
     && log echo "     Zsh config {OK} " && break_line || log erro_msg
