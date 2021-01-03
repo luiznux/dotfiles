@@ -108,7 +108,7 @@
         org-agenda-prefer-last-repeat t)
 
   (setq org-agenda-files ;set org agenda files
-        '("~/org/agenda.org" "~/org/college.org" "~/org/work.org" "~/org/personal.org")))
+        '("~/org/agenda.org" "~/org/personal.org" "~/org/birthdays.org" "~/org/college.org" "~/org/work.org" )))
 
 ;-----------custom funcs
 (defun ll/org/agenda/color-headers-with (tag col col2)
@@ -126,7 +126,7 @@
                              `(face (:foreground ,col :background ,col2 :weight bold))))))
 ;; Helper definitions
 (setq ll/org/agenda-todo-words
-      '("work:" "college:" "personal:" "agenda:"))
+      '("work:" "college:" "personal:" "agenda:" "birthdays:"))
 
 (defun find-in-line (needle &optional beginning count)
   "Find the position of the start of NEEDLE in the current line.
@@ -152,6 +152,7 @@ from the left."
   (ll/org/agenda/color-headers-with "college:" "#2d2d2d" "#c792ea")
   (ll/org/agenda/color-headers-with "personal:" "#2d2d2d"  "#839ce4")
   (ll/org/agenda/color-headers-with "agenda:" "#2d2d2d"  "#da8548")
+  (ll/org/agenda/color-headers-with "birthdays:" "#2d2d2d"  "#a0bcf8")
   )
 ;;-------------------
 
