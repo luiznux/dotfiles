@@ -80,23 +80,23 @@
 
 (defun org-tags-set ()
   "Set org agenda custom tags."
- (setq org-tag-alist '(("work" . ?w) ("college" . ?c) ("personal" . ?p))))
+ (setq org-tag-alist '(("work " . ?w) ("coll " . ?c) ("personal" . ?p))))
 
 (defun org-TODO-keywords ()
   "Add and customize org TODO keywords."
   (setq org-todo-keywords
-        '((sequence "TODO" "NOTE" "IN-PROGRESS" "WAITING" "WORKING" "IMPORTANT" "DONE")))
+        '((sequence "TODO" "NOTE" "IMPORTANT" "WAITING" "CANCELLED" "IN-PROGRESS"  "WORKING"  "DONE")))
 
   (setq org-todo-keyword-faces '(("TODO"         . (:foreground "#ff8080" :weight bold))
                                  ("NOTE"         . (:foreground "#ffe9aa" :weight bold))
-                                 ("IN-PROGRESS"  . (:foreground "#A020F0" :weight bold))
-                                 ("WAITING"      . (:foreground "#ffb378" :weight bold))
-                                 ("WORKING"      . (:foreground "#4db5bd" :weight bold))
                                  ("IMPORTANT"    . (:foreground "#f32020" :weight bold))
+                                 ("WAITING"      . (:foreground "#ffb378" :weight bold))
+                                 ("CANCELLED"    . (:foreground "#ff6c6b" :weight bold))
+                                 ("IN-PROGRESS"  . (:foreground "#A020F0" :weight bold))
+                                 ("WORKING"      . (:foreground "#4db5bd" :weight bold))
                                  ("DONE"         . (:foreground "#1E90FF" :weight bold)))))
 
 (defun org-agenda-custom-config ()
-  "Agenda custom config."
   (setq org-agenda-custom-commands
         '(("x" "Describe command here" agenda "")))
 
@@ -108,7 +108,7 @@
         org-agenda-prefer-last-repeat t)
 
   (setq org-agenda-files ;set org agenda files
-        '("~/org/agenda.org" "~/org/personal.org" "~/org/birthdays.org" "~/org/college.org" "~/org/work.org" )))
+        '("~/org/agenda .org" "~/org/mine .org" "~/org/bday .org" "~/org/coll .org " "~/org/work .org")))
 
 ;-----------custom funcs
 (defun ll/org/agenda/color-headers-with (tag col col2)
@@ -126,7 +126,7 @@
                              `(face (:foreground ,col :background ,col2 :weight bold))))))
 ;; Helper definitions
 (setq ll/org/agenda-todo-words
-      '("work:" "college:" "personal:" "agenda:" "birthdays:"))
+      '("work :" "coll :" "mine :" "agenda :" "bday :"))
 
 (defun find-in-line (needle &optional beginning count)
   "Find the position of the start of NEEDLE in the current line.
@@ -148,11 +148,11 @@ from the left."
 
 (defun ll/org/colorize-headings ()
   "Color all headings with :pers: colors."
-  (ll/org/agenda/color-headers-with "work:"  "#2d2d2d" "#FA74B2")
-  (ll/org/agenda/color-headers-with "college:" "#2d2d2d" "#c792ea")
-  (ll/org/agenda/color-headers-with "personal:" "#2d2d2d"  "#839ce4")
-  (ll/org/agenda/color-headers-with "agenda:" "#2d2d2d"  "#da8548")
-  (ll/org/agenda/color-headers-with "birthdays:" "#2d2d2d"  "#a0bcf8")
+  (ll/org/agenda/color-headers-with "work :" "#2d2d2d" "#FA74B2")
+  (ll/org/agenda/color-headers-with "coll :" "#2d2d2d" "#c792ea")
+  (ll/org/agenda/color-headers-with "mine :" "#2d2d2d" "#839ce4")
+  (ll/org/agenda/color-headers-with "agenda :" "#2d2d2d" "#da8548")
+  (ll/org/agenda/color-headers-with "bday :" "#2d2d2d" "#89ddff")
   )
 ;;-------------------
 
