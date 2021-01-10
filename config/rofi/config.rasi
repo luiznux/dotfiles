@@ -18,6 +18,7 @@ configuration {
 }
 
 element-icon {
-    size:             1.2em ;
+    size:             1.4em;
+}
 
-    }
+@import "/usr/share/rofi/themes/Arc-Dark.rasi"
