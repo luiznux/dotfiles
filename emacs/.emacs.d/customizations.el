@@ -43,6 +43,13 @@ removes scroll bar and display line numbers."
            (split-string-and-unquote path ":")
            exec-path))))
 
+;; Source: http://www.emacswiki.org/emacs-en/download/misc-cmds.el
+(defun revert-buffer-no-confirm ()
+    "Revert buffer without confirmation."
+    (interactive)
+    (revert-buffer :ignore-auto :noconfirm))
+
+
 (setq user-full-name "Luiz Tagliaferro"
       user-mail-address "luiztagli@hotmail.com")
 
