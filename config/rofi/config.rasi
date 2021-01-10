@@ -1,0 +1,23 @@
+configuration {
+  show-icons: true;
+  icon-theme: "Papirus";
+  display-run: "  ";
+  display-drun: "  ";
+  display-window: "  ";
+  drun-display-format: "{icon}  {name}";
+  font: "Source Code Pro 13";
+  modi: "window,drun,run";
+  kb-row-up:                     "Up,Alt+k,Shift+Tab,Shift+ISO_Left_Tab";
+  kb-row-down:                   "Down,Alt+j";
+  kb-mode-next:                  "Shift+Right,Control+Tab,Alt+l";
+  kb-mode-previous:              "Shift+Left,Control+Shift+Tab,Alt+h";
+  kb-accept-entry:               "Control+m,Return,KP_Enter";
+  kb-remove-to-eol:              "Control+Shift+e";
+  kb-remove-char-back:           "BackSpace";
+  terminal:                      "mate-terminal";
+}
+
+element-icon {
+    size:             1.2em ;
+
+    }
