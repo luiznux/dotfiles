@@ -43,6 +43,7 @@
       (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
     :config
     (add-hook 'treemacs-mode-hook (lambda() (display-line-numbers-mode -1)))
+    (add-hook 'treemacs-mode-hook (lambda() (treemacs-toggle-fixed-width)))
     (progn
       (setq treemacs-collapse-dirs                 (if (treemacs--find-python3) 3 0)
             treemacs-deferred-git-apply-delay      0.5
