@@ -171,32 +171,36 @@ label                       = %output:0:150%
 
 
 [module/alsa]
-type = internal/alsa
+type = internal/volume
+master-mixer = Master
 
 format-volume           = <label-volume> <bar-volume>
-label-volume            = Vol
-label-volume-foreground = ${root.foreground}
+label-volume            =
+label-volume-foreground = #5ab11a
 
 format-muted-prefix =
 format-muted-foreground = #de0000
 label-muted             =  mute
 
-bar-volume-width                = 10
-bar-volume-foreground-0         = #5ab11a
-bar-volume-foreground-1         = #5ab11a
-bar-volume-foreground-2         = #5ab11a
-bar-volume-foreground-3         = #5ab11a
-bar-volume-foreground-4         = #5ab11a
-bar-volume-foreground-5         = #d5911a
-bar-volume-foreground-6         = #f22c40
-bar-volume-gradient             = false
-bar-volume-indicator            = |
-bar-volume-indicator-font       = 2
-bar-volume-fill                 = =
-bar-volume-fill-font            = 2
-bar-volume-empty                = =
-bar-volume-empty-font           = 2
-bar-volume-empty-foreground     = ${colors.foreground-alt}
+bar-volume-width                 = 10
+bar-volume-foreground-0          = #438514
+bar-volume-foreground-1          = #438514
+bar-volume-foreground-2          = #4e9b17
+bar-volume-foreground-3          = #4e9b17
+bar-volume-foreground-4          = #5ab11a
+bar-volume-foreground-5          = #5ab11a
+bar-volume-foreground-6          = #d5911a
+bar-volume-foreground-7          = #d5911a
+bar-volume-foreground-8          = #f22c40
+bar-volume-foreground-9          = #f22c40
+bar-volume-gradient              = false
+bar-volume-indicator             = |
+bar-volume-indicator-font        = 2
+bar-volume-fill                  = =
+bar-volume-fill-font             = 2
+bar-volume-empty                 = =
+bar-volume-empty-font            = 2
+bar-volume-empty-foreground      = ${colors.foreground-alt}
 
 
 ;#--------------------------------#
@@ -356,7 +360,7 @@ format-mounted-underline                = #914836
 [module/cpu]
 type                        = internal/cpu
 interval                    = 2
-format-prefix               = " "
+format-prefix               = " "
 format-prefix-foreground    = #f90000
 format-underline            = #f90000
 label                       = %percentage:2%%
