@@ -136,6 +136,13 @@
 (use-package all-the-icons
   :ensure t)
 
+(use-package emojify
+  :ensure t
+  :config
+  (setq emojify-company-tooltips-p t
+        emojify-composed-text-p    nil)
+  :hook (after-init . global-emojify-mode))
+
 (use-package rainbow-mode
   :ensure t)
 
