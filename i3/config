@@ -78,7 +78,11 @@ bindsym $mod+Return	        exec $term
 bindsym $mod+e	            exec emacs
 
 # start dmenu.
-bindsym $mod+d exec "dmenu_run -nf '#325B91' -nb '#070B15' -sb '#914836' -sf '#EEEEEE' -fn 'monospace-10' -p 'dmenu prompt &gt;'"
+#bindsym $mod+d exec "dmenu_run -nf '#325B91' -nb '#070B15' -sb '#914836' -sf '#EEEEEE' -fn 'monospace-10' -p 'dmenu prompt &gt;'"
+
+#start rofi
+bindsym $mod+d exec rofi -show drun
+
 # start firefox
 bindsym $mod+y              exec $browser
 
