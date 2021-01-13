@@ -99,11 +99,46 @@ install_packages(){
 
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
-    log_error sudo pacman -Sy xorg xclip ufw man tree colordiff zsh zsh-completions neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang ccls i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol code youtube-dl qt gimp picom cups cups-pdf system-config-printer gdm pandoc texlive-most rofi gnome-keyring nmap deepin-screenshot ntp bash-language-server pulseeffects gparted --noconfirm \
+
+    $essencials=" xorg xclip cmake libxss llvm xorg-xinit "
+
+    $linux_gadgets=" man tree colordiff wget check file highlight atool mlocate nmap ntp ncdu haveged "
+
+    $utilities=" htop calcurse cpupower dmenu cmatrix neofetch ranger sl youtube-dl pacmanlogviewer "
+
+    $program_languages=" clang ccls go gobject-introspection bash-language-server clisp cargo openjdk11-src "
+
+    $graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom "
+
+    $file_open=" nemo nemo-fileroller i7z xreader calibre evince pandoc texlive-most "
+
+    $themes=" papirus-icon-theme lxappearance gtk-chtheme "
+
+    $font=" noto-fonts-cjk noto-fonts-emoji noto-fonts ttf-font-awesome gnome-font-viewer "
+
+    $gnome=" intltool dbus-glib gdm gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor "
+
+    $audio=" libmpdclient alsa alsa-utils alsa-firmware fftw pulseaudio playerctl vlc paprefs pavucontrol pulseeffects "
+
+    $image=" eog feh tumbler ffmpegthumbnailer imagemagick sxiv gimp scrot deepin-screenshot w3m "
+
+    $android_device=" mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp yasm "
+
+    $gnu_things=" libcurl-gnutls mailutils "
+
+    $term_shell=" zsh zsh-completions rxvt-unicode rxvt-unicode-terminfo urxvt-perls "
+
+    $printer=" cups cups-pdf system-config-printer "
+
+    $security=" ufw gnome-keyring "
+
+    $network=" dhcp dhcpcd "
+
+    $others=" transmission-gtk gparted discord code gnome-calculator firefox bleachbit "
+
+    log_error sudo pacman -Syu $essencials $linux_gadgets $program_languages $graphic $file_open $themes $font $gnome $audio $image $android_device $gnu_things $term_shell $printer $security $network $other   --noconfirm --needed \
     && log echo "        Packages {OK}" && break_line || log erro_msg
 }
-
-
 
 #### install some python packages
 Python_config(){
