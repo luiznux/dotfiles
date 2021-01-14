@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+#
 #     ██╗███╗   ██╗███████╗████████╗ █████╗ ██╗     ██╗
 #     ██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║     ██║
 #     ██║██╔██╗ ██║███████╗   ██║   ███████║██║     ██║
@@ -78,12 +79,6 @@ clean_AUR(){
     rm -rf $AUR/*
 }
 
-#### remove old log files
-clean_log(){
-
-    cd $dotfiles && rm -f install.log && echo "cleaned old log files" || break_line
-}
-
 
 #### setup my directory tree
 dir_tree(){
@@ -117,9 +112,21 @@ Python_config(){
 #### install the graphic drivers(depends of your hardware)
 Graphic_drivers(){
 
-    log echo "#----------------------------------------------- Graphic drives and NVIDIA" && break_line
-    log_error sudo pacman -S xf86-video-intel vulkan-intel mesa-demos nvidia nvidia-utils nvidia-settings --noconfirm \
-    && log echo "	     Graphic Drivers {OK}" && break_line || log erro_msg
+    log echo "#----------------------------------------------- Graphic drives" && break_line
+    if [ $GPU == "1" ]; then
+        log_error sudo pacman -Sy xf86-video-intel vulkan-intel mesa-demos --noconfirm --needed
+
+    elif [ $GPU == "2" ]; then
+        log_error sudo pacman -Sy nvidia nvidia-utils nvidia-settings --noconfirm --needed
+
+    elif [ $GPU == "3" ]; then
+        log_error sudo pacman -Sy xf86-video-amdgpu --noconfirm --needed
+
+    else
+        log_error sudo pacman -Sy xf86-video-intel vulkan-intel mesa-demos nvidia nvidia-utils nvidia-settings --noconfirm --needed
+    fi
+
+    log echo "	     Graphic Drivers {OK}" && break_line || log erro_msg
 }
 
 
@@ -332,7 +339,6 @@ clone_my_rep(){
     && log echo "   Clone my-rep config {OK}" && break_line || log error_msg
 }
 
-
 #### Clone other repositories
 git_repository_setup(){
 
@@ -347,64 +353,6 @@ git_repository_setup(){
     log echo " Git rep  Done" && break_line
 }
 
-
-#### install laptoptools
-laptop_config(){
-
-    log echo "Do you want install laptop configs ?(answer with y or n)"
-    read -p "--> " option
-
-    if [ $option == "y" ]; then
-        log echo "#----------------------------------------- Laptop config" && break_line
-        log echo "#--------- Laptop packges" && break_line
-        log_error sudo pacman -S acpi tlp bumblebee xf86-input-synaptics xfce4-power-manager light bluez-utils --noconfirm \
-        && log_error make_pkg_AUR nvidia-xrun \
-        && log echo " Lapto packages {OK}" && break_line || log erro_msg
-
-        log echo "#----------------------------------------- Optimus Manager and Gdm prime(AUR)" && break_line
-        log_error cd $AUR && git clone https://aur.archlinux.org/gdm-prime.git && cd gdm-prime && makepkg -is && exit_dir \
-        && log_error make_pkg_AUR optimus-manager \
-        && log_error make_pkg_AUR optimus-manager-qt \
-        && log echo " Optimus  {OK}" && break_line || log erro_msg
-
-        log echo "#--------- Bbswitch CONFIG (LAPTOP ONLY)" && break_line
-        log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/
-        log_error sudo gpasswd -a luiznux bumblebee \
-        && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
-        && log_error sudo tee /proc/acpi/bbswitch <<<OFF \
-        && log echo "     Bbswitch {OK}" && break_line || log erro_msg
-
-        #TLP config
-        cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
-        && log echo "     Laptop configs {OK}" && break_line || log erro_msg
-
-        log echo "Systemctl for laptop services"
-        log_error sudo systemctl enable tlp.service optimus-manager.service bumblebeed.service \
-        && log_error sudo systemctl disable bluetooth.service \
-
-    else
-        log echo "#------------------------------------ Laptop config {SKIPED}"
-        break_line
-    fi
-}
-
-
-#### run nvidia xconfig
-nvidia_xorg_config(){
-
-    log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
-    log echo "Only answer 'y' if you are using nvidia graphic card and have the drivers"
-    read -p "--> " option
-
-    if [ $option == "y" ]; then
-        sudo nvidia-xconfig
-        echo "Done!" && break_line
-    else
-        echo "Nvidia xconfig {SKIPED} " && break_line
-    fi
-}
-
-
 #### enable some services
 systemd_init(){
 
@@ -414,8 +362,74 @@ systemd_init(){
     && log echo "Done" && break_line || log erro_msg
 }
 
+#### install laptoptools
+laptop_config(){
+
+    if [ $laptop_Option == "y" ]; then
+        log echo "#----------------------------------------- Laptop config" && break_line
+        log_error sudo pacman -Sy acpi tlp bumblebee xf86-input-synaptics xfce4-power-manager light bluez-utils --noconfirm --needed \
+        && log_error make_pkg_AUR nvidia-xrun \
+        && log echo "#-------------------------------------- Lapto packages {OK}" && break_line || log erro_msg
+
+        log echo "#----------------------------------------- Optimus Manager and Gdm prime(AUR)" && break_line
+        sudo pacman -Rs gdm --noconfirm \
+        && log_error make_pkg_AUR gdm-prime \
+        && log_error make_pkg_AUR optimus-manager \
+        && log_error make_pkg_AUR optimus-manager-qt \
+        && log echo "#-------------------------------------- Optimus Manager and Gdm prime {OK}" && break_line || log erro_msg
+
+        log echo "#----------------------------------------- Bbswitch CONFIG (LAPTOP ONLY)" && break_line
+        log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/
+        log_error sudo gpasswd -a luiznux bumblebee \
+        && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
+        && log_error sudo tee /proc/acpi/bbswitch <<<OFF \
+        && log echo "#-------------------------------------- Bbswitch {OK}" && break_line || log erro_msg
+
+        #TLP config
+        log echo "#----------------------------------------- TLP CONFIG (LAPTOP ONLY)" && break_line
+        cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
+        && log echo "#-------------------------------------- TLP config {OK}" && break_line || log erro_msg
+
+        log echo "#----------------------------------------- Systemctl for laptop services"
+        log_error sudo systemctl enable tlp.service optimus-manager.service bumblebeed.service \
+        && log_error sudo systemctl disable bluetooth.service \
+        && log echo "#----------------------------------------- Laptop config DONE"
+
+    else
+        log echo "#----------------------------------------- Laptop config {SKIPED}"
+        break_line
+    fi
+}
+
+#### run nvidia xconfig
+nvidia_xorg_config(){
+
+    if [ $nvidia_Option == "y" ]; then
+       log echo "#----------------------------------------- Nvidia Xconfig"
+       log sudo nvidia-xconfig
+       log echo "#----------------------------------------- Nvidia Xconfig Done!" && break_line
+    else
+       log echo "#------------------------------------ Nvidia xconfig {SKIPED}" && break_line
+    fi
+}
+
 
 ####################### MAIN
+
+log echo "Which graphics card will you use?"
+log echo -e "1 - INTEL \n2 - NVIDIA \n3 - AMD \n4 - ALL"
+read -p "--> " GPU
+break_line
+
+log echo "Do you want install laptop configs ?(answer with y or n)"
+read -p "--> " laptop_Option
+break_line
+
+log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
+log echo "Only answer 'y' if you are using nvidia graphic card"
+read -p "--> " nvidia_Option
+break_line
+
 clean_log
 dir_tree
 install_packages
@@ -444,6 +458,7 @@ git_repository_setup
 laptop_config
 nvidia_xorg_config
 systemd_init
+
 
 log echo "------------- END OF INSTALL ------------" && break_line
 log echo " [$[errors]] Errors reported, see 'install.log' for more details" && break_line
