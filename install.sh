@@ -356,35 +356,26 @@ other_config(){
 
     log echo "#---------------------------------------- Other Configs " && break_line
     cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
-    && cd $GIT/luiznux && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir \
-    && cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
-    && cd $dotfiles && sudo cp config/scripts/{ca,simple-push,volume} /usr/local/bin/ \
-    && cd $dotfiles && cp -r config/sxiv ~/.config/ \
-    && cd $dotfiles && cp config/.bashrc ~/ \
-    && cd $dotfiles && cp -r config/dunst ~/.config/ \
+    && sudo cp config/scripts/{ca,simple-push,volume} /usr/local/bin/ \
+    && cp -r config/sxiv ~/.config/ \
+    && cp -r config/dunst ~/.config/ \
+    && cp config/.bashrc ~/ \
     && log echo " Other config {OK}" && break_line || log error_msg
 }
 
-#### clone some of my repositories
-clone_my_rep(){
-
-    log echo "#---------------------------------------- Clone my repositories " && break_line
-    cd $GIT/luiznux && git clone https://github.com/luiznux/org.git && ln -s $GIT/luiznux/org ~/org \
-    && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ \
-    && log echo "   Clone my-rep config {OK}" && break_line || log error_msg
-}
 
 #### Clone other repositories
 git_repository_setup(){
 
     log echo "#---------------------------------------- Git Repositories Clone " && break_line
-    cd $GIT/other && git clone https://github.com/stark/Color-Scripts.git && exit_dir
-    cd $GIT/other && git clone https://github.com/morpheusthewhite/spicetify-themes.git && exit_dir
-    cd $GIT/other && git clone https://github.com/PlusInsta/discord-plus && exit_dir
-    cd $GIT/other && curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl \
-        && chmod +x betterdiscordctl && sudo mv betterdiscordctl /usr/local/bin && sudo betterdiscordctl upgrade
-    cd $GIT/other && git clone https://github.com/sebastiencs/icons-in-terminal.git && exit_dir
-    cd $GIT/other && git clone https://github.com/Brettm12345/github-moonlight  && exit_dir
+    cd $GIT/other && git clone https://github.com/stark/Color-Scripts.git \
+    && git clone https://github.com/morpheusthewhite/spicetify-themes.git \
+    && git clone https://github.com/sebastiencs/icons-in-terminal.git \
+    && git clone https://github.com/Brettm12345/github-moonlight \
+    && git clone https://github.com/PlusInsta/discord-plus \
+    && curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl \
+    && chmod +x betterdiscordctl && sudo mv betterdiscordctl /usr/local/bin && sudo betterdiscordctl upgrade && exit_dir \
+    && cd $GIT/luiznux && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir
     log echo " Git rep  Done" && break_line
 }
 
@@ -488,7 +479,6 @@ st_terminal_setup
 xorg_config
 urxvt_package
 other_config
-clone_my_rep
 git_repository_setup
 laptop_config
 nvidia_xorg_config
