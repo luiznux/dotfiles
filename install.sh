@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+#
 #     ██╗███╗   ██╗███████╗████████╗ █████╗ ██╗     ██╗
 #     ██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║     ██║
 #     ██║██╔██╗ ██║███████╗   ██║   ███████║██║     ██║
@@ -78,12 +79,6 @@ clean_AUR(){
     rm -rf $AUR/*
 }
 
-#### remove old log files
-clean_log(){
-
-    cd $dotfiles && rm -f install.log && echo "cleaned old log files" || break_line
-}
-
 
 #### setup my directory tree
 dir_tree(){
@@ -99,11 +94,46 @@ install_packages(){
 
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
-    log_error sudo pacman -Sy xorg xclip ufw man tree colordiff zsh zsh-completions neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang ccls i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol code youtube-dl qt gimp picom cups cups-pdf system-config-printer gdm pandoc texlive-most rofi gnome-keyring nmap deepin-screenshot ntp bash-language-server pulseeffects gparted --noconfirm \
+
+    $essencials=" xorg xclip cmake libxss llvm xorg-xinit "
+
+    $linux_gadgets=" man tree colordiff wget check file highlight atool mlocate nmap ntp ncdu haveged "
+
+    $utilities=" htop calcurse cpupower dmenu cmatrix neofetch ranger sl youtube-dl pacmanlogviewer "
+
+    $program_languages=" clang ccls go gobject-introspection bash-language-server clisp cargo openjdk11-src "
+
+    $graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom "
+
+    $file_open=" nemo nemo-fileroller i7z xreader calibre evince pandoc texlive-most "
+
+    $themes=" papirus-icon-theme lxappearance gtk-chtheme "
+
+    $font=" noto-fonts-cjk noto-fonts-emoji noto-fonts ttf-font-awesome gnome-font-viewer "
+
+    $gnome=" intltool dbus-glib gdm gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor "
+
+    $audio=" libmpdclient alsa alsa-utils alsa-firmware fftw pulseaudio playerctl vlc paprefs pavucontrol pulseeffects "
+
+    $image=" eog feh tumbler ffmpegthumbnailer imagemagick sxiv gimp scrot deepin-screenshot w3m "
+
+    $android_device=" mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp yasm "
+
+    $gnu_things=" libcurl-gnutls mailutils "
+
+    $term_shell=" zsh zsh-completions rxvt-unicode rxvt-unicode-terminfo urxvt-perls "
+
+    $printer=" cups cups-pdf system-config-printer "
+
+    $security=" ufw gnome-keyring "
+
+    $network=" dhcp dhcpcd "
+
+    $others=" transmission-gtk gparted discord code gnome-calculator firefox bleachbit "
+
+    log_error sudo pacman -Syu $essencials $linux_gadgets $program_languages $graphic $file_open $themes $font $gnome $audio $image $android_device $gnu_things $term_shell $printer $security $network $other   --noconfirm --needed \
     && log echo "        Packages {OK}" && break_line || log erro_msg
 }
-
-
 
 #### install some python packages
 Python_config(){
@@ -117,9 +147,21 @@ Python_config(){
 #### install the graphic drivers(depends of your hardware)
 Graphic_drivers(){
 
-    log echo "#----------------------------------------------- Graphic drives and NVIDIA" && break_line
-    log_error sudo pacman -S xf86-video-intel vulkan-intel mesa-demos nvidia nvidia-utils nvidia-settings --noconfirm \
-    && log echo "	     Graphic Drivers {OK}" && break_line || log erro_msg
+    log echo "#----------------------------------------------- Graphic drives" && break_line
+    if [ $GPU == "1" ]; then
+        log_error sudo pacman -Sy xf86-video-intel vulkan-intel mesa-demos --noconfirm --needed
+
+    elif [ $GPU == "2" ]; then
+        log_error sudo pacman -Sy nvidia nvidia-utils nvidia-settings --noconfirm --needed
+
+    elif [ $GPU == "3" ]; then
+        log_error sudo pacman -Sy xf86-video-amdgpu --noconfirm --needed
+
+    else
+        log_error sudo pacman -Sy xf86-video-intel vulkan-intel mesa-demos nvidia nvidia-utils nvidia-settings --noconfirm --needed
+    fi
+
+    log echo "	     Graphic Drivers {OK}" && break_line || log erro_msg
 }
 
 
@@ -337,64 +379,6 @@ git_repository_setup(){
     log echo " Git rep  Done" && break_line
 }
 
-
-#### install laptoptools
-laptop_config(){
-
-    log echo "Do you want install laptop configs ?(answer with y or n)"
-    read -p "--> " option
-
-    if [ $option == "y" ]; then
-        log echo "#----------------------------------------- Laptop config" && break_line
-        log echo "#--------- Laptop packges" && break_line
-        log_error sudo pacman -S acpi tlp bumblebee xf86-input-synaptics xfce4-power-manager light bluez-utils --noconfirm \
-        && log_error make_pkg_AUR nvidia-xrun \
-        && log echo " Lapto packages {OK}" && break_line || log erro_msg
-
-        log echo "#----------------------------------------- Optimus Manager and Gdm prime(AUR)" && break_line
-        log_error cd $AUR && git clone https://aur.archlinux.org/gdm-prime.git && cd gdm-prime && makepkg -is && exit_dir \
-        && log_error make_pkg_AUR optimus-manager \
-        && log_error make_pkg_AUR optimus-manager-qt \
-        && log echo " Optimus  {OK}" && break_line || log erro_msg
-
-        log echo "#--------- Bbswitch CONFIG (LAPTOP ONLY)" && break_line
-        log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/
-        log_error sudo gpasswd -a luiznux bumblebee \
-        && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
-        && log_error sudo tee /proc/acpi/bbswitch <<<OFF \
-        && log echo "     Bbswitch {OK}" && break_line || log erro_msg
-
-        #TLP config
-        cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
-        && log echo "     Laptop configs {OK}" && break_line || log erro_msg
-
-        log echo "Systemctl for laptop services"
-        log_error sudo systemctl enable tlp.service optimus-manager.service bumblebeed.service \
-        && log_error sudo systemctl disable bluetooth.service \
-
-    else
-        log echo "#------------------------------------ Laptop config {SKIPED}"
-        break_line
-    fi
-}
-
-
-#### run nvidia xconfig
-nvidia_xorg_config(){
-
-    log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
-    log echo "Only answer 'y' if you are using nvidia graphic card and have the drivers"
-    read -p "--> " option
-
-    if [ $option == "y" ]; then
-        sudo nvidia-xconfig
-        echo "Done!" && break_line
-    else
-        echo "Nvidia xconfig {SKIPED} " && break_line
-    fi
-}
-
-
 #### enable some services
 systemd_init(){
 
@@ -404,8 +388,74 @@ systemd_init(){
     && log echo "Done" && break_line || log erro_msg
 }
 
+#### install laptoptools
+laptop_config(){
+
+    if [ $laptop_Option == "y" ]; then
+        log echo "#----------------------------------------- Laptop config" && break_line
+        log_error sudo pacman -Sy acpi tlp bumblebee xf86-input-synaptics xfce4-power-manager light bluez-utils --noconfirm --needed \
+        && log_error make_pkg_AUR nvidia-xrun \
+        && log echo "#-------------------------------------- Lapto packages {OK}" && break_line || log erro_msg
+
+        log echo "#----------------------------------------- Optimus Manager and Gdm prime(AUR)" && break_line
+        sudo pacman -Rs gdm --noconfirm \
+        && log_error make_pkg_AUR gdm-prime \
+        && log_error make_pkg_AUR optimus-manager \
+        && log_error make_pkg_AUR optimus-manager-qt \
+        && log echo "#-------------------------------------- Optimus Manager and Gdm prime {OK}" && break_line || log erro_msg
+
+        log echo "#----------------------------------------- Bbswitch CONFIG (LAPTOP ONLY)" && break_line
+        log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/
+        log_error sudo gpasswd -a luiznux bumblebee \
+        && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
+        && log_error sudo tee /proc/acpi/bbswitch <<<OFF \
+        && log echo "#-------------------------------------- Bbswitch {OK}" && break_line || log erro_msg
+
+        #TLP config
+        log echo "#----------------------------------------- TLP CONFIG (LAPTOP ONLY)" && break_line
+        cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
+        && log echo "#-------------------------------------- TLP config {OK}" && break_line || log erro_msg
+
+        log echo "#----------------------------------------- Systemctl for laptop services"
+        log_error sudo systemctl enable tlp.service optimus-manager.service bumblebeed.service \
+        && log_error sudo systemctl disable bluetooth.service \
+        && log echo "#----------------------------------------- Laptop config DONE"
+
+    else
+        log echo "#----------------------------------------- Laptop config {SKIPED}"
+        break_line
+    fi
+}
+
+#### run nvidia xconfig
+nvidia_xorg_config(){
+
+    if [ $nvidia_Option == "y" ]; then
+       log echo "#----------------------------------------- Nvidia Xconfig"
+       log sudo nvidia-xconfig
+       log echo "#----------------------------------------- Nvidia Xconfig Done!" && break_line
+    else
+       log echo "#------------------------------------ Nvidia xconfig {SKIPED}" && break_line
+    fi
+}
+
 
 ####################### MAIN
+
+log echo "Which graphics card will you use?"
+log echo -e "1 - INTEL \n2 - NVIDIA \n3 - AMD \n4 - ALL"
+read -p "--> " GPU
+break_line
+
+log echo "Do you want install laptop configs ?(answer with y or n)"
+read -p "--> " laptop_Option
+break_line
+
+log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
+log echo "Only answer 'y' if you are using nvidia graphic card"
+read -p "--> " nvidia_Option
+break_line
+
 clean_log
 dir_tree
 install_packages
@@ -429,11 +479,11 @@ st_terminal_setup
 xorg_config
 urxvt_package
 other_config
-clone_my_rep
 git_repository_setup
 laptop_config
 nvidia_xorg_config
 systemd_init
+
 
 log echo "------------- END OF INSTALL ------------" && break_line
 log echo " [$[errors]] Errors reported, see 'install.log' for more details" && break_line
