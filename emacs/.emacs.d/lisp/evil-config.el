@@ -4,6 +4,7 @@
 ;;; Code:
 
 (defun setup-evil-packages()
+
   (use-package evil
     :ensure t
     :init
@@ -39,7 +40,10 @@
   (use-package undo-tree ;dependency for evil-undo-system
     :ensure t
     :config
-    (global-undo-tree-mode)))
+    (global-undo-tree-mode))
+
+  (use-package evil-mode
+    :hook (org-mode . evil-org-mode)))
 
 (provide 'evil-config)
 
