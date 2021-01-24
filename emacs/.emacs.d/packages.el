@@ -20,7 +20,6 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 
-
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
@@ -99,10 +98,10 @@
   :init
   (latex-preview-pane-enable))
 
-(use-package telephone-line
-  :ensure t
-  :init
-  (telephone-line-mode 1))
+;(use-package telephone-line
+;  :ensure t
+;  :init
+;  (telephone-line-mode 1))
 
 (require 'iso-transl)
 
@@ -113,25 +112,24 @@
   (setq highlight-indent-guides-method 'character)
   (setq highlight-indent-guides-responsive 'top))
 
+(use-package highlight-symbol
+  :bind
+  (:map prog-mode-map
+  ("M-o h" . highlight-symbol)
+  ("M-p" . highlight-symbol-prev)
+  ("M-n" . highlight-symbol-next)))
+
 (use-package smex
   :ensure t
   :config
   (global-set-key (kbd "M-x") 'smex))
 
-(use-package org-bullets
-  :ensure t
-  :config
-  (add-hook 'org-mode-hook
-            (lambda () (org-bullets-mode 1))))
-
-(use-package ranger
-  :ensure t
-  :config
-  (ranger-override-dired-mode t))
-
 (use-package docker
   :ensure t
   :bind ("C-c d" . docker))
+
+(use-package sudo-edit
+  :ensure t)
 
 (use-package all-the-icons
   :ensure t)
@@ -146,19 +144,21 @@
 (use-package rainbow-mode
   :ensure t)
 
-(use-package evil-mode
-  :hook (org-mode . evil-org-mode))
+(use-package ranger
+  :ensure t
+  :config
+  (ranger-override-dired-mode t))
 
 (use-package dashboard
   :ensure t
   :init
   (progn
     (setq recentf-exclude '("/org/*")) ;prevent  show recent org-agenda files
-    (setq dashboard-items '((recents   . 10)
+    (setq dashboard-items '((recents   . 12)
                             (projects  .  8))))
   :config
   (dashboard-setup-startup-hook)
-  (add-hook 'dashboard-mode-hook (lambda () (org-agenda t "x")) (lambda () (ace-window)))
+  ;(add-hook 'dashboard-mode-hook  (lambda () (ace-window)) (lambda () (goto-char (point-min))) (lambda () (org-agenda t "x")))
 
   (setq dashboard-set-heading-icons  t
         dashboard-set-file-icons     t
@@ -171,23 +171,11 @@
             "Homepage"
             "Browse homepage"
             (lambda (&rest _) (browse-url "https://github.com/luiznux")))
-           (" " "Refresh" "Refresh" (lambda (&rest _) (dashboard-refresh-buffer)) nil)))))
+           (" " "Refresh" "Refresh" (lambda (&rest _) (dashboard-refresh-buffer)) nil))))
 
-(use-package minimap
-  :ensure t
-  :custom
-  (minimap-major-modes '(prog-mode))
-  :config
-  (setq minimap-window-location 'right
-        minimap-update-delay 0.2
-        minimap-highlight-line  t
-        minimap-hide-scroll-bar nil
-        minimap-highlight-line t
-        minimap-display-semantic-overlays t)
-  (custom-set-faces
-   '(minimap-font-face ((t (:height 32 :family "DejaVu Sans Mono"))))
-   '(minimap-active-region-background ((t (:extend t :background "#232526"))))
-   '(minimap-current-line-face ((t (:background "#344256"))))))
+  (add-hook 'dashboard-mode-hook (lambda () (org-agenda t "x")) (lambda () (ace-window)))
+  (add-hook 'dashboard-mode-hook (lambda () (goto-char (point-min)))))
+
 
 ;;--------------------JAVASCRIPTU
 (use-package rjsx-mode
@@ -244,7 +232,9 @@
 (load "~/.emacs.d/lisp/irony-config.el")
 (load "~/.emacs.d/lisp/git-config.el")
 (load "~/.emacs.d/lisp/project-config.el")
-(load"~/.emacs.d/lisp/agenda-config.el")
+(load "~/.emacs.d/line-mode-config.el")
+(load "~/.emacs.d/lisp/org-config.el")
+(load "~/.emacs.d/lisp/agenda-config.el")
 
 
 (setup-evil-packages)
