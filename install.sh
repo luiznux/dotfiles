@@ -101,7 +101,7 @@ install_packages(){
 
     $utilities=" htop calcurse cpupower dmenu cmatrix neofetch ranger sl youtube-dl pacmanlogviewer "
 
-    $program_languages=" clang ccls go gobject-introspection bash-language-server clisp cargo openjdk11-src "
+    $program_languages=" clang ccls go gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck"
 
     $graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom "
 
