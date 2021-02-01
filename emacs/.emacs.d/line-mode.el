@@ -47,6 +47,5 @@
    :hook
    (doom-modeline-mode . nyan-mode))
 
-
 (provide 'line-mode)
 ;;; line-mode.el ends here
