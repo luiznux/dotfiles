@@ -116,11 +116,6 @@
   :config
   (lsp-treemacs-sync-mode 1))
 
-(use-package lsp-origami
-  :ensure t
-  :config
-  (add-hook 'lsp-after-open-hook #'lsp-origami-try-enable))
-
 (use-package lsp-java
   :hook 'java-mode-hook #'lsp)
 
