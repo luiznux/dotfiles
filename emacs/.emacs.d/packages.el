@@ -44,11 +44,6 @@
   :config
   (global-origami-mode))
 
-(use-package lsp-origami
-  :ensure t
-  :config
-  (add-hook 'lsp-after-open-hook #'lsp-origami-try-enable))
-
 (use-package flycheck
   :ensure t
   :init (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -109,16 +104,52 @@
 
 (use-package lsp-ui
   :ensure t
-  :commands lsp-ui-mode)
+  :config
+  (setq lsp-ui-doc-enable           t
+        lsp-ui-doc-header           t
+        lsp-ui-peek-enable          t
+        lsp-ui-peek-show-directory  t
+        lsp-ui-doc-delay            0.5))
+
+(use-package lsp-treemacs
+  :ensure t
+  :config
+  (lsp-treemacs-sync-mode 1))
+
+(use-package lsp-origami
+  :ensure t
+  :config
+  (add-hook 'lsp-after-open-hook #'lsp-origami-try-enable))
+
+(use-package lsp-java
+  :hook 'java-mode-hook #'lsp)
+
+(use-package lsp-dart
+  :ensure t
+  :hook (dart-mode . lsp))
+
+(use-package dap-mode
+  :ensure t
+  :config
+;;; Enabling only some features
+;(setq dap-auto-configure-features '(sessions locals controls tooltip))
+  (dap-mode 1)
+  ;; The modes below are optional
+  (dap-ui-mode 1)
+  ;; enables mouse hover support
+  (dap-tooltip-mode 1)
+  ;; use tooltips for mouse hover
+  ;; if it is not enabled `dap-mode' will use the minibuffer.
+  (tooltip-mode 1)
+  ;; displays floating panel with debug buttons
+  ;; requies emacs 26+
+  (dap-ui-controls-mode 1))
 
 (use-package ccls
   :ensure t
   :config (setq ccls-executable "/usr/bin/ccls")
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
          (lambda () (require 'ccls) (lsp))))
-
-(use-package lsp-java
- :hook 'java-mode-hook #'lsp)
 
 (use-package which-key
   :ensure t
@@ -131,7 +162,6 @@
   (latex-preview-pane-enable))
 
 (require 'iso-transl)
-
 (use-package highlight-indent-guides
   :ensure t
   :config
@@ -242,7 +272,6 @@
 
 
 ;;; ------ Local packages(from github)
-;(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/awesome-tab"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/page-break-lines"))
 
@@ -251,6 +280,7 @@
   (setq awesome-tab-display-icon t
         awesome-tab-height 108)
   (awesome-tab-mode t))
+
 
 (defun setup-page-break-lines()
   (require 'page-break-lines)
