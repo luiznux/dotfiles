@@ -78,10 +78,11 @@
             treemacs-space-between-root-nodes      t
             treemacs-tag-follow-cleanup            t
             treemacs-tag-follow-delay              1.5
-            treemacs-width                         37)
+            treemacs-width                         36)
 
       (treemacs-follow-mode t)
       (treemacs-filewatch-mode t)
+      (treemacs-resize-icons 18)
       (treemacs-load-theme "alltheicons")
       (treemacs-fringe-indicator-mode t)
       (pcase (cons (not (null (executable-find "git")))
@@ -127,28 +128,28 @@
     (minimap-major-modes '(prog-mode))
     :config
     (setq minimap-window-location 'right
-          minimap-update-delay 0.2
+          minimap-update-delay 0.5
           minimap-highlight-line  t
           minimap-hide-scroll-bar nil
-          minimap-highlight-line t
           minimap-display-semantic-overlays t)
     :custom-face
     '(minimap-font-face ((t (:height 32 :family "DejaVu Sans Mono"))))
     '(minimap-active-region-background ((t (:extend t :background "#232526"))))
     '(minimap-current-line-face ((t (:background "#344256")))))
 
-   ; (use-package paren
-   ; :ensure nil
-   ; :hook
-   ; (after-init . show-paren-mode)
-   ; :custom-face
-   ; (show-paren-match ((nil (:background "#44475a" :foreground "#f1fa8c")))) ;; :box t
-   ; :custom
-   ; (show-paren-style 'mixed)
-   ; (show-paren-when-point-inside-paren t)
-   ; (show-paren-when-point-in-periphery t))
+;    (use-package paren
+;    :ensure nil
+;    :hook
+;    (after-init . show-paren-mode)
+;    ;:custom-face
+;    ;(show-paren-match ((nil (:background "#44475a" :foreground "#f1fa8c")))) ;; :box t
+;    :custom
+;    (show-paren-style 'mixed)
+;    (show-paren-when-point-inside-paren t)
+;    (show-paren-when-point-in-periphery t))
 
-    (use-package rainbow-delimiters
+  (use-package rainbow-delimiters
+      :ensure t
       :hook
       (prog-mode . rainbow-delimiters-mode)))
 
