@@ -14,9 +14,6 @@
 [submodule "system/urxvt-resize-font"]
 	path = config/urxvt/urxvt-resize-font
 	url = https://github.com/simmel/urxvt-resize-font
-[submodule "emacs/.emacs.d/lisp/origami.el"]
-	path = emacs/.emacs.d/lisp/origami.el
-	url = https://github.com/gregsexton/origami.el.git
 [submodule "themes/icons/papirus-icon-theme"]
 	path = themes/icons/papirus-icon-theme
 	url = https://github.com/PapirusDevelopmentTeam/papirus-icon-theme.git
