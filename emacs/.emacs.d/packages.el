@@ -278,19 +278,8 @@
 (defun setup-awesome-tab()
   (require 'awesome-tab)
   (setq awesome-tab-display-icon t
-        awesome-tab-height 108)
-  (defun awesome-tab-hide-tab (x)
-    (let ((name (format "%s" x)))
-      (or
-       (string-prefix-p "*epc" name)
-       (string-prefix-p "*helm" name)
-       (string-prefix-p "*Compile-Log*" name)
-       (string-prefix-p "*lsp" name)
-       (string-prefix-p "*Flycheck errors*" name)
-       (and (string-prefix-p "magit" name)
-            (not (file-name-extension name))))))
+        awesome-tab-height       108)
   (awesome-tab-mode t))
-
 
 (defun setup-page-break-lines()
   (require 'page-break-lines)
