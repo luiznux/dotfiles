@@ -1,7 +1,3 @@
-[submodule "Emacs/.emacs.d/lisp/awesome-tab"]
-	path = emacs/.emacs.d/lisp/awesome-tab
-    url = https://github.com/manateelazycat/awesome-tab.git
-
 [submodule "Emacs/.emacs.d/lisp/page-break-lines"]
 	path = emacs/.emacs.d/lisp/page-break-lines
 	url = https://github.com/purcell/page-break-lines.git
@@ -17,3 +13,6 @@
 [submodule "themes/icons/papirus-icon-theme"]
 	path = themes/icons/papirus-icon-theme
 	url = https://github.com/PapirusDevelopmentTeam/papirus-icon-theme.git
+[submodule "emacs/.emacs.d/lisp/awesome-tab"]
+	path = emacs/.emacs.d/lisp/awesome-tab
+	url = https://github.com/luiznux/awesome-tab.git
