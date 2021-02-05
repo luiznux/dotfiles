@@ -272,8 +272,8 @@
 
 (defun setup-awesome-tab()
   (require 'awesome-tab)
-  (setq awesome-tab-display-icon t
-        awesome-tab-height       108)
+  (setq awesome-tab-display-icon   t
+        awesome-tab-height         108)
   (awesome-tab-mode t))
 
 (defun setup-page-break-lines()

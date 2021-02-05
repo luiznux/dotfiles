@@ -91,10 +91,6 @@
 (setq user-full-name "Luiz Tagliaferro"
       user-mail-address "luiztagli@hotmail.com")
 
-(defun active-line-when-loses-focus ()
-  (if (doom-modeline--bar-inactive)
-      (doom-modeline--active)))
-
 
 (visual-config-modes)
 (set-default-indentation)
@@ -110,5 +106,6 @@
 (defalias 'list-buffers 'ibuffer)
 
 (global-set-key (kbd "C-a") 'beginning-of-line++)
+
 
 ;;; customizations.el ends here

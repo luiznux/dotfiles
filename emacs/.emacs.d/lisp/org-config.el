@@ -3,6 +3,8 @@
 ;;; Emacs org config
 ;;; Code:
 
+(defun setup-org-packages ()
+
 (use-package org-bullets
   :ensure t
   :config
@@ -10,7 +12,7 @@
 
 (use-package org-download
   :ensure t
-  :hook ('dired-mode-hook 'org-download-enable))
+  :hook ('dired-mode-hook 'org-download-enable)))
 
 (defun org-capture-config ()
   "Org caputer config."
