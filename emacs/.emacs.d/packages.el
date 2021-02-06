@@ -95,7 +95,10 @@
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)
-  :hook (go-mode . lsp-deferred) (sh-mode . lsp))
+  :hook (go-mode . lsp-deferred) (sh-mode . lsp)
+  (setq lsp-bash-highlight-parsing-errors t
+        lsp-bash-explainshell-endpoint    t
+        lsp-bash-glob-pattern             t))
 
 (defun lsp-go-install-save-hooks ()
   (add-hook 'before-save-hook #'lsp-format-buffer t t)
