@@ -297,7 +297,7 @@ xorg_config(){
 
     log echo "#---------------------------------------- Setup Xorg config files" && break_line
     cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
-    && sudo cp config/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/\
+    && sudo cp config/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/ \
     && log echo "     Xorg config {OK} " && break_line || log erro_msg
 }
 
