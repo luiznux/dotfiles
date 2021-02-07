@@ -200,7 +200,12 @@
   ("C-r"   . anzu-query-replace-regexp)
   ("C-M-r" . anzu-query-replace-at-cursor-thing)
   :hook
-  (after-init . global-anzu-mode))
+  (after-init . global-anzu-mode)
+  :config
+  (custom-set-variables
+   '(anzu-mode-lighter "")
+   '(anzu-deactivate-region t)
+   '(anzu-replace-to-string-separator " => ")))
 
 (use-package all-the-icons
   :ensure t)
