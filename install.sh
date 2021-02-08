@@ -54,7 +54,6 @@ erro_msg(){
     ((errors+=1)) && echo "  ERROR[$[errors]]" && break_line
 }
 
-
 #### exit dir
 exit_dir(){
 
@@ -79,7 +78,6 @@ clean_AUR(){
     rm -rf $AUR/*
 }
 
-
 #### setup my directory tree
 dir_tree(){
 
@@ -88,48 +86,47 @@ dir_tree(){
     && log echo "        Directory tree {OK}" && break_line || log erro_msg
 }
 
-
 #### install packages on arch linux
 install_packages(){
 
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
 
-    $essencials=" xorg xclip cmake libxss llvm xorg-xinit "
+    essencials=" xorg xclip cmake libxss llvm xorg-xinit "
 
-    $linux_gadgets=" man tree colordiff wget check file highlight atool mlocate nmap ntp ncdu haveged "
+    linux_gadgets=" man tree colordiff wget check file highlight atool mlocate nmap ntp ncdu haveged "
 
-    $utilities=" htop calcurse cpupower dmenu cmatrix neofetch ranger sl youtube-dl pacmanlogviewer "
+    utilities=" htop calcurse cpupower dmenu cmatrix neofetch ranger sl youtube-dl pacmanlogviewer "
 
-    $program_languages=" clang ccls go gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck"
+    program_languages=" clang ccls go gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck"
 
-    $graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom "
+    graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom "
 
-    $file_open=" nemo nemo-fileroller i7z xreader calibre evince pandoc texlive-most "
+    file_open=" nemo nemo-fileroller i7z xreader calibre evince pandoc texlive-most "
 
-    $themes=" papirus-icon-theme lxappearance gtk-chtheme "
+    themes=" papirus-icon-theme lxappearance gtk-chtheme "
 
-    $font=" noto-fonts-cjk noto-fonts-emoji noto-fonts ttf-font-awesome gnome-font-viewer "
+    font=" noto-fonts-cjk noto-fonts-emoji noto-fonts ttf-font-awesome gnome-font-viewer "
 
-    $gnome=" intltool dbus-glib gdm gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor "
+    gnome=" intltool dbus-glib gdm gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor "
 
-    $audio=" libmpdclient alsa alsa-utils alsa-firmware fftw pulseaudio playerctl vlc paprefs pavucontrol pulseeffects "
+    audio=" libmpdclient alsa alsa-utils alsa-firmware fftw pulseaudio playerctl vlc paprefs pavucontrol pulseeffects "
 
-    $image=" eog feh tumbler ffmpegthumbnailer imagemagick sxiv gimp scrot deepin-screenshot w3m "
+    image=" eog feh tumbler ffmpegthumbnailer imagemagick sxiv gimp scrot deepin-screenshot w3m "
 
-    $android_device=" mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp yasm "
+    android_device=" mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp yasm "
 
-    $gnu_things=" libcurl-gnutls mailutils "
+    gnu_things=" libcurl-gnutls mailutils "
 
-    $term_shell=" zsh zsh-completions rxvt-unicode rxvt-unicode-terminfo urxvt-perls "
+    term_shell=" zsh zsh-completions rxvt-unicode rxvt-unicode-terminfo urxvt-perls "
 
-    $printer=" cups cups-pdf system-config-printer "
+    printer=" cups cups-pdf system-config-printer "
 
-    $security=" ufw gnome-keyring "
+    security=" ufw gnome-keyring "
 
-    $network=" dhcp dhcpcd "
+    network=" dhcp dhcpcd "
 
-    $others=" transmission-gtk gparted discord code gnome-calculator firefox bleachbit "
+    others=" transmission-gtk gparted discord code gnome-calculator firefox bleachbit "
 
     log_error sudo pacman -Syu $essencials $linux_gadgets $program_languages $graphic $file_open $themes $font $gnome $audio $image $android_device $gnu_things $term_shell $printer $security $network $other   --noconfirm --needed \
     && log echo "        Packages {OK}" && break_line || log erro_msg
@@ -142,7 +139,6 @@ Python_config(){
     log_error sudo pacman -S python-pip python-sphinx python-dbus python2-gobject  python-psutil python-urwid python-pywal --noconfirm \
     && log echo "	     Python {OK}" && break_line || log erro_msg
 }
-
 
 #### install the graphic drivers(depends of your hardware)
 Graphic_drivers(){
@@ -164,7 +160,6 @@ Graphic_drivers(){
     log echo "	     Graphic Drivers {OK}" && break_line || log erro_msg
 }
 
-
 #### AUR Packges installation func(with MAKEPKG)
 AUR_install(){
 
@@ -182,6 +177,7 @@ AUR_install(){
     && log_error make_pkg_AUR cli-visualizer \
     && log_error make_pkg_AUR pygtk \
     && log_error make_pkg_AUR rar \
+    && log_error make_pkg_AUR yay \
     && log_error make_pkg_AUR python-ueberzug \
     && log_error make_pkg_AUR python2-twodict-git \
     && log_error make_pkg_AUR youtube-dl-gui-git \
@@ -192,7 +188,6 @@ AUR_install(){
     && log echo "--------- AUR pkgs Done " && break_line || log erro_msg
     break_line
 }
-
 
 #### Emacs install and copy my config file
 emacs(){
@@ -205,7 +200,6 @@ emacs(){
     && log_error cd ~/emacs-27.1 && log_error ./autogen.sh && log_error ./configure && log_error make && log_error sudo make install \
     && log echo "     Emacs  Install  {OK}" && break_line || log erro_msg
 }
-
 
 #### Config my dropbox sync folder
 dropbox_setup(){
@@ -225,7 +219,6 @@ dropbox_setup(){
     && log_error make_pkg_AUR nemo-dropbox \
     && log echo "     Dropbox install packages {OK}" && break_line || log erro_msg
 }
-
 
 #### I3 and Polybar config
 i3_polybar_setup(){
@@ -285,7 +278,7 @@ gitignore_setup(){
     cd $dotfiles && cp config/.gitignore_global  ~/ \
     && log echo "     Gitignore global setup {OK} " && break_line || log erro_msg
     cd $dotfiles && cp config/.gitconfig ~/ \
-    && log echo "     Gitconfig setup {OK} " && break_line || log erro_msg && ((errors+=1))
+    && log echo "     Gitconfig setup {OK} " && break_line || log erro_msg
 }
 
 #### Setup background img
@@ -362,7 +355,6 @@ other_config(){
     && cp config/.bashrc ~/ \
     && log echo " Other config {OK}" && break_line || log error_msg
 }
-
 
 #### Clone other repositories
 git_repository_setup(){
