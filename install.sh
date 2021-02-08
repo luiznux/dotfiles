@@ -397,7 +397,7 @@ nvidia_xorg_config(){
     read -p "--> " option
 
     if [ $option == "y" ]; then
-        sudo nvidia-xconfig
+        sudo nvidia-xconfig --composite
         echo "Done!" && break_line
     else
         echo "Nvidia xconfig {SKIPED} " && break_line
