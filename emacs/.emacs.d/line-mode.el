@@ -41,6 +41,7 @@
   '(mode-line-inactive ((t (:family "Source Code Pro" :height 1)))))
 
 (use-package nyan-mode
+   :ensure t
    :custom
    (nyan-cat-face-number 1)
    (nyan-animate-nyancat t)
