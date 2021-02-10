@@ -16,3 +16,6 @@
 [submodule "emacs/.emacs.d/lisp/awesome-tab"]
 	path = emacs/.emacs.d/lisp/awesome-tab
 	url = https://github.com/luiznux/awesome-tab.git
+[submodule "emacs/.emacs.d/lisp/parrot"]
+	path = emacs/.emacs.d/lisp/parrot
+	url = https://github.com/luiznux/parrot
