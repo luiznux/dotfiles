@@ -276,6 +276,7 @@
 
 ;;; ------ Local packages(from github)
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/awesome-tab"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/parrot"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/page-break-lines"))
 
 (defun setup-awesome-tab()
@@ -283,6 +284,16 @@
   (setq awesome-tab-display-icon   t
         awesome-tab-height         108)
   (awesome-tab-mode t))
+
+(defun setup-parrot-mode()
+  (require 'parrot)
+  ;; To see the party parrot in the modeline, turn on parrot mode:
+  (parrot-mode)
+  (parrot-set-parrot-type 'emacs)
+  (setq parrot-num-rotations 6)
+  (add-hook 'evil-insert-state-entry-hook #'parrot-start-animation)
+  (add-hook 'evil-visual-state-entry-hook #'parrot-start-animation)
+  (add-hook 'evil-emacs-state-entry-hook #'parrot-start-animation))
 
 (defun setup-page-break-lines()
   (require 'page-break-lines)
@@ -312,5 +323,6 @@
 (setup-git-packages)
 (setup-awesome-tab)
 (setup-page-break-lines)
+(setup-parrot-mode)
 
 ;;; packages.el ends here
