@@ -98,7 +98,7 @@ install_packages(){
 
     utilities=" htop calcurse cpupower dmenu cmatrix neofetch ranger sl youtube-dl pacmanlogviewer "
 
-    program_languages=" clang ccls go gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck"
+    program_languages=" clang ccls go gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure"
 
     graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom "
 
@@ -118,7 +118,7 @@ install_packages(){
 
     gnu_things=" libcurl-gnutls mailutils "
 
-    term_shell=" zsh zsh-completions rxvt-unicode rxvt-unicode-terminfo urxvt-perls "
+    term_shell=" zsh zsh-completions alacritty rxvt-unicode rxvt-unicode-terminfo urxvt-perls "
 
     printer=" cups cups-pdf system-config-printer "
 
@@ -128,7 +128,7 @@ install_packages(){
 
     others=" transmission-gtk gparted discord code gnome-calculator firefox bleachbit "
 
-    log_error sudo pacman -Syu $essencials $linux_gadgets $program_languages $graphic $file_open $themes $font $gnome $audio $image $android_device $gnu_things $term_shell $printer $security $network $other   --noconfirm --needed \
+    log_error sudo pacman -Syu $essencials $linux_gadgets $program_languages $graphic $file_open $themes $font $gnome $audio $image $android_device $gnu_things $term_shell $printer $security $network $other  --noconfirm --needed --resolve-conflicts=all \
     && log echo "        Packages {OK}" && break_line || log erro_msg
 }
 
@@ -332,7 +332,7 @@ xorg_config(){
 
     log echo "#---------------------------------------- Setup Xorg config files" && break_line
     cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
-    && sudo cp config/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/\
+    && sudo cp config/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/ \
     && log echo "     Xorg config {OK} " && break_line || log erro_msg
 }
 
