@@ -349,7 +349,7 @@ other_config(){
 
     log echo "#---------------------------------------- Other Configs " && break_line
     cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
-    && sudo cp config/scripts/{ca,simple-push,volume} /usr/local/bin/ \
+    && sudo cp config/scripts/{ca,simple-push,volume,nvidia-fan-setup} /usr/local/bin/ \
     && cp -r config/sxiv ~/.config/ \
     && cp -r config/dunst ~/.config/ \
     && cp config/.bashrc ~/ \
