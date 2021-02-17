@@ -1,2 +1,2 @@
-exec i3
 picom &
+exec i3
