@@ -60,15 +60,27 @@ exit_dir(){
     cd ..
 }
 
+### checks if the packages is installed, then remove it
+remove_package(){
+
+    #check
+    if sudo pacman -Qi $1 > /dev/null; then
+        echo "package found !"
+        sudo pacman -Rs $1 --noconfirm
+    else
+        echo "The package $package is not installed, continuing process"
+    fi
+}
+
 #### install aur packages
 make_pkg_AUR(){
 
     #in case the dir already exists
     if [ -d "$AUR/$1" ];then
-        cd $AUR/$1 && makepkg -is --noconfirm && exit_dir
+        cd $AUR/$1 && makepkg -csi --noconfirm && exit_dir
 
     else
-        cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -is --noconfirm && exit_dir
+        cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -si --noconfirm && exit_dir
     fi
 }
 
@@ -128,7 +140,7 @@ install_packages(){
 
     others=" transmission-gtk gparted discord code gnome-calculator firefox bleachbit "
 
-    log_error sudo pacman -Syu $essencials $linux_gadgets $program_languages $graphic $file_open $themes $font $gnome $audio $image $android_device $gnu_things $term_shell $printer $security $network $other  --noconfirm --needed --resolve-conflicts=all \
+    log_error sudo pacman -Syu $essencials $linux_gadgets $program_languages $graphic $file_open $themes $font $gnome $audio $image $android_device $gnu_things $term_shell $printer $security $network $other  --noconfirm --needed \
     && log echo "        Packages {OK}" && break_line || log erro_msg
 }
 
@@ -136,7 +148,7 @@ install_packages(){
 Python_config(){
 
     log echo "#----------------------------------------------- PYTHON CONFIG" && break_line
-    log_error sudo pacman -S python-pip python-sphinx python-dbus python2-gobject  python-psutil python-urwid python-pywal --noconfirm \
+    log_error sudo pacman -S python-pip python-sphinx python-dbus python2-gobject python-psutil python-urwid python-pywal python-pdftotext --noconfirm \
     && log echo "	     Python {OK}" && break_line || log erro_msg
 }
 
@@ -165,7 +177,7 @@ AUR_install(){
 
     log echo "#---------------------------------------- AUR packages" && break_line
     log echo "Installing some AUR Packages" && break_line
-    log_error make_pkg_AUR python-pdftotext \
+    log_error make_pkg_AUR yay \
     && log_error make_pkg_AUR polybar \
     && log_error make_pkg_AUR i3lock-color-git \
     && log_error make_pkg_AUR thermald \
@@ -177,16 +189,16 @@ AUR_install(){
     && log_error make_pkg_AUR cli-visualizer \
     && log_error make_pkg_AUR pygtk \
     && log_error make_pkg_AUR rar \
-    && log_error make_pkg_AUR yay \
     && log_error make_pkg_AUR python-ueberzug \
     && log_error make_pkg_AUR python2-twodict-git \
     && log_error make_pkg_AUR youtube-dl-gui-git \
     && log_error make_pkg_AUR jetbrains-toolbox \
     && log_error make_pkg_AUR ttf-wps-fonts \
     && log_error make_pkg_AUR wps-office \
-    && log_error make_pkg_AUR wps-office-mui \
     && log echo "--------- AUR pkgs Done " && break_line || log erro_msg
     break_line
+
+    #&& log_error make_pkg_AUR wps-office-mui \
 }
 
 #### Emacs install and copy my config file
@@ -390,16 +402,17 @@ laptop_config(){
         && log echo "#-------------------------------------- Lapto packages {OK}" && break_line || log erro_msg
 
         log echo "#----------------------------------------- Optimus Manager and Gdm prime(AUR)" && break_line
-        sudo pacman -Rs gdm --noconfirm \
+        remove_package gdm  \
         && log_error make_pkg_AUR gdm-prime \
         && log_error make_pkg_AUR optimus-manager \
         && log_error make_pkg_AUR optimus-manager-qt \
         && log echo "#-------------------------------------- Optimus Manager and Gdm prime {OK}" && break_line || log erro_msg
 
         log echo "#----------------------------------------- Bbswitch CONFIG (LAPTOP ONLY)" && break_line
-        log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/
-        log_error sudo gpasswd -a luiznux bumblebee \
+        log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/ \
+        && log_error sudo gpasswd -a $USER bumblebee \
         && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
+        && log error sudo mkdir -vp /etc/acpi && sudo touch /etc/acpi/bbwitch \
         && log_error sudo tee /proc/acpi/bbswitch <<<OFF \
         && log echo "#-------------------------------------- Bbswitch {OK}" && break_line || log erro_msg
 
