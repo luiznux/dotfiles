@@ -83,7 +83,7 @@
         org-agenda-prefer-last-repeat t)
 
   (setq org-agenda-files ;set org agenda files
-        '("~/org/agenda .org" "~/org/mine .org" "~/org/bday .org" "~/org/coll .org " "~/org/work .org")))
+        '("~/org/agenda .org" "~/org/mine .org" "~/org/bday .org" "~/org/coll .org" "~/org/work .org")))
 
 ;-----------custom funcs
 (defun ll/org/agenda/color-headers-with (tag col col2)
