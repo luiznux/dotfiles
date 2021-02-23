@@ -24,7 +24,6 @@
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
 
-(package-initialize)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
