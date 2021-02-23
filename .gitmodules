@@ -16,6 +16,3 @@
 [submodule "emacs/.emacs.d/lisp/parrot"]
 	path = emacs/.emacs.d/lisp/parrot
 	url = https://github.com/luiznux/parrot
-[submodule "emacs/.emacs.d/lisp/emacs/.emacs.d/lisp/page-break-lines"]
-	path = emacs/.emacs.d/lisp/emacs/.emacs.d/lisp/page-break-lines
-	url = https://github.com/purcell/page-break-lines.git
