@@ -140,7 +140,7 @@ install_packages(){
 
     others=" transmission-gtk gparted discord code gnome-calculator firefox bleachbit "
 
-    log_error sudo pacman -Syu $essencials $linux_gadgets $program_languages $graphic $file_open $themes $font $gnome $audio $image $android_device $gnu_things $term_shell $printer $security $network $other  --noconfirm --needed \
+    log_error sudo pacman -Syu $essencials $linux_gadgets $utilities $program_languages $graphic $file_open $themes $font $gnome $audio $image $android_device $gnu_things $term_shell $printer $security $network $others  --noconfirm --needed \
     && log echo "        Packages {OK}" && break_line || log erro_msg
 }
 
@@ -403,6 +403,7 @@ laptop_config(){
 
         log echo "#----------------------------------------- Optimus Manager and Gdm prime(AUR)" && break_line
         remove_package gdm  \
+        && yay -S --noconfirm --nocleanmenu --nodiffmenu \
         && log_error make_pkg_AUR gdm-prime \
         && log_error make_pkg_AUR optimus-manager \
         && log_error make_pkg_AUR optimus-manager-qt \
@@ -410,9 +411,9 @@ laptop_config(){
 
         log echo "#----------------------------------------- Bbswitch CONFIG (LAPTOP ONLY)" && break_line
         log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/ \
+        && log_error sudo touch /proc/acpi/bbswitch \
         && log_error sudo gpasswd -a $USER bumblebee \
         && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
-        && log error sudo mkdir -vp /etc/acpi && sudo touch /etc/acpi/bbwitch \
         && log_error sudo tee /proc/acpi/bbswitch <<<OFF \
         && log echo "#-------------------------------------- Bbswitch {OK}" && break_line || log erro_msg
 
