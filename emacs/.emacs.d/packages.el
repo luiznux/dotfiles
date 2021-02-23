@@ -217,6 +217,9 @@
 (use-package plantuml-mode
   :ensure t)
 
+(use-package page-break-lines
+  :ensure t)
+
 (use-package emojify
   :ensure t
   :config
@@ -281,7 +284,6 @@
 ;;; ------ Local packages(from github)
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/awesome-tab"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/parrot"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/page-break-lines"))
 
 (defun setup-awesome-tab()
   (require 'awesome-tab)
@@ -298,10 +300,6 @@
   (add-hook 'evil-insert-state-entry-hook #'parrot-start-animation)
   (add-hook 'evil-visual-state-entry-hook #'parrot-start-animation)
   (add-hook 'evil-emacs-state-entry-hook #'parrot-start-animation))
-
-(defun setup-page-break-lines()
-  (require 'page-break-lines)
-  (turn-on-page-break-lines-mode))
 
 
 ;;; ------ load the others files from /lisp dir
@@ -326,7 +324,6 @@
 (setup-python-packages)
 (setup-git-packages)
 (setup-awesome-tab)
-(setup-page-break-lines)
 (setup-parrot-mode)
 
 ;;; packages.el ends here
