@@ -5,8 +5,7 @@
 ;;; Code:
 
 (defun visual-config-modes()
-  "Visual modes. Removes tool and menu bar,
-removes scroll bar and display line numbers."
+  "Visual modes, remove tool and menu bar,remove scroll bar and display line numbers."
   (setq inhibit-startup-message t)
   (setq-default show-trailing-whitespace t)
   (tool-bar-mode -1)
@@ -42,13 +41,52 @@ removes scroll bar and display line numbers."
           (append
            (split-string-and-unquote path ":")
            exec-path))))
+ (defun put-current-path-to-clipboard ()
+      (interactive)
+      (let ((file-path buffer-file-name)
+            (dir-path default-directory))
+        (cond (file-path
+               (kill-new (expand-file-name file-path))
+               (message "This file path is on the clipboard!"))
+              (dir-path
+               (kill-new (expand-file-name dir-path))
+               (message "This directory path is on the clipboard!"))
+              (t
+               (error-message-string "Fail to get path name.")))))
+
+    (defun put-current-filename-to-clipboard ()
+      (interactive)
+      (let ((file-path buffer-file-name)
+            (dir-path default-directory))
+        (cond (file-path
+               (kill-new (file-name-nondirectory file-path))
+               (message "This file path is on the clipboard!"))
+              (dir-path
+               (kill-new (file-name-nondirectory dir-path))
+               (message "This directory path is on the clipboard!"))
+              (t
+               (error-message-string "Fail to get path name.")))))
+
+    (defun put-current-filename-with-line-to-clipboard ()
+      (interactive)
+      (let ((file-path buffer-file-name)
+            (dir-path default-directory))
+        (cond (file-path
+               (kill-new (format "%s:%s"
+                                 (file-name-nondirectory file-path)
+                                 (count-lines (point-min) (point))))
+               (message "This file path is on the clipboard!"))
+              (dir-path
+               (kill-new (file-name-nondirectory dir-path))
+               (message "This directory path is on the clipboard!"))
+              (t
+               (error-message-string "Fail to get path name.")))))
 
 ;; Source: http://www.emacswiki.org/emacs-en/download/misc-cmds.el
 (defun revert-buffer-no-confirm ()
     "Revert buffer without confirmation."
     (interactive)
     (revert-buffer :ignore-auto :noconfirm))
-
 
 (setq user-full-name "Luiz Tagliaferro"
       user-mail-address "luiztagli@hotmail.com")
@@ -68,5 +106,6 @@ removes scroll bar and display line numbers."
 (defalias 'list-buffers 'ibuffer)
 
 (global-set-key (kbd "C-a") 'beginning-of-line++)
+
 
 ;;; customizations.el ends here

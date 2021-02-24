@@ -148,36 +148,76 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 !---------------------------------------------------
 !-------------------- COLORS -----------------------
 
-!----------------------- Custom(luiznux)
+!-------------------------- Sourcery colorscheme(Custom by me)
 !
 ! special
 *.foreground:   #c5c8c6
 *.cursorColor:  #4e4e8f
 *.background:   #000000
+
 ! black
-*.color0:       #282a2e
-*.color8:       #373b41
+*.color0:       #282a36
+*.color8:       #434758
+
 ! red
-*.color1:       #ce4e4e
-*.color9:       #6d3030
+*.color1:       #f07178
+*.color9:       #ff8b92
+
 ! green
-*.color2:       #ff5aff
-*.color10:      #cc66cc
+*.color2:       #c3e88d
+*.color10:      #ddffa7
+
 ! yellow
-*.color3:       #ffcd00
-*.color11:      #df9f2d
+*.color3:       #ffcb6b
+*.color11:      #ffe585
+
 ! blue
-*.color4:       #5a00e8
-*.color12:      #4e4e8f
+*.color4:       #82aaff
+*.color12:      #9cc4ff
+
 ! magenta
-*.color5:       #00f9f9
-*.color13:      #409090
+*.color5:       #c792ea
+*.color13:      #e1acff
+
 ! cyan
-*.color6:       #00ff8b
-*.color14:      #8fff8b
+*.color6:       #89ddff
+*.color14:      #a3f7ff
+
 ! white
-*.color7:       #707880
-*.color15:      #c5c8c6
+*.color7:       #d0d0d0
+*.color15:      #ffffff
+
+
+!----------------------- Custom(luiznux) old
+!
+!! special
+!*.foreground:   #c5c8c6
+!*.cursorColor:  #4e4e8f
+!*.background:   #000000
+!! black
+!*.color0:       #282a2e
+!*.color8:       #373b41
+!! red
+!*.color1:       #ce4e4e
+!*.color9:       #6d3030
+!! green
+!*.color2:       #ff5aff
+!*.color10:      #cc66cc
+!! yellow
+!*.color3:       #ffcd00
+!*.color11:      #df9f2d
+!! blue
+!*.color4:       #5a00e8
+!*.color12:      #4e4e8f
+!! magenta
+!*.color5:       #00f9f9
+!*.color13:      #409090
+!! cyan
+!*.color6:       #00ff8b
+!*.color14:      #8fff8b
+!! white
+!*.color7:       #707880
+!*.color15:      #c5c8c6
 
 
 !------------------------- Old custom scheme

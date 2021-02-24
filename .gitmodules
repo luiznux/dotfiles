@@ -1,10 +1,3 @@
-[submodule "Emacs/.emacs.d/lisp/awesome-tab"]
-	path = emacs/.emacs.d/lisp/awesome-tab
-    url = https://github.com/manateelazycat/awesome-tab.git
-
-[submodule "Emacs/.emacs.d/lisp/page-break-lines"]
-	path = emacs/.emacs.d/lisp/page-break-lines
-	url = https://github.com/purcell/page-break-lines.git
 [submodule "fonts/source-code-pro"]
 	path = config/fonts/source-code-pro
 	url = https://github.com/adobe-fonts/source-code-pro
@@ -14,12 +7,12 @@
 [submodule "system/urxvt-resize-font"]
 	path = config/urxvt/urxvt-resize-font
 	url = https://github.com/simmel/urxvt-resize-font
-[submodule "emacs/.emacs.d/lisp/origami.el"]
-	path = emacs/.emacs.d/lisp/origami.el
-	url = https://github.com/gregsexton/origami.el.git
 [submodule "themes/icons/papirus-icon-theme"]
 	path = themes/icons/papirus-icon-theme
 	url = https://github.com/PapirusDevelopmentTeam/papirus-icon-theme.git
+[submodule "emacs/.emacs.d/lisp/awesome-tab"]
+	path = emacs/.emacs.d/lisp/awesome-tab
+	url = https://github.com/luiznux/awesome-tab.git
 [submodule "emacs/.emacs.d/lisp/parrot"]
 	path = emacs/.emacs.d/lisp/parrot
 	url = https://github.com/luiznux/parrot

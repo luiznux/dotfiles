@@ -8,18 +8,22 @@
   (use-package evil
     :ensure t
     :init
-    (evil-mode 1)
+    (setq evil-want-integration t
+          evil-want-keybinding nil)
     :config
+    (evil-mode 1)
     (evil-set-initial-state 'term-mode 'emacs)
     (with-eval-after-load 'evil
       (define-key evil-normal-state-map (kbd "M-.") nil)
       (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)))
 
-  (use-package evil-magit
+  (use-package evil-collection
+    :after evil
     :ensure t
     :config
-    (setq evil-magit-state 'normal)
-    (setq evil-magit-use-y-for-yank nil))
+    (evil-collection-init)
+    (setq evil-collection-setup-minibuffer t
+          evil-collection-company-use-tng  nil))
 
   (use-package evil-matchit
     :ensure t

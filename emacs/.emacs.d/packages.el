@@ -24,7 +24,6 @@
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
 
-(package-initialize)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -39,16 +38,66 @@
 (use-package yasnippet-snippets
   :ensure t)
 
+(use-package origami
+  :ensure t
+  :config
+  (global-origami-mode))
+
 (use-package flycheck
   :ensure t
-  :init
-  (global-flycheck-mode)
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+  :init (add-hook 'after-init-hook #'global-flycheck-mode)
+  :config
+  (add-to-list 'display-buffer-alist ;; custom flycheck buffer display(smaller and at the bottom)
+               `(,(rx bos "*Flycheck errors*" eos)
+                 (display-buffer-reuse-window
+                  display-buffer-below-selected)
+                 (reusable-frames . visible)
+                 (side            . bottom)
+                 (window-height   . 0.2))))
+
+(use-package flyspell
+  :diminish
+  :if (executable-find "aspell")
+  :hook
+  ((org-mode yaml-mode markdown-mode git-commit-mode) . flyspell-mode)
+  (prog-mode . flyspell-prog-mode)
+  (before-save-hook . flyspell-buffer)
+  (flyspell-mode . (lambda ()
+                     (dolist (key '("C-;" "C-," "C-."))
+                       (unbind-key key flyspell-mode-map))))
+  :custom
+  (flyspell-issue-message-flag nil)
+  (ispell-program-name "aspell")
+  (ispell-extra-args '("--sug-mode=ultra" "--lang=en_US" "--run-together"))
+  :custom-face
+  (flyspell-incorrect ((t (:underline (:color "#f1fa8c" :style wave)))))
+  (flyspell-duplicate ((t (:underline (:color "#50fa7b" :style wave)))))
+  :preface
+  (defun message-off-advice (oldfun &rest args)
+    "Quiet down messages in adviced OLDFUN."
+    (let ((message-off (make-symbol "message-off")))
+      (unwind-protect
+          (progn
+            (advice-add #'message :around #'ignore (list 'name message-off))
+            (apply oldfun args))
+        (advice-remove #'message message-off))))
+  :config
+  (advice-add #'ispell-init-process :around #'message-off-advice)
+  (use-package flyspell-correct-ivy
+    :bind ("C-M-:" . flyspell-correct-at-point)
+    :config
+    (when (eq system-type 'darwin)
+      (progn
+        (global-set-key (kbd "C-M-;") 'flyspell-correct-at-point)))
+    (setq flyspell-correct-interface #'flyspell-correct-ivy)))
 
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)
-  :hook (go-mode . lsp-deferred) (sh-mode . lsp))
+  :hook (go-mode . lsp-deferred) (sh-mode . lsp)
+  (setq lsp-bash-highlight-parsing-errors t
+        lsp-bash-explainshell-endpoint    t
+        lsp-bash-glob-pattern             t))
 
 (defun lsp-go-install-save-hooks ()
   (add-hook 'before-save-hook #'lsp-format-buffer t t)
@@ -57,27 +106,41 @@
 
 (use-package lsp-ui
   :ensure t
-  :commands lsp-ui-mode)
-
-(use-package company
-  :ensure t
-  :init
-  (add-hook 'after-init-hook 'global-company-mode)
   :config
-  (setq company-idle-delay 0)
-  (setq company-minimum-prefix-length 1)
-  (define-key company-active-map (kbd "M-j") 'company-select-next-or-abort)
-  (define-key company-active-map (kbd "M-k") 'company-select-previous-or-abort))
+  (setq lsp-ui-doc-enable           t
+        lsp-ui-doc-header           t
+        lsp-ui-peek-enable          t
+        lsp-ui-peek-show-directory  t
+        lsp-ui-doc-delay            0.5))
 
-(use-package company-lsp
+(use-package lsp-treemacs
   :ensure t
   :config
-  (company-lsp-enable-snippet t)
-  (company-lsp-cache-candidates 'auto)
-  :commands company-lsp)
+  (lsp-treemacs-sync-mode 1))
 
-(use-package company-quickhelp
-  :hook 'after-init-hook company-quickhelp-mode)
+(use-package lsp-java
+  :hook 'java-mode-hook #'lsp)
+
+(use-package lsp-dart
+  :ensure t
+  :hook (dart-mode . lsp))
+
+(use-package dap-mode
+  :ensure t
+  :config
+;;; Enabling only some features
+;(setq dap-auto-configure-features '(sessions locals controls tooltip))
+  (dap-mode 1)
+  ;; The modes below are optional
+  (dap-ui-mode 1)
+  ;; enables mouse hover support
+  (dap-tooltip-mode 1)
+  ;; use tooltips for mouse hover
+  ;; if it is not enabled `dap-mode' will use the minibuffer.
+  (tooltip-mode 1)
+  ;; displays floating panel with debug buttons
+  ;; requies emacs 26+
+  (dap-ui-controls-mode 1))
 
 (use-package ccls
   :ensure t
@@ -85,8 +148,10 @@
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
          (lambda () (require 'ccls) (lsp))))
 
-(use-package lsp-java
- :hook 'java-mode-hook #'lsp)
+(use-package yaml-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 
 (use-package which-key
   :ensure t
@@ -98,13 +163,7 @@
   :init
   (latex-preview-pane-enable))
 
-;(use-package telephone-line
-;  :ensure t
-;  :init
-;  (telephone-line-mode 1))
-
 (require 'iso-transl)
-
 (use-package highlight-indent-guides
   :ensure t
   :config
@@ -119,6 +178,9 @@
   ("M-p" . highlight-symbol-prev)
   ("M-n" . highlight-symbol-next)))
 
+(use-package hide-mode-line
+  :ensure t)
+
 (use-package smex
   :ensure t
   :config
@@ -131,7 +193,34 @@
 (use-package sudo-edit
   :ensure t)
 
+(use-package logview
+  :ensure t
+  :defer t)
+
+(use-package anzu
+  :ensure t
+  :diminish
+  :bind
+  ("C-r"   . anzu-query-replace-regexp)
+  ("C-M-r" . anzu-query-replace-at-cursor-thing)
+  :hook
+  (after-init . global-anzu-mode)
+  :config
+  (custom-set-variables
+   '(anzu-mode-lighter "")
+   '(anzu-deactivate-region t)
+   '(anzu-replace-to-string-separator " => ")))
+
+(use-package sudo-edit
+  :ensure t)
+
 (use-package all-the-icons
+  :ensure t)
+
+(use-package plantuml-mode
+  :ensure t)
+
+(use-package page-break-lines
   :ensure t)
 
 (use-package emojify
@@ -142,6 +231,27 @@
   :hook (after-init . global-emojify-mode))
 
 (use-package rainbow-mode
+  :ensure t
+  :hook (emacs-lisp-mode . rainbow-mode))
+
+(use-package ranger
+  :ensure t
+  :config
+  (ranger-override-dired-mode t))
+
+(use-package google-translate
+  :ensure t
+  :bind
+  ("M-o t" . google-translate-at-point)
+  ("M-o T" . google-translate-at-point-reverse)
+  :custom
+  (google-translate-default-source-language "en")
+  (google-translate-default-target-language "ja"))
+
+(use-package math-preview
+  :ensure t)
+
+(use-package switch-window
   :ensure t)
 
 (use-package ranger
@@ -149,16 +259,18 @@
   :config
   (ranger-override-dired-mode t))
 
+(use-package google-this
+  :ensure t)
+
 (use-package dashboard
   :ensure t
   :init
   (progn
     (setq recentf-exclude '("/org/*")) ;prevent  show recent org-agenda files
-    (setq dashboard-items '((recents   . 12)
-                            (projects  .  8))))
+    (setq dashboard-items '((recents   . 8)
+                            (projects  .  6))))
   :config
   (dashboard-setup-startup-hook)
-  ;(add-hook 'dashboard-mode-hook  (lambda () (ace-window)) (lambda () (goto-char (point-min))) (lambda () (org-agenda t "x")))
 
   (setq dashboard-set-heading-icons  t
         dashboard-set-file-icons     t
@@ -177,75 +289,49 @@
   (add-hook 'dashboard-mode-hook (lambda () (goto-char (point-min)))))
 
 
-;;--------------------JAVASCRIPTU
-(use-package rjsx-mode
-  :ensure t
-  :mode "\\.js\\'")
-
-(defun setup-tide-mode()
-  "Setup funcion for tide."
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (tide-hl-identifier-mode +1)
-  (company-mode +1))
-
-(use-package tide
-  :ensure t
-  :after (rjsx-mode company flycheck)
-  :hook (rjsx-mode . setup-tide-mode))
-
-(use-package prettier-js
-  :ensure t
-  :after (rjsx-mode)
-  :hook (rjsx-mode . prettier-js-mode))
-
-
-;Local packages(github)
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
+;;; ------ Local packages(from github)
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/awesome-tab"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/page-break-lines"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/origami.el"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/nerd-fonts.el"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/parrot"))
 
 (defun setup-awesome-tab()
   (require 'awesome-tab)
-  (setq awesome-tab-display-icon t)
+  (setq awesome-tab-display-icon   t
+        awesome-tab-height         108)
   (awesome-tab-mode t))
 
-(defun setup-page-break-lines()
-  (require 'page-break-lines)
-  (turn-on-page-break-lines-mode))
+(defun setup-parrot-mode()
+  (require 'parrot)
+  ;; To see the party parrot in the modeline, turn on parrot mode:
+  (parrot-mode)
+  (parrot-set-parrot-type 'emacs)
+  (setq parrot-num-rotations 6)
+  (add-hook 'evil-insert-state-entry-hook #'parrot-start-animation)
+  (add-hook 'evil-visual-state-entry-hook #'parrot-start-animation)
+  (add-hook 'evil-emacs-state-entry-hook #'parrot-start-animation))
 
-(defun setup-origami-mode ()
-  (require 'origami)
-  (global-origami-mode))
 
-(defun setup-nerd-fonts-el()
-  (require 'nerd-fonts))
-
-
+;;; ------ load the others files from /lisp dir
 (load "~/.emacs.d/lisp/custom-modes-config.el")
 (load "~/.emacs.d/lisp/evil-config.el")
 (load "~/.emacs.d/lisp/python-config.el")
-(load "~/.emacs.d/lisp/irony-config.el")
 (load "~/.emacs.d/lisp/git-config.el")
 (load "~/.emacs.d/lisp/project-config.el")
-(load "~/.emacs.d/line-mode-config.el")
+(load "~/.emacs.d/lisp/company-config.el")
 (load "~/.emacs.d/lisp/org-config.el")
 (load "~/.emacs.d/lisp/agenda-config.el")
+(load "~/.emacs.d/line-mode.el")
+;(load "~/.emacs.d/lisp/irony-config.el") not used anymore(use lsp instead)
 
 
+;;; ------  call the functions from /lisp dir
 (setup-evil-packages)
 (setup-project-packages)
+(setup-company-config)
+(setup-org-packages)
 (setup-custom-modes-packages)
 (setup-python-packages)
-;(setup-irony-packages)
 (setup-git-packages)
 (setup-awesome-tab)
-(setup-page-break-lines)
-(setup-origami-mode)
-;(setup-nerd-fonts-el)
+(setup-parrot-mode)
 
 ;;; packages.el ends here

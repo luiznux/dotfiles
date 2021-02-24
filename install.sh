@@ -436,10 +436,13 @@ laptop_config(){
 #### run nvidia xconfig
 nvidia_xorg_config(){
 
-    if [ $nvidia_Option == "y" ]; then
-       log echo "#----------------------------------------- Nvidia Xconfig"
-       log sudo nvidia-xconfig
-       log echo "#----------------------------------------- Nvidia Xconfig Done!" && break_line
+    log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
+    log echo "Only answer 'y' if you are using nvidia graphic card and have the drivers"
+    read -p "--> " option
+
+    if [ $option == "y" ]; then
+        sudo nvidia-xconfig --composite
+        echo "Done!" && break_line
     else
        log echo "#------------------------------------ Nvidia xconfig {SKIPED}" && break_line
     fi
