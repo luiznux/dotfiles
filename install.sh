@@ -391,11 +391,11 @@ laptop_config(){
         && log echo "#-------------------------------------- Lapto packages {OK}" && break_line || log erro_msg
 
         log echo "#----------------------------------------- Optimus Manager and Gdm prime(AUR)" && break_line
-        yay -S gdm --noconfirm --nocleanmenu --nodiffmenu \
-        && log_error make_pkg_AUR gdm-prime \
+        yay -S gdm-prime --noconfirm --nocleanmenu --nodiffmenu \
         && log_error make_pkg_AUR optimus-manager \
         && log_error make_pkg_AUR optimus-manager-qt \
         && log echo "#-------------------------------------- Optimus Manager and Gdm prime {OK}" && break_line || log erro_msg
+        #&& log_error make_pkg_AUR gdm-prime \
 
         log echo "#----------------------------------------- Bbswitch CONFIG (LAPTOP ONLY)" && break_line
         log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/ \
