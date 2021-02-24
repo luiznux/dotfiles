@@ -68,7 +68,7 @@ make_pkg_AUR(){
         cd $AUR/$1 && makepkg -csi --noconfirm && exit_dir
 
     else
-        cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -si --noconfirm && exit_dir
+        cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -csi --noconfirm && exit_dir
     fi
 }
 
@@ -187,7 +187,7 @@ AUR_install(){
     && log_error make_pkg_AUR python-ueberzug \
     && log_error make_pkg_AUR python2-twodict-git \
     && log_error yay -S pygtk --noconfirm --nocleanmenu --nodiffmenu \
-    && log echo "--------- AUR pkgs Done " && break_line || log erro_msg
+    && log echo "------------------------------------------------AUR pkgs Done {OK}" && break_line || log erro_msg
     #&& log_error make_pkg_AUR wps-office-mui \
 }
 
