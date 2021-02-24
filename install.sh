@@ -175,16 +175,19 @@ AUR_install(){
     && log_error make_pkg_AUR sublime-text-dev \
     && log_error make_pkg_AUR speedometer \
     && log_error make_pkg_AUR cli-visualizer \
-    && log_error make_pkg_AUR python2-twodict-git \
+    && log_error make_pkg_AUR rar \
     && log_error make_pkg_AUR youtube-dl-gui-git \
     && log_error make_pkg_AUR jetbrains-toolbox \
     && log_error make_pkg_AUR ttf-wps-fonts \
-    && log_error make_pkg_AUR python-ueberzug \
-    && log_error make_pkg_AUR pygtk \
-    && log_error make_pkg_AUR rar \
     && log_error make_pkg_AUR wps-office \
-    && log echo "--------- AUR pkgs Done " && break_line || log erro_msg
+    && log echo "----------------------------- AUR General packages  Done " && break_line || log erro_msg
     break_line
+
+    log echo "------------------------------- Python AUR packages" && break_line
+    && log_error make_pkg_AUR python-ueberzug \
+    && log_error make_pkg_AUR python2-twodict-git \
+    && log_error yay -S pygtk --noconfirm --nocleanmenu --nodiffmenu \
+    && log echo "--------- AUR pkgs Done " && break_line || log erro_msg
     #&& log_error make_pkg_AUR wps-office-mui \
 }
 
@@ -395,7 +398,6 @@ laptop_config(){
         && log_error make_pkg_AUR optimus-manager \
         && log_error make_pkg_AUR optimus-manager-qt \
         && log echo "#-------------------------------------- Optimus Manager and Gdm prime {OK}" && break_line || log erro_msg
-        #&& log_error make_pkg_AUR gdm-prime \
 
         log echo "#----------------------------------------- Bbswitch CONFIG (LAPTOP ONLY)" && break_line
         log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/ \
