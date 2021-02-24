@@ -190,9 +190,6 @@
   :ensure t
   :bind ("C-c d" . docker))
 
-(use-package sudo-edit
-  :ensure t)
-
 (use-package logview
   :ensure t
   :defer t)
@@ -254,11 +251,6 @@
 (use-package switch-window
   :ensure t)
 
-(use-package ranger
-  :ensure t
-  :config
-  (ranger-override-dired-mode t))
-
 (use-package google-this
   :ensure t)
 
@@ -268,7 +260,7 @@
   (progn
     (setq recentf-exclude '("/org/*")) ;prevent  show recent org-agenda files
     (setq dashboard-items '((recents   . 8)
-                            (projects  .  6))))
+                            (projects  .  7))))
   :config
   (dashboard-setup-startup-hook)
 
