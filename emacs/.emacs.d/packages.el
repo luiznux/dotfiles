@@ -211,6 +211,9 @@
    '(anzu-deactivate-region t)
    '(anzu-replace-to-string-separator " => ")))
 
+(use-package sudo-edit
+  :ensure t)
+
 (use-package all-the-icons
   :ensure t)
 
@@ -250,6 +253,11 @@
 
 (use-package switch-window
   :ensure t)
+
+(use-package ranger
+  :ensure t
+  :config
+  (ranger-override-dired-mode t))
 
 (use-package google-this
   :ensure t)

@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+#
 #     ██╗███╗   ██╗███████╗████████╗ █████╗ ██╗     ██╗
 #     ██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║     ██║
 #     ██║██╔██╗ ██║███████╗   ██║   ███████║██║     ██║
@@ -53,11 +54,22 @@ erro_msg(){
     ((errors+=1)) && echo "  ERROR[$[errors]]" && break_line
 }
 
-
 #### exit dir
 exit_dir(){
 
     cd ..
+}
+
+### checks if the packages is installed, then remove it
+remove_package(){
+
+    #check
+    if sudo pacman -Qi $1 > /dev/null; then
+        echo "package found !"
+        sudo pacman -Rs $1 --noconfirm
+    else
+        echo "The package $package is not installed, continuing process"
+    fi
 }
 
 #### install aur packages
@@ -65,10 +77,10 @@ make_pkg_AUR(){
 
     #in case the dir already exists
     if [ -d "$AUR/$1" ];then
-        cd $AUR/$1 && makepkg -is --noconfirm && exit_dir
+        cd $AUR/$1 && makepkg -csi --noconfirm && exit_dir
 
     else
-        cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -is --noconfirm && exit_dir
+        cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -si --noconfirm && exit_dir
     fi
 }
 
@@ -78,13 +90,6 @@ clean_AUR(){
     rm -rf $AUR/*
 }
 
-#### remove old log files
-clean_log(){
-
-    cd $dotfiles && rm -f install.log && echo "cleaned old log files" || break_line
-}
-
-
 #### setup my directory tree
 dir_tree(){
 
@@ -93,42 +98,86 @@ dir_tree(){
     && log echo "        Directory tree {OK}" && break_line || log erro_msg
 }
 
-
 #### install packages on arch linux
 install_packages(){
 
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
-    log_error sudo pacman -Sy xorg xclip ufw man tree colordiff zsh zsh-completions neofetch firefox rxvt-unicode rxvt-unicode-terminfo urxvt-perls cmake libmpdclient wget i3-gaps ranger w3m nemo nemo-fileroller papirus-icon-theme sl feh vlc htop gnome-calculator noto-fonts-cjk noto-fonts-emoji noto-fonts clang ccls i7z cpupower alsa alsa-utils alsa-firmware calcurse pulseaudio ttf-font-awesome libxss libcurl-gnutls dmenu mailutils llvm dhcp dhcpcd haveged xreader calibre ristretto eog tumbler evince playerctl check gobject-introspection transmission-gtk file ffmpegthumbnailer highlight atool imagemagick fftw openjdk11-src lxrandr-gtk3 mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp ufw sxiv yasm lxappearance gtk-chtheme xorg-xinit intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl go clisp cmatrix mlocate dunst cargo discord zenity scrot paprefs pavucontrol code youtube-dl qt gimp picom cups cups-pdf system-config-printer gdm pandoc texlive-most rofi gnome-keyring nmap deepin-screenshot ntp bash-language-server pulseeffects gparted --noconfirm \
+
+    essencials=" xorg xclip cmake libxss llvm xorg-xinit "
+
+    linux_gadgets=" man tree colordiff wget check file highlight atool mlocate nmap ntp ncdu haveged "
+
+    utilities=" htop calcurse cpupower dmenu cmatrix neofetch ranger sl youtube-dl pacmanlogviewer "
+
+    program_languages=" clang ccls go gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure"
+
+    graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom "
+
+    file_open=" nemo nemo-fileroller i7z xreader calibre evince pandoc texlive-most "
+
+    themes=" papirus-icon-theme lxappearance gtk-chtheme "
+
+    font=" noto-fonts-cjk noto-fonts-emoji noto-fonts ttf-font-awesome gnome-font-viewer "
+
+    gnome=" intltool dbus-glib gdm gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor "
+
+    audio=" libmpdclient alsa alsa-utils alsa-firmware fftw pulseaudio playerctl vlc paprefs pavucontrol pulseeffects "
+
+    image=" eog feh tumbler ffmpegthumbnailer imagemagick sxiv gimp scrot deepin-screenshot w3m "
+
+    android_device=" mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp yasm "
+
+    gnu_things=" libcurl-gnutls mailutils "
+
+    term_shell=" zsh zsh-completions alacritty rxvt-unicode rxvt-unicode-terminfo urxvt-perls "
+
+    printer=" cups cups-pdf system-config-printer "
+
+    security=" ufw gnome-keyring "
+
+    network=" dhcp dhcpcd "
+
+    others=" transmission-gtk gparted discord code gnome-calculator firefox bleachbit "
+
+    log_error sudo pacman -Syu $essencials $linux_gadgets $utilities $program_languages $graphic $file_open $themes $font $gnome $audio $image $android_device $gnu_things $term_shell $printer $security $network $others  --noconfirm --needed \
     && log echo "        Packages {OK}" && break_line || log erro_msg
 }
-
-
 
 #### install some python packages
 Python_config(){
 
     log echo "#----------------------------------------------- PYTHON CONFIG" && break_line
-    log_error sudo pacman -S python-pip python-sphinx python-dbus python2-gobject  python-psutil python-urwid python-pywal --noconfirm \
+    log_error sudo pacman -S python-pip python-sphinx python-dbus python2-gobject python-psutil python-urwid python-pywal python-pdftotext --noconfirm \
     && log echo "	     Python {OK}" && break_line || log erro_msg
 }
-
 
 #### install the graphic drivers(depends of your hardware)
 Graphic_drivers(){
 
-    log echo "#----------------------------------------------- Graphic drives and NVIDIA" && break_line
-    log_error sudo pacman -S xf86-video-intel vulkan-intel mesa-demos nvidia nvidia-utils nvidia-settings --noconfirm \
-    && log echo "	     Graphic Drivers {OK}" && break_line || log erro_msg
-}
+    log echo "#----------------------------------------------- Graphic drives" && break_line
+    if [ $GPU == "1" ]; then
+        log_error sudo pacman -Sy xf86-video-intel vulkan-intel mesa-demos --noconfirm --needed
 
+    elif [ $GPU == "2" ]; then
+        log_error sudo pacman -Sy nvidia nvidia-utils nvidia-settings --noconfirm --needed
+
+    elif [ $GPU == "3" ]; then
+        log_error sudo pacman -Sy xf86-video-amdgpu --noconfirm --needed
+
+    else
+        log_error sudo pacman -Sy xf86-video-intel vulkan-intel mesa-demos nvidia nvidia-utils nvidia-settings --noconfirm --needed
+    fi
+
+    log echo "	     Graphic Drivers {OK}" && break_line || log erro_msg
+}
 
 #### AUR Packges installation func(with MAKEPKG)
 AUR_install(){
 
     log echo "#---------------------------------------- AUR packages" && break_line
     log echo "Installing some AUR Packages" && break_line
-    log_error make_pkg_AUR python-pdftotext \
+    log_error make_pkg_AUR yay \
     && log_error make_pkg_AUR polybar \
     && log_error make_pkg_AUR i3lock-color-git \
     && log_error make_pkg_AUR thermald \
@@ -146,11 +195,11 @@ AUR_install(){
     && log_error make_pkg_AUR jetbrains-toolbox \
     && log_error make_pkg_AUR ttf-wps-fonts \
     && log_error make_pkg_AUR wps-office \
-    && log_error make_pkg_AUR wps-office-mui \
     && log echo "--------- AUR pkgs Done " && break_line || log erro_msg
     break_line
-}
 
+    #&& log_error make_pkg_AUR wps-office-mui \
+}
 
 #### Emacs install and copy my config file
 emacs(){
@@ -163,7 +212,6 @@ emacs(){
     && log_error cd ~/emacs-27.1 && log_error ./autogen.sh && log_error ./configure && log_error make && log_error sudo make install \
     && log echo "     Emacs  Install  {OK}" && break_line || log erro_msg
 }
-
 
 #### Config my dropbox sync folder
 dropbox_setup(){
@@ -183,7 +231,6 @@ dropbox_setup(){
     && log_error make_pkg_AUR nemo-dropbox \
     && log echo "     Dropbox install packages {OK}" && break_line || log erro_msg
 }
-
 
 #### I3 and Polybar config
 i3_polybar_setup(){
@@ -243,7 +290,7 @@ gitignore_setup(){
     cd $dotfiles && cp config/.gitignore_global  ~/ \
     && log echo "     Gitignore global setup {OK} " && break_line || log erro_msg
     cd $dotfiles && cp config/.gitconfig ~/ \
-    && log echo "     Gitconfig setup {OK} " && break_line || log erro_msg && ((errors+=1))
+    && log echo "     Gitconfig setup {OK} " && break_line || log erro_msg
 }
 
 #### Setup background img
@@ -314,80 +361,77 @@ other_config(){
 
     log echo "#---------------------------------------- Other Configs " && break_line
     cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
-    && cd $GIT/luiznux && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir \
-    && cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
-    && cd $dotfiles && sudo cp config/scripts/{ca,simple-push,volume} /usr/local/bin/ \
-    && cd $dotfiles && cp -r config/sxiv ~/.config/ \
-    && cd $dotfiles && cp config/.bashrc ~/ \
-    && cd $dotfiles && cp -r config/dunst ~/.config/ \
+    && sudo cp config/scripts/{ca,simple-push,volume,nvidia-fan-setup} /usr/local/bin/ \
+    && cp -r config/sxiv ~/.config/ \
+    && cp -r config/dunst ~/.config/ \
+    && cp config/.bashrc ~/ \
     && log echo " Other config {OK}" && break_line || log error_msg
 }
-
-#### clone some of my repositories
-clone_my_rep(){
-
-    log echo "#---------------------------------------- Clone my repositories " && break_line
-    cd $GIT/luiznux && git clone https://github.com/luiznux/org.git && ln -s $GIT/luiznux/org ~/org \
-    && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ \
-    && log echo "   Clone my-rep config {OK}" && break_line || log error_msg
-}
-
 
 #### Clone other repositories
 git_repository_setup(){
 
     log echo "#---------------------------------------- Git Repositories Clone " && break_line
-    cd $GIT/other && git clone https://github.com/stark/Color-Scripts.git && exit_dir
-    cd $GIT/other && git clone https://github.com/morpheusthewhite/spicetify-themes.git && exit_dir
-    cd $GIT/other && git clone https://github.com/PlusInsta/discord-plus && exit_dir
-    cd $GIT/other && curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl \
-        && chmod +x betterdiscordctl && sudo mv betterdiscordctl /usr/local/bin && sudo betterdiscordctl upgrade
-    cd $GIT/other && git clone https://github.com/sebastiencs/icons-in-terminal.git && exit_dir
-    cd $GIT/other && git clone https://github.com/Brettm12345/github-moonlight  && exit_dir
+    cd $GIT/other && git clone https://github.com/stark/Color-Scripts.git \
+    && git clone https://github.com/morpheusthewhite/spicetify-themes.git \
+    && git clone https://github.com/sebastiencs/icons-in-terminal.git \
+    && git clone https://github.com/Brettm12345/github-moonlight \
+    && git clone https://github.com/PlusInsta/discord-plus \
+    && curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl \
+    && chmod +x betterdiscordctl && sudo mv betterdiscordctl /usr/local/bin && sudo betterdiscordctl upgrade && exit_dir \
+    && cd $GIT/luiznux && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir
     log echo " Git rep  Done" && break_line
 }
 
+#### enable some services
+systemd_init(){
+
+    log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
+    log_error sudo systemctl enable gdm.service ufw.service ntpd.service \
+    && log_error sudo ufw enable \
+    && log echo "Done" && break_line || log erro_msg
+}
 
 #### install laptoptools
 laptop_config(){
 
-    log echo "Do you want install laptop configs ?(answer with y or n)"
-    read -p "--> " option
-
-    if [ $option == "y" ]; then
+    if [ $laptop_Option == "y" ]; then
         log echo "#----------------------------------------- Laptop config" && break_line
-        log echo "#--------- Laptop packges" && break_line
-        log_error sudo pacman -S acpi tlp bumblebee xf86-input-synaptics xfce4-power-manager light bluez-utils --noconfirm \
+        log_error sudo pacman -Sy acpi tlp bumblebee xf86-input-synaptics xfce4-power-manager light bluez-utils --noconfirm --needed \
         && log_error make_pkg_AUR nvidia-xrun \
-        && log echo " Lapto packages {OK}" && break_line || log erro_msg
+        && log echo "#-------------------------------------- Lapto packages {OK}" && break_line || log erro_msg
 
         log echo "#----------------------------------------- Optimus Manager and Gdm prime(AUR)" && break_line
-        log_error cd $AUR && git clone https://aur.archlinux.org/gdm-prime.git && cd gdm-prime && makepkg -is && exit_dir \
+        remove_package gdm  \
+        && yay -S --noconfirm --nocleanmenu --nodiffmenu \
+        && log_error make_pkg_AUR gdm-prime \
         && log_error make_pkg_AUR optimus-manager \
         && log_error make_pkg_AUR optimus-manager-qt \
-        && log echo " Optimus  {OK}" && break_line || log erro_msg
+        && log echo "#-------------------------------------- Optimus Manager and Gdm prime {OK}" && break_line || log erro_msg
 
-        log echo "#--------- Bbswitch CONFIG (LAPTOP ONLY)" && break_line
-        log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/
-        log_error sudo gpasswd -a luiznux bumblebee \
+        log echo "#----------------------------------------- Bbswitch CONFIG (LAPTOP ONLY)" && break_line
+        log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/ \
+        && log_error sudo touch /proc/acpi/bbswitch \
+        && log_error sudo gpasswd -a $USER bumblebee \
         && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
         && log_error sudo tee /proc/acpi/bbswitch <<<OFF \
-        && log echo "     Bbswitch {OK}" && break_line || log erro_msg
+        && log echo "#-------------------------------------- Bbswitch {OK}" && break_line || log erro_msg
 
         #TLP config
+        log echo "#----------------------------------------- TLP CONFIG (LAPTOP ONLY)" && break_line
         cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
-        && log echo "     Laptop configs {OK}" && break_line || log erro_msg
+        && log echo "#-------------------------------------- TLP config {OK}" && break_line || log erro_msg
 
-        log echo "Systemctl for laptop services"
+        log echo "#----------------------------------------- Systemctl for laptop services"
         log_error sudo systemctl enable tlp.service optimus-manager.service bumblebeed.service \
         && log_error sudo systemctl disable bluetooth.service \
+        && log echo "#----------------------------------------- Laptop config DONE"
 
     else
-        log echo "#------------------------------------ Laptop config {SKIPED}"
+        log echo "#----------------------------------------- Laptop config {SKIPED}"
         break_line
     fi
 }
-
 
 #### run nvidia xconfig
 nvidia_xorg_config(){
@@ -400,22 +444,27 @@ nvidia_xorg_config(){
         sudo nvidia-xconfig --composite
         echo "Done!" && break_line
     else
-        echo "Nvidia xconfig {SKIPED} " && break_line
+       log echo "#------------------------------------ Nvidia xconfig {SKIPED}" && break_line
     fi
 }
 
 
-#### enable some services
-systemd_init(){
-
-    log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
-    log_error sudo systemctl enable gdm.service ufw.service ntpd.service \
-    && log_error sudo ufw enable \
-    && log echo "Done" && break_line || log erro_msg
-}
-
-
 ####################### MAIN
+
+log echo "Which graphics card will you use?"
+log echo -e "1 - INTEL \n2 - NVIDIA \n3 - AMD \n4 - ALL"
+read -p "--> " GPU
+break_line
+
+log echo "Do you want install laptop configs ?(answer with y or n)"
+read -p "--> " laptop_Option
+break_line
+
+log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
+log echo "Only answer 'y' if you are using nvidia graphic card"
+read -p "--> " nvidia_Option
+break_line
+
 clean_log
 dir_tree
 install_packages
@@ -439,11 +488,11 @@ st_terminal_setup
 xorg_config
 urxvt_package
 other_config
-clone_my_rep
 git_repository_setup
 laptop_config
 nvidia_xorg_config
 systemd_init
+
 
 log echo "------------- END OF INSTALL ------------" && break_line
 log echo " [$[errors]] Errors reported, see 'install.log' for more details" && break_line
