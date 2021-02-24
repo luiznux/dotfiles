@@ -60,18 +60,6 @@ exit_dir(){
     cd ..
 }
 
-### checks if the packages is installed, then remove it
-remove_package(){
-
-    #check
-    if sudo pacman -Qi $1 > /dev/null; then
-        echo "package found !"
-        sudo pacman -Rs $1 --noconfirm
-    else
-        echo "The package $package is not installed, continuing process"
-    fi
-}
-
 #### install aur packages
 make_pkg_AUR(){
 
@@ -138,7 +126,7 @@ install_packages(){
 
     network=" dhcp dhcpcd "
 
-    others=" transmission-gtk gparted discord code gnome-calculator firefox bleachbit "
+    others=" transmission-gtk gparted discord code gnome-calculator firefox chromium bleachbit "
 
     log_error sudo pacman -Syu $essencials $linux_gadgets $utilities $program_languages $graphic $file_open $themes $font $gnome $audio $image $android_device $gnu_things $term_shell $printer $security $network $others  --noconfirm --needed \
     && log echo "        Packages {OK}" && break_line || log erro_msg
@@ -187,17 +175,16 @@ AUR_install(){
     && log_error make_pkg_AUR sublime-text-dev \
     && log_error make_pkg_AUR speedometer \
     && log_error make_pkg_AUR cli-visualizer \
-    && log_error make_pkg_AUR pygtk \
-    && log_error make_pkg_AUR rar \
-    && log_error make_pkg_AUR python-ueberzug \
     && log_error make_pkg_AUR python2-twodict-git \
     && log_error make_pkg_AUR youtube-dl-gui-git \
     && log_error make_pkg_AUR jetbrains-toolbox \
     && log_error make_pkg_AUR ttf-wps-fonts \
+    && log_error make_pkg_AUR python-ueberzug \
+    && log_error make_pkg_AUR pygtk \
+    && log_error make_pkg_AUR rar \
     && log_error make_pkg_AUR wps-office \
     && log echo "--------- AUR pkgs Done " && break_line || log erro_msg
     break_line
-
     #&& log_error make_pkg_AUR wps-office-mui \
 }
 
@@ -402,8 +389,7 @@ laptop_config(){
         && log echo "#-------------------------------------- Lapto packages {OK}" && break_line || log erro_msg
 
         log echo "#----------------------------------------- Optimus Manager and Gdm prime(AUR)" && break_line
-        remove_package gdm  \
-        && yay -S --noconfirm --nocleanmenu --nodiffmenu \
+        yay -S gdm --noconfirm --nocleanmenu --nodiffmenu \
         && log_error make_pkg_AUR gdm-prime \
         && log_error make_pkg_AUR optimus-manager \
         && log_error make_pkg_AUR optimus-manager-qt \
@@ -417,7 +403,6 @@ laptop_config(){
         && log_error sudo tee /proc/acpi/bbswitch <<<OFF \
         && log echo "#-------------------------------------- Bbswitch {OK}" && break_line || log erro_msg
 
-        #TLP config
         log echo "#----------------------------------------- TLP CONFIG (LAPTOP ONLY)" && break_line
         cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
         && log echo "#-------------------------------------- TLP config {OK}" && break_line || log erro_msg
@@ -436,13 +421,10 @@ laptop_config(){
 #### run nvidia xconfig
 nvidia_xorg_config(){
 
-    log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
-    log echo "Only answer 'y' if you are using nvidia graphic card and have the drivers"
-    read -p "--> " option
-
-    if [ $option == "y" ]; then
-        sudo nvidia-xconfig --composite
-        echo "Done!" && break_line
+    if [ $nvidia_Option == "y" ]; then
+       log echo "#----------------------------------------- Nvidia Xconfig"
+       log sudo nvidia-xconfig
+       log echo "#----------------------------------------- Nvidia Xconfig Done!" && break_line
     else
        log echo "#------------------------------------ Nvidia xconfig {SKIPED}" && break_line
     fi
