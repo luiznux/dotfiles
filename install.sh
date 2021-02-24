@@ -82,7 +82,7 @@ clean_AUR(){
 dir_tree(){
 
     log echo "#----------------------------------------------- Setup directory tree"
-    mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,tests,projects/{personal,work},.vim,.config/{i3,polybar,ranger}} \
+    mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,tests,projects/{personal,work},.vim,.config/{i3,polybar,ranger,rofi,alacritty}} \
     && log echo "        Directory tree {OK}" && break_line || log erro_msg
 }
 
@@ -347,8 +347,9 @@ urxvt_package(){
 other_config(){
 
     log echo "#---------------------------------------- Other Configs " && break_line
-    cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
-    && mkdir -p ~/.config/rofi && cp -r config/rofi/config.rasi ~/.config/rofi/ \
+    cd $dotfiles && cp config/scripts/screenshots.sh ~/.config/ \
+    && cp -r config/alacritty/alacritty.yml ~/.config/alacritty/ \
+    && cp -r config/rofi/config.rasi ~/.config/rofi/ \
     && sudo cp config/scripts/{ca,simple-push,volume,nvidia-fan-setup} /usr/local/bin/ \
     && cp -r config/sxiv ~/.config/ \
     && cp -r config/dunst ~/.config/ \
