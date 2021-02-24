@@ -96,7 +96,7 @@ install_packages(){
 
     linux_gadgets=" man tree colordiff wget check file highlight atool mlocate nmap ntp ncdu haveged "
 
-    utilities=" htop calcurse cpupower dmenu cmatrix neofetch ranger sl youtube-dl pacmanlogviewer "
+    utilities=" htop calcurse cpupower dmenu rofi cmatrix neofetch ranger sl youtube-dl pacmanlogviewer "
 
     program_languages=" clang ccls go gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure"
 
@@ -348,6 +348,7 @@ other_config(){
 
     log echo "#---------------------------------------- Other Configs " && break_line
     cd $dotfiles && cp config/scripts/screenshots.sh  ~/.config/ \
+    && mkdir -p ~/.config/rofi && cp -r config/rofi/config.rasi ~/.config/rofi/ \
     && sudo cp config/scripts/{ca,simple-push,volume,nvidia-fan-setup} /usr/local/bin/ \
     && cp -r config/sxiv ~/.config/ \
     && cp -r config/dunst ~/.config/ \
