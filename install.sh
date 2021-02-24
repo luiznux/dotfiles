@@ -184,7 +184,7 @@ AUR_install(){
     break_line
 
     log echo "------------------------------- Python AUR packages" && break_line
-    && log_error make_pkg_AUR python-ueberzug \
+    log_error make_pkg_AUR python-ueberzug \
     && log_error make_pkg_AUR python2-twodict-git \
     && log_error yay -S pygtk --noconfirm --nocleanmenu --nodiffmenu \
     && log echo "------------------------------------------------AUR pkgs Done {OK}" && break_line || log erro_msg
