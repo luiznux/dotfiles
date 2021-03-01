@@ -26,7 +26,7 @@
 (defun org-TODO-keywords ()
   "Add and customize org TODO keywords."
   (setq org-todo-keywords
-        '((sequence "TODO" "NOTE" "IMPORTANT" "WAITING" "CANCELLED" "IN-PROGRESS"  "WORKING"  "DONE")))
+        '((sequence "TODO" "NOTE" "IMPORTANT" "WAITING" "CANCELLED" "IN-PROGRESS" "WORKING" "DONE")))
 
   (setq org-todo-keyword-faces '(("TODO"         . (:foreground "#ff8080" :weight bold))
                                  ("NOTE"         . (:foreground "#ffe9aa" :weight bold))
