@@ -368,6 +368,7 @@ git_repository_setup(){
     && git clone https://github.com/morpheusthewhite/spicetify-themes.git \
     && git clone https://github.com/sebastiencs/icons-in-terminal.git \
     && git clone https://github.com/Brettm12345/github-moonlight \
+    && git clone https://github.com/EliverLara/firefox-sweet-theme.git \
     && git clone https://github.com/PlusInsta/discord-plus \
     && curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl \
     && chmod +x betterdiscordctl && sudo mv betterdiscordctl /usr/local/bin && sudo betterdiscordctl upgrade && exit_dir \
