@@ -336,6 +336,14 @@ xorg_config(){
     && sudo cp config/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/ \
     && log echo "     Xorg config {OK} " && break_line || log erro_msg
 }
+#### Setup audio files and high quality sample
+audio_config(){
+
+    log echo "#---------------------------------------- Setup Audio config files" && break_line
+    cd $dotfiles && sudo cp config/pulse/daemon.conf /etc/pulse/daemon.conf \
+    && sudo cp config/pipewire/pipewire.conf /etc/pipewire/pipewire.conf \
+    && log echo "     Audio config {OK} " && break_line || log erro_msg
+}
 
 #### Urxvt Config
 urxvt_package(){
@@ -473,6 +481,7 @@ pacman_setup
 zsh_setup
 st_terminal_setup
 xorg_config
+audio_config
 urxvt_package
 other_config
 git_repository_setup
