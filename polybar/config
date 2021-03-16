@@ -83,7 +83,7 @@ font-6 = "Inconsolata Nerd Font:size=14;1"
 ;modules set
 modules-left   = i3 spotify
 modules-center =
-modules-right  = alsa eth network filesystem cpu memory system-cpu-temppercore system-fan-speed  battery date weather
+modules-right  = volume eth network filesystem cpu memory system-cpu-temppercore system-fan-speed  battery date weather
 
 ; Position of the system tray window
 ; If empty or undefined, tray support will be disabled
@@ -170,17 +170,23 @@ format-prefix-foreground    = #0f0
 label                       = %output:0:150%
 
 
-[module/alsa]
-type = internal/volume
-master-mixer = Master
+[module/volume]
+type = internal/pulseaudio
 
-format-volume           = <label-volume> <bar-volume>
-label-volume            =
-label-volume-foreground = #5ab11a
+master-soundcard    = default
+speaker-soundcard   = default
+headphone-soundcard = default
 
-format-muted-prefix =
-format-muted-foreground = #de0000
-label-muted             =  mute
+master-mixer        = Master
+mapped              = true
+
+format-volume            = <label-volume> <bar-volume>
+label-volume             = 
+label-volume-foreground  = #5ab11a
+
+format-muted-prefix      =
+format-muted-foreground  = #de0000
+label-muted              =  mute
 
 bar-volume-width                 = 10
 bar-volume-foreground-0          = #438514
@@ -201,6 +207,7 @@ bar-volume-fill-font             = 2
 bar-volume-empty                 = =
 bar-volume-empty-font            = 2
 bar-volume-empty-foreground      = ${colors.foreground-alt}
+ramp-headphones-0                = 
 
 
 ;#--------------------------------#
