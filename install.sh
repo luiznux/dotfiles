@@ -325,7 +325,6 @@ st_terminal_setup(){
 
     log echo "#---------------------------------------- Setup st-terminal" && break_line
     cd $GIT/prog && git clone https://github.com/luiznux/st && cd st/ && make && sudo make clean install \
-    && gsettings set org.cinnamon.desktop.default-applications.terminal exec st \
     && log echo "     St terminal config {OK} " && break_line || log erro_msg
 }
 
@@ -357,6 +356,7 @@ other_config(){
     && cp -r config/sxiv ~/.config/ \
     && cp -r config/dunst ~/.config/ \
     && cp config/.bashrc ~/ \
+    && gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty \
     && log echo " Other config {OK}" && break_line || log error_msg
 }
 
