@@ -110,7 +110,10 @@ install_packages(){
 
     gnome=" intltool dbus-glib gdm gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor "
 
-    audio=" pipewire pipewire-docs pipewire-alsa pipewire-pulse pavucontrol libmpdclient alsa alsa-utils alsa-firmware fftw playerctl vlc paprefs "
+    audio=" alsa alsa-utils alsa-firmware alsa-plugins pulseaudio pavucontrol libmpdclient fftw playerctl vlc cadence paprefs "
+
+    # with pipewire packages
+    #audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pavucontrol libmpdclient fftw playerctl vlc cadence paprefs "
 
     image=" eog feh tumbler ffmpegthumbnailer imagemagick sxiv gimp scrot deepin-screenshot w3m "
 
@@ -126,7 +129,7 @@ install_packages(){
 
     network=" dhcp dhcpcd "
 
-    others=" transmission-gtk gparted discord code gnome-calculator firefox chromium bleachbit "
+    others=" transmission-gtk gparted discord code gnome-calculator firefox chromium torbrowser-launcher bleachbit "
 
     log_error sudo pacman -Syu $essencials $linux_gadgets $utilities $program_languages $graphic $file_open $themes $font $gnome $audio $image $android_device $gnu_things $term_shell $printer $security $network $others  --noconfirm --needed \
     && log echo "        Packages {OK}" && break_line || log erro_msg
