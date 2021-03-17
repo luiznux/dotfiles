@@ -344,8 +344,8 @@ audio_config(){
 
     log echo "#---------------------------------------- Setup Audio config files" && break_line
     cd $dotfiles && sudo cp config/pulse/daemon.conf /etc/pulse/daemon.conf \
-    && sudo cp config/pipewire/pipewire.conf /etc/pipewire/pipewire.conf \
     && log echo "     Audio config {OK} " && break_line || log erro_msg
+    #&& sudo cp config/pipewire/pipewire.conf /etc/pipewire/pipewire.conf \
 }
 
 #### Urxvt Config
