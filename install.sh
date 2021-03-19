@@ -139,7 +139,7 @@ install_packages(){
 Python_config(){
 
     log echo "#----------------------------------------------- PYTHON CONFIG" && break_line
-    log_error sudo pacman -S python-pip python-sphinx python-dbus python2-gobject python-psutil python-urwid python-pywal python-pdftotext --noconfirm \
+    log_error sudo pacman -S python-pip python-sphinx dbus-python python2-gobject python-psutil python-urwid python-pywal python-pdftotext --noconfirm \
     && log echo "	     Python {OK}" && break_line || log erro_msg
 }
 
