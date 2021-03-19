@@ -110,7 +110,7 @@ install_packages(){
 
     gnome=" intltool dbus-glib gdm gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor "
 
-    audio=" alsa alsa-utils alsa-firmware alsa-plugins pulseaudio pavucontrol libmpdclient fftw playerctl vlc cadence paprefs "
+    audio=" alsa alsa-utils alsa-firmware alsa-plugins pulseaudio pulseaudio-alsa pavucontrol libmpdclient fftw playerctl vlc paprefs "
 
     # with pipewire packages
     #audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pavucontrol libmpdclient fftw playerctl vlc cadence paprefs "
