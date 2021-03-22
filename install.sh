@@ -366,6 +366,7 @@ other_config(){
     && sudo cp config/scripts/{ca,simple-push,volume,nvidia-fan-setup} /usr/local/bin/ \
     && cp -r config/sxiv ~/.config/ \
     && cp -r config/dunst ~/.config/ \
+    && cp -r config/vis ~/.config \
     && cp config/.bashrc ~/ \
     && gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty \
     && log echo " Other config {OK}" && break_line || log error_msg
