@@ -100,7 +100,7 @@ install_packages(){
 
     program_languages=" clang ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure"
 
-    graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom "
+    graphic=" i3-gaps lxrandr-gtk3 qt xautolock zenity dunst picom "
 
     file_open=" nemo nemo-fileroller i7z xreader calibre evince pandoc texlive-most "
 
