@@ -176,6 +176,7 @@ type = internal/pulseaudio
 master-soundcard    = default
 speaker-soundcard   = default
 headphone-soundcard = default
+sink = default
 
 master-mixer        = Master
 mapped              = true
