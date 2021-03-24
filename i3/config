@@ -366,6 +366,8 @@ for_window [title="Calculator"]	      floating enable
 #Enable floating window for pavucontrol
 for_window [title="Volume Control"]	  floating enable
 
+#Enable floating window for Qjackctl
+for_window [class="QjackCtl"]	      floating enable
 
 #---------------------------------#
 #------ Two monitors config ------#
