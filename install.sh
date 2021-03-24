@@ -339,14 +339,6 @@ xorg_config(){
     && sudo cp config/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/ \
     && log echo "     Xorg config {OK} " && break_line || log erro_msg
 }
-#### Setup audio files and high quality sample
-audio_config(){
-
-    log echo "#---------------------------------------- Setup Audio config files" && break_line
-    cd $dotfiles && sudo cp config/pulse/daemon.conf /etc/pulse/daemon.conf \
-    && log echo "     Audio config {OK} " && break_line || log erro_msg
-    #&& sudo cp config/pipewire/pipewire.conf /etc/pipewire/pipewire.conf \
-}
 
 #### Urxvt Config
 urxvt_package(){
@@ -395,6 +387,22 @@ systemd_init(){
     log_error sudo systemctl enable gdm.service ufw.service ntpd.service \
     && log_error sudo ufw enable \
     && log echo "Done" && break_line || log erro_msg
+}
+
+#### Setup audio files and high quality sample
+audio_config(){
+
+    log echo "#---------------------------------------- Setup Audio config files" && break_line
+    if [ $audio_Option == "y" ]; then
+        jack=" jack2 lib32-jack2 jack2-dbus jack_capture pulseaudio-jack qjackctl carla cadence gst-plugins-good realtime-privileges "
+        log_error sudo pacman -Syu $jack --noconfirm --needed \
+        && log_error sudo usermod -a -G realtime luiznux \
+        && sudo cp $dotfiles/config/asound.conf /etc/asound.conf \
+        && log echo "     Audio config WITH JACK {OK} " && break_line || log erro_msg
+    else
+        cd $dotfiles && sudo cp config/pulse/daemon.conf /etc/pulse/daemon.conf \
+        && log echo "     Audio config {OK} WITH PULSEAUDIO " && break_line || log erro_msg
+    fi
 }
 
 #### install laptoptools
@@ -462,6 +470,10 @@ break_line
 log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
 log echo "Only answer 'y' if you are using nvidia graphic card"
 read -p "--> " nvidia_Option
+break_line
+
+log echo "Do you want to install jack sound server? (answer with y or n)"
+read -p "--> " audio_Option
 break_line
 
 clean_log
