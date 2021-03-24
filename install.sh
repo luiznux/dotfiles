@@ -463,6 +463,10 @@ log echo -e "1 - INTEL \n2 - NVIDIA \n3 - AMD \n4 - ALL"
 read -p "--> " GPU
 break_line
 
+log echo "Do you want to install jack sound server? (answer with y or n)"
+read -p "--> " audio_Option
+break_line
+
 log echo "Do you want install laptop configs ?(answer with y or n)"
 read -p "--> " laptop_Option
 break_line
@@ -472,9 +476,6 @@ log echo "Only answer 'y' if you are using nvidia graphic card"
 read -p "--> " nvidia_Option
 break_line
 
-log echo "Do you want to install jack sound server? (answer with y or n)"
-read -p "--> " audio_Option
-break_line
 
 clean_log
 dir_tree
@@ -497,10 +498,10 @@ pacman_setup
 zsh_setup
 st_terminal_setup
 xorg_config
-audio_config
 urxvt_package
 other_config
 git_repository_setup
+audio_config
 laptop_config
 nvidia_xorg_config
 systemd_init
