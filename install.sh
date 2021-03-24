@@ -397,7 +397,8 @@ audio_config(){
         jack=" jack2 lib32-jack2 jack2-dbus jack_capture pulseaudio-jack qjackctl carla cadence gst-plugins-good realtime-privileges "
         log_error sudo pacman -Syu $jack --noconfirm --needed \
         && log_error sudo usermod -a -G realtime luiznux \
-        && sudo cp $dotfiles/config/asound.conf /etc/asound.conf \
+        && cd $dotfiles && sudo cp config/asound.conf /etc/asound.conf \
+        && cp config/jack/qjackctl/QjackCtl.conf ~/.config/rncbc.org/ \
         && log echo "     Audio config WITH JACK {OK} " && break_line || log erro_msg
     else
         cd $dotfiles && sudo cp config/pulse/daemon.conf /etc/pulse/daemon.conf \
