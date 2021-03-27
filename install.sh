@@ -394,8 +394,9 @@ audio_config(){
 
     log echo "#---------------------------------------- Setup Audio config files" && break_line
     if [ $audio_Option == "y" ]; then
-        jack=" jack2 lib32-jack2 jack2-dbus jack_capture pulseaudio-jack qjackctl carla cadence gst-plugins-good realtime-privileges "
-        log_error sudo pacman -Syu $jack --noconfirm --needed \
+        jack=" jack2 lib32-jack2 jack2-dbus jack_capture a2jmidid pulseaudio-jack qjackctl carla cadence gst-plugins-good realtime-privileges "
+        pro_audio=" pro-audio rtirq"
+        log_error sudo pacman -Syu $jack $pro_audio --noconfirm --needed \
         && log_error sudo usermod -a -G realtime luiznux \
         && cd $dotfiles && sudo cp config/asound.conf /etc/asound.conf \
         && cp config/jack/qjackctl/QjackCtl.conf ~/.config/rncbc.org/ \
@@ -464,7 +465,7 @@ log echo -e "1 - INTEL \n2 - NVIDIA \n3 - AMD \n4 - ALL"
 read -p "--> " GPU
 break_line
 
-log echo "Do you want to install jack sound server? (answer with y or n)"
+log echo "Do you want to install Pro-audio package group? (answer with y or n)"
 read -p "--> " audio_Option
 break_line
 
