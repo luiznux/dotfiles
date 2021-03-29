@@ -21,7 +21,7 @@
 set $mod	    Mod4
 
 #define terminal
-set $term       st
+set $term       alacritty
 
 #define browser
 set $browser    firefox
