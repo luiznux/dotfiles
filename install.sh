@@ -115,7 +115,7 @@ install_packages(){
     # with pipewire packages
     #audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pavucontrol libmpdclient fftw playerctl vlc cadence paprefs "
 
-    image=" eog feh tumbler ffmpegthumbnailer imagemagick sxiv gimp scrot deepin-screenshot w3m "
+    image=" eog feh tumbler ffmpegthumbnailer imagemagick sxiv gimp scrot deepin-screenshot w3m ueberzug"
 
     android_device=" mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp yasm "
 
@@ -187,8 +187,7 @@ AUR_install(){
     break_line
 
     log echo "------------------------------- Python AUR packages" && break_line
-    log_error make_pkg_AUR python-ueberzug \
-    && log_error make_pkg_AUR python2-twodict-git \
+    log_error make_pkg_AUR python2-twodict-git \
     && log_error yay -S pygtk --noconfirm --nocleanmenu --nodiffmenu \
     && log echo "------------------------------------------------AUR pkgs Done {OK}" && break_line || log erro_msg
     #&& log_error make_pkg_AUR wps-office-mui \
