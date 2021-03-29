@@ -163,13 +163,24 @@ Graphic_drivers(){
     log echo "	     Graphic Drivers {OK}" && break_line || log erro_msg
 }
 
-#### AUR Packges installation func(with MAKEPKG)
+#### AUR Packges installation func(with MAKEPKG and others with yay)
 AUR_install(){
 
     log echo "#---------------------------------------- AUR packages" && break_line
-    log echo "Installing some AUR Packages" && break_line
+
+    log echo "-------------------------------- Installing yay package" && break_line
     log_error make_pkg_AUR yay \
-    && log_error make_pkg_AUR polybar \
+    && log echo "----------------------------- YAY Package Installed!" && break_line || log erro_msg
+    break_line
+
+    log echo "-------------------------------- Python AUR packages" && break_line
+    log_error make_pkg_AUR python2-twodict-git \
+    && log_error yay -S pygtk --noconfirm --nocleanmenu --nodiffmenu \
+    && log echo "----------------------------- AUR Python packages  Done " && break_line || log erro_msg
+    break_line
+
+    log echo "-------------------------------- Installing some AUR Packages" && break_line
+    log_error make_pkg_AUR polybar \
     && log_error make_pkg_AUR i3lock-color-git \
     && log_error make_pkg_AUR thermald \
     && log_error make_pkg_AUR ttf-weather-icons \
@@ -186,10 +197,8 @@ AUR_install(){
     && log echo "----------------------------- AUR General packages  Done " && break_line || log erro_msg
     break_line
 
-    log echo "------------------------------- Python AUR packages" && break_line
-    log_error make_pkg_AUR python2-twodict-git \
-    && log_error yay -S pygtk --noconfirm --nocleanmenu --nodiffmenu \
-    && log echo "------------------------------------------------AUR pkgs Done {OK}" && break_line || log erro_msg
+    log echo "------------------------------------------------ AUR pkgs Done {OK}" && break_line || log erro_msg
+    break_line
     #&& log_error make_pkg_AUR wps-office-mui \
 }
 
