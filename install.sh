@@ -110,10 +110,9 @@ install_packages(){
 
     gnome=" intltool dbus-glib gdm gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor "
 
-    audio=" alsa alsa-utils alsa-firmware alsa-plugins pulseaudio pulseaudio-alsa pavucontrol libmpdclient fftw playerctl vlc paprefs "
-
     # with pipewire packages
-    #audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pavucontrol libmpdclient fftw playerctl vlc cadence paprefs "
+    audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack pavucontrol libmpdclient fftw playerctl vlc cadence paprefs "
+    #audio=" alsa alsa-utils alsa-firmware alsa-plugins pulseaudio pulseaudio-alsa pavucontrol libmpdclient fftw playerctl vlc paprefs "
 
     image=" eog feh tumbler ffmpegthumbnailer imagemagick sxiv gimp scrot deepin-screenshot w3m ueberzug"
 
@@ -397,24 +396,6 @@ systemd_init(){
     && log echo "Done" && break_line || log erro_msg
 }
 
-#### Setup audio files and high quality sample
-audio_config(){
-
-    log echo "#---------------------------------------- Setup Audio config files" && break_line
-    if [ $audio_Option == "y" ]; then
-        jack=" jack2 lib32-jack2 jack2-dbus jack_capture a2jmidid pulseaudio-jack qjackctl carla cadence gst-plugins-good realtime-privileges "
-        pro_audio=" pro-audio rtirq"
-        log_error sudo pacman -Syu $jack $pro_audio --noconfirm --needed \
-        && log_error sudo usermod -a -G realtime luiznux \
-        && cd $dotfiles && sudo cp config/asound.conf /etc/asound.conf \
-        && cp config/jack/qjackctl/QjackCtl.conf ~/.config/rncbc.org/ \
-        && log echo "     Audio config WITH JACK {OK} " && break_line || log erro_msg
-    else
-        cd $dotfiles && sudo cp config/pulse/daemon.conf /etc/pulse/daemon.conf \
-        && log echo "     Audio config {OK} WITH PULSEAUDIO " && break_line || log erro_msg
-    fi
-}
-
 #### install laptoptools
 laptop_config(){
 
@@ -473,10 +454,6 @@ log echo -e "1 - INTEL \n2 - NVIDIA \n3 - AMD \n4 - ALL"
 read -p "--> " GPU
 break_line
 
-log echo "Do you want to install Pro-audio package group? (answer with y or n)"
-read -p "--> " audio_Option
-break_line
-
 log echo "Do you want install laptop configs ?(answer with y or n)"
 read -p "--> " laptop_Option
 break_line
@@ -511,7 +488,6 @@ xorg_config
 urxvt_package
 other_config
 git_repository_setup
-audio_config
 laptop_config
 nvidia_xorg_config
 systemd_init
