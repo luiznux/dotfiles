@@ -191,6 +191,7 @@ AUR_install(){
     && log_error make_pkg_AUR rar \
     && log_error make_pkg_AUR youtube-dl-gui-git \
     && log_error make_pkg_AUR jetbrains-toolbox \
+    && log_error make_pkg_AUR mon2cam-git \
     && log_error make_pkg_AUR ttf-wps-fonts \
     && log_error make_pkg_AUR wps-office \
     && log echo "----------------------------- AUR General packages  Done " && break_line || log erro_msg
