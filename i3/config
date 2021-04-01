@@ -27,7 +27,7 @@ set $term       alacritty
 set $browser    firefox
 
 #define mailclient
-set $mail       mailspring
+#set $mail       mailspring
 
 #font config
 font pango:Source Code Pro 10
@@ -82,7 +82,7 @@ bindsym $mod+d exec rofi -show drun
 bindsym $mod+y              exec $browser
 
 #start mailclient
-bindsym $mod+Shift+m        exec $mail
+#bindsym $mod+Shift+m        exec $mail
 
 # start nemo filemanager
 bindsym $mod+n              exec nemo
@@ -342,31 +342,35 @@ client.placeholder      #070B15 #070B15 #070B15 #070B15   #070B15
 #--------------------------------------------------------------------------#
 #
 
+##-------------------------------------------##
+##--------------- Exec config ---------------##
+## Programs tha should always been executed on startup
+
 #POLYBAR
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 #Picom
 exec_always --no-startup-id picom
 
+#Emacs(optional)
+#exec_always --no-startup-id emacs; move to workspace $ws2
+
 ##-------------------------------------------##
 ##--------- specific windows config ---------##
-#
-#Mv transmisson to workspace 6
+
+## Assigns some windows for specifics workspaces
+assign [class="discord"] $ws6
 assign [class="Transmission"]  $ws8
+assign [class="Steam"]  $ws9
 
-#Mv discord to workspace 5
-for_window [class="discord"] move to workspace $ws6
-
-#Mv Spotify to workspace 7
+#for spotify its a bit diffente than the others above, since for some reason
+#spotify doesn't work with assing, must be manualy moved with the command bellow
+# info --> https://wiki.archlinux.org/index.php/i3#Default_workspace_for_Spotify
 for_window [class="Spotify"] move to workspace $ws7
 
-#Enable floating window for Gnome-Calculator
+## Enable floating window some windows
 for_window [title="Calculator"]	      floating enable
-
-#Enable floating window for pavucontrol
 for_window [title="Volume Control"]	  floating enable
-
-#Enable floating window for Qjackctl
 for_window [class="QjackCtl"]	      floating enable
 
 #---------------------------------#
