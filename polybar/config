@@ -29,11 +29,11 @@
 [colors]
 background     =  #070b15
 foreground     =  #9db7cf
-background-alt =  #444
+background-alt =  #2f007a
 foreground-alt =  #9db7c
 primary        =  #914836
 secondary      =  #994a3b
-alert          =  #aa6655
+alert          =  #f07178
 
 
 ;#-----------------------------------------------------------------------------------#
@@ -122,30 +122,32 @@ wrapping-scroll         = false
 ;Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
-label-mode-padding              = 1
+label-mode-padding              = 1.5
 label-mode-foreground           = #000
 label-mode-background           = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused                   = %index%
 label-focused-background        = ${colors.background-alt}
-label-focused-underline         = ${colors.primary}
-label-focused-padding           = 1
-
-; unfocused = Inactive workspace on any monitor
-label-unfocused             = %index%
-label-unfocused-padding     = 1
+label-focused-foreground        = #FFFFFF
+label-focused-underline         = #82aaff
+label-focused-padding           = 1.5
 
 ; visible = Active workspace on unfocused monitor
 label-visible                   = %index%
-label-visible-background        = ${self.label-focused-background}
+label-visible-background        = ${colors.background-alt}
+label-visible-foreground        = ${colors.foreground}
 label-visible-underline         = ${self.label-focused-underline}
 label-visible-padding           = ${self.label-focused-padding}
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused             = %index%
+label-unfocused-padding     = 1.5
 
 ; urgent = Workspace with urgency hint set
 label-urgent                = %index%
 label-urgent-background     = ${colors.alert}
-label-urgent-padding        = 1
+label-urgent-padding        = 1.5
 
 ; Separator in between workspaces
 ; label-separator = |
@@ -535,4 +537,43 @@ margin-bottom = 5
 ;
 ;modules-left    =
 ;modules-center  =
-;modules-right   =
+;modules-right   = i3-2
+
+;[module/i3-2]
+;type                    = internal/i3
+;format                  = <label-state> <label-mode>
+;index-sort              = true
+;wrapping-scroll         = false
+;
+;;Only show workspaces on the same output as the bar
+;pin-workspaces = true
+;
+;label-mode-padding              = 1.5
+;label-mode-foreground           = #000
+;label-mode-background           = ${colors.primary}
+;
+;; focused = Active workspace on focused monitor
+;label-focused                   = %index%
+;label-focused-background        = ${colors.background-alt}
+;label-focused-foreground        = #FFFFFF
+;label-focused-underline         = #82aaff
+;label-focused-padding           = 1.5
+;
+;; visible = Active workspace on unfocused monitor
+;label-visible                   = %index%
+;label-visible-background        = ${colors.background-alt}
+;label-visible-foreground        = ${colors.foreground}
+;label-visible-underline         = ${self.label-focused-underline}
+;label-visible-padding           = ${self.label-focused-padding}
+;
+;; unfocused = Inactive workspace on any monitor
+;label-unfocused             = %index%
+;label-unfocused-padding     = 1.5
+;
+;; urgent = Workspace with urgency hint set
+;label-urgent                = %index%
+;label-urgent-background     = ${colors.alert}
+;label-urgent-padding        = 1.5
+;
+;; Separator in between workspaces
+;; label-separator = |
