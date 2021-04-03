@@ -33,7 +33,7 @@ background-alt =  #2f007a
 foreground-alt =  #9db7c
 primary        =  #914836
 secondary      =  #994a3b
-alert          =  #f07178
+alert          =  #A4252C
 
 
 ;#-----------------------------------------------------------------------------------#
@@ -129,7 +129,7 @@ label-mode-background           = ${colors.primary}
 ; focused = Active workspace on focused monitor
 label-focused                   = %index%
 label-focused-background        = ${colors.background-alt}
-label-focused-foreground        = #FFFFFF
+label-focused-foreground        = #EAFFFF
 label-focused-underline         = #82aaff
 label-focused-padding           = 1.5
 
@@ -147,6 +147,8 @@ label-unfocused-padding     = 1.5
 ; urgent = Workspace with urgency hint set
 label-urgent                = %index%
 label-urgent-background     = ${colors.alert}
+label-urgent-foreground     = #000000
+label-urgent-underline      = ${colors.alert}
 label-urgent-padding        = 1.5
 
 ; Separator in between workspaces
