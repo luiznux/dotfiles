@@ -45,6 +45,6 @@ echo $$ > "$pidfile"
 ### The "main" func
 while true; do
 	print_status
-	sleep 1 &
+	sleep 0.5 &
 	wait
 done
