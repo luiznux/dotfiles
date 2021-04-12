@@ -1,0 +1,581 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+;
+; Polybar config file
+;
+; source: https://github.com/luiznux/dotfiles/polybar
+
+
+
+;#-----------------------------------------------------------------------------------#
+;#---------------------------------- Colors -----------------------------------------#
+;#-----------------------------------------------------------------------------------#
+
+[colors]
+background     =  #070b15
+foreground     =  #9db7cf
+background-alt =  #2f007a
+foreground-alt =  #9db7c
+primary        =  #914836
+secondary      =  #994a3b
+alert          =  #A4252C
+
+
+;#-----------------------------------------------------------------------------------#
+;#-------------------------------- Bar definition -----------------------------------#
+;#-----------------------------------------------------------------------------------#
+
+[bar/luiznux]
+
+;colors
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+;bar dimencions and forms
+width  = 100%
+height = 25
+radius = 5.0
+
+;border size and colors (applied to all borders)
+border-size  = 2
+border-color = ${colors.background}
+
+;under-/overline pixel size and argb color
+line-size  = 3
+line-color = #f00
+
+fixed-center = false
+wm-name = i3
+
+;number of spaces to add at the begimmimg/end of the bar
+padding-left  = 0
+padding-right = 1
+
+;number  of spaces to add before/after each module
+module-margin-left  = 1
+module-margin-right = 1
+
+;fonts config
+font-0 = "Source Code Pro:size=12:antialias=true;0"
+font-1 = "Source Code Pro:size=12:style=Bold:antialias=true;0"
+font-2 = "Font Awesome 5 Free:size=12;1"
+font-3 = "Font Awesome 5 Free Solid:pixelsize=14;2"
+font-4 = "Font Awesome 5 Brands:pixelsize=14;1"
+font-5 = "Weather Icons:size=13;1:style:Regular"
+font-6 = "Inconsolata Nerd Font:size=14;1"
+
+
+;modules set
+modules-left   = i3 spotify
+modules-center =
+modules-right  = microphone volume eth network filesystem cpu memory system-cpu-temppercore system-fan-speed  battery date weather
+
+; Position of the system tray window
+; If empty or undefined, tray support will be disabled
+; NOTE: A center aligned tray will cover center aligned modules
+;
+; Available positions:
+;   left
+;   center
+;   right
+;   none
+;
+tray-position = right
+tray-padding  = 2
+
+; Requires polybar to be built with xcursor support (xcb-util-cursor)
+; Possible values are:
+; - default   : The default pointer as before, can also be an empty string (default)
+; - pointer   : Typically in the form of a hand
+; - ns-resize : Up and down arrows, can be used to indicate scrolling
+cursor-click  = pointer
+cursor-scroll = ns-resize
+
+;#-----------------------------------------------------------------------------------#
+;#--------------------------------- Bar Modules -------------------------------------#
+;#-----------------------------------------------------------------------------------#
+
+;#---------------------------------#
+;#-------------- I3 ---------------#
+;
+[module/i3]
+type                    = internal/i3
+format                  = <label-state> <label-mode>
+index-sort              = true
+wrapping-scroll         = false
+
+;Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding              = 1.5
+label-mode-foreground           = #000
+label-mode-background           = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused                   = %index%
+label-focused-background        = ${colors.background-alt}
+label-focused-foreground        = #EAFFFF
+label-focused-underline         = #82aaff
+label-focused-padding           = 1.5
+
+; visible = Active workspace on unfocused monitor
+label-visible                   = %index%
+label-visible-background        = ${colors.background-alt}
+label-visible-foreground        = ${colors.foreground}
+label-visible-underline         = ${self.label-focused-underline}
+label-visible-padding           = ${self.label-focused-padding}
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused             = %index%
+label-unfocused-padding     = 1.5
+
+; urgent = Workspace with urgency hint set
+label-urgent                = %index%
+label-urgent-background     = ${colors.alert}
+label-urgent-foreground     = #000000
+label-urgent-underline      = ${colors.alert}
+label-urgent-padding        = 1.5
+
+; Separator in between workspaces
+; label-separator = |
+
+
+;#---------------------------------#
+;#----------- Audio ---------------#
+;
+[module/spotify]
+type            = custom/script
+exec            = ~/.config/polybar/scripts/spotify.sh %title%
+;%artist% -
+tail            = true
+interval        = 1
+
+format-foreground           = ${colors.foreground}
+format-background           = ${colors.background}
+format-padding              = 1
+format-underline            = #0f0
+format-prefix               = " "
+format-prefix-foreground    = #0f0
+label                       = %output:0:150%
+
+
+[module/microphone]
+type = custom/script
+exec = ~/.config/polybar/scripts/mic.sh
+tail = true
+format = <label>
+label = %output%
+click-left = kill -USR1 %pid%
+
+
+[module/volume]
+type = internal/pulseaudio
+
+master-soundcard    = default
+speaker-soundcard   = default
+headphone-soundcard = default
+sink = default
+
+master-mixer        = Master
+mapped              = true
+
+format-volume            = <label-volume> <bar-volume>
+label-volume             = 
+label-volume-foreground  = #5ab11a
+
+format-muted-prefix      =
+format-muted-foreground  = #de0000
+label-muted              =  mute
+
+bar-volume-width                 = 10
+bar-volume-foreground-0          = #438514
+bar-volume-foreground-1          = #438514
+bar-volume-foreground-2          = #4e9b17
+bar-volume-foreground-3          = #4e9b17
+bar-volume-foreground-4          = #5ab11a
+bar-volume-foreground-5          = #5ab11a
+bar-volume-foreground-6          = #d5911a
+bar-volume-foreground-7          = #d5911a
+bar-volume-foreground-8          = #f22c40
+bar-volume-foreground-9          = #f22c40
+bar-volume-gradient              = false
+bar-volume-indicator             = |
+bar-volume-indicator-font        = 2
+bar-volume-fill                  = =
+bar-volume-fill-font             = 2
+bar-volume-empty                 = =
+bar-volume-empty-font            = 2
+bar-volume-empty-foreground      = ${colors.foreground-alt}
+ramp-headphones-0                = 
+
+
+;#--------------------------------#
+;#----------- Network ------------#
+;
+[module/network]
+type = internal/network
+
+; Name of the network interface to display. You can get the names of the
+; interfaces on your machine with `ip link`
+; Wireless interfaces often start with `wl` and ethernet interface with `eno` or `eth`
+interface = wlp3s0
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 3.0
+
+; Test connectivity every Nth update
+; A value of 0 disables the feature
+; NOTE: Experimental (needs more testing)
+; Default: 0
+;ping-interval = 3
+
+; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
+; Minimum output width of upload/download rate
+; Default: 3
+udspeed-minwidth = 5
+
+; Accumulate values from all interfaces
+; when querying for up/downspeed rate
+; Default: false
+accumulate-stats = true
+
+; Consider an `UNKNOWN` interface state as up.
+; Some devices like USB network adapters have
+; an unknown state, even when they're running
+; Default: false
+unknown-as-up = true
+
+; Available tags:
+;   <label-connected> (default)
+;   <ramp-signal>
+format-connected = <label-connected>
+
+; Available tags:
+;  <label-disconnected> (default)
+format-disconnected = <label-disconnected>
+
+; Available tags:
+;   <label-connected> (default)
+;   <label-packetloss>
+;   <animation-packetloss>
+format-packetloss = <animation-packetloss> <label-connected>
+
+; All labels support the following tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+; Default: %ifname% %local_ip%
+label-connected                 = %essid% %signal%%
+label-connected-foreground      = #9e00de
+label-connected-underline       = #9e00de
+
+; Default: (none)
+label-disconnected                  = "睊"
+label-disconnected-foreground       = #9e00de
+label-disconnected-underline        = #9e00de
+
+; Default: (none)
+;label-packetloss = %essid%
+;label-packetloss-foreground = #eefafafa
+
+; Only applies if <ramp-signal> is used
+;ramp-signal-0 = 😱
+;ramp-signal-1 = 😠
+;ramp-signal-2 = 😒
+;ramp-signal-3 = 😊
+;ramp-signal-4 = 😃
+;ramp-signal-5 = 😈
+
+; Only applies if <animation-packetloss> is used
+animation-packetloss-0            = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1            = 📶
+animation-packetloss-1-foreground = #000000
+; Framerate in milliseconds
+animation-packetloss-framerate    = 500
+
+;cable network
+[module/eth]
+type = internal/network
+interface = enp2s0
+interval = 5.0
+
+format-connected-underline = #9e00de
+format-connected-prefix = " "
+format-connected-prefix-foreground = #9e00de
+label-connected = %upspeed%  %downspeed%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected =  %ifname%
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+
+;[module/networkspeedup]
+;
+;type = internal/network
+;interface = wlp3s0
+;label-conected = "%upspeed:7%"
+;format-conected = <label-conected>
+;format-conected-prefix = ""
+;format-conected-prefix-foreground = #fe552c
+;format-conected-foreground = ${colors.foreground}
+;format-conected-background = ${colors.background}
+;format-conected-underline =
+;
+;
+;[module/networkspeeddown]
+;
+;type = internal/network
+;interface = wlp3s0
+;label-conected = "%downspeed:7%"
+;format-conected = <label-conected>
+;format-conected-prefix = ""
+;format-conected-prefix-foreground = #3ec13f
+;format-conected-foreground = ${colors.foreground}
+;format-conected-background = ${colors.background}
+;format-conected-underline =
+
+
+;#-------------------------------#
+;#-------- Filesystem -----------#
+;
+[module/filesystem]
+type                                    = internal/fs
+mount-0                                 = /
+interval                                = 120
+fixed-values                            = true
+label-mounted                           = "%{F#914836} %{F-}%percentage_used:2%%"
+format-mounted                          = "<label-mounted>"
+format-mounted-background               = ${colors.background}
+format-mounted-foreground               = ${colors.foreground}
+format-mounted-underline                = #914836
+
+
+;#-------------------------------#
+;----------- PC info ------------#
+;cpu, memory, cpu-temperature, fan
+;
+[module/cpu]
+type                        = internal/cpu
+interval                    = 2
+format-prefix               = " "
+format-prefix-foreground    = #f90000
+format-underline            = #f90000
+label                       = %percentage:2%%
+
+[module/memory]
+type                        = internal/memory
+interval                    = 2
+format-prefix               = " "
+format-prefix-foreground    = #325b91
+format-underline            = #325b91
+label                       = %percentage_used%%
+
+[module/system-cpu-temppercore]
+type                        = custom/script
+exec                        = ~/.config/polybar/scripts/system-cpu-temppercore.sh
+format-prefix               = " "
+format-prefix-foreground    = #de003f
+
+format-underline            = #de003f
+interval                    = 20
+
+[module/system-fan-speed]
+type                        = custom/script
+exec                        = ~/.config/polybar/scripts/system-fan-speed.sh
+format-prefix               = " "
+format-prefix-foreground    = #9db7cf
+format-underline            = #9db7cf
+interval                    = 5
+
+
+;#-------------------------------------#
+;#------------- Battery----------------#
+;
+[module/battery]
+type            = internal/battery
+battery         = BAT0
+adapter         = AC
+full-at         = 98
+
+
+format-charging                 = <animation-charging> <label-charging>
+format-charging-underline       = #32CD32
+;#ffb52a
+
+format-discharging              = <ramp-capacity> <label-discharging>
+format-discharging-underline    = ${self.format-charging-underline}
+
+format-full-prefix              = " "
+format-full-prefix-foreground   = #008000
+format-full-underline           = ${self.format-charging-underline}
+
+ramp-capacity-0     = 
+ramp-capacity-1     = 
+ramp-capacity-2     = 
+ramp-capacity-3     = 
+ramp-capacity-0-foreground = #f90000
+ramp-capacity-1-foreground = #ffff00
+ramp-capacity-2-foreground = #90ee90
+ramp-capacity-3-foreground = #008000
+
+animation-charging-0            = ""
+animation-charging-foreground   = #ffff00
+animation-charging-framerate    = 750
+
+animation-discharging-0             = " "
+animation-discharging-foreground    = ${colors.foreground-alt}
+animation-discharging-framerate     = 750
+
+
+;#----------------------------#
+;#--------- Date -------------#
+;
+[module/date]
+type        = internal/date
+interval    = 1
+
+date        = "%{F#0a6cf5} %{F-}%A, %d/%m"
+date-alt    = "%d/%m/%Y"
+
+time        = "%{F#0a6cf5} %{F-}%H:%M"
+time-alt    = "%H:%M:%S"
+
+format-prefix =
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline         = #0a6cf5
+label                    = %date% %time%
+
+
+;#-------------------------------------------#
+;#------- Temperature and weather -----------#
+;
+[module/weather]
+type            = custom/script
+exec            = ~/.config/polybar/polybar-forecast/polybar-forecast-linux-x86_64
+exec-if         = ping openweathermap.org -c 1
+interval        = 600
+label-font      = 6
+
+format-prefix-foreground    = ${colors.foreground-alt}
+format-underline            = #0a6cf5
+
+
+;#-------------------------------------------#
+;#-------------- Other config ---------------#
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top    = 5
+margin-bottom = 5
+
+; vim:ft=dosini
+
+
+;#-----------------------------------------------------------------------------------#
+;#------------------------------- Second Monitor Bar --------------------------------#
+;#-----------------------------------------------------------------------------------#
+
+;[bar/monitor-2]
+;
+;; Use $ xrandr -q | grep " connected" | cut -d ' ' -f1
+;;monitor = YOUR-MONITOR-NAME
+;
+;;#--------------------- Default config(equal of the first bar)
+;background = ${colors.background}
+;foreground = ${colors.foreground}
+;width  = 100%
+;height = 25
+;radius = 5.0
+;border-size  = 2
+;border-color = #070b15
+;locale =
+;line-size  = 4
+;line-color = #f00
+;fixed-center = false
+;wm-name = i3
+;padding-left  = 0
+;padding-right = 1
+;module-margin-left  = 1
+;module-margin-right = 1
+;font-0 = "Source Code Pro:size=12:antialias=true;0"
+;font-1 = "Source Code Pro:size=12:style=Bold:antialias=true;0"
+;font-2 = "Font Awesome 5 Free:size=12;1"
+;font-3 = "Font Awesome 5 Free Solid:pixelsize=14;2"
+;font-4 = "Font Awesome 5 Brands:pixelsize=14;1"
+;font-5 = "Weather Icons:size=13;1:style:Regular"
+;font-6 = "Inconsolata Nerd Font:size=14;1"
+;;#------------------------------------------------------
+;
+;modules-left    =
+;modules-center  =
+;modules-right   = i3-2
+
+;[module/i3-2]
+;type                    = internal/i3
+;format                  = <label-state> <label-mode>
+;index-sort              = true
+;wrapping-scroll         = false
+;
+;;Only show workspaces on the same output as the bar
+;pin-workspaces = true
+;
+;label-mode-padding              = 1.5
+;label-mode-foreground           = #000
+;label-mode-background           = ${colors.primary}
+;
+;; focused = Active workspace on focused monitor
+;label-focused                   = %index%
+;label-focused-background        = ${colors.background-alt}
+;label-focused-foreground        = #FFFFFF
+;label-focused-underline         = #82aaff
+;label-focused-padding           = 1.5
+;
+;; visible = Active workspace on unfocused monitor
+;label-visible                   = %index%
+;label-visible-background        = ${colors.background-alt}
+;label-visible-foreground        = ${colors.foreground}
+;label-visible-underline         = ${self.label-focused-underline}
+;label-visible-padding           = ${self.label-focused-padding}
+;
+;; unfocused = Inactive workspace on any monitor
+;label-unfocused             = %index%
+;label-unfocused-padding     = 1.5
+;
+;; urgent = Workspace with urgency hint set
+;label-urgent                = %index%
+;label-urgent-background     = ${colors.alert}
+;label-urgent-padding        = 1.5
+;
+;; Separator in between workspaces
+;; label-separator = |

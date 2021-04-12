@@ -27,13 +27,14 @@
 ;#-----------------------------------------------------------------------------------#
 
 [colors]
-background     =  #070b15
-foreground     =  #9db7cf
-background-alt =  #2f007a
-foreground-alt =  #9db7c
-primary        =  #914836
-secondary      =  #994a3b
-alert          =  #A4252C
+background      =  #070b15
+foreground      =  #9db7cf
+background-alt  =  #2f007a
+background-alt1 =  #1f232c
+foreground-alt  =  #baccdd
+primary         =  #914836
+secondary       =  #994a3b
+alert           =  #A4252C
 
 
 ;#-----------------------------------------------------------------------------------#
@@ -64,18 +65,18 @@ wm-name = i3
 
 ;number of spaces to add at the begimmimg/end of the bar
 padding-left  = 0
-padding-right = 1
+padding-right = 0
 
 ;number  of spaces to add before/after each module
 module-margin-left  = 1
-module-margin-right = 1
+module-margin-right = 0.5
 
 ;fonts config
-font-0 = "Source Code Pro:size=12:antialias=true;0"
-font-1 = "Source Code Pro:size=12:style=Bold:antialias=true;0"
-font-2 = "Font Awesome 5 Free:size=12;1"
-font-3 = "Font Awesome 5 Free Solid:pixelsize=14;2"
-font-4 = "Font Awesome 5 Brands:pixelsize=14;1"
+font-0 = "Source Code Pro:size=11:antialias=true;0"
+font-1 = "Source Code Pro:size=11:style=Bold:antialias=true;0"
+font-2 = "Font Awesome 5 Free:size=10;1"
+font-3 = "Font Awesome 5 Free Solid:pixelsize=12;2"
+font-4 = "Font Awesome 5 Brands:pixelsize=12;1"
 font-5 = "Weather Icons:size=13;1:style:Regular"
 font-6 = "Inconsolata Nerd Font:size=14;1"
 
@@ -83,8 +84,17 @@ font-6 = "Inconsolata Nerd Font:size=14;1"
 ;modules set
 modules-left   = i3 spotify
 modules-center =
-modules-right  = microphone volume eth network filesystem cpu memory system-cpu-temppercore system-fan-speed  battery date weather
+modules-right  = microphone volume eth filesystem cpu memory system-cpu-temppercore date time weather
 
+;notebook-modules-format
+;modules-left   = i3 spotify
+;modules-center =
+;modules-right  = network microphone volume filesystem cpu memory system-cpu-temppercore system-fan-speed battery date time weather
+
+
+;#-------------------------------------------#
+;#---------------- Tray Icon-----------------#
+;
 ; Position of the system tray window
 ; If empty or undefined, tray support will be disabled
 ; NOTE: A center aligned tray will cover center aligned modules
@@ -96,7 +106,9 @@ modules-right  = microphone volume eth network filesystem cpu memory system-cpu-
 ;   none
 ;
 tray-position = right
-tray-padding  = 2
+tray-padding  = 3
+tray-size = 16
+tray-scale = 1.0
 
 ; Requires polybar to be built with xcursor support (xcb-util-cursor)
 ; Possible values are:
@@ -110,8 +122,8 @@ cursor-scroll = ns-resize
 ;#--------------------------------- Bar Modules -------------------------------------#
 ;#-----------------------------------------------------------------------------------#
 
-;#---------------------------------#
-;#-------------- I3 ---------------#
+;#-------------------------------------------#
+;#------------------- I3 --------------------#
 ;
 [module/i3]
 type                    = internal/i3
@@ -155,178 +167,159 @@ label-urgent-padding        = 1.5
 ; label-separator = |
 
 
-;#---------------------------------#
-;#----------- Audio ---------------#
+;#-------------------------------------------#
+;#----------------- Audio -------------------#
 ;
 [module/spotify]
-type            = custom/script
-exec            = ~/.config/polybar/scripts/spotify.sh %title%
-;%artist% -
-tail            = true
-interval        = 1
+type                        = custom/script
+exec                        = ~/.config/polybar/scripts/spotify.sh %title%
+tail                        = true
+interval                    = 1
 
-format-foreground           = ${colors.foreground}
-format-background           = ${colors.background}
-format-padding              = 1
+format-prefix               =%{T4}%{T-}
+format-prefix-background    = #0f0
+format-prefix-foreground    = ${colors.background}
+format-prefix-padding       = 1
 format-underline            = #0f0
-format-prefix               = " "
-format-prefix-foreground    = #0f0
 label                       = %output:0:150%
-
+label-background            = ${colors.background-alt1}
+label-foreground            = ${colors.foreground}
+label-padding               = 1
 
 [module/microphone]
-type = custom/script
-exec = ~/.config/polybar/scripts/mic.sh
-tail = true
-format = <label>
-label = %output%
-click-left = kill -USR1 %pid%
+type                                = custom/script
+exec                                = ~/.config/polybar/scripts/mic.sh
+tail                                = true
+click-left                          = kill -USR1 %pid%
+format                              = <label>
+format-underline                    = #1f232c
+label                               = %output%
+label-background                    = ${colors.background-alt1}
+label-padding                       = 1
 
 
 [module/volume]
-type = internal/pulseaudio
+type                               = internal/alsa
+master-soundcard                   = default
+speaker-soundcard                  = default
+headphone-soundcard                = default
+interval                           = 5
 
-master-soundcard    = default
-speaker-soundcard   = default
-headphone-soundcard = default
-sink = default
+format-volume                      = <label-volume>
+format-volume-prefix               = 
+format-volume-prefix-background    = #5ab11a
+format-volume-prefix-foreground    = #070b15
+format-volume-prefix-padding       = 1
+label-volume                       = %percentage%%
+label-volume-background            = ${colors.background-alt1}
+label-volume-padding               = 1
+format-volume-underline            = #5ab11a
 
-master-mixer        = Master
-mapped              = true
+format-muted-prefix                = 
+format-muted-prefix-background     = #de0000
+format-muted-prefix-foreground     = #070b15
+format-muted-prefix-padding        = 1
+label-muted                        = %{T1} mute%{T-}
+label-muted-background             =  ${colors.background-alt1}
+label-muted-foreground             = #de0000
+label-muted-padding                = 1
+format-muted-underline             = #de0000
 
-format-volume            = <label-volume> <bar-volume>
-label-volume             = 
-label-volume-foreground  = #5ab11a
-
-format-muted-prefix      =
-format-muted-foreground  = #de0000
-label-muted              =  mute
-
-bar-volume-width                 = 10
-bar-volume-foreground-0          = #438514
-bar-volume-foreground-1          = #438514
-bar-volume-foreground-2          = #4e9b17
-bar-volume-foreground-3          = #4e9b17
-bar-volume-foreground-4          = #5ab11a
-bar-volume-foreground-5          = #5ab11a
-bar-volume-foreground-6          = #d5911a
-bar-volume-foreground-7          = #d5911a
-bar-volume-foreground-8          = #f22c40
-bar-volume-foreground-9          = #f22c40
-bar-volume-gradient              = false
-bar-volume-indicator             = |
-bar-volume-indicator-font        = 2
-bar-volume-fill                  = =
-bar-volume-fill-font             = 2
-bar-volume-empty                 = =
-bar-volume-empty-font            = 2
-bar-volume-empty-foreground      = ${colors.foreground-alt}
-ramp-headphones-0                = 
+;label-volume-foreground-0          = #438514
+;label-volume-foreground-1          = #438514
+;label-volume-foreground-2          = #4e9b17
+;label-volume-foreground-3          = #5ab11a
+;label-volume-foreground-4          = #d5911a
+;label-volume-foreground-5          = #f22c40
+;label-volume-gradient              = false
 
 
-;#--------------------------------#
-;#----------- Network ------------#
+
+;#-------------------------------------------#
+;#------------------ Network ----------------#
 ;
-[module/network]
-type = internal/network
-
-; Name of the network interface to display. You can get the names of the
-; interfaces on your machine with `ip link`
-; Wireless interfaces often start with `wl` and ethernet interface with `eno` or `eth`
-interface = wlp3s0
-
-; Seconds to sleep between updates
-; Default: 1
-interval = 3.0
-
-; Test connectivity every Nth update
-; A value of 0 disables the feature
-; NOTE: Experimental (needs more testing)
-; Default: 0
-;ping-interval = 3
-
-; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
-; Minimum output width of upload/download rate
-; Default: 3
-udspeed-minwidth = 5
-
-; Accumulate values from all interfaces
-; when querying for up/downspeed rate
-; Default: false
-accumulate-stats = true
-
-; Consider an `UNKNOWN` interface state as up.
-; Some devices like USB network adapters have
-; an unknown state, even when they're running
-; Default: false
-unknown-as-up = true
-
-; Available tags:
-;   <label-connected> (default)
-;   <ramp-signal>
-format-connected = <label-connected>
-
-; Available tags:
-;  <label-disconnected> (default)
-format-disconnected = <label-disconnected>
-
-; Available tags:
-;   <label-connected> (default)
-;   <label-packetloss>
-;   <animation-packetloss>
-format-packetloss = <animation-packetloss> <label-connected>
-
-; All labels support the following tokens:
-;   %ifname%    [wireless+wired]
-;   %local_ip%  [wireless+wired]
-;   %local_ip6% [wireless+wired]
-;   %essid%     [wireless]
-;   %signal%    [wireless]
-;   %upspeed%   [wireless+wired]
-;   %downspeed% [wireless+wired]
-;   %linkspeed% [wired]
-; Default: %ifname% %local_ip%
-label-connected                 = %essid% %signal%%
-label-connected-foreground      = #9e00de
-label-connected-underline       = #9e00de
-
-; Default: (none)
-label-disconnected                  = "睊"
-label-disconnected-foreground       = #9e00de
-label-disconnected-underline        = #9e00de
-
-; Default: (none)
-;label-packetloss = %essid%
-;label-packetloss-foreground = #eefafafa
-
-; Only applies if <ramp-signal> is used
-;ramp-signal-0 = 😱
-;ramp-signal-1 = 😠
-;ramp-signal-2 = 😒
-;ramp-signal-3 = 😊
-;ramp-signal-4 = 😃
-;ramp-signal-5 = 😈
-
-; Only applies if <animation-packetloss> is used
-animation-packetloss-0            = ⚠
-animation-packetloss-0-foreground = #ffa64c
-animation-packetloss-1            = 📶
-animation-packetloss-1-foreground = #000000
-; Framerate in milliseconds
-animation-packetloss-framerate    = 500
+;[module/network]
+;type = internal/network
+;
+;; Name of the network interface to display. You can get the names of the
+;; interfaces on your machine with `ip link`
+;; Wireless interfaces often start with `wl` and ethernet interface with `eno` or `eth`
+;interface = enp3s0
+;
+;; Seconds to sleep between updates
+;; Default: 1
+;interval = 3.0
+;
+;; Test connectivity every Nth update
+;; A value of 0 disables the feature
+;; NOTE: Experimental (needs more testing)
+;; Default: 0
+;;ping-interval = 3
+;
+;; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
+;; Minimum output width of upload/download rate
+;; Default: 3
+;udspeed-minwidth = 5
+;
+;; Accumulate values from all interfaces
+;; when querying for up/downspeed rate
+;; Default: false
+;accumulate-stats = true
+;
+;; Consider an `UNKNOWN` interface state as up.
+;; Some devices like USB n etetwork adapters have
+;; an unknown state, even when they're running
+;; Default: false
+;unknown-as-up = true
+;
+;; Available tags:
+;;   <label-connected> (default)
+;;   <ramp-signal>
+;format-connected = <label-connected>
+;
+;; Available tags:
+;;  <label-disconnected> (default)
+;format-disconnected = <label-disconnected>
+;
+;; Available tags:
+;;   <label-connected> (default)
+;;   <label-packetloss>
+;;   <animation-packetloss>
+;format-packetloss = <animation-packetloss> <label-connected>
+;
+;; All labels support the following tokens:
+;;   %ifname%    [wireless+wired]
+;;   %local_ip%  [wireless+wired]
+;;   %local_ip6% [wireless+wired]
+;;   %essid%     [wireless]
+;;   %signal%    [wireless]
+;;   %upspeed%   [wireless+wired]
+;;   %downspeed% [wireless+wired]
+;;   %linkspeed% [wired]
+;; Default: %ifname% %local_ip%
+;label-connected                 = %essid% %signal%%
+;label-connected-foreground      = #9e00de
+;label-connected-underline       = #9e00de
+;
+;
 
 ;cable network
 [module/eth]
-type = internal/network
-interface = enp2s0
-interval = 5.0
+type            = internal/network
+interface       = enp3s0
+interval        = 2.0
 
-format-connected-underline = #9e00de
-format-connected-prefix = " "
-format-connected-prefix-foreground = #9e00de
-label-connected = %upspeed%  %downspeed%
+format-connected-prefix                 = %{T4}%{T-}
+format-connected-prefix-foreground      = #070b15
+format-connected-prefix-background      = #9e00de
+format-connected-prefix-padding         = 1
 
-format-disconnected =
+label-connected                         =  %upspeed%  %downspeed%
+label-connected-background              = ${colors.background-alt1}
+label-connected-padding                 = 1
+format-connected-underline              = #9e00de
+format-disconnected                     =
+
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected =  %ifname%
@@ -345,7 +338,6 @@ format-disconnected =
 ;format-conected-background = ${colors.background}
 ;format-conected-underline =
 ;
-;
 ;[module/networkspeeddown]
 ;
 ;type = internal/network
@@ -359,175 +351,216 @@ format-disconnected =
 ;format-conected-underline =
 
 
-;#-------------------------------#
-;#-------- Filesystem -----------#
+;#-------------------------------------------#
+;#--------------- Filesystem ----------------#
 ;
 [module/filesystem]
 type                                    = internal/fs
 mount-0                                 = /
-interval                                = 120
+interval                                = 60
 fixed-values                            = true
-label-mounted                           = "%{F#914836} %{F-}%percentage_used:2%%"
-format-mounted                          = "<label-mounted>"
-format-mounted-background               = ${colors.background}
+
+format-mounted-prefix                   = %{T4}%{T-}
+format-mounted-prefix-background        = #c991e1
+format-mounted-prefix-foreground        = #070b15
+format-mounted-prefix-padding           = 1
+format-mounted                          = <label-mounted>
+format-mounted-background               = ${colors.background-alt1}
 format-mounted-foreground               = ${colors.foreground}
-format-mounted-underline                = #914836
+format-mounted-underline                = #c991e1
+label-mounted                           = %{T1}%percentage_used:2%%%{T-}
+label-mounted-padding                   = 1
 
 
-;#-------------------------------#
-;----------- PC info ------------#
+;#-------------------------------------------#
+;---------------- PC Monitor ----------------#
 ;cpu, memory, cpu-temperature, fan
 ;
 [module/cpu]
 type                        = internal/cpu
 interval                    = 2
-format-prefix               = " "
-format-prefix-foreground    = #f90000
-format-underline            = #f90000
-label                       = %percentage:2%%
+
+format                      = <label>
+format-prefix               = %{T5}%{T-}
+format-prefix-background    = #ff5555
+format-prefix-foreground    = #070b15
+format-prefix-padding       = 1
+format-underline            = #ff5555
+label                       = %{T1}%percentage:2%%%{T-}
+label-background            = ${colors.background-alt1}
+label-foreground            = ${colors.foreground}
+label-padding               = 1
 
 [module/memory]
 type                        = internal/memory
-interval                    = 2
-format-prefix               = " "
-format-prefix-foreground    = #325b91
-format-underline            = #325b91
-label                       = %percentage_used%%
+interval                    = 1
+
+format                      = <label>
+format-prefix               = %{T5}%{T-}
+format-prefix-background    = #906cff
+format-prefix-foreground    = #070b15
+format-prefix-padding       = 1
+format-underline            = #906cff
+label                       = %{T1}%percentage_used%%%{T-}
+label-background            = ${colors.background-alt1}
+label-foreground            = ${colors.foreground}
+label-padding               = 1
 
 [module/system-cpu-temppercore]
 type                        = custom/script
 exec                        = ~/.config/polybar/scripts/system-cpu-temppercore.sh
-format-prefix               = " "
-format-prefix-foreground    = #de003f
 
+format-prefix               = %{T5}%{T-}
+format-prefix-background    = #de003f
+format-prefix-foreground    = #070b15
+format-prefix-padding       = 1
 format-underline            = #de003f
+label-background            = ${colors.background-alt1}
+label-foreground            = ${colors.foreground}
+label-padding               = 1
 interval                    = 20
 
 [module/system-fan-speed]
 type                        = custom/script
 exec                        = ~/.config/polybar/scripts/system-fan-speed.sh
-format-prefix               = " "
-format-prefix-foreground    = #9db7cf
+
+format-prefix               = %{T5}%{T-}
+format-prefix-foreground    = #070b15
+format-prefix-background    = #9db7cf
+format-prefix-padding       = 1
 format-underline            = #9db7cf
+label-background            = ${colors.background-alt1}
+label-foreground            = ${colors.foreground}
+label-padding               = 1
 interval                    = 5
 
-
-;#-------------------------------------#
-;#------------- Battery----------------#
+;#-------------------------------------------#
+;#---------------- Battery-------------------#
 ;
 [module/battery]
-type            = internal/battery
-battery         = BAT0
-adapter         = AC
-full-at         = 98
+type                                = internal/battery
+battery                             = BAT0
+adapter                             = AC
+full-at                             = 98
 
+format-charging                     = <animation-charging> <label-charging>
+format-charging-underline           = #32CD32
 
-format-charging                 = <animation-charging> <label-charging>
-format-charging-underline       = #32CD32
-;#ffb52a
+format-discharging                  = <ramp-capacity> <label-discharging>
+format-discharging-underline        = ${self.format-charging-underline}
 
-format-discharging              = <ramp-capacity> <label-discharging>
-format-discharging-underline    = ${self.format-charging-underline}
+format-full-prefix                  = " "
+format-full-prefix-foreground       = #008000
+format-full-underline               = ${self.format-charging-underline}
 
-format-full-prefix              = " "
-format-full-prefix-foreground   = #008000
-format-full-underline           = ${self.format-charging-underline}
+ramp-capacity-0                     = 
+ramp-capacity-1                     = 
+ramp-capacity-2                     = 
+ramp-capacity-3                     = 
+ramp-capacity-0-foreground          = #f90000
+ramp-capacity-1-foreground          = #ffff00
+ramp-capacity-2-foreground          = #90ee90
+ramp-capacity-3-foreground          = #008000
 
-ramp-capacity-0     = 
-ramp-capacity-1     = 
-ramp-capacity-2     = 
-ramp-capacity-3     = 
-ramp-capacity-0-foreground = #f90000
-ramp-capacity-1-foreground = #ffff00
-ramp-capacity-2-foreground = #90ee90
-ramp-capacity-3-foreground = #008000
-
-animation-charging-0            = ""
-animation-charging-foreground   = #ffff00
-animation-charging-framerate    = 750
+animation-charging-0                = ""
+animation-charging-foreground       = #ffff00
+animation-charging-framerate        = 750
 
 animation-discharging-0             = " "
 animation-discharging-foreground    = ${colors.foreground-alt}
 animation-discharging-framerate     = 750
 
 
-;#----------------------------#
-;#--------- Date -------------#
+;#-------------------------------------------#
+;#--------------- Date & Time ---------------#
 ;
 [module/date]
-type        = internal/date
-interval    = 1
+type                            = internal/date
+interval                        = 1
+date                            = "%{T4}%{F#070b15}%{B#E5A561}  %{T- F- B-}%{B#1f232c} %a, %d/%m %{B-}"
+date-alt                        = "%d/%m/%Y"
 
-date        = "%{F#0a6cf5} %{F-}%A, %d/%m"
-date-alt    = "%d/%m/%Y"
+format-prefix                   =
+format-prefix-foreground        = ${colors.foreground-alt}
+format-underline                = #E5A561
+label                           = %date%
 
-time        = "%{F#0a6cf5} %{F-}%H:%M"
-time-alt    = "%H:%M:%S"
 
-format-prefix =
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline         = #0a6cf5
-label                    = %date% %time%
+[module/time]
+type                            = internal/date
+interval                        = 1
+time                            = "%{T4}%{F#070b15}%{B#0a6cf5}  %{T- F- B-}%{B#1f232c} %H:%M %{B-}"
+time-alt                        = "%H:%M:%S"
+
+format-prefix                   =
+format-prefix-foreground        = ${colors.foreground-alt}
+format-underline                = #0a6cf5
+label                           = %time%
 
 
 ;#-------------------------------------------#
 ;#------- Temperature and weather -----------#
 ;
 [module/weather]
-type            = custom/script
-exec            = ~/.config/polybar/polybar-forecast/polybar-forecast-linux-x86_64
-exec-if         = ping openweathermap.org -c 1
-interval        = 600
-label-font      = 6
+type                            = custom/script
+exec                            = ~/.config/polybar/polybar-forecast/polybar-forecast-linux-x86_64
+exec-if                         = ping openweathermap.org -c 1
+interval                        = 600
+label-font                      = 6
+format                          = <label>
+label-padding                   = 1
+label-background                = ${colors.background-alt1}
 
-format-prefix-foreground    = ${colors.foreground-alt}
-format-underline            = #0a6cf5
+format-prefix                   = 
+format-prefix-padding           = 1
+format-prefix-background        = #D8E17E
+format-prefix-foreground        = ${colors.background}
+format-underline                = #D8E17E
 
 
 ;#-------------------------------------------#
 ;#-------------- Other config ---------------#
 
 [settings]
-screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
-;pseudo-transparency = false
+screenchange-reload         = true
+;compositing-background      = xor
+;compositing-background      = screen
+;compositing-foreground      = source
+;compositing-border          = over
+;pseudo-transparency         = false
 
 [global/wm]
-margin-top    = 5
-margin-bottom = 5
-
-; vim:ft=dosini
+margin-top          = 5
+margin-bottom       = 5
+;vim:ft              =dosini
 
 
 ;#-----------------------------------------------------------------------------------#
 ;#------------------------------- Second Monitor Bar --------------------------------#
 ;#-----------------------------------------------------------------------------------#
+[bar/monitor-2]
 
-;[bar/monitor-2]
-;
 ;; Use $ xrandr -q | grep " connected" | cut -d ' ' -f1
 ;;monitor = YOUR-MONITOR-NAME
-;
+
 ;;#--------------------- Default config(equal of the first bar)
-;background = ${colors.background}
-;foreground = ${colors.foreground}
-;width  = 100%
-;height = 25
-;radius = 5.0
-;border-size  = 2
-;border-color = #070b15
-;locale =
-;line-size  = 4
-;line-color = #f00
-;fixed-center = false
-;wm-name = i3
-;padding-left  = 0
-;padding-right = 1
-;module-margin-left  = 1
-;module-margin-right = 1
+;background                   = ${colors.background}
+;foreground                   = ${colors.foreground}
+;width                        = 100%
+;height                       = 25
+;radius                       = 5.0
+;border-size                  = 2
+;border-color                 = #070b15
+;locale                       =
+;line-size                    = 4
+;line-color                   = #f00
+;fixed-center                 = false
+;wm-name                      = i3
+;padding-left                 = 0
+;padding-right                = 1
+;module-margin-left           = 1
+;module-margin-right          = 1
+;
 ;font-0 = "Source Code Pro:size=12:antialias=true;0"
 ;font-1 = "Source Code Pro:size=12:style=Bold:antialias=true;0"
 ;font-2 = "Font Awesome 5 Free:size=12;1"
@@ -537,18 +570,18 @@ margin-bottom = 5
 ;font-6 = "Inconsolata Nerd Font:size=14;1"
 ;;#------------------------------------------------------
 ;
-;modules-left    =
-;modules-center  =
-;modules-right   = i3-2
-
+;modules-left                    =
+;modules-center                  = microphone
+;modules-right                   = i3-2
+;
 ;[module/i3-2]
-;type                    = internal/i3
-;format                  = <label-state> <label-mode>
-;index-sort              = true
-;wrapping-scroll         = false
+;type                            = internal/i3
+;format                          = <label-state> <label-mode>
+;index-sort                      = true
+;wrapping-scroll                 = false
 ;
 ;;Only show workspaces on the same output as the bar
-;pin-workspaces = true
+;pin-workspaces                  = true
 ;
 ;label-mode-padding              = 1.5
 ;label-mode-foreground           = #000
@@ -569,13 +602,13 @@ margin-bottom = 5
 ;label-visible-padding           = ${self.label-focused-padding}
 ;
 ;; unfocused = Inactive workspace on any monitor
-;label-unfocused             = %index%
-;label-unfocused-padding     = 1.5
+;label-unfocused                 = %index%
+;label-unfocused-padding         = 1.5
 ;
 ;; urgent = Workspace with urgency hint set
-;label-urgent                = %index%
-;label-urgent-background     = ${colors.alert}
-;label-urgent-padding        = 1.5
+;label-urgent                    = %index%
+;label-urgent-background         = ${colors.alert}
+;label-urgent-padding            = 1.5
 ;
 ;; Separator in between workspaces
 ;; label-separator = |
