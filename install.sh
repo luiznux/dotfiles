@@ -96,9 +96,9 @@ install_packages(){
 
     linux_gadgets=" man tree colordiff wget check file highlight atool mlocate nmap ntp ncdu haveged "
 
-    utilities=" htop calcurse cpupower dmenu rofi cmatrix neofetch ranger sl youtube-dl pacmanlogviewer "
+    utilities=" htop calcurse cpupower dmenu rofi cmatrix neofetch ranger sl youtube-dl pacmanlogviewer xfce4-settings "
 
-    program_languages=" clang ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure ispell"
+    program_languages=" clang ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure ispell "
 
     graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom "
 
@@ -114,7 +114,7 @@ install_packages(){
     audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack pavucontrol libmpdclient fftw playerctl vlc cadence paprefs "
     #audio=" alsa alsa-utils alsa-firmware alsa-plugins pulseaudio pulseaudio-alsa pavucontrol libmpdclient fftw playerctl vlc paprefs "
 
-    image=" eog feh tumbler ffmpegthumbnailer imagemagick sxiv gimp scrot deepin-screenshot w3m ueberzug"
+    image=" eog feh tumbler ffmpegthumbnailer imagemagick sxiv gimp scrot deepin-screenshot w3m ueberzug "
 
     android_device=" mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp yasm "
 
@@ -182,6 +182,7 @@ AUR_install(){
     log_error make_pkg_AUR polybar \
     && log_error make_pkg_AUR i3lock-color-git \
     && log_error make_pkg_AUR thermald \
+    && log_error make_pkg_AUR mictray \
     && log_error make_pkg_AUR ttf-weather-icons \
     && log_error make_pkg_AUR qdirstat \
     && log_error make_pkg_AUR jmtpfs \
