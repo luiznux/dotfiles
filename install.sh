@@ -111,7 +111,7 @@ install_packages(){
     gnome=" intltool dbus-glib gdm gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor "
 
     # with pipewire packages
-    audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack pavucontrol libmpdclient fftw playerctl vlc cadence paprefs "
+    audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack pavucontrol libmpdclient fftw playerctl vlc cadence paprefs audacity "
     #audio=" alsa alsa-utils alsa-firmware alsa-plugins pulseaudio pulseaudio-alsa pavucontrol libmpdclient fftw playerctl vlc paprefs "
 
     image=" eog feh tumbler ffmpegthumbnailer imagemagick sxiv gimp scrot deepin-screenshot w3m ueberzug "
@@ -128,7 +128,7 @@ install_packages(){
 
     network=" dhcp dhcpcd "
 
-    others=" transmission-gtk gparted discord code gnome-calculator firefox chromium torbrowser-launcher bleachbit "
+    others=" transmission-gtk gparted discord code gnome-calculator firefox chromium torbrowser-launcher bleachbit kdenlive "
 
     log_error sudo pacman -Syu $essencials $linux_gadgets $utilities $program_languages $graphic $file_open $themes $font $gnome $audio $image $android_device $gnu_things $term_shell $printer $security $network $others  --noconfirm --needed \
     && log echo "        Packages {OK}" && break_line || log erro_msg
@@ -193,6 +193,7 @@ AUR_install(){
     && log_error make_pkg_AUR youtube-dl-gui-git \
     && log_error make_pkg_AUR jetbrains-toolbox \
     && log_error make_pkg_AUR mon2cam-git \
+    && log_error make_pkg_AUR pipewire-jack-dropin \
     && log_error make_pkg_AUR ttf-wps-fonts \
     && log_error make_pkg_AUR wps-office \
     && log echo "----------------------------- AUR General packages  Done " && break_line || log erro_msg
