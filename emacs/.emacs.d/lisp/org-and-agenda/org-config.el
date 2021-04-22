@@ -13,7 +13,12 @@
 
   (use-package org-download
     :ensure t
-    :hook ('dired-mode-hook 'org-download-enable)))
+    :hook ('dired-mode-hook 'org-download-enable))
+
+  (use-package org-tree-slide
+    :ensure t
+    :custom
+    (org-image-actual-width nil)))
 
 
 (defun org-capture-config ()
