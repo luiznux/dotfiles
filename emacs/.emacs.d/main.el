@@ -4,11 +4,7 @@
 ;;;
 ;;; Code:
 
-
-(load "~/.emacs.d/packages.el")
-(load "~/.emacs.d/linux-style.el")
-(load "~/.emacs.d/customizations.el")
-(load "~/.emacs.d/code-style.el")
-(load "~/.emacs.d/theme.el")
+(load "~/.emacs.d/lisp/packages.el")
+(load "~/.emacs.d/lisp/linux-style.el")
 
 ;;; main.el ends here

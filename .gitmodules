@@ -9,10 +9,21 @@
 	url = https://github.com/simmel/urxvt-resize-font
 [submodule "themes/icons/papirus-icon-theme"]
 	path = themes/icons/papirus-icon-theme
-	url = https://github.com/PapirusDevelopmentTeam/papirus-icon-theme.git
-[submodule "emacs/.emacs.d/lisp/awesome-tab"]
-	path = emacs/.emacs.d/lisp/awesome-tab
-	url = https://github.com/luiznux/awesome-tab.git
-[submodule "emacs/.emacs.d/lisp/parrot"]
-	path = emacs/.emacs.d/lisp/parrot
-	url = https://github.com/luiznux/parrot
+    url = https://github.com/PapirusDevelopmentTeam/papirus-icon-theme.git
+##
+##[submodule "emacs/old-emacs.d/lisp/awesome-tab"]
+##	path = emacs/old-emacs.d/lisp/awesome-tab
+##    url = https://github.com/luiznux/awesome-tab.git
+##
+##[submodule "emacs/old-emacs.d/lisp/parrot"]
+##	path = emacs/old-emacs.d/lisp/parrot
+##    url = https://github.com/luiznux/parrot.git
+##
+##[submodule "emacs/.emacs.d/lisp/local-packages/awesome-tab"]
+##    path = emacs/.emacs.d/lisp/local-packages/awesome-tab
+##    url = https://github.com/luiznux/awesome-tab.git
+##
+##[submodule "emacs/.emacs.d/lisp/local-packages/parrot"]
+##    path = emacs/.emacs.d/lisp/local-packages/parrot
+##	url = https://github.com/luiznux/parrot.git
+
