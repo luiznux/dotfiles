@@ -32,8 +32,6 @@
  '(global-auto-revert-mode t)
  '(helm-minibuffer-history-key "M-p")
  '(line-spacing 0.2)
- '(package-selected-packages
-   '(highlight-symbol yasnippet-snippets yaml-mode whitespace-cleanup-mode which-key use-package undo-tree treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil switch-window sudo-edit solaire-mode smex ranger rainbow-mode rainbow-delimiters pdf-tools org-download org-bullets nyan-mode minimap math-preview magit-todos lsp-ui lsp-origami lsp-dart logview latex-preview-pane highlight-indent-guides hide-mode-line helm google-translate google-this go-mode gitignore-mode github-pullrequest ggtags gcmh format-all flyspell-popup flycheck evil-surround evil-org evil-matchit evil-leader evil-collection esup emojify dumb-jump doom-themes doom-modeline dockerfile-mode docker dired-git-info diff-hl dashboard company-quickhelp company-posframe company-box clojure-snippets ccls bug-hunter anzu aggressive-indent ag))
  '(standard-indent 4))
 
 (custom-set-faces
