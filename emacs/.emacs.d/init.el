@@ -40,6 +40,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :foreground "#c5c8c6" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "ADBO" :family "Source Code Pro"))))
+ '(centaur-tabs-selected ((t (:background "#282c34" :foreground "#bbc2cf" :overline nil :underline "#51afef" :weight semi-bold :height 99 :width normal :family "Source Code Pro"))))
  '(org-agenda-date-today ((t (:foreground "lime green" :weight ultra-bold))))
  '(org-scheduled ((t (:foreground "SlateBlue2"))))
  '(org-scheduled-previously ((t (:foreground "medium turquoise"))))

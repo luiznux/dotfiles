@@ -12,17 +12,17 @@
 ;;;
 ;;; Code:
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/local-packages/awesome-tab"))
+;;;(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/local-packages/awesome-tab"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/local-packages/parrot"))
 
 
-(defun setup-awesome-tab()
-  "Setup awesome-tab package config."
-
-  (require 'awesome-tab)
-  (setq awesome-tab-display-icon   t
-        awesome-tab-height         108)
-  (awesome-tab-mode t))
+;;;(defun setup-awesome-tab()
+;;;  "Setup awesome-tab package config."
+;;;
+;;;  (require 'awesome-tab)
+;;;  (setq awesome-tab-display-icon   t
+;;;        awesome-tab-height         108)
+;;;  (awesome-tab-mode t))
 
 (defun setup-parrot-mode()
   "Setup parrot-mode package config."
@@ -37,7 +37,7 @@
   (add-hook 'evil-emacs-state-entry-hook #'parrot-start-animation))
 
 
-(setup-awesome-tab)
+;;;(setup-awesome-tab)
 (setup-parrot-mode)
 
 (provide 'local-packages)
