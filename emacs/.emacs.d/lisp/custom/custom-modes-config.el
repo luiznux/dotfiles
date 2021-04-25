@@ -26,6 +26,12 @@
   (use-package clojure-snippets
     :ensure t)
 
+  (use-package clojure-mode
+    :ensure t)
+
+  (use-package cider
+    :ensure t)
+
   (use-package go-mode
     :ensure t
     :config

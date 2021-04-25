@@ -83,11 +83,44 @@
           (t
            (error-message-string "Fail to get path name.")))))
 
-;; Source: http://www.emacswiki.org/emacs-en/download/misc-cmds.el
+;;; Source: http://www.emacswiki.org/emacs-en/download/misc-cmds.el
 (defun revert-buffer-no-confirm ()
   "Revert buffer without confirmation."
   (interactive)
   (revert-buffer :ignore-auto :noconfirm))
+
+;;; Source https://www.simplify.ba/articles/2016/01/25/display-buffer-alist/
+(defun sasa/display-buffer (buffer &optional alist)
+  "Select window for BUFFER (need to use word ALIST on the first line).
+Returns thirth visible window if there are three visible windows, nil otherwise.
+Minibuffer is ignored."
+  (let ((wnr (if (active-minibuffer-window) 3 2)))
+    (when (= (+ wnr 1) (length (window-list)))
+      (let ((window (nth wnr (window-list))))
+        (set-window-buffer window buffer)
+        window)))
+  )
+
+(defvar sasa/help-temp-buffers '("^\\*Flycheck errors\\*$"
+                                 "^\\*Completions\\*$"
+                                 "^\\*Help\\*$"
+                                 ;; Other buffers names...
+                                 "^\\*Ido Completions\\*$"
+                                 "^\\*Colors\\*$"
+                                 "^\\*Async Shell Command\\*$"))
+
+(while sasa/help-temp-buffers
+  (add-to-list 'display-buffer-alist
+               `(,(car sasa/help-temp-buffers)
+                 (display-buffer-reuse-window
+                  sasa/display-buffer
+                  display-buffer-in-side-window)
+                 (reusable-frames     . visible)
+                 (side                . bottom)
+                 (window-height       . 0.2)
+                 ))
+  (setq sasa/help-temp-buffers (cdr sasa/help-temp-buffers)))
+
 
 (setq user-full-name "Luiz Tagliaferro"
       user-mail-address "luiztagli@hotmail.com")

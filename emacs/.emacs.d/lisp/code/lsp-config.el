@@ -17,7 +17,18 @@
   (use-package lsp-mode
     :ensure t
     :commands (lsp lsp-deferred)
-    :hook (go-mode . lsp-deferred) (sh-mode . lsp)
+    :hook
+    (go-mode . lsp-deferred)
+    (sh-mode . lsp)
+    ((clojure-mode . lsp)(clojurec-mode . lsp) (clojurescript-mode . lsp))
+
+    :config
+    (dolist (m '(clojure-mode
+                 clojurec-mode
+                 clojurescript-mode
+                 clojurex-mode))
+      (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
+
     (setq lsp-bash-highlight-parsing-errors t
           lsp-bash-explainshell-endpoint    t
           lsp-bash-glob-pattern             t))
