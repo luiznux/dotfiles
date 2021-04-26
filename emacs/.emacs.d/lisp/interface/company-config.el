@@ -89,12 +89,12 @@
     :ensure t
     :hook (company-mode . company-posframe-mode)))
 
-                                        ;  (use-package company-lsp
-                                        ;    :ensure t
-                                        ;    :config
-                                        ;    (company-lsp-enable-snippet t)
-                                        ;    (company-lsp-cache-candidates 'auto)
-                                        ;    :commands company-lsp))
+;;  (use-package company-lsp
+;;    :ensure t
+;;    :config
+;;    (company-lsp-enable-snippet t)
+;;    (company-lsp-cache-candidates 'auto)
+;;    :commands company-lsp))
 
 
 (setup-company-config)

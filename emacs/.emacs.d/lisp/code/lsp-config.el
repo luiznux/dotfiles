@@ -64,8 +64,8 @@
   (use-package dap-mode
     :ensure t
     :config
-;;; Enabling only some features
-;;;(setq dap-auto-configure-features '(sessions locals controls tooltip))
+;; Enabling only some features
+;; (setq dap-auto-configure-features '(sessions locals controls tooltip))
     (dap-mode 1)
     ;; The modes below are optional
     (dap-ui-mode 1)
@@ -83,6 +83,9 @@
     :config (setq ccls-executable "/usr/bin/ccls")
     :hook ((c-mode c++-mode objc-mode cuda-mode) .
            (lambda () (require 'ccls) (lsp))))
+
+  (use-package clojure-mode
+    :ensure t)
 
   (use-package lsp-java
     :hook 'java-mode-hook #'lsp))

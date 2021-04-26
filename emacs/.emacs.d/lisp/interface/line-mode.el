@@ -25,15 +25,15 @@
         doom-modeline-enable-word-count           nil
         doom-modeline-buffer-encoding             nil)
 
-;  (add-hook 'focus-out-hook
-;            (lambda ()
-;              (copy-face 'mode-line '--mode-line-backup)
-;              (copy-face 'mode-line-inactive 'mode-line)))
-;
-;  (add-hook 'focus-in-hook
-;            (lambda ()
-;              (copy-face '--mode-line-backup 'mode-line)
-;              (doom-modeline-set-selected-window)))
+;;  (add-hook 'focus-out-hook
+;;            (lambda ()
+;;              (copy-face 'mode-line '--mode-line-backup)
+;;              (copy-face 'mode-line-inactive 'mode-line)))
+;;
+;;  (add-hook 'focus-in-hook
+;;            (lambda ()
+;;              (copy-face '--mode-line-backup 'mode-line)
+;;              (doom-modeline-set-selected-window)))
 
   :custom-face
   '(mode-line-inactive nil)

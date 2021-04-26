@@ -20,11 +20,6 @@
 (defun interface-setup()
   "Call all interface packages."
 
-  (use-package which-key
-    :ensure t
-    :config
-    (which-key-mode))
-
   (require 'iso-transl)
   (use-package highlight-indent-guides
     :ensure t
@@ -40,27 +35,53 @@
           ("M-p" . highlight-symbol-prev)
           ("M-n" . highlight-symbol-next)))
 
+  (use-package which-key
+    :ensure t
+    :config
+    (which-key-mode))
+
   (use-package smex
     :ensure t
     :config
     (global-set-key (kbd "M-x") 'smex))
 
-  (use-package hide-mode-line
+  (use-package counsel-css
     :ensure t)
 
-  (use-package switch-window
-    :ensure t)
-
-  (use-package page-break-lines
-    :ensure t)
-
+  ;; Add icons for emacs
   (use-package all-the-icons
     :ensure t)
 
-  (use-package latex-preview-pane
+  (use-package ibuffer
+    :ensure nil
+    :bind ("C-x C-b" . ibuffer)
+    :init (setq ibuffer-filter-group-name-face '(:inherit (font-lock-string-face bold)))
+    :config
+    ;; Display icons for buffers
+    (use-package all-the-icons-ibuffer
+      :ensure t
+      :config
+      (all-the-icons-ibuffer-mode 1)
+      (with-eval-after-load 'counsel
+        (with-no-warnings
+          (defun my-ibuffer-find-file ()
+            (interactive)
+            (let ((default-directory (let ((buf (ibuffer-current-buffer)))
+                                       (if (buffer-live-p buf)
+                                           (with-current-buffer buf
+                                             default-directory)
+                                         default-directory))))
+              (counsel-find-file default-directory)))
+          (advice-add #'ibuffer-find-file :override #'my-ibuffer-find-file)))))
+
+  ;; Group ibuffer's list by project root
+  (use-package ibuffer-projectile
     :ensure t
-    :init
-    (latex-preview-pane-enable))
+    :functions all-the-icons-octicon ibuffer-do-sort-by-alphabetic
+    :hook ((ibuffer . (lambda ()
+                        (ibuffer-projectile-set-filter-groups)
+                        (unless (eq ibuffer-sorting-mode 'alphabetic)
+                          (ibuffer-do-sort-by-alphabetic))))))
 
   (use-package emojify
     :ensure t
@@ -72,13 +93,6 @@
   (use-package rainbow-mode
     :ensure t
     :hook (emacs-lisp-mode . rainbow-mode))
-
-  (use-package math-preview
-    :ensure t)
-
-  (use-package pdf-tools
-    :ensure t)
-
 
   (use-package dashboard
     :ensure t
@@ -120,8 +134,7 @@
     (centaur-tabs-headline-match)
     (centaur-tabs-group-by-projectile-project)
     (centaur-tabs-mode t)
-    (centaur-tabs-change-fonts "Source Code Pro" 100)
-
+    (centaur-tabs-change-fonts "Source Code Pro" 102)
     (defun centaur-tabs-buffer-groups ()
       "`centaur-tabs-buffer-groups' control buffers' group rules.
  Group centaur-tabs with mode if buffer is derived from `eshell-mode' `emacs-lisp-mode' `dired-mode' `org-mode' `magit-mode'.
@@ -175,10 +188,44 @@
 	      ("g t" . centaur-tabs-forward)
 	      ("g T" . centaur-tabs-backward)))
 
+  (use-package parrot
+    :ensure t
+    :config
+    (parrot-mode)
+    (parrot-set-parrot-type 'emacs)
+    (setq parrot-num-rotations 6)
+    (add-hook 'evil-insert-state-entry-hook #'parrot-start-animation)
+    (add-hook 'evil-visual-state-entry-hook #'parrot-start-animation)
+    (add-hook 'evil-emacs-state-entry-hook  #'parrot-start-animation))
+
   (use-package ranger
     :ensure t
     :config
     (ranger-override-dired-mode t))
+
+  (use-package hide-mode-line
+    :ensure t
+    :hook (((completion-list-mode
+             completion-in-region-mode
+             pdf-annot-list-mode
+             flycheck-error-list-mode
+             ido-mode
+             lsp-treemacs-error-list-mode) . hide-mode-line-mode)))
+
+  (use-package latex-preview-pane
+    :ensure t)
+
+  (use-package math-preview
+    :ensure t)
+
+  (use-package pdf-tools
+    :ensure t)
+
+  (use-package switch-window
+    :ensure t)
+
+  (use-package page-break-lines
+    :ensure t)
 
   (use-package google-translate
     :ensure t

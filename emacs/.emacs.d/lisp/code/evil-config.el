@@ -42,7 +42,7 @@
   (use-package evil-org
     :ensure t)
 
-  (use-package undo-tree ;dependency for evil-undo-system
+  (use-package undo-tree ;; dependency for evil-undo-system
     :ensure t
     :config
     (global-undo-tree-mode))

@@ -22,7 +22,7 @@
     :config
     (setq dumb-jump-force-searcher 'ag)
     (setq dumb-jump-prefer-searcher 'ag)
-    (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)) ;;; use M-. to go to definition
+    (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)) ;; use M-. to go to definition
 
   (use-package ggtags
     :config
@@ -92,10 +92,10 @@
             treemacs-workspace-switch-cleanup      nil
             treemacs-width                         35)
 
-      ;;; The default width and height of the icons is 22 pixels. If you are
-      ;;; using a Hi-DPI display, uncomment this to double the icon size.
-      ;;; (treemacs-resize-icons 44)
-      ;;; (treemacs-load-theme "alltheicons")
+      ;; The default width and height of the icons is 22 pixels. If you are
+      ;; using a Hi-DPI display, uncomment this to double the icon size.
+      ;; (treemacs-resize-icons 44)
+      ;; (treemacs-load-theme "alltheicons")
 
       (treemacs-follow-mode t)
       (treemacs-filewatch-mode t)
@@ -153,17 +153,16 @@
     '(minimap-active-region-background ((t (:extend t :background "#232526"))))
     '(minimap-current-line-face ((t (:background "#344256"))))))
 
-;;;    (use-package paren
-;;;    :ensure nil
-;;;    :hook
-;;;    (after-init . show-paren-mode)
-;;;    ;:custom-face
-;;;    ;(show-paren-match ((nil (:background "#44475a" :foreground "#f1fa8c")))) ;; :box t
-;;;    :custom
-;;;    (show-paren-style 'mixed)
-;;;    (show-paren-when-point-inside-paren t)
-;;;    (show-paren-when-point-in-periphery t))
-
+;;    (use-package paren
+;;    :ensure nil
+;;    :hook
+;;    (after-init . show-paren-mode)
+;;    ;:custom-face
+;;    ;(show-paren-match ((nil (:background "#44475a" :foreground "#f1fa8c")))) ;; :box t
+;;    :custom
+;;    (show-paren-style 'mixed)
+;;    (show-paren-when-point-inside-paren t)
+;;    (show-paren-when-point-in-periphery t))
 
 (setup-project-packages)
 
