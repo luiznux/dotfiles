@@ -1,4 +1,4 @@
-;;; interface.el --- visual beauties for emacs
+;;; interface.el --- visual beauties for Emacs
 ;;; Commentary:
 ;;; Visual beauties for you code more happier :)
 ;;;
@@ -188,6 +188,55 @@
 	      ("g t" . centaur-tabs-forward)
 	      ("g T" . centaur-tabs-backward)))
 
+  (use-package pdf-view
+    :ensure pdf-tools
+    :diminish (pdf-view-midnight-minor-mode pdf-view-printer-minor-mode)
+    :defines pdf-annot-activate-created-annotations
+    :functions (my-pdf-view-set-midnight-colors my-pdf-view-set-dark-theme)
+    :hook (pdf-view-mode . pdf-view-midnight-minor-mode)
+    :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
+    :magic ("%PDF" . pdf-view-mode)
+    :bind (:map pdf-view-mode-map
+                ("C-s" . isearch-forward))
+    :init
+    (setq pdf-annot-activate-created-annotations t)
+
+    ;; Set dark theme
+    (defun my-pdf-view-set-midnight-colors ()
+      "Set pdf-view midnight colors."
+      (setq pdf-view-midnight-colors
+            `(,(face-foreground 'default) . ,(face-background 'default))))
+    (my-pdf-view-set-midnight-colors)
+
+    (defun my-pdf-view-set-dark-theme ()
+      "Set pdf-view midnight theme as color theme."
+      (my-pdf-view-set-midnight-colors)
+      (dolist (buf (buffer-list))
+        (with-current-buffer buf
+          (when (eq major-mode 'pdf-view-mode)
+            (pdf-view-midnight-minor-mode (if pdf-view-midnight-minor-mode 1 -1))))))
+    (add-hook 'after-load-theme-hook #'my-pdf-view-set-dark-theme)
+    :config
+    ;; Build pdfinfo if needed, locking until it's complete
+    (with-no-warnings
+      (defun my-pdf-tools-install ()
+        (unless (file-executable-p pdf-info-epdfinfo-program)
+          (let ((wconf (current-window-configuration)))
+            (pdf-tools-install t)
+            (message "Building epdfinfo. Please wait for a moment...")
+            (while compilation-in-progress
+              ;; Block until `pdf-tools-install' is done
+              (sleep-for 1))
+            (when (file-executable-p pdf-info-epdfinfo-program)
+              (set-window-configuration wconf)))))
+      (advice-add #'pdf-view-decrypt-document :before #'my-pdf-tools-install)))
+
+  (use-package latex-preview-pane
+    :ensure t)
+
+  (use-package math-preview
+    :ensure t)
+
   (use-package parrot
     :ensure t
     :config
@@ -211,15 +260,6 @@
              flycheck-error-list-mode
              ido-mode
              lsp-treemacs-error-list-mode) . hide-mode-line-mode)))
-
-  (use-package latex-preview-pane
-    :ensure t)
-
-  (use-package math-preview
-    :ensure t)
-
-  (use-package pdf-tools
-    :ensure t)
 
   (use-package switch-window
     :ensure t)
