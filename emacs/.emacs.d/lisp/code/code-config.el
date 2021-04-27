@@ -31,7 +31,7 @@
     :hook (go-mode . yas-minor-mode))
 
   (use-package yasnippet-snippets
-    :ensure t)
+    :after yasnippet)
 
   (use-package clojure-snippets
     :ensure t)
