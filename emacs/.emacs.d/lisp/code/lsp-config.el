@@ -77,6 +77,12 @@
     :hook ((c-mode c++-mode objc-mode cuda-mode) .
            (lambda () (require 'ccls) (lsp))))
 
+  (use-package lsp-jedi
+    :config
+    (with-eval-after-load "lsp-mode"
+      (add-to-list 'lsp-disabled-clients 'pyls)
+      (add-to-list 'lsp-enabled-clients 'jedi)))
+
   (use-package clojure-mode)
 
   (use-package lsp-java
