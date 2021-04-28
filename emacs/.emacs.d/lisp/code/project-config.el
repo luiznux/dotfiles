@@ -14,11 +14,9 @@
 (defun setup-project-packages()
   "Call project packages."
 
-  (use-package ag
-    :ensure t)
+  (use-package ag)
 
   (use-package dumb-jump
-    :ensure t
     :config
     (setq dumb-jump-force-searcher 'ag)
     (setq dumb-jump-prefer-searcher 'ag)
@@ -29,18 +27,15 @@
     (add-hook 'c-mode-common-hook
               (lambda ()
                 (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
-                  (ggtags-mode 1))))
-    :ensure t)
+                  (ggtags-mode 1)))))
 
   (use-package projectile
-    :ensure t
     :config
     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
     (setq projectile-project-search-path '("~/projects/"))
     (projectile-mode +1))
 
   (use-package treemacs
-    :ensure t
     :defer t
     :init
     (with-eval-after-load 'winum
@@ -117,29 +112,23 @@
           ("C-x t M-t" . treemacs-find-tag)))
 
   (use-package treemacs-evil
-    :after treemacs evil
-    :ensure t)
+    :after treemacs evil)
 
   (use-package treemacs-projectile
-    :after treemacs projectile
-    :ensure t)
+    :after treemacs projectile)
 
   (use-package treemacs-icons-dired
     :after treemacs dired
-    :ensure t
     :config (treemacs-icons-dired-mode))
 
   (use-package treemacs-magit
-    :after treemacs magit
-    :ensure t)
+    :after treemacs magit)
 
   (use-package treemacs-persp
     :after treemacs persp-mode
-    :ensure t
     :config (treemacs-set-scope-type 'Perspectives))
 
   (use-package minimap
-    :ensure t
     :custom
     (minimap-major-modes '(prog-mode))
     :config
@@ -154,7 +143,6 @@
     '(minimap-current-line-face ((t (:background "#344256"))))))
 
 ;;    (use-package paren
-;;    :ensure nil
 ;;    :hook
 ;;    (after-init . show-paren-mode)
 ;;    ;:custom-face

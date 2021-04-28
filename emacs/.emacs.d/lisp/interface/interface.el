@@ -22,7 +22,6 @@
 
   (require 'iso-transl)
   (use-package highlight-indent-guides
-    :ensure t
     :config
     (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
     (setq highlight-indent-guides-method 'character)
@@ -36,21 +35,17 @@
           ("M-n" . highlight-symbol-next)))
 
   (use-package which-key
-    :ensure t
     :config
     (which-key-mode))
 
   (use-package smex
-    :ensure t
     :config
     (global-set-key (kbd "M-x") 'smex))
 
-  (use-package counsel-css
-    :ensure t)
+  (use-package counsel-css)
 
   ;; Add icons for emacs
-  (use-package all-the-icons
-    :ensure t)
+  (use-package all-the-icons)
 
   (use-package ibuffer
     :ensure nil
@@ -59,7 +54,6 @@
     :config
     ;; Display icons for buffers
     (use-package all-the-icons-ibuffer
-      :ensure t
       :config
       (all-the-icons-ibuffer-mode 1)
       (with-eval-after-load 'counsel
@@ -76,7 +70,6 @@
 
   ;; Group ibuffer's list by project root
   (use-package ibuffer-projectile
-    :ensure t
     :functions all-the-icons-octicon ibuffer-do-sort-by-alphabetic
     :hook ((ibuffer . (lambda ()
                         (ibuffer-projectile-set-filter-groups)
@@ -84,18 +77,15 @@
                           (ibuffer-do-sort-by-alphabetic))))))
 
   (use-package emojify
-    :ensure t
     :config
     (setq emojify-company-tooltips-p t
           emojify-composed-text-p    nil)
     :hook (after-init . global-emojify-mode))
 
   (use-package rainbow-mode
-    :ensure t
     :hook (emacs-lisp-mode . rainbow-mode))
 
   (use-package dashboard
-    :ensure t
     :init
     (progn
       (setq recentf-exclude '("/org/*")) ;prevent  show recent org-agenda files
@@ -121,7 +111,6 @@
     (add-hook 'dashboard-mode-hook (lambda () (goto-char (point-min)))))
 
   (use-package centaur-tabs
-    :ensure t
     :config
     (setq centaur-tabs-style                    "chamfer"
           centaur-tabs-height                   32
@@ -231,14 +220,11 @@
               (set-window-configuration wconf)))))
       (advice-add #'pdf-view-decrypt-document :before #'my-pdf-tools-install)))
 
-  (use-package latex-preview-pane
-    :ensure t)
+  (use-package latex-preview-pane)
 
-  (use-package math-preview
-    :ensure t)
+  (use-package math-preview)
 
   (use-package parrot
-    :ensure t
     :config
     (parrot-mode)
     (parrot-set-parrot-type 'emacs)
@@ -248,12 +234,10 @@
     (add-hook 'evil-emacs-state-entry-hook  #'parrot-start-animation))
 
   (use-package ranger
-    :ensure t
     :config
     (ranger-override-dired-mode t))
 
   (use-package hide-mode-line
-    :ensure t
     :hook (((completion-list-mode
              completion-in-region-mode
              pdf-annot-list-mode
@@ -261,14 +245,11 @@
              ido-mode
              lsp-treemacs-error-list-mode) . hide-mode-line-mode)))
 
-  (use-package switch-window
-    :ensure t)
+  (use-package switch-window)
 
-  (use-package page-break-lines
-    :ensure t)
+  (use-package page-break-lines)
 
   (use-package google-translate
-    :ensure t
     :bind
     ("M-o t" . google-translate-at-point)
     ("M-o T" . google-translate-at-point-reverse)
@@ -276,8 +257,7 @@
     (google-translate-default-source-language "en")
     (google-translate-default-target-language "ja"))
 
-  (use-package google-this
-    :ensure t))
+  (use-package google-this))
 
 
 (interface-setup)

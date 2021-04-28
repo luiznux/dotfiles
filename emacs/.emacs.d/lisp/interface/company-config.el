@@ -8,7 +8,6 @@
   "Configure all company packages and custom."
 
   (use-package company
-    :ensure t
     :bind
     (:map company-active-map
           ("M-j" . company-select-next-or-abort)
@@ -24,7 +23,6 @@
           company-echo-delay             0))
 
   (use-package company-box
-    :ensure t
     :hook (company-mode . company-box-mode)
     :init (setq company-box-icons-alist 'company-box-icons-all-the-icons)
     :config
@@ -78,7 +76,6 @@
 
   ;; Show quick tooltip
   (use-package company-quickhelp
-    :ensure t
     :defines company-quickhelp-delay
     :bind (:map company-active-map
                 ("M-h" . company-quickhelp-manual-begin))
@@ -86,11 +83,9 @@
     :custom (company-quickhelp-delay 0.8))
 
   (use-package company-posframe
-    :ensure t
     :hook (company-mode . company-posframe-mode)))
 
 ;;  (use-package company-lsp
-;;    :ensure t
 ;;    :config
 ;;    (company-lsp-enable-snippet t)
 ;;    (company-lsp-cache-candidates 'auto)

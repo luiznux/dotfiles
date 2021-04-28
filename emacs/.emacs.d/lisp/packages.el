@@ -23,9 +23,15 @@
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
 
+;; Verify if use-package is installed
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+;; Verify if all use-packages packages is installed
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
+
 
 ;; Code Packages
 (load "~/.emacs.d/lisp/code/code-config.el")

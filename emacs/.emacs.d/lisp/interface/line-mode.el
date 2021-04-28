@@ -4,7 +4,6 @@
 ;;; Code:
 
 (use-package doom-modeline
-  :ensure t
   :hook (after-init . doom-modeline-mode)
   :config
   (setq doom-modeline-buffer-file-name-style      'truncate-with-project
@@ -25,15 +24,15 @@
         doom-modeline-enable-word-count           nil
         doom-modeline-buffer-encoding             nil)
 
-;;  (add-hook 'focus-out-hook
-;;            (lambda ()
-;;              (copy-face 'mode-line '--mode-line-backup)
-;;              (copy-face 'mode-line-inactive 'mode-line)))
-;;
-;;  (add-hook 'focus-in-hook
-;;            (lambda ()
-;;              (copy-face '--mode-line-backup 'mode-line)
-;;              (doom-modeline-set-selected-window)))
+  ;;  (add-hook 'focus-out-hook
+  ;;            (lambda ()
+  ;;              (copy-face 'mode-line '--mode-line-backup)
+  ;;              (copy-face 'mode-line-inactive 'mode-line)))
+  ;;
+  ;;  (add-hook 'focus-in-hook
+  ;;            (lambda ()
+  ;;              (copy-face '--mode-line-backup 'mode-line)
+  ;;              (doom-modeline-set-selected-window)))
 
   :custom-face
   '(mode-line-inactive nil)
@@ -41,12 +40,11 @@
   '(mode-line-inactive ((t (:family "Source Code Pro" :height 1)))))
 
 (use-package nyan-mode
-   :ensure t
-   :custom
-   (nyan-cat-face-number 1)
-   (nyan-animate-nyancat t)
-   :hook
-   (doom-modeline-mode . nyan-mode))
+  :custom
+  (nyan-cat-face-number 1)
+  (nyan-animate-nyancat t)
+  :hook
+  (doom-modeline-mode . nyan-mode))
 
 (provide 'line-mode)
 ;;; line-mode.el ends here

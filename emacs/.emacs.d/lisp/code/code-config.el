@@ -25,7 +25,6 @@
   "Call the packages for code editig."
 
   (use-package yasnippet
-    :ensure t
     :config
     (yas-global-mode 1)
     :hook (go-mode . yas-minor-mode))
@@ -33,11 +32,9 @@
   (use-package yasnippet-snippets
     :after yasnippet)
 
-  (use-package clojure-snippets
-    :ensure t)
+  (use-package clojure-snippets)
 
   (use-package flycheck
-    :ensure t
     :init (add-hook 'after-init-hook #'global-flycheck-mode)
     :config
     (add-to-list 'display-buffer-alist ;; custom flycheck buffer display(smaller and at the bottom)
@@ -49,6 +46,7 @@
                    (window-height   . 0.2))))
 
   (use-package flyspell
+    :ensure nil
     :diminish
     :if (executable-find "aspell")
     :hook
@@ -75,45 +73,40 @@
               (apply oldfun args))
           (advice-remove #'message message-off))))
     :config
-    (advice-add #'ispell-init-process :around #'message-off-advice)
-    (use-package flyspell-correct-ivy
-      :bind ("C-M-:" . flyspell-correct-at-point)
-      :config
-      (when (eq system-type 'darwin)
-        (progn
-          (global-set-key (kbd "C-M-;") 'flyspell-correct-at-point)))
-      (setq flyspell-correct-interface #'flyspell-correct-ivy)))
+    (advice-add #'ispell-init-process :around #'message-off-advice))
+
+  (use-package flyspell-correct-ivy
+    :bind ("C-M-:" . flyspell-correct-at-point)
+    :config
+    (when (eq system-type 'darwin)
+      (progn
+        (global-set-key (kbd "C-M-;") 'flyspell-correct-at-point)))
+    (setq flyspell-correct-interface #'flyspell-correct-ivy))
 
   (use-package flyspell-popup
-    :ensure t
     :config
     (define-key flyspell-mode-map (kbd "C-;") #'flyspell-popup-correct)
     (add-hook 'flyspell-mode-hook #'flyspell-popup-auto-correct-mode))
 
   (use-package origami
-    :ensure t
     :config
     (global-origami-mode))
 
-  (use-package format-all
-    :ensure t)
+  (use-package format-all)
 
   ;;; https://github.com/purcell/whitespace-cleanup-mode
   (use-package whitespace-cleanup-mode
-    :ensure t
     :config
     (setq  global-whitespace-cleanup-mode nil))
 
   ;;; https://github.com/Malabarba/aggressive-indent-mode
   (use-package aggressive-indent
-    :ensure t
     :config
     (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
     (global-aggressive-indent-mode 0)
     (add-to-list 'aggressive-indent-excluded-modes 'html-mode))
 
   (use-package anzu
-    :ensure t
     :diminish
     :bind
     ("C-r"   . anzu-query-replace-regexp)
@@ -127,20 +120,20 @@
      '(anzu-replace-to-string-separator " => ")))
 
   (use-package rainbow-delimiters
-    :ensure t
     :hook
     (prog-mode . rainbow-delimiters-mode))
 
-  (use-package sudo-edit
-    :ensure t)
+  ;; Syntax highlighting of known Elisp symbols
+  ;;(use-package highlight-defined
+  ;;  :hook (emacs-lisp-mode . highlight-defined-mode)
+  ;;  :init (setq highlight-defined-face-use-itself t))
 
-  (use-package bug-hunter
-    :ensure t)
+  (use-package sudo-edit)
+
+  (use-package bug-hunter)
 
   (use-package logview
-    :ensure t
     :defer t))
-
 
 (defun set-c-code-style()
   "C indentation and code style."
@@ -148,7 +141,6 @@
   (setq-default c-basic-offset 4
                 tab-width 4
                 indent-tabs-mode nil))
-
 
 (defun set-xml-code-style()
   "XML indentation."
@@ -158,7 +150,6 @@
                c-basic-offset 4
                tab-width 4
                indent-tabs-mode nil))))
-
 
 (defun set-java-code-style()
   "Java indentation and code style."

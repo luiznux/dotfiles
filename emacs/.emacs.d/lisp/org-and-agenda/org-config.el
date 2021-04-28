@@ -7,16 +7,13 @@
   "Setup and call org packages."
 
   (use-package org-bullets
-    :ensure t
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
   (use-package org-download
-    :ensure t
     :hook ('dired-mode-hook 'org-download-enable))
 
   (use-package org-tree-slide
-    :ensure t
     :custom
     (org-image-actual-width nil)))
 

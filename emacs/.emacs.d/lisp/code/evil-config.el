@@ -7,7 +7,6 @@
   "Call evil packages."
 
   (use-package evil
-    :ensure t
     :init
     (setq evil-want-integration t
           evil-want-keybinding nil)
@@ -20,35 +19,27 @@
 
   (use-package evil-collection
     :after evil
-    :ensure t
     :config
     (evil-collection-init)
     (setq evil-collection-setup-minibuffer t
           evil-collection-company-use-tng  nil))
 
   (use-package evil-matchit
-    :ensure t
     :config
     (global-evil-matchit-mode 1))
 
   (use-package evil-surround
-    :ensure t
     :config
     (global-evil-surround-mode 1))
 
-  (use-package evil-leader
-    :ensure t)
+  (use-package evil-leader)
 
-  (use-package evil-org
-    :ensure t)
+  (use-package evil-org)
 
   (use-package undo-tree ;; dependency for evil-undo-system
-    :ensure t
     :config
-    (global-undo-tree-mode))
+    (global-undo-tree-mode)))
 
-  (use-package evil-mode
-    :hook (org-mode . evil-org-mode)))
 
 (setup-evil-packages)
 

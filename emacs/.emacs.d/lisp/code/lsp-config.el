@@ -15,7 +15,6 @@
   "Call lsp-packages."
 
   (use-package lsp-mode
-    :ensure t
     :commands (lsp lsp-deferred)
     :hook
     (go-mode . lsp-deferred)
@@ -39,7 +38,6 @@
     (add-hook 'go-mode-hook #'lsp-go-install-save-hooks))
 
   (use-package lsp-ui
-    :ensure t
     :config
     (setq lsp-ui-doc-enable           t
           lsp-ui-doc-header           t
@@ -48,24 +46,20 @@
           lsp-ui-doc-delay            0.5))
 
   (use-package lsp-treemacs
-    :ensure t
     :config
     (lsp-treemacs-sync-mode 1))
 
   (use-package lsp-origami
-    :ensure t
     :config
     (add-hook 'lsp-after-open-hook #'lsp-origami-try-enable))
 
   (use-package lsp-dart
-    :ensure t
     :hook (dart-mode . lsp))
 
   (use-package dap-mode
-    :ensure t
     :config
-;; Enabling only some features
-;; (setq dap-auto-configure-features '(sessions locals controls tooltip))
+    ;; Enabling only some features
+    ;; (setq dap-auto-configure-features '(sessions locals controls tooltip))
     (dap-mode 1)
     ;; The modes below are optional
     (dap-ui-mode 1)
@@ -79,13 +73,11 @@
     (dap-ui-controls-mode 1))
 
   (use-package ccls
-    :ensure t
     :config (setq ccls-executable "/usr/bin/ccls")
     :hook ((c-mode c++-mode objc-mode cuda-mode) .
            (lambda () (require 'ccls) (lsp))))
 
-  (use-package clojure-mode
-    :ensure t)
+  (use-package clojure-mode)
 
   (use-package lsp-java
     :hook 'java-mode-hook #'lsp))
