@@ -85,7 +85,7 @@
         org-agenda-prefer-last-repeat t)
 
   (setq org-agenda-files ;set org agenda files
-        '("~/org/agenda .org" "~/org/mine .org" "~/org/bday .org" "~/org/coll .org" "~/org/work .org")))
+        '("~/org/agenda .org" "~/org/personal.org" "~/org/bday .org" "~/org/coll.org" "~/org/work .org")))
 
 ;;; Custom agenda defuns
 (defun ll/org/agenda/color-headers-with (tag col col2)
@@ -103,7 +103,7 @@
                            `(face (:foreground ,col :background ,col2 :weight bold))))))
 ;; Helper definitions
 (setq ll/org/agenda-todo-words
-      '("work :" "coll :" "mine :" "agenda :" "bday :"))
+      '("work :" "coll:" "personal:" "agenda :" "bday :"))
 
 
 (defun find-in-line (needle &optional beginning count)
@@ -132,9 +132,9 @@ from the left."
 (defun ll/org/colorize-headings ()
   "Color all headings with :pers: colors."
 
-  (ll/org/agenda/color-headers-with "work :" "#2d2d2d" "#FA74B2")
-  (ll/org/agenda/color-headers-with "coll :" "#2d2d2d" "#c792ea")
-  (ll/org/agenda/color-headers-with "mine :" "#2d2d2d" "#839ce4")
+  (ll/org/agenda/color-headers-with "work :" "#2d2d2d" "#FA74B2")
+  (ll/org/agenda/color-headers-with "coll:" "#2d2d2d" "#c792ea")
+  (ll/org/agenda/color-headers-with "personal:" "#2d2d2d" "#839ce4")
   (ll/org/agenda/color-headers-with "agenda :" "#2d2d2d" "#da8548")
   (ll/org/agenda/color-headers-with "bday :" "#2d2d2d" "#89ddff"))
 

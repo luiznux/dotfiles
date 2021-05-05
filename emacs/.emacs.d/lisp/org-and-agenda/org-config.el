@@ -28,7 +28,7 @@
 (defun org-tags-set ()
   "Set org agenda custom tags."
 
-  (setq org-tag-alist '(("work " . ?w) ("coll " . ?c) ("personal" . ?p))))
+  (setq org-tag-alist '(("work " . ?w) ("coll" . ?c) ("personal" . ?p))))
 
 
 (defun org-TODO-keywords ()
