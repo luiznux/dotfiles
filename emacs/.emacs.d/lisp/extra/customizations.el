@@ -159,6 +159,14 @@ Minibuffer is ignored."
 (setq user-full-name "Luiz Tagliaferro"
       user-mail-address "luiztagli@hotmail.com")
 
+(dolist (hook '(special-mode-hook
+                term-mode-hook
+                comint-mode-hook
+                compilation-mode-hook
+                minibuffer-setup-hook))
+  (add-hook hook
+            (lambda () (setq show-trailing-whitespace nil))))
+
 (visual-config-modes)
 (set-default-indentation)
 (enable-ido-mode)
@@ -174,4 +182,5 @@ Minibuffer is ignored."
 
 (global-set-key (kbd "C-a") 'beginning-of-line++)
 
+(provide 'customizations)
 ;;; customizations.el ends here

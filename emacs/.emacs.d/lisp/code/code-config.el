@@ -26,8 +26,8 @@
 
   (use-package yasnippet
     :config
-    (yas-global-mode 1)
-    :hook (go-mode . yas-minor-mode))
+    :hook ((go-mode . yas-minor-mode)
+           (after-init-hook . yas-global-mode)))
 
   (use-package yasnippet-snippets
     :after yasnippet)

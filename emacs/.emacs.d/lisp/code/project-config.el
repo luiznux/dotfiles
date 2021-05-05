@@ -142,15 +142,15 @@
     '(minimap-active-region-background ((t (:extend t :background "#232526"))))
     '(minimap-current-line-face ((t (:background "#344256"))))))
 
-;;    (use-package paren
-;;    :hook
-;;    (after-init . show-paren-mode)
-;;    ;:custom-face
-;;    ;(show-paren-match ((nil (:background "#44475a" :foreground "#f1fa8c")))) ;; :box t
-;;    :custom
-;;    (show-paren-style 'mixed)
-;;    (show-paren-when-point-inside-paren t)
-;;    (show-paren-when-point-in-periphery t))
+;;(use-package paren
+;;  :hook
+;;  (after-init . show-paren-mode)
+;;  :custom-face
+;;  (show-paren-match ((nil (:background "#44475a" :foreground "#f1fa8c")))) ;; :box t
+;;  :custom
+;;  (show-paren-style 'mixed)
+;;  (show-paren-when-point-inside-paren t)
+;;  (show-paren-when-point-in-periphery t))
 
 (setup-project-packages)
 

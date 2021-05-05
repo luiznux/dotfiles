@@ -15,7 +15,6 @@
   (define-key helm-map (kbd "C-S-h") 'describe-key)
   (define-key helm-map [escape] 'helm-keyboard-quit))
 
-(require 'helm-config)
 (defun helm-config()
 
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to do persistent action
@@ -51,9 +50,14 @@
         helm-buffers-fuzzy-matching    t
         helm-recentf-fuzzy-match       t)
 
-  (global-set-key (kbd "C-x b") 'helm-mini)
-  (helm-autoresize-mode 1))
+  (use-package helm-icons
+    :config
+    (setq helm-icons-provider 'all-the-icons)
+    (helm-icons-enable))
 
-(helm-config)
+  (global-set-key (kbd "C-x b") 'helm-mini))
 
+                                        ;(helm-config)
+
+(provide 'helm-config)
 ;;; helm-config.el ends here

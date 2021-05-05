@@ -1,6 +1,8 @@
-;;; package --- Summary
+;;; line-mode.el  --- Configs for display mode line in emacs
+;;;
 ;;; Commentary:
 ;;; Custom Emacs mode line package
+;;;
 ;;; Code:
 
 (use-package doom-modeline

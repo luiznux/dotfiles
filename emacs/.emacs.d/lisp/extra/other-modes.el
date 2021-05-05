@@ -6,8 +6,23 @@
 (defun setup-other-modes()
   "Call custom mode packages."
 
+  (use-package go-mode
+    :config
+    (autoload 'go-mode "go-mode" nil t)
+    (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode)))
+
+  (use-package yaml-mode
+    :config
+    (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+
+  (use-package docker
+    :bind ("C-c d" . docker))
+
   (use-package dockerfile-mode
     :defer t)
+
+  (use-package esup
+    :pin melpa)
 
   (use-package gitignore-mode
     :defer t)
@@ -15,29 +30,19 @@
   (use-package markdown-mode
     :defer t)
 
-  (use-package yaml-mode
+  (use-package pyvenv
     :config
-    (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+    (pyvenv-mode 1))
 
+  ;;CLOJURE
   (use-package clojure-snippets)
-
   (use-package clojure-mode)
-
   (use-package cider)
 
-  (use-package go-mode
-    :config
-    (autoload 'go-mode "go-mode" nil t)
-    (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode)))
-
-  (use-package docker
-    :bind ("C-c d" . docker))
-
-  (use-package esup
-    :pin melpa))
+  (use-package memory-usage))
 
 
 (setup-other-modes)
 
-(provide 'custom-modes-config)
+(provide 'other-modes)
 ;;; other-modes.el ends here

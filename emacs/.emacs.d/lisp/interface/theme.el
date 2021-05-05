@@ -24,4 +24,5 @@
   (solaire-global-mode +1)
   (load-theme 'doom-one t))
 
+(provide 'theme)
 ;;; theme.el ends here
