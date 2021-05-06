@@ -130,38 +130,38 @@
  Other buffer group by `centaur-tabs-get-group-name' with project name."
       (list
        (cond
-	    ((or (string-equal "*" (substring (buffer-name) 0 1))
-	         (memq major-mode '(magit-process-mode
-				                magit-status-mode
-				                magit-diff-mode
-				                magit-log-mode
-				                magit-file-mode
-				                magit-blob-mode
-				                magit-blame-mode
-				                )))
-	     "Emacs")
-	    ((derived-mode-p 'prog-mode)
-	     "Editing")
+        ((or (string-equal "*" (substring (buffer-name) 0 1))
+             (memq major-mode '(magit-process-mode
+                                magit-status-mode
+                                magit-diff-mode
+                                magit-log-mode
+                                magit-file-mode
+                                magit-blob-mode
+                                magit-blame-mode
+                                )))
+         "Emacs")
+        ((derived-mode-p 'prog-mode)
+         "Editing")
         ((derived-mode-p 'emacs-lisp-mode)
          "Elisp")
-	    ((derived-mode-p 'dired-mode)
-	     "Dired")
-	    ((memq major-mode '(helpful-mode
-			                help-mode))
-	     "Help")
-	    ((memq major-mode '(org-mode
-			                org-agenda-clockreport-mode
-			                org-src-mode
-			                org-agenda-mode
-			                org-beamer-mode
-			                org-indent-mode
-			                org-bullets-mode
-			                org-cdlatex-mode
-			                org-agenda-log-mode
-			                diary-mode))
-	     "OrgMode")
-	    (t
-	     (centaur-tabs-get-group-name (current-buffer))))))
+        ((derived-mode-p 'dired-mode)
+         "Dired")
+        ((memq major-mode '(helpful-mode
+                            help-mode))
+         "Help")
+        ((memq major-mode '(org-mode
+                            org-agenda-clockreport-mode
+                            org-src-mode
+                            org-agenda-mode
+                            org-beamer-mode
+                            org-indent-mode
+                            org-bullets-mode
+                            org-cdlatex-mode
+                            org-agenda-log-mode
+                            diary-mode))
+         "OrgMode")
+        (t
+         (centaur-tabs-get-group-name (current-buffer))))))
     :hook
     (dashboard-mode . centaur-tabs-local-mode)
     (term-mode . centaur-tabs-local-mode)
@@ -173,8 +173,8 @@
     ("C-<next>" . centaur-tabs-forward)
     ("C-c t" . centaur-tabs-counsel-switch-group)
     (:map evil-normal-state-map
-	      ("g t" . centaur-tabs-forward)
-	      ("g T" . centaur-tabs-backward)))
+          ("g t" . centaur-tabs-forward)
+          ("g T" . centaur-tabs-backward)))
 
   (use-package pdf-view
     :ensure pdf-tools
@@ -389,10 +389,39 @@
                    ;;(display-buffer-reuse-window display-buffer-in-direction)
                    ;;display-buffer-in-direction/direction/dedicated is added in emacs27
                    ;;(direction . bottom)
-                   ;;(dedicated . t) ;dedicated is supported in emacs27
+                   (dedicated . t) ;dedicated is supported in emacs27
                    (reusable-frames . visible)
                    (window-height . 0.3)))
-    (global-set-key [f2] 'vterm-toggle))
+    (global-set-key [f2] 'vterm-toggle)
+
+    ;; https://github.com/ema2159/centaur-tabs/
+    ;;You can customize centaur-tabs and make all vterm buffer in a
+    ;;tab group, and use centaur-tabs-forward and
+    ;;centaur-tabs-backward switch from one vterm buffer to another.
+    (setq centaur-tabs-buffer-groups-function 'vmacs-awesome-tab-buffer-groups)
+    (defun vmacs-awesome-tab-buffer-groups ()
+      "`vmacs-awesome-tab-buffer-groups' control buffers' group rules. "
+      (list
+       (cond
+        ((derived-mode-p 'eshell-mode 'term-mode 'shell-mode 'vterm-mode)
+         "Term")
+        ((string-match-p (rx (or
+                              "\*Helm"
+                              "\*helm"
+                              "\*tramp"
+                              "\*Completions\*"
+                              "\*sdcv\*"
+                              "\*Messages\*"
+                              "\*Ido Completions\*"
+                              ))
+                         (buffer-name))
+         "Emacs")
+        (t "Common"))))
+
+    (setq vterm-toggle--vterm-buffer-p-function 'vmacs-term-mode-p)
+    (defun vmacs-term-mode-p(&optional args)
+      (derived-mode-p 'eshell-mode 'term-mode 'shell-mode 'vterm-mode)))
+
 
   (use-package latex-preview-pane)
 
