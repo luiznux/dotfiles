@@ -38,9 +38,9 @@
     :config
     (which-key-mode))
 
-;;  (use-package smex
-;;    :config
-;;    (global-set-key (kbd "M-x") 'smex))
+  ;;  (use-package smex
+  ;;    :config
+  ;;    (global-set-key (kbd "M-x") 'smex))
 
   ;; Add icons for emacs
   (use-package all-the-icons)
@@ -238,6 +238,7 @@
              completion-in-region-mode
              pdf-annot-list-mode
              flycheck-error-list-mode
+             vterm-mode
              ido-mode
              lsp-treemacs-error-list-mode) . hide-mode-line-mode)))
 
@@ -375,6 +376,23 @@
             (list-environment-mode :select t :size 0.3 :align 'below :autoclose t)
             (tabulated-list-mode :size 0.4 :align 'below))))
 
+
+  (use-package vterm)
+  (use-package vterm-toggle
+    :after vterm
+    :config
+    (setq vterm-toggle-cd-auto-create-buffer nil)
+    (setq vterm-toggle-fullscreen-p nil)
+    (add-to-list 'display-buffer-alist
+                 '((lambda(bufname _) (with-current-buffer bufname (equal major-mode 'vterm-mode)))
+                   (display-buffer-reuse-window display-buffer-at-bottom)
+                   ;;(display-buffer-reuse-window display-buffer-in-direction)
+                   ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+                   ;;(direction . bottom)
+                   ;;(dedicated . t) ;dedicated is supported in emacs27
+                   (reusable-frames . visible)
+                   (window-height . 0.3)))
+    (global-set-key [f2] 'vterm-toggle))
 
   (use-package latex-preview-pane)
 

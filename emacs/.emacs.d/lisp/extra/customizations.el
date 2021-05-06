@@ -162,6 +162,7 @@ Minibuffer is ignored."
 (dolist (hook '(special-mode-hook
                 term-mode-hook
                 comint-mode-hook
+                vterm-mode-hook
                 compilation-mode-hook
                 minibuffer-setup-hook))
   (add-hook hook
@@ -181,6 +182,7 @@ Minibuffer is ignored."
 (defalias 'list-buffers 'ibuffer)
 
 (global-set-key (kbd "C-a") 'beginning-of-line++)
+
 
 (provide 'customizations)
 ;;; customizations.el ends here

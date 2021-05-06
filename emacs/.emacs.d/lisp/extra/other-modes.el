@@ -44,5 +44,6 @@
 
 (setup-other-modes)
 
+
 (provide 'other-modes)
 ;;; other-modes.el ends here
