@@ -123,6 +123,11 @@
     :hook
     (prog-mode . rainbow-delimiters-mode))
 
+  (use-package autorevert
+    :ensure nil
+    :diminish
+    :hook (after-init . global-auto-revert-mode))
+
   ;; Syntax highlighting of known Elisp symbols
   ;;(use-package highlight-defined
   ;;  :hook (emacs-lisp-mode . highlight-defined-mode)
