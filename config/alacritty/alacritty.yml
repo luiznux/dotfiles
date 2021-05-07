@@ -653,21 +653,23 @@ mouse:
   #- { key: NumpadSubtract, mods: Control,                         action: DecreaseFontSize }
   #
   #
+
 key_bindings:
-  - { key: V,        mods: Alt, action: Paste                        }
-  - { key: C,        mods: Alt, action: Copy                         }
+  - { key: V,        mods: Alt,     action: Paste                        }
+  - { key: C,        mods: Alt,     action: Copy                         }
   - { key: Q,        mods: Command, action: Quit                         }
   - { key: W,        mods: Command, action: Quit                         }
+  - { key: U,        mods: Control, action: ScrollPageUp                 }
+  - { key: F,        mods: Control, action: ScrollPageDown               }
+  - { key: Key0,     mods: Command, action: ResetFontSize                }
+  - { key: Equals,   mods: Command, action: IncreaseFontSize             }
+  - { key: Minus,    mods: Command, action: DecreaseFontSize             }
   - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
   - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }
   - { key: End,                     chars: "\x1bOF",   mode: AppCursor   }
   - { key: End,                     chars: "\x1b[F",   mode: ~AppCursor  }
-  - { key: Key0,     mods: Command, action: ResetFontSize                }
-  - { key: Equals,   mods: Command, action: IncreaseFontSize             }
-  - { key: Minus,    mods: Command, action: DecreaseFontSize             }
   - { key: PageUp,   mods: Shift,   chars: "\x1b[5;2~"                   }
   - { key: PageUp,   mods: Control, chars: "\x1b[5;5~"                   }
-  - { key: PageUp,                  chars: "\x1b[5~"                     }
   - { key: PageDown, mods: Shift,   chars: "\x1b[6;2~"                   }
 
 #---------------------------------------------------
