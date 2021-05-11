@@ -13,9 +13,32 @@
   (use-package org-download
     :hook ('dired-mode-hook 'org-download-enable))
 
+  ;; Presentation
   (use-package org-tree-slide
-    :custom
-    (org-image-actual-width nil)))
+    :diminish
+    :functions (org-display-inline-images
+                org-remove-inline-images)
+    :bind (:map org-mode-map
+                ("s-<f7>" . org-tree-slide-mode)
+                :map org-tree-slide-mode-map
+                ("<left>" . org-tree-slide-move-previous-tree)
+                ("<right>" . org-tree-slide-move-next-tree)
+                ("S-SPC" . org-tree-slide-move-previous-tree)
+                ("SPC" . org-tree-slide-move-next-tree))
+    :hook ((org-tree-slide-play . (lambda ()
+                                    (text-scale-increase 4)
+                                    (org-display-inline-images)
+                                    (read-only-mode 1)))
+           (org-tree-slide-stop . (lambda ()
+                                    (text-scale-increase 0)
+                                    (org-remove-inline-images)
+                                    (read-only-mode -1))))
+    :config
+    (org-tree-slide-simple-profile)
+    (setq org-tree-slide-skip-outline-level 2))
+
+  (use-package org-superstar
+    :hook (org-mode . org-superstar-mode)))
 
 
 (defun org-capture-config ()
@@ -29,6 +52,13 @@
   "Set org agenda custom tags."
 
   (setq org-tag-alist '(("work " . ?w) ("coll" . ?c) ("personal" . ?p))))
+
+(defun org-priority-config ()
+  "Set org priority custom faces."
+  (setq org-priority-faces
+        '((?A . (:foreground "red"   ))
+          (?B . (:foreground "yellow"))
+          (?C . (:foreground "green" )))))
 
 
 (defun org-TODO-keywords ()
@@ -48,6 +78,7 @@
 
 (org-capture-config)
 (org-tags-set)
+(org-priority-config)
 (org-TODO-keywords)
 (setup-org-packages)
 

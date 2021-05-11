@@ -77,12 +77,23 @@
   (setq org-agenda-custom-commands
         '(("x" "Describe command here" agenda "")))
 
-  (setq org-agenda-skip-scheduled-delay-if-deadline t
-        org-agenda-skip-deadline-prewarning-if-scheduled t
-        org-agenda-span 16 ; show 16 days in agenda
-        org-agenda-compact-blocks t
-        org-agenda-show-future-repeats nil
-        org-agenda-prefer-last-repeat t)
+  (setq org-agenda-skip-deadline-prewarning-if-scheduled   t
+        org-agenda-skip-scheduled-delay-if-deadline        t
+        org-agenda-prefer-last-repeat                      t
+        org-agenda-show-future-repeats                     nil
+        org-catch-invisible-edits                          'smart
+        org-agenda-compact-blocks                          t
+        org-hide-emphasis-markers                          t
+        org-pretty-entities                                nil
+        org-startup-indented                               t
+        org-agenda-span                                    15 ; show 15 days in agenda
+        org-log-done                                       'time)
+
+  ;; Babel
+  (setq org-confirm-babel-evaluate  nil
+        org-src-fontify-natively    t
+        org-src-tab-acts-natively   t)
+
 
   (setq org-agenda-files ;set org agenda files
         '("~/org/agenda .org" "~/org/personal.org" "~/org/bday .org" "~/org/coll.org" "~/org/work .org")))
