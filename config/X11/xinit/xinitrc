@@ -1,3 +1,4 @@
 picom &
-exec i3
 xset r rate 500 37
+exec i3
+
