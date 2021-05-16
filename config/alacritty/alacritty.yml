@@ -659,8 +659,8 @@ key_bindings:
   - { key: C,        mods: Alt,     action: Copy                         }
   - { key: Q,        mods: Command, action: Quit                         }
   - { key: W,        mods: Command, action: Quit                         }
-  - { key: U,        mods: Control, action: ScrollPageUp                 }
-  - { key: F,        mods: Control, action: ScrollPageDown               }
+  - { key: U,        mods: Alt,     action: ScrollPageUp                 }
+  - { key: F,        mods: Alt,     action: ScrollPageDown               }
   - { key: Key0,     mods: Command, action: ResetFontSize                }
   - { key: Equals,   mods: Command, action: IncreaseFontSize             }
   - { key: Minus,    mods: Command, action: DecreaseFontSize             }
