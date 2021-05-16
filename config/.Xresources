@@ -16,8 +16,8 @@
 !---------------------------------------------------
 !-------------------  EMACS ------------------------
 !
-Emacs.font:         Source Code Pro:size=9
-Emacs*background:   #0B0719
+!Emacs.font:         Source Code Pro:size=9
+!Emacs*background:   #0B0719
 
 
 !---------------------------------------------------
