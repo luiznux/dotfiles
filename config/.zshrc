@@ -236,6 +236,6 @@ export ARCHFLAGS="-arch x86_64"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
-#Syntax highlighting path
+#Custom plugins paths
 source /home/luiznux/Github/prog/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+source /home/luiznux/Github/prog/zsh-autosuggestions/zsh-autosuggestions.zsh
