@@ -355,8 +355,15 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 #Picom
 exec_always --no-startup-id picom
 
+#Adjusting typematic delay and rate
+exec_always --no-startup-id xset r rate 500 37
+
 #Emacs(optional)
 #exec_always --no-startup-id emacs; move to workspace $ws2
+
+#Session optinal
+#exec_always --no-startup-id spotify
+#exec_always --no-startup-id transmission-gtk
 
 ##-------------------------------------------##
 ##--------- specific windows config ---------##
