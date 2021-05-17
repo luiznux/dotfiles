@@ -37,6 +37,8 @@
     (org-tree-slide-simple-profile)
     (setq org-tree-slide-skip-outline-level 2))
 
+  (use-package org-alert)
+
   (use-package org-superstar
     :hook (org-mode . org-superstar-mode)))
 
@@ -44,7 +46,7 @@
 (defun org-capture-config ()
   "Org caputer config."
 
-  (setq org-default-notes-file "~/org/capture.org")
+  (setq org-default-notes-file "~/org/cap .org")
   (global-set-key (kbd "C-c c") 'org-capture))
 
 
@@ -65,7 +67,7 @@
   "Add and customize org TODO keywords."
 
   (setq org-todo-keywords
-        '((sequence "TODO" "NOTE" "IMPORTANT" "WAITING" "CANCELLED" "IN-PROGRESS" "WORKING" "DONE")))
+        '((sequence "TODO" "NOTE" "IMPORTANT" "WAITING" "IN-PROGRESS" "WORKING" "|" "CANCELLED" "DONE")))
 
   (setq org-todo-keyword-faces '(("TODO"         . (:foreground "#ff8080" :weight bold))
                                  ("NOTE"         . (:foreground "#ffe9aa" :weight bold))

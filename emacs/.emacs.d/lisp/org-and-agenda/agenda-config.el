@@ -79,6 +79,7 @@
 
   (setq org-agenda-skip-deadline-prewarning-if-scheduled   t
         org-agenda-skip-scheduled-delay-if-deadline        t
+        org-agenda-breadcrumbs-separator                   " ❱ "
         org-agenda-prefer-last-repeat                      t
         org-agenda-show-future-repeats                     nil
         org-catch-invisible-edits                          'smart
@@ -94,9 +95,15 @@
         org-src-fontify-natively    t
         org-src-tab-acts-natively   t)
 
-
-  (setq org-agenda-files ;set org agenda files
-        '("~/org/agenda .org" "~/org/personal.org" "~/org/bday .org" "~/org/coll.org" "~/org/work .org")))
+  ;;set org agenda files
+  (setq org-directory "~/org"
+        org-agenda-files (quote
+                          ("~/org/agenda .org"
+                           "~/org/personal.org"
+                           "~/org/bday .org"
+                           "~/org/coll.org"
+                           "~/org/cap .org"
+                           "~/org/work .org"))))
 
 ;;; Custom agenda defuns
 (defun ll/org/agenda/color-headers-with (tag col col2)
@@ -114,7 +121,7 @@
                            `(face (:foreground ,col :background ,col2 :weight bold))))))
 ;; Helper definitions
 (setq ll/org/agenda-todo-words
-      '("work :" "coll:" "personal:" "agenda :" "bday :"))
+      '("work :" "coll:" "personal:" "agenda :" "bday :" "cap :"))
 
 
 (defun find-in-line (needle &optional beginning count)
@@ -147,7 +154,8 @@ from the left."
   (ll/org/agenda/color-headers-with "coll:" "#2d2d2d" "#c792ea")
   (ll/org/agenda/color-headers-with "personal:" "#2d2d2d" "#839ce4")
   (ll/org/agenda/color-headers-with "agenda :" "#2d2d2d" "#da8548")
-  (ll/org/agenda/color-headers-with "bday :" "#2d2d2d" "#89ddff"))
+  (ll/org/agenda/color-headers-with "bday :" "#2d2d2d" "#89ddff")
+  (ll/org/agenda/color-headers-with "cap :" "#2d2d2d" "#c3e88d"))
 
 ;;-------------------
 
