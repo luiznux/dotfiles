@@ -356,7 +356,7 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id picom
 
 #Adjusting typematic delay and rate
-exec_always --no-startup-id xset r rate 500 37
+exec_always --no-startup-id sleep 1; xset r rate 500 37
 
 #Emacs(optional)
 #exec_always --no-startup-id emacs; move to workspace $ws2
