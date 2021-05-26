@@ -119,7 +119,7 @@ install_packages(){
 
     gnu_things=" libcurl-gnutls mailutils "
 
-    term_shell=" zsh zsh-completions alacritty rxvt-unicode rxvt-unicode-terminfo urxvt-perls "
+    term_shell=" zsh zsh-completions libvterm alacritty rxvt-unicode rxvt-unicode-terminfo urxvt-perls "
 
     printer=" cups cups-pdf system-config-printer "
 
