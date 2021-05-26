@@ -219,7 +219,6 @@
               (set-window-configuration wconf)))))
       (advice-add #'pdf-view-decrypt-document :before #'my-pdf-tools-install)))
 
-
   (use-package parrot
     :config
     (parrot-mode)
@@ -377,27 +376,77 @@
             (tabulated-list-mode :size 0.4 :align 'below))))
 
 
-  (use-package vterm)
+  (use-package vterm
+    :config
+    (defun evil-collection-vterm-escape-stay ()
+      "Go back to normal state but don't move
+cursor backwards. Moving cursor backwards is the default vim behavior but it is
+not appropriate in some cases like terminals."
+      (setq-local evil-move-cursor-back nil))
+
+    (add-hook 'vterm-mode-hook #'evil-collection-vterm-escape-stay))
+
+  (use-package  multi-vterm
+    :after vterm
+    :config
+	(add-hook 'vterm-mode-hook
+			  (lambda ()
+			    (setq-local evil-insert-state-cursor 'box)
+			    (evil-insert-state)))
+	(define-key vterm-mode-map [return]                      #'vterm-send-return)
+
+	(setq vterm-keymap-exceptions nil)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-e")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-f")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-a")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-v")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-b")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-w")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-u")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-d")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-n")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-m")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-p")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-j")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-k")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-r")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-t")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-g")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-c")      #'vterm--self-insert)
+	(evil-define-key 'insert vterm-mode-map (kbd "C-SPC")    #'vterm--self-insert)
+	(evil-define-key 'normal vterm-mode-map (kbd "C-d")      #'vterm--self-insert)
+	(evil-define-key 'normal vterm-mode-map (kbd ",c")       #'multi-vterm)
+	(evil-define-key 'normal vterm-mode-map (kbd ",n")       #'multi-vterm-next)
+	(evil-define-key 'normal vterm-mode-map (kbd ",p")       #'multi-vterm-prev)
+	(evil-define-key 'normal vterm-mode-map (kbd "i")        #'evil-insert-resume)
+	(evil-define-key 'normal vterm-mode-map (kbd "o")        #'evil-insert-resume)
+	(evil-define-key 'normal vterm-mode-map (kbd "<return>") #'evil-insert-resume))
+
   (use-package vterm-toggle
     :after vterm
     :config
+    (global-set-key [f2] 'vterm-toggle)
+    (global-set-key [C-f2] 'vterm-toggle-cd)
+    (define-key vterm-mode-map [(control return)]   #'vterm-toggle-insert-cd)
+    (define-key vterm-mode-map (kbd "s-n") 'vterm-toggle-forward) ;Switch to next vterm buffer
+    (define-key vterm-mode-map (kbd "s-p") 'vterm-toggle-backward) ;Switch to previous vterm buffer
+
     (setq vterm-toggle-cd-auto-create-buffer nil)
+
+    (defun myssh()
+      (interactive)
+      (let ((default-directory "/ssh:root@host:~"))
+        (vterm-toggle-cd)))
+
     (setq vterm-toggle-fullscreen-p nil)
     (add-to-list 'display-buffer-alist
                  '((lambda(bufname _) (with-current-buffer bufname (equal major-mode 'vterm-mode)))
-                   (display-buffer-reuse-window display-buffer-at-bottom)
-                   ;;(display-buffer-reuse-window display-buffer-in-direction)
-                   ;;display-buffer-in-direction/direction/dedicated is added in emacs27
-                   ;;(direction . bottom)
+                   (display-buffer-reuse-window display-buffer-in-side-window)
+                   (side . bottom)
                    (dedicated . t) ;dedicated is supported in emacs27
                    (reusable-frames . visible)
                    (window-height . 0.3)))
-    (global-set-key [f2] 'vterm-toggle)
 
-    ;; https://github.com/ema2159/centaur-tabs/
-    ;;You can customize centaur-tabs and make all vterm buffer in a
-    ;;tab group, and use centaur-tabs-forward and
-    ;;centaur-tabs-backward switch from one vterm buffer to another.
     (setq centaur-tabs-buffer-groups-function 'vmacs-awesome-tab-buffer-groups)
     (defun vmacs-awesome-tab-buffer-groups ()
       "`vmacs-awesome-tab-buffer-groups' control buffers' group rules. "
@@ -421,7 +470,6 @@
     (setq vterm-toggle--vterm-buffer-p-function 'vmacs-term-mode-p)
     (defun vmacs-term-mode-p(&optional args)
       (derived-mode-p 'eshell-mode 'term-mode 'shell-mode 'vterm-mode)))
-
 
   (use-package latex-preview-pane)
 
