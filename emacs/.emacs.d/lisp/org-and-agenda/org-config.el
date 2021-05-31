@@ -37,10 +37,13 @@
     (org-tree-slide-simple-profile)
     (setq org-tree-slide-skip-outline-level 2))
 
-  (use-package org-alert)
-
   (use-package org-superstar
-    :hook (org-mode . org-superstar-mode)))
+    :hook (org-mode . org-superstar-mode))
+
+  (use-package org-fragtog
+    :config (add-hook 'org-mode-hook 'org-fragtog-mode))
+
+  (use-package org-alert))
 
 
 (defun org-capture-config ()
