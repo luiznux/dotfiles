@@ -7,6 +7,11 @@
 
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode)
+  :init
+  ;; Prevent flash of unstyled modeline at startup
+  (unless after-init-time
+    (setq doom-modeline--default-format mode-line-format)
+    (setq-default mode-line-format nil))
   :config
   (setq doom-modeline-buffer-file-name-style      'truncate-with-project
         doom-modeline-icon                        t

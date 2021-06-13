@@ -12,13 +12,6 @@
 ;;;
 ;;; Code:
 
-(require 'package)
-;;(setq package-enable-at-startup nil)
-;;(setq packages-check-signature nil)
-
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
@@ -69,40 +62,15 @@
               t)))
 
 ;; Update GPG keyring for GNU ELPA
-;;(use-package gnu-elpa-keyring-update)
+(use-package gnu-elpa-keyring-update)
 
 ;; Auto update packages
-;;(use-package auto-package-update
-;;  :init
-;;  (setq auto-package-update-delete-old-versions t
-;;        auto-package-update-hide-results t)
-;;  (defalias 'upgrade-packages #'auto-package-update-now))
+(use-package auto-package-update
+  :init
+  (setq auto-package-update-delete-old-versions t
+        auto-package-update-hide-results t)
+  (defalias 'upgrade-packages #'auto-package-update-now))
 
-;; Code Packages
-(require 'code-config)
-(require 'project-config)
-(require 'evil-config)
-(require 'git-config)
-(require 'lsp-config)
-
-;; Interface
-(require 'interface)
-(require 'line-mode)
-(require 'helm-config)
-(require 'theme)
-(require 'company-config)
-
-;; Others configs
-(require 'other-modes)
-(require 'customizations)
-
-;; Org and Agenda config
-(require 'org-config)
-(require 'agenda-config)
-(require 'ivy-config)
-
-;; Local Packages
-;;(load "~/.emacs.d/lisp/local/local-packages.el")
 
 (provide 'packages)
 ;;; packages.el ends here
