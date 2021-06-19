@@ -133,6 +133,13 @@
   ;;  :hook (emacs-lisp-mode . highlight-defined-mode)
   ;;  :init (setq highlight-defined-face-use-itself t))
 
+  (use-package quickrun
+    :bind
+    (("<f5>" . quickrun)
+     ("M-<f5>" . quickrun-shell)
+     ("C-c e" . quickrun)
+     ("C-c C-e" . quickrun-shell)))
+
   (use-package sudo-edit)
 
   (use-package bug-hunter)
