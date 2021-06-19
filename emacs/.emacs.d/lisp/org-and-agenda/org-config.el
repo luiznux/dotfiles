@@ -43,6 +43,10 @@
   (use-package org-fragtog
     :config (add-hook 'org-mode-hook 'org-fragtog-mode))
 
+  ;; Table of contents
+  (use-package toc-org
+    :hook (org-mode . toc-org-mode))
+
   (use-package org-alert))
 
 
