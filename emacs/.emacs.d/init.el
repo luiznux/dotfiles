@@ -53,14 +53,14 @@ If you experience stuttering, increase this.")
 
             ;; Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
             ;; @see http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
-            (defun my-minibuffer-setup-hook ()
-              (setq gc-cons-threshold emacs-gc-cons-upper-limit))
-
-            (defun my-minibuffer-exit-hook ()
-              (setq gc-cons-threshold emacs-gc-cons-threshold))
-
-            (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
-            (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)))
+            (add-hook 'minibuffer-setup-hook
+                      (lambda ()
+                        "Enlarge gc cons threshold while entering minibuffer."
+                        (setq gc-cons-threshold emacs-gc-cons-upper-limit)))
+            (add-hook 'minibuffer-exit-hook
+                      (lambda ()
+                        "Recover gc cons threshold while exiting minibuffer."
+                        (setq gc-cons-threshold emacs-gc-cons-threshold)))))
 
 
 ;; Load path
