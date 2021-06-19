@@ -21,6 +21,16 @@
   (use-package dockerfile-mode
     :defer t)
 
+  (use-package hackernews
+    :commands (hackernews))
+
+  ;; games and useless things
+  (use-package 2048-game
+    :commands (2048-game))
+  (use-package speed-type
+    :commands (speed-type-text))
+  (use-package snow)
+
   (use-package esup
     :pin melpa)
 
@@ -28,6 +38,9 @@
     :defer t)
 
   (use-package markdown-mode
+    :defer t)
+
+  (use-package htmlize
     :defer t)
 
   (use-package csv-mode)
@@ -62,7 +75,7 @@
     ;; Live Coding in Python
     (use-package live-py-mode))
 
-  
+
   ;;CLOJURE
   (use-package clojure-snippets)
   (use-package clojure-mode)
