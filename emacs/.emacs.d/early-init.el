@@ -49,5 +49,12 @@
 (when (featurep 'ns)
   (push '(ns-transparent-titlebar . t) default-frame-alist))
 
+;; Disable Splash Screen
+(setq inhibit-startup-screen t)
+(setq initial-major-mode 'org-mode)
+;; cool message for scratch  ( ͡° ͜ʖ ͡°)
+(setq initial-scratch-message "Fala ai seu *CORNO* 🐂  \n\n")
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; early-init.el ends here
