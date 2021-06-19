@@ -249,6 +249,36 @@ Minibuffer is ignored."
                  ))
   (setq sasa/help-temp-buffers (cdr sasa/help-temp-buffers)))
 
+;; Remove useless whitespace before saving a file
+(defun delete-trailing-whitespace-except-current-line ()
+  "An alternative to `delete-trailing-whitespace'.
+
+The original function deletes trailing whitespace of the current line."
+  (interactive)
+  (let ((begin (line-beginning-position))
+        (end (line-end-position)))
+    (save-excursion
+      (when (< (point-min) (1- begin))
+        (save-restriction
+          (narrow-to-region (point-min) (1- begin))
+          (delete-trailing-whitespace)
+          (widen)))
+      (when (> (point-max) (+ end 2))
+        (save-restriction
+          (narrow-to-region (+ end 2) (point-max))
+          (delete-trailing-whitespace)
+          (widen))))))
+
+(defun smart-delete-trailing-whitespace ()
+  "Invoke `delete-trailing-whitespace-except-current-line' on selected major modes only."
+  (unless (member major-mode '(diff-mode))
+    (delete-trailing-whitespace-except-current-line)))
+
+(add-hook 'before-save-hook #'smart-delete-trailing-whitespace)
+
+;; Replace selection on insert
+(delete-selection-mode 1)
+
 (setq user-full-name "Luiz Tagliaferro"
       user-mail-address "luiztagli@hotmail.com")
 
