@@ -53,7 +53,7 @@
 (setq inhibit-startup-screen t)
 (setq initial-major-mode 'org-mode)
 ;; cool message for scratch  ( ͡° ͜ʖ ͡°)
-(setq initial-scratch-message "Fala ai seu *CORNO* 🐂  \n\n")
+(setq initial-scratch-message "Fala ai seu *CORNO* 🐂  \n\n\n")
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
