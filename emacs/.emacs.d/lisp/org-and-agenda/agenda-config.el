@@ -88,7 +88,11 @@
         org-pretty-entities                                nil
         org-startup-indented                               t
         org-agenda-span                                    15 ; show 15 days in agenda
-        org-log-done                                       'time)
+        org-log-done                                       'time
+        org-agenda-current-time-string                     " ᐊ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ NOW "
+        org-agenda-time-grid                               '((daily today require-timed)
+                                                             (800 1000 1200 1400 1600 1800 2000)
+                                                             " ...... " "----------------"))
 
   ;; Babel
   (setq org-confirm-babel-evaluate  nil

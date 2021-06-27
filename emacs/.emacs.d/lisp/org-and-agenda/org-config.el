@@ -74,15 +74,21 @@
   "Add and customize org TODO keywords."
 
   (setq org-todo-keywords
-        '((sequence "TODO" "NOTE" "IMPORTANT" "WAITING" "IN-PROGRESS" "WORKING" "|" "CANCELLED" "DONE")))
+        '((sequence "TODO(t)"
+                    "NOTE(n)"
+                    "WAITING(w)"
+                    "IMPORTANT(i)"
+                    "DOING(o)"
+                    "|"
+                    "DONE(d@)"
+                    "CANCELLED(c@/!)")))
 
   (setq org-todo-keyword-faces '(("TODO"         . (:foreground "#ff8080" :weight bold))
                                  ("NOTE"         . (:foreground "#ffe9aa" :weight bold))
-                                 ("IMPORTANT"    . (:foreground "#f32020" :weight bold))
                                  ("WAITING"      . (:foreground "#ffb378" :weight bold))
+                                 ("IMPORTANT"    . (:foreground "#f32020" :weight bold))
+                                 ("DOING"        . (:foreground "#A020F0" :weight bold))
                                  ("CANCELLED"    . (:foreground "#ff6c6b" :weight bold))
-                                 ("IN-PROGRESS"  . (:foreground "#A020F0" :weight bold))
-                                 ("WORKING"      . (:foreground "#4db5bd" :weight bold))
                                  ("DONE"         . (:foreground "#1E90FF" :weight bold)))))
 
 (org-capture-config)

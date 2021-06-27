@@ -45,39 +45,29 @@
     (w32-register-hot-key [s-t]))
 
    (sys/mac-port-p
-    ;;;; Compatible with Emacs Mac port
-    ;;(setq mac-option-modifier 'meta
-    ;;mac-command-modifier 'super)
-    ;;(bind-keys ([(super a)] . mark-whole-buffer)
-    ;;([(super c)] . kill-ring-save)
-    ;;([(super l)] . goto-line)
-    ;;([(super q)] . save-buffers-kill-emacs)
-    ;;([(super s)] . save-buffer)
-    ;;([(super v)] . yank)
-    ;;([(super w)] . delete-frame)
-    ;;([(super z)] . undo))))
-    ;; Keybonds
-    (global-set-key [(hyper a)] 'mark-whole-buffer)
-    (global-set-key [(hyper v)] 'yank)
-    (global-set-key [(hyper c)] 'kill-ring-save)
-    (global-set-key [(hyper s)] 'save-buffer)
-    (global-set-key [(hyper l)] 'goto-line)
-    (global-set-key [(hyper w)]
-                    (lambda () (interactive) (delete-window)))
-    (global-set-key [(hyper z)] 'undo)
+    ;; Compatible with Emacs Mac port
+    (setq mac-option-modifier 'meta
+          mac-command-modifier 'super)
+    (bind-keys ([(super a)] . mark-whole-buffer)
+               ([(super c)] . kill-ring-save)
+               ([(super l)] . goto-line)
+               ([(super q)] . save-buffers-kill-emacs)
+               ([(super s)] . save-buffer)
+               ([(super v)] . yank)
+               ([(super w)] . delete-frame)
+               ([(super z)] . undo))))
 
-    ;; mac switch meta key
-    (defun mac-switch-meta nil
-      "switch meta between Option and Command"
-      (interactive)
-      (if (eq mac-option-modifier nil)
-          (progn
-	        (setq mac-option-modifier 'meta)
-	        (setq mac-command-modifier 'hyper)
-	        )
-        (progn
-          (setq mac-option-modifier nil)
-          (setq mac-command-modifier 'meta)))))))
+  (defun mac-toggle-max-window ()
+    "This function toggles the frame-parameter fullscreen,
+     so that I can maximise Emacs from within rather than relying
+     on the external MacOS controls. "
+    (interactive)
+    (set-frame-parameter
+     nil
+     'fullscreen
+     (if (frame-parameter nil 'fullscreen)
+         nil
+       'fullboth))))
 
 
 ;; Explicitly set the prefered coding systems to avoid annoying prompt
@@ -313,6 +303,10 @@ The original function deletes trailing whitespace of the current line."
                 minibuffer-setup-hook))
   (add-hook hook
             (lambda () (setq show-trailing-whitespace nil))))
+
+;; Simplify Yes/No Prompts
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq use-dialog-box nil)
 
 
 (visual-config-modes)
