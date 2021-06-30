@@ -34,6 +34,10 @@
   (eq system-type 'cygwin)
   "Are we running on a Cygwin system?")
 
+(defconst sys/gnu-linux
+  (eq system-type 'gnu/linux)
+  "Are we running on a Linux system?")
+
 (with-no-warnings
   (cond
 
@@ -45,29 +49,20 @@
     (w32-register-hot-key [s-t]))
 
    (sys/mac-port-p
-    ;;;; Compatible with Emacs Mac port
-    ;; Keybonds
-    (global-set-key [(hyper a)] 'mark-whole-buffer)
-    (global-set-key [(hyper v)] 'yank)
-    (global-set-key [(hyper c)] 'kill-ring-save)
-    (global-set-key [(hyper s)] 'save-buffer)
-    (global-set-key [(hyper l)] 'goto-line)
-    (global-set-key [(hyper w)]
-                    (lambda () (interactive) (delete-window)))
-    (global-set-key [(hyper z)] 'undo)
+    ;; Compatible with Emacs Mac port
+    (setq mac-option-modifier 'meta
+          mac-command-modifier 'super)
+    (bind-keys ([(super a)] . mark-whole-buffer)
+               ([(super c)] . kill-ring-save)
+               ([(super l)] . goto-line)
+               ([(super q)] . save-buffers-kill-emacs)
+               ([(super s)] . save-buffer)
+               ([(super v)] . yank)
+               ([(super w)] . delete-frame)
+               ([(super z)] . undo))
 
-    ;; mac switch meta key
-    (defun mac-switch-meta nil
-      "switch meta between Option and Command"
-      (interactive)
-      (if (eq mac-option-modifier nil)
-          (progn
-	        (setq mac-option-modifier 'meta)
-	        (setq mac-command-modifier 'hyper)
-	        )
-        (progn
-          (setq mac-option-modifier nil)
-          (setq mac-command-modifier 'meta))))
+    ;; alert style for macos
+    (setq alert-default-style 'osx-notifier)
 
     (defun mac-toggle-max-window ()
       "This function toggles the frame-parameter fullscreen,
@@ -79,7 +74,10 @@
        'fullscreen
        (if (frame-parameter nil 'fullscreen)
            nil
-         'fullboth))))))
+         'fullboth))))
+
+   (sys/gnu-linux
+    (setq alert-default-style 'libnotify))))
 
 
 ;; Explicitly set the prefered coding systems to avoid annoying prompt
