@@ -47,8 +47,14 @@
   (use-package toc-org
     :hook (org-mode . toc-org-mode))
 
-  (use-package org-alert))
+  (use-package org-alert)
 
+  (use-package org-wild-notifier
+    :config
+    (setq org-wild-notifier-alert-times-property "NOTIFIER"
+          org-wild-notifier-keyword-whitelist    '("TODO" "WAITING" "IMPORTANT" "DOING")
+          org-wild-notifier-keyword-blacklist    '("NOTE"))
+    (org-wild-notifier-mode)))
 
 (defun org-capture-config ()
   "Org caputer config."

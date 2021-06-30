@@ -152,7 +152,7 @@ from the left."
 
 ;;-------------------
 
-(agenda-vim-mode)
+;;(agenda-vim-mode)
 (org-agenda-custom-config)
 (add-hook 'org-agenda-finalize-hook #'ll/org/colorize-headings)
 
