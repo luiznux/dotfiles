@@ -82,23 +82,12 @@
         org-agenda-breadcrumbs-separator                   " ❱ "
         org-agenda-prefer-last-repeat                      t
         org-agenda-show-future-repeats                     nil
-        org-catch-invisible-edits                          'smart
         org-agenda-compact-blocks                          t
-        org-hide-emphasis-markers                          t
-        org-pretty-entities                                nil
-        org-startup-indented                               t
         org-agenda-span                                    15 ; show 15 days in agenda
-        org-log-done                                       'time
         org-agenda-current-time-string                     " ᐊ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ NOW "
         org-agenda-time-grid                               '((daily today require-timed)
                                                              (800 1000 1200 1400 1600 1800 2000)
                                                              " ...... " "----------------"))
-
-  ;; Babel
-  (setq org-confirm-babel-evaluate  nil
-        org-src-fontify-natively    t
-        org-src-tab-acts-natively   t)
-
   ;;set org agenda files
   (setq org-directory "~/org"
         org-agenda-files (quote

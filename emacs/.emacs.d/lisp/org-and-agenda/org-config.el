@@ -91,10 +91,38 @@
                                  ("CANCELLED"    . (:foreground "#ff6c6b" :weight bold))
                                  ("DONE"         . (:foreground "#1E90FF" :weight bold)))))
 
+(defun org-config ()
+  "Config org."
+  (setq org-catch-invisible-edits                    'smart
+        org-hide-emphasis-markers                    t
+        org-pretty-entities                          nil
+        org-startup-indented                         t
+        org-log-done                                 'time
+
+        ;; log time on rescheduling and changing deadlines
+        org-log-reschedule                           'time
+        org-log-redeadline                           'time
+
+        ;; on links `RET' follows the link
+        org-return-follows-link                      t
+        org-reverse-note-order                       t
+
+        ;; turn on speed keys for headlines
+        org-use-speed-commands                       t)
+
+  ;; Babel
+  (setq org-confirm-babel-evaluate  nil
+        org-src-fontify-natively    t
+        org-src-tab-acts-natively   t)
+  ;; easy templates special blocks in latex export
+  (add-to-list 'org-structure-template-alist '("f" . "figure")))
+
+
 (org-capture-config)
 (org-tags-set)
 (org-priority-config)
 (org-TODO-keywords)
+(org-config)
 (setup-org-packages)
 
 (provide 'org-config)
