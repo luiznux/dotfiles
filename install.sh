@@ -95,7 +95,7 @@ install_packages(){
 
     linux_gadgets=" man tree colordiff wget check file highlight atool mlocate nmap ntp ncdu haveged "
 
-    utilities=" htop calcurse cpupower dmenu rofi cmatrix neofetch ranger sl youtube-dl pacmanlogviewer xfce4-settings gnome-control-center lxinput "
+    utilities=" htop calcurse cpupower dmenu rofi cmatrix neofetch ranger sl youtube-dl pacmanlogviewer xfce4-settings lxinput "
 
     program_languages=" clang ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure ispell "
 
@@ -107,7 +107,7 @@ install_packages(){
 
     font=" noto-fonts-cjk noto-fonts-emoji noto-fonts ttf-font-awesome gnome-font-viewer "
 
-    gnome=" intltool dbus-glib gdm gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor "
+    gnome=" intltool dbus-glib gdm gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor gnome-control-center "
 
     # with pipewire packages
     audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack pavucontrol libmpdclient fftw playerctl vlc cadence paprefs audacity "
@@ -123,7 +123,7 @@ install_packages(){
 
     printer=" cups cups-pdf system-config-printer "
 
-    security=" ufw gnome-keyring "
+    security=" ufw gnome-keyring seahorse"
 
     network=" dhcp dhcpcd "
 
