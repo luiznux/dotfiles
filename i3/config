@@ -30,10 +30,10 @@ set $browser    firefox
 #set $mail       mailspring
 
 #font config
-font pango:Source Code Pro 10
+font            pango:Source Code Pro 10
 
 #background config
-exec_always feh --bg-fill ~/.config/wallpaper.jpg
+exec_always     feh --bg-fill ~/.config/wallpaper.jpg
 
 #remove border
 new_window pixel 0
@@ -76,7 +76,7 @@ bindsym $mod+e	            exec emacs
 #bindsym $mod+d exec "dmenu_run -nf '#325B91' -nb '#070B15' -sb '#914836' -sf '#EEEEEE' -fn 'monospace-10' -p 'dmenu prompt &gt;'"
 
 #start rofi
-bindsym $mod+d exec rofi -show drun
+bindsym $mod+d              exec rofi -show drun
 
 # start firefox
 bindsym $mod+y              exec $browser
