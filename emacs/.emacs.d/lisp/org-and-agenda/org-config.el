@@ -47,6 +47,9 @@
   (use-package toc-org
     :hook (org-mode . toc-org-mode))
 
+  (use-package org-autolist
+    :hook (org-mode . (lambda () (org-autolist-mode))))
+
   (use-package org-alert)
 
   (use-package org-wild-notifier
