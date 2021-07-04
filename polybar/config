@@ -82,9 +82,9 @@ font-6 = "Inconsolata Nerd Font:size=14;1"
 
 
 ;modules set
-modules-left   = i3 spotify
+modules-left   = i3 spotify eth
 modules-center =
-modules-right  = microphone volume eth filesystem cpu memory system-cpu-temppercore date time weather
+modules-right  = microphone volume filesystem cpu memory system-cpu-temppercore date time weather
 
 ;notebook-modules-format
 ;modules-left   = i3 spotify
