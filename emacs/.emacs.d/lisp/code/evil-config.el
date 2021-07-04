@@ -32,9 +32,16 @@
     :config
     (global-evil-surround-mode 1))
 
-  (use-package evil-leader)
+  (use-package evil-leader
+    :config
+    (global-evil-leader-mode))
 
-  (use-package evil-org)
+  (use-package evil-org
+    :after evil org
+    :hook (org-mode . (lambda () evil-org-mode))
+    :config
+    (require 'evil-org-agenda)
+    (evil-org-agenda-set-keys))
 
   (use-package undo-tree ;; dependency for evil-undo-system
     :config
