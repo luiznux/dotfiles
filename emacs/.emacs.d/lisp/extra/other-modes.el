@@ -1,5 +1,4 @@
-;;; other-modes.el --- Package configuration for other modes packages
-;;; Commentary:
+;;; other-modes.el --- Package configuration for other modes packages ;;; Commentary:
 ;;; Emacs other modes configuration.
 ;;; Code:
 
@@ -79,7 +78,30 @@
   ;;CLOJURE
   (use-package clojure-snippets)
   (use-package clojure-mode)
-  (use-package cider)
+  (use-package cider
+    :config
+    (setq cider-repl-pop-to-buffer-on-connect 'display-only
+          cider-prompt-for-symbol             t
+          nrepl-hide-special-buffers          t
+          cider-repl-use-content-types        t
+          cider-repl-wrap-history             t
+          cider-repl-use-clojure-font-lock    t
+          cider-repl-buffer-size-limit        100000
+          cider-repl-history-size             1000)
+    (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+    (add-hook 'cider-test-report-mode 'jcf-soft-wrap))
+
+  (use-package dizzee
+    :commands (jcf-lein-datomic-start jcf-lein-headless-start)
+    :config
+    (dz-defservice jcf-lein-headless
+                   "lein"
+                   :cd "~/"
+                   :args ("repl" ":headless"))
+
+    (dz-defservice jcf-lein-datomic
+                   "lein"
+                   :args ("datomic")))
 
   ;; JavaScript
   (use-package js2-mode
