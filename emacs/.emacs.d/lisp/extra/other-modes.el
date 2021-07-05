@@ -89,7 +89,9 @@
           cider-repl-buffer-size-limit        100000
           cider-repl-history-size             1000)
     (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-    (add-hook 'cider-test-report-mode 'jcf-soft-wrap))
+    (add-hook 'cider-test-report-mode 'jcf-soft-wrap)
+    (add-hook 'cider-repl-mode-hook #'cider-company-enable-fuzzy-completion)
+    (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion))
 
   (use-package dizzee
     :commands (jcf-lein-datomic-start jcf-lein-headless-start)
