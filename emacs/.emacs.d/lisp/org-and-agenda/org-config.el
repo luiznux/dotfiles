@@ -69,7 +69,7 @@
 (defun org-tags-set ()
   "Set org agenda custom tags."
 
-  (setq org-tag-alist '(("work " . ?w) ("coll" . ?c) ("personal" . ?p))))
+  (setq org-tag-alist '(("work" . ?w) ("coll" . ?c) ("project" . ?p))))
 
 (defun org-priority-config ()
   "Set org priority custom faces."
