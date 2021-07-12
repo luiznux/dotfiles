@@ -97,7 +97,7 @@ install_packages(){
 
     utilities=" htop calcurse cpupower dmenu rofi cmatrix neofetch ranger sl youtube-dl pacmanlogviewer xfce4-settings lxinput "
 
-    program_languages=" clang ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure ispell "
+    program_languages=" clang ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure leiningen ispell "
 
     graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom "
 
