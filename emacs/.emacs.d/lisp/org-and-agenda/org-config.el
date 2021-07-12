@@ -123,6 +123,30 @@
   (setq org-confirm-babel-evaluate  nil
         org-src-fontify-natively    t
         org-src-tab-acts-natively   t)
+
+  (defvar load-language-list '((emacs-lisp . t)
+                               (clojure . t)
+                               (lisp . t)
+                               (eshell . t)
+                               (shell . t)
+                               (sql . t)
+                               (C . t)
+                               (java . t)
+                               (python . t)
+                               (sed . t)
+                               (latex . t)
+                               (js . t)
+                               (css . t)))
+
+  (use-package ob-go
+    :init (cl-pushnew '(go . t) load-language-list))
+
+  (use-package ob-http
+    :init(cl-pushnew '(http . t) load-language-list))
+
+  (org-babel-do-load-languages 'org-babel-load-languages
+                               load-language-list)
+
   ;; easy templates special blocks in latex export
   (add-to-list 'org-structure-template-alist '("f" . "figure")))
 
