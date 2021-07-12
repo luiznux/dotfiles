@@ -82,7 +82,7 @@ font-6 = "Inconsolata Nerd Font:size=14;1"
 
 
 ;modules set
-modules-left   = i3 spotify eth
+modules-left   = i3 spotify eth xkeyboard
 modules-center =
 modules-right  = microphone volume filesystem cpu memory system-cpu-temppercore date time weather
 
@@ -520,6 +520,24 @@ format-underline                = #D8E17E
 
 ;#-------------------------------------------#
 ;#-------------- Other config ---------------#
+
+[module/xkeyboard]
+type = internal/xkeyboard
+
+; List of indicators to ignore
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+ ; Available tags:
+;   <label-layout> (default)
+;   <label-indicator> (default)
+format = <label-indicator>
+format-spacing = 1
+; Replaces label-indicator-* if for specific indicators
+; Available tokens:
+;   %name%
+;   %icon%
+label-indicator-on-capslock  = "בּ "
+
 
 [settings]
 screenchange-reload         = true
