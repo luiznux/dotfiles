@@ -3,8 +3,6 @@
 ;;; Emacs org agenda config
 ;;; Code:
 
-
-
 (defun org-agenda-custom-config ()
 
   (setq org-agenda-custom-commands

@@ -47,10 +47,12 @@
   (use-package toc-org
     :hook (org-mode . toc-org-mode))
 
+  (use-package org-alert)
+
   (use-package org-autolist
     :hook (org-mode . (lambda () (org-autolist-mode))))
 
-  (use-package org-alert)
+  (use-package org-super-agenda)
 
   (use-package org-wild-notifier
     :config
@@ -58,6 +60,21 @@
           org-wild-notifier-keyword-whitelist    '("TODO" "WAITING" "IMPORTANT" "DOING")
           org-wild-notifier-keyword-blacklist    '("NOTE"))
     (org-wild-notifier-mode)))
+
+
+(defun setup-google-calendar ()
+  "Config the client id and secret for org-gcal.
+Those values are loaded from another files.  If not found, will
+print a message on *Messages* buffer."
+  (if (file-exists-p "~/org/org-api.el")
+      (use-package org-gcal
+        :config
+        (load "~/org/org-api.el") ;; file with the keys
+        (setq org-gcal-client-id  luiznux-client-id
+              org-gcal-client-secret luiznux-client-secret
+              org-gcal-file-alist '(("luiztagli10@gmail.com" .  "~/org/gcal.org"))))
+    (message "Keys for Org-Gcal not found!")))
+
 
 (defun org-capture-config ()
   "Org caputer config."
@@ -89,8 +106,8 @@
                     "IMPORTANT(i)"
                     "DOING(o)"
                     "|"
-                    "DONE(d@)"
-                    "CANCELLED(c@/!)")))
+                    "DONE(d)"
+                    "CANCELLED(c)")))
 
   (setq org-todo-keyword-faces '(("TODO"         . (:foreground "#ff8080" :weight bold))
                                  ("NOTE"         . (:foreground "#ffe9aa" :weight bold))
@@ -123,6 +140,9 @@
   (setq org-confirm-babel-evaluate  nil
         org-src-fontify-natively    t
         org-src-tab-acts-natively   t)
+
+  ;; `cider' backend for org babel
+  (setq org-babel-clojure-backend 'cider)
 
   (defvar load-language-list '((emacs-lisp . t)
                                (clojure . t)
@@ -157,6 +177,7 @@
 (org-TODO-keywords)
 (org-config)
 (setup-org-packages)
+(setup-google-calendar)
 
 (provide 'org-config)
 ;;; org-config.el ends here
