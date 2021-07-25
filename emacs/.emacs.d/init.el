@@ -109,6 +109,7 @@ If you experience stuttering, increase this.")
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(alert-fade-time 10)
  '(anzu-deactivate-region t)
  '(anzu-mode-lighter "")
  '(anzu-replace-to-string-separator " => ")
@@ -153,6 +154,8 @@ If you experience stuttering, increase this.")
                               :family "Source Code Pro"))))
 
  '(ivy-minibuffer-match-face-1 ((t (:inherit font-lock-doc-face :foreground nil))))
+
+ '(all-the-icons-ivy-rich-dir-face ((t (:inherit default))))
 
  '(macrostep-expansion-highlight-face ((t (:inherit tooltip :extend t))))
 
