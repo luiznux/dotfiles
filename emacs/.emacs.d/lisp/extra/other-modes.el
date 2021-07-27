@@ -1,5 +1,7 @@
-;;; other-modes.el --- Package configuration for other modes packages ;;; Commentary:
+;;; other-modes.el --- Package configuration for other modes packages.
+;;; Commentary:
 ;;; Emacs other modes configuration.
+;;;
 ;;; Code:
 
 (defun setup-other-modes()
@@ -80,7 +82,7 @@
   (use-package clojure-mode)
   (use-package cider
     :config
-    (setq cider-repl-pop-to-buffer-on-connect 'display-only
+    (setq cider-repl-pop-to-buffer-on-connect 'nil ;;display-only
           cider-prompt-for-symbol             t
           nrepl-hide-special-buffers          t
           cider-repl-use-content-types        t
