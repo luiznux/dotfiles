@@ -97,7 +97,7 @@ install_packages(){
 
     utilities=" htop calcurse cpupower dmenu rofi cmatrix neofetch ranger sl youtube-dl pacmanlogviewer expac xfce4-settings lxinput "
 
-    program_languages=" clang ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure leiningen ispell "
+    program_languages=" clang ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure leiningen ispell nodejs "
 
     graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom "
 
@@ -213,6 +213,23 @@ emacs(){
     log_error cd ~/ && log_error wget gnu.c3sl.ufpr.br/ftp/emacs/emacs-27.1.tar.xz && log_error tar -xvf emacs-27.1.tar.xz && rm emacs-27.1.tar.xz \
     && log_error cd ~/emacs-27.1 && log_error ./autogen.sh && log_error ./configure && log_error make && log_error sudo make install \
     && log echo "     Emacs  Install  {OK}" && break_line || log erro_msg
+}
+
+#### Install some lsp servers packages(using npm)
+emacs_lsp_packages(){
+
+    log echo "#---------------------------------------- EMACS LSP Packages INSTALL" && break_line
+    log echo "Installing using npm the following packages:"
+    log echo "html-lsp, css-lsp, json-lsp yaml-lsp, dockerfile-lsp, bash-lsp and vim-lsp" && break_line
+
+    log_error npm install -g vscode-html-languageserver-bin \
+              vscode-css-languageserver-bin \
+              vscode-json-languageserver \
+              yaml-language-server \
+              dockerfile-language-server-nodejs \
+              bash-language-server \
+              vim-language-server \
+    && log echo "     Emacs LSP Packages config {OK} " && break_line || log erro_msg
 }
 
 #### Config my dropbox sync folder
