@@ -157,7 +157,12 @@
     (setq web-mode-css-indent-offset 2)
     (setq web-mode-code-indent-offset 2))
 
-  (use-package impatient-mode))
+  (use-package impatient-mode
+    :config
+    (defun impatient-browse ()
+      "Jump to browser and show impatients buffer files"
+      (interactive)
+      (browse-url  "http://localhost:8080/imp/"))))
 
 
 (setup-other-modes)
