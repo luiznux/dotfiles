@@ -82,14 +82,16 @@
   (use-package clojure-mode)
   (use-package cider
     :config
-    (setq cider-repl-pop-to-buffer-on-connect 'nil ;;display-only
-          cider-prompt-for-symbol             t
-          nrepl-hide-special-buffers          t
-          cider-repl-use-content-types        t
-          cider-repl-wrap-history             t
-          cider-repl-use-clojure-font-lock    t
-          cider-repl-buffer-size-limit        100000
-          cider-repl-history-size             1000)
+    (setq cider-repl-pop-to-buffer-on-connect      'nil ;;display-only
+          cider-completion-annotations-include-ns  'always
+          cider-prompt-for-symbol                  t
+          nrepl-hide-special-buffers               t
+          cider-repl-use-content-types             t
+          cider-repl-wrap-history                  t
+          cider-repl-use-clojure-font-lock         t
+          cider-repl-buffer-size-limit             100000
+          cider-repl-history-size                  1000)
+
     (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
     (add-hook 'cider-test-report-mode 'jcf-soft-wrap)
     (add-hook 'cider-repl-mode-hook #'cider-company-enable-fuzzy-completion)
