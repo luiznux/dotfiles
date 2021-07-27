@@ -27,6 +27,7 @@
     :hook
     (go-mode . lsp-deferred)
     (sh-mode . lsp)
+    (web-mode . lsp)
     ((clojure-mode . lsp)(clojurec-mode . lsp) (clojurescript-mode . lsp))
     (lsp-mode . (lambda ()
                   ;; Integrate `which-key'
