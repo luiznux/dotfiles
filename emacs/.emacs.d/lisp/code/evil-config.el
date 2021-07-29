@@ -39,7 +39,7 @@
   (use-package evil-org
     :after evil org
     :config
-    (add-hook 'org-mode-hook (lambda () (evil-org-mode)))
+    ;;(add-hook 'org-mode-hook (lambda () (evil-org-mode)))
     (require 'evil-org-agenda)
     (evil-org-agenda-set-keys))
 
