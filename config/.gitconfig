@@ -8,3 +8,5 @@
 [core]
     editor = vim
 
+[github]
+	user = luiznux
