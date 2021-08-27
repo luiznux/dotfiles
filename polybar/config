@@ -21,19 +21,14 @@
 ; source: https://github.com/luiznux/dotfiles/polybar
 
 
-
 ;#-----------------------------------------------------------------------------------#
 ;#---------------------------------- Colors -----------------------------------------#
 ;#-----------------------------------------------------------------------------------#
 
 [colors]
-background      =  #070b15
-foreground      =  #9db7cf
-background-alt  =  #2f007a
-background-alt1 =  #1f232c
-foreground-alt  =  #baccdd
-primary         =  #914836
-secondary       =  #994a3b
+background      =  #282828
+foreground      =  #C4C7C5
+background-alt  =  #2f343f
 alert           =  #A4252C
 
 
@@ -43,53 +38,68 @@ alert           =  #A4252C
 
 [bar/luiznux]
 
+; Use either of the following command to list available outputs:
+; If unspecified, the application will pick the first one it finds.
+; $ polybar -m | cut -d ':' -f 1
+; $ xrandr -q | grep " connected" | cut -d ' ' -f1
+monitor =
+
 ;colors
 background = ${colors.background}
 foreground = ${colors.foreground}
 
 ;bar dimencions and forms
 width  = 100%
-height = 25
-radius = 5.0
+height = 36
 
-;border size and colors (applied to all borders)
-border-size  = 2
-border-color = ${colors.background}
+offset-x = 0%
+offset-y = 0%
 
-;under-/overline pixel size and argb color
-line-size  = 3
-line-color = #f00
+radius-top = 0.0
+radius-bottom = 0.0
 
-fixed-center = false
+dpi-x = 100
+dpi-y = 100
+
+override-redirect = false
+enable-ipc = true
+fixed-center = true
+
+wm-restack = i3
 wm-name = i3
+
+; Opacity value between 0.0 and 1.0 used on fade in/out
+dim-value = 1.0
 
 ;number of spaces to add at the begimmimg/end of the bar
 padding-left  = 0
 padding-right = 0
+
+;border size and colors (applied to all borders)
+;border-size  = 0
+;border-color = ${colors.background}
+
+;under-/overline pixel size and argb color
+line-size  = 5
+line-color = #{colors.background}
 
 ;number  of spaces to add before/after each module
 module-margin-left  = 1
 module-margin-right = 0.5
 
 ;fonts config
-font-0 = "Source Code Pro:size=11:antialias=true;0"
-font-1 = "Source Code Pro:size=11:style=Bold:antialias=true;0"
-font-2 = "Font Awesome 5 Free:size=10;1"
-font-3 = "Font Awesome 5 Free Solid:pixelsize=12;2"
-font-4 = "Font Awesome 5 Brands:pixelsize=12;1"
-font-5 = "Weather Icons:size=13;1:style:Regular"
-font-6 = "Inconsolata Nerd Font:size=14;1"
-
+font-0 = "Source Code Pro:size=11:antialias=true;3"
+font-1 = "Source Code Pro:size=11:style=Bold:antialias=true;3"
+font-2 = "Font Awesome 5 Free:size=10;3"
+font-3 = "Font Awesome 5 Free Solid:pixelsize=12;3"
+font-4 = "Font Awesome 5 Brands:pixelsize=12;3"
+font-5 = "Weather Icons:size=12;1:style:Regular"
+font-6 = "Inconsolata Nerd Font:size=14;3"
 
 ;modules set
 modules-left   = i3 spotify eth xkeyboard
 modules-center =
 modules-right  = microphone volume filesystem cpu memory system-cpu-temppercore date time weather
-
-;notebook-modules-format
-;modules-left   = i3 spotify
-;modules-center =
-;modules-right  = network microphone volume filesystem cpu memory system-cpu-temppercore system-fan-speed battery date time weather
 
 
 ;#-------------------------------------------#
@@ -106,9 +116,11 @@ modules-right  = microphone volume filesystem cpu memory system-cpu-temppercore 
 ;   none
 ;
 tray-position = right
-tray-padding  = 3
-tray-size = 16
+tray-padding  = 2
+tray-size = 3
+tray-maxsize = 20
 tray-scale = 1.0
+
 
 ; Requires polybar to be built with xcursor support (xcb-util-cursor)
 ; Possible values are:
@@ -134,34 +146,40 @@ wrapping-scroll         = false
 ;Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
-label-mode-padding              = 1.5
-label-mode-foreground           = #000
-label-mode-background           = ${colors.primary}
+label-mode-padding              = 1
+label-mode-foreground           = ${colors.foreground}
+label-mode-background           = ${colors.alert}
+label-mode-underline            = ${colors.background}
+label-mode-overline             = ${colors.background}
 
 ; focused = Active workspace on focused monitor
 label-focused                   = %index%
-label-focused-background        = ${colors.background-alt}
+label-focused-background        = #2f007a
 label-focused-foreground        = #EAFFFF
 label-focused-underline         = #82aaff
-label-focused-padding           = 1.5
+label-focused-padding           = 1
 
 ; visible = Active workspace on unfocused monitor
 label-visible                   = %index%
-label-visible-background        = ${colors.background-alt}
+label-visible-background        = #2f007a
 label-visible-foreground        = ${colors.foreground}
 label-visible-underline         = ${self.label-focused-underline}
 label-visible-padding           = ${self.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused             = %index%
-label-unfocused-padding     = 1.5
+label-unfocused-foreground  = ${colors.foreground}
+label-unfocused-background  = ${colors.background-alt}
+label-unfocused-underline   = ${colors.background}
+label-unfocused-overline    = ${colors.background}
+label-unfocused-padding     = 1
 
 ; urgent = Workspace with urgency hint set
 label-urgent                = %index%
 label-urgent-background     = ${colors.alert}
 label-urgent-foreground     = #000000
 label-urgent-underline      = ${colors.alert}
-label-urgent-padding        = 1.5
+label-urgent-padding        = 1
 
 ; Separator in between workspaces
 ; label-separator = |
@@ -180,9 +198,11 @@ format-prefix               =%{T4}%{T-}
 format-prefix-background    = #0f0
 format-prefix-foreground    = ${colors.background}
 format-prefix-padding       = 1
-format-underline            = #0f0
+format-overline             = ${colors.background}
+format-underline            = ${colors.background}
+;format-underline            = #0f0
 label                       = %output:0:150%
-label-background            = ${colors.background-alt1}
+label-background            = ${colors.background-alt}
 label-foreground            = ${colors.foreground}
 label-padding               = 1
 
@@ -192,11 +212,11 @@ exec                                = ~/.config/polybar/scripts/mic.sh
 tail                                = true
 click-left                          = kill -USR1 %pid%
 format                              = <label>
-format-underline                    = #1f232c
+format-underline                    = ${colors.background}
+format-overline                     = ${colors.background}
 label                               = %output%
-label-background                    = ${colors.background-alt1}
+label-background                    = ${colors.background-alt}
 label-padding                       = 1
-
 
 [module/volume]
 type                               = internal/alsa
@@ -208,22 +228,26 @@ interval                           = 5
 format-volume                      = <label-volume>
 format-volume-prefix               = 
 format-volume-prefix-background    = #5ab11a
-format-volume-prefix-foreground    = #070b15
+format-volume-prefix-foreground    = ${colors.background}
 format-volume-prefix-padding       = 1
 label-volume                       = %percentage%%
-label-volume-background            = ${colors.background-alt1}
+label-volume-background            = ${colors.background-alt}
 label-volume-padding               = 1
-format-volume-underline            = #5ab11a
+format-volume-underline            = ${colors.background}
+format-volume-overline             = ${colors.background}
+;format-volume-underline            = #5ab11a
 
 format-muted-prefix                = 
 format-muted-prefix-background     = #de0000
-format-muted-prefix-foreground     = #070b15
+format-muted-prefix-foreground     = ${colors.background}
 format-muted-prefix-padding        = 1
 label-muted                        = %{T1} mute%{T-}
-label-muted-background             =  ${colors.background-alt1}
+label-muted-background             =  ${colors.background-alt}
 label-muted-foreground             = #de0000
 label-muted-padding                = 1
-format-muted-underline             = #de0000
+format-muted-underline             = ${colors.background}
+format-muted-overline              = ${colors.background}
+;format-muted-underline             = #de0000
 
 ;label-volume-foreground-0          = #438514
 ;label-volume-foreground-1          = #438514
@@ -307,23 +331,24 @@ format-muted-underline             = #de0000
 [module/eth]
 type            = internal/network
 interface       = enp3s0
-interval        = 2.0
+interval        = 3.0
 
-format-connected-prefix                 = %{T4}%{T-}
-format-connected-prefix-foreground      = #070b15
+format-connected-prefix                 = %{T4}%{T-}
+format-connected-prefix-foreground      = ${colors.background}
 format-connected-prefix-background      = #9e00de
 format-connected-prefix-padding         = 1
 
-label-connected                         =  %upspeed%  %downspeed%
-label-connected-background              = ${colors.background-alt1}
+format-connected                        = <label-connected>
+format-connected-underline              = ${colors.background}
+format-connected-overline               = ${colors.background}
+;format-connected-underline              = #9e00de
+label-connected                         =  %downspeed%
+;label-connected                         =  %upspeed%  %downspeed%
+label-connected-background              = ${colors.background-alt}
 label-connected-padding                 = 1
-format-connected-underline              = #9e00de
-format-disconnected                     =
 
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected =  %ifname%
-;label-disconnected-foreground = ${colors.foreground-alt}
+format-disconnected-prefix              =
+format-disconnected                     = <label-disconnected>
 
 
 ;[module/networkspeedup]
@@ -361,13 +386,15 @@ interval                                = 60
 fixed-values                            = true
 
 format-mounted-prefix                   = %{T4}%{T-}
-format-mounted-prefix-background        = #c991e1
-format-mounted-prefix-foreground        = #070b15
+format-mounted-prefix-background        = #BE78D1
+format-mounted-prefix-foreground        = ${colors.background}
 format-mounted-prefix-padding           = 1
 format-mounted                          = <label-mounted>
-format-mounted-background               = ${colors.background-alt1}
+format-mounted-background               = ${colors.background-alt}
 format-mounted-foreground               = ${colors.foreground}
-format-mounted-underline                = #c991e1
+format-mounted-underline                = ${colors.background}
+format-mounted-overline                 = ${colors.background}
+;format-mounted-underline                = #BE78D1
 label-mounted                           = %{T1}%percentage_used:2%%%{T-}
 label-mounted-padding                   = 1
 
@@ -382,12 +409,19 @@ interval                    = 2
 
 format                      = <label>
 format-prefix               = %{T5}%{T-}
-format-prefix-background    = #ff5555
-format-prefix-foreground    = #070b15
+;format-prefix-background    = #ff5555
+format-prefix-background    = #EC6798
+
+format-prefix-foreground    = ${colors.background}
 format-prefix-padding       = 1
-format-underline            = #ff5555
+format-underline            = ${colors.background}
+format-overline             = ${colors.background}
+;format-underline            = #ff5555
+;format-underline            = #EC6798
+
+
 label                       = %{T1}%percentage:2%%%{T-}
-label-background            = ${colors.background-alt1}
+label-background            = ${colors.background-alt}
 label-foreground            = ${colors.foreground}
 label-padding               = 1
 
@@ -398,11 +432,13 @@ interval                    = 1
 format                      = <label>
 format-prefix               = %{T5}%{T-}
 format-prefix-background    = #906cff
-format-prefix-foreground    = #070b15
+format-prefix-foreground    = ${colors.background}
 format-prefix-padding       = 1
-format-underline            = #906cff
+format-underline            = ${colors.background}
+format-overline            = ${colors.background}
+;format-underline            = #906cff
 label                       = %{T1}%percentage_used%%%{T-}
-label-background            = ${colors.background-alt1}
+label-background            = ${colors.background-alt}
 label-foreground            = ${colors.foreground}
 label-padding               = 1
 
@@ -411,11 +447,16 @@ type                        = custom/script
 exec                        = ~/.config/polybar/scripts/system-cpu-temppercore.sh
 
 format-prefix               = %{T5}%{T-}
-format-prefix-background    = #de003f
-format-prefix-foreground    = #070b15
+;format-prefix-background    = #de003f
+format-prefix-background    = #b30033
+format-prefix-foreground    = ${colors.background}
 format-prefix-padding       = 1
-format-underline            = #de003f
-label-background            = ${colors.background-alt1}
+format-underline            = ${colors.background}
+format-overline             = ${colors.background}
+;format-underline            = #de003f
+;format-underline            = #b30033
+
+label-background            = ${colors.background-alt}
 label-foreground            = ${colors.foreground}
 label-padding               = 1
 interval                    = 20
@@ -429,7 +470,7 @@ format-prefix-foreground    = #070b15
 format-prefix-background    = #9db7cf
 format-prefix-padding       = 1
 format-underline            = #9db7cf
-label-background            = ${colors.background-alt1}
+label-background            = ${colors.background-alt}
 label-foreground            = ${colors.foreground}
 label-padding               = 1
 interval                    = 5
@@ -477,24 +518,28 @@ animation-discharging-framerate     = 750
 [module/date]
 type                            = internal/date
 interval                        = 1
-date                            = "%{T4}%{F#070b15}%{B#E5A561}  %{T- F- B-}%{B#1f232c} %a, %d/%m %{B-}"
+date                            = "%{T4}%{F#282828}%{B#E5A561}  %{T- F- B-}%{B#2f343f} %a, %d/%m %{B-}"
 date-alt                        = "%d/%m/%Y"
 
 format-prefix                   =
 format-prefix-foreground        = ${colors.foreground-alt}
-format-underline                = #E5A561
+format-underline                = ${colors.background}
+format-overline                 = ${colors.background}
+;format-underline                = #E5A561
 label                           = %date%
 
 
 [module/time]
 type                            = internal/date
 interval                        = 1
-time                            = "%{T4}%{F#070b15}%{B#0a6cf5}  %{T- F- B-}%{B#1f232c} %H:%M %{B-}"
+time                            = "%{T4}%{F#282828}%{B#0856c4}  %{T- F- B-}%{B#2f343f} %H:%M %{B-}"
 time-alt                        = "%H:%M:%S"
-
+;#0a6cf5
 format-prefix                   =
 format-prefix-foreground        = ${colors.foreground-alt}
-format-underline                = #0a6cf5
+format-underline                = ${colors.background}
+format-overline                 = ${colors.background}
+;format-underline                = #0856c4
 label                           = %time%
 
 
@@ -509,13 +554,15 @@ interval                        = 600
 label-font                      = 6
 format                          = <label>
 label-padding                   = 1
-label-background                = ${colors.background-alt1}
+label-background                = ${colors.background-alt}
 
 format-prefix                   = 
 format-prefix-padding           = 1
 format-prefix-background        = #D8E17E
 format-prefix-foreground        = ${colors.background}
-format-underline                = #D8E17E
+format-underline                = ${colors.background}
+format-overline                 = ${colors.background}
+;format-underline                = #D8E17E
 
 
 ;#-------------------------------------------#
@@ -527,16 +574,24 @@ type = internal/xkeyboard
 ; List of indicators to ignore
 blacklist-0 = num lock
 blacklist-1 = scroll lock
+
  ; Available tags:
 ;   <label-layout> (default)
 ;   <label-indicator> (default)
-format = <label-indicator>
-format-spacing = 1
+format                        = <label-indicator>
+format-foreground             = ${colors.background}
+format-background             = #e03180
+format-underline              = ${colors.background}
+format-overline               = ${colors.background}
+format-spacing                = 1
+format-padding                = 1
+
 ; Replaces label-indicator-* if for specific indicators
 ; Available tokens:
 ;   %name%
 ;   %icon%
-label-indicator-on-capslock  = "בּ "
+label-indicator-on-capslock  =  
+label-indicator-off-capslock =
 
 
 [settings]
@@ -548,8 +603,8 @@ screenchange-reload         = true
 ;pseudo-transparency         = false
 
 [global/wm]
-margin-top          = 5
-margin-bottom       = 5
+margin-top          = 0
+margin-bottom       = 0
 ;vim:ft              =dosini
 
 
@@ -603,7 +658,6 @@ margin-bottom       = 5
 ;
 ;label-mode-padding              = 1.5
 ;label-mode-foreground           = #000
-;label-mode-background           = ${colors.primary}
 ;
 ;; focused = Active workspace on focused monitor
 ;label-focused                   = %index%
