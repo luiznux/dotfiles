@@ -27,22 +27,24 @@ set $term       alacritty
 set $browser    firefox
 
 #define mailclient
-#set $mail       mailspring
+set $mail       mailspring
 
 #font config
-font            pango:Source Code Pro 10
+font pango:Source Code Pro 10
 
 #background config
-exec_always     feh --bg-fill ~/.config/wallpaper.jpg
+exec_always feh --bg-fill ~/.config/wallpaper.jpg
 
 #remove border
 new_window pixel 0
 
-#gaps size
-#gaps inner 9
-#gaps outer 15
+#gaps config
 gaps inner 10
 gaps outer 6
+gaps top 9
+gaps right 0
+gaps left 0
+gaps bottom 0
 
 #Default Border
 set $thick 2
@@ -73,7 +75,7 @@ bindsym $mod+Return	        exec $term
 bindsym $mod+e	            exec emacs
 
 # start dmenu.
-#bindsym $mod+d exec "dmenu_run -nf '#325B91' -nb '#070B15' -sb '#914836' -sf '#EEEEEE' -fn 'monospace-10' -p 'dmenu prompt &gt;'"
+#bindsym $mod+d exec "dmenu_run -nf '#325B91' -nb '#0F0F17' -sb '#914836' -sf '#EEEEEE' -fn 'monospace-10' -p 'dmenu prompt &gt;'"
 
 #start rofi
 bindsym $mod+d              exec rofi -show drun
@@ -81,11 +83,14 @@ bindsym $mod+d              exec rofi -show drun
 # start firefox
 bindsym $mod+y              exec $browser
 
-#start mailclient
-#bindsym $mod+Shift+m        exec $mail
+# start mailclient
+bindsym $mod+Shift+m        exec $mail
 
 # start nemo filemanager
 bindsym $mod+n              exec nemo
+
+# start
+bindsym $mod+c              exec gnome-control-center
 
 # full screem
 bindsym $mod+f	            fullscreen toggle
@@ -328,7 +333,7 @@ bindsym $mod+Shift+equal	move container to workspace $ws12
 #set_from_resource $color14 i3wm.color14
 ##
 ###white
-#set_from_resource $color7 i3wm.color7
+#set_from_resourc e $color7 i3wm.color7
 #set_from_resource $color15 i3wm.color15
 #
 
@@ -347,13 +352,16 @@ client.placeholder      #0F0F17 #0F0F17 #0F0F17 #0F0F17   #0F0F17
 
 ##-------------------------------------------##
 ##--------------- Exec config ---------------##
-## Programs tha should always been executed on startup
+## Programns tha should always been executed on startup
 
 #POLYBAR
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 #Picom
 exec_always --no-startup-id picom
+
+#fanconfig
+#exec_always --no-startup-id ~/.config/scripts/nvidia-fan-setup
 
 #Adjusting typematic delay and rate
 exec_always --no-startup-id sleep 1; xset r rate 500 37
@@ -372,13 +380,15 @@ exec_always --no-startup-id sleep 1; xset r rate 500 37
 assign [class="discord"] $ws6
 assign [class="Transmission"]  $ws8
 assign [class="Steam"]  $ws9
+for_window [instance="slack"] move container to workspace  $ws6
+for_window [class="Slack"] move container to workspace $ws6
 
 #for spotify its a bit diffente than the others above, since for some reason
 #spotify doesn't work with assing, must be manualy moved with the command bellow
 # info --> https://wiki.archlinux.org/index.php/i3#Default_workspace_for_Spotify
 for_window [class="Spotify"] move to workspace $ws7
 
-## Enable floating window some windows
+## Enable floating window some windows, use $xwininfo
 for_window [window_role="task_dialog|app|bubble|pop-up|page-info|Preferences"] floating enable
 for_window [instance="qtpass|vitetris|xfontsel|xfd|gpicsview|gufw.py|Toplevel|gvim|arandr|blueman-manager|blueman-services|lxappearance|catfish|pavucontrol|pavumeter|xpad|galculator|engrampa|eom|guvcview|gpicview|simplescreenrecorder|radiotray|mate-search-tool|qtfm|yad|gsimplecal|deluge|WiFi-Menu|mate-dictionary|system-config-printer.py|dconf-editor|stalonetray"] floating enable
 for_window [class="Gnome-control-center" instance="gnome-control-center"] floating enable
