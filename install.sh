@@ -403,7 +403,7 @@ git_repository_setup(){
     && git clone https://github.com/PlusInsta/discord-plus \
     && curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl \
     && chmod +x betterdiscordctl && sudo mv betterdiscordctl /usr/local/bin && sudo betterdiscordctl upgrade && exit_dir \
-    && cd $GIT/luiznux && git clone https://github.com/luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir
+    && cd $GIT/luiznux && git clone git@github.com:luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir
     log echo " Git rep  Done" && break_line
 }
 
