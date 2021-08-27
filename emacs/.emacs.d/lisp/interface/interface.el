@@ -64,7 +64,7 @@
 
 (use-package parrot
   :commands parrot-set-parrot-type parrot-start-animation
-  :config
+  :init
   (parrot-mode)
   (parrot-set-parrot-type 'emacs)
   (setq parrot-num-rotations 6)
