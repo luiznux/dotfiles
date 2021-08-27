@@ -12,10 +12,7 @@
 ;;;
 ;;; Code:
 
-(require 'package)
 
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
 
 ;; Speed up Emacs startup time increasing
 ;; the garbage collector number of bytes
@@ -32,6 +29,9 @@ If you experience stuttering, increase this.")
   "Run garbarge collection when idle 10s.")
 
 (defvar emacs-file-name-handler-alist file-name-handler-alist)
+
+;; avoid anoing message
+(setq byte-compile-warnings '(cl-functions))
 
 (setq file-name-handler-alist nil)
 (setq gc-cons-threshold emacs-gc-cons-upper-limit
@@ -83,26 +83,26 @@ If you experience stuttering, increase this.")
 (require 'packages)
 
 ;; Core packages
-(require 'theme)
-(require 'line-mode)
-(require 'evil-config)
+(require 'customizations)
 (require 'interface)
-(require 'helm-config)
+
+(require 'evil-config)
 (require 'company-config)
+(require 'ivy-config)
+(require 'lsp-config)
+
+(require 'code-config)
 (require 'other-modes)
 
-;; Code Packages
-(require 'code-config)
-(require 'project-config)
-(require 'git-config)
-(require 'lsp-config)
+(require 'terminal-config)
+(require 'clojure-config)
+(require 'python-config)
+(require 'web-config)
 
 ;; Org and Agenda config
 (require 'org-config)
-(require 'agenda-config)
-(require 'ivy-config)
+(require 'file-color-agenda)
 
-(require 'customizations)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -110,15 +110,10 @@ If you experience stuttering, increase this.")
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(alert-fade-time 10)
- '(anzu-deactivate-region t)
- '(anzu-mode-lighter "")
- '(anzu-replace-to-string-separator " => ")
  '(blink-cursor-mode nil)
  '(evil-undo-system 'undo-tree)
  '(fci-rule-color "#dedede")
  '(global-auto-revert-mode t)
- '(helm-icons-provider 'all-the-icons)
- '(helm-minibuffer-history-key "M-p")
  '(line-spacing 0.2)
  '(standard-indent 4))
 
@@ -127,46 +122,17 @@ If you experience stuttering, increase this.")
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (
-                :inherit nil
-                :stipple nil
-                :foreground "#c5c8c6"
-                :inverse-video nil
-                :box nil
-                :strike-through nil
-                :overline nil
-                :underline nil
-                :slant normal
-                :weight normal
-                :height 90
-                :width normal
-                :foundry "ADBO"
-                :family "Source Code Pro"))))
-
- '(centaur-tabs-selected ((t (
-                              :background "#282c34"
-                              :foreground "#bbc2cf"
-                              :overline nil
-                              :underline "#51afef"
-                              :weight semi-bold
-                              :height 99
-                              :width normal
-                              :family "Source Code Pro"))))
-
- '(ivy-minibuffer-match-face-1 ((t (:inherit font-lock-doc-face :foreground nil))))
-
+ '(default ((t (:inherit nil :stipple nil :foreground "#c5c8c6" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "ADBO" :family "Source Code Pro"))))
  '(all-the-icons-ivy-rich-dir-face ((t (:inherit default))))
-
+ '(centaur-tabs-selected ((t (:background "#282c34" :foreground "#bbc2cf" :overline nil :underline "#51afef" :weight semi-bold :height 99 :width normal :family "Source Code Pro"))))
+ '(ivy-minibuffer-match-face-1 ((t (:inherit font-lock-doc-face :foreground nil))))
  '(macrostep-expansion-highlight-face ((t (:inherit tooltip :extend t))))
-
  '(org-agenda-date-today ((t (:foreground "lime green" :weight ultra-bold))))
-
  '(org-scheduled ((t (:foreground "SlateBlue2"))))
-
  '(org-scheduled-previously ((t (:foreground "medium turquoise"))))
-
  '(org-scheduled-today ((t (:foreground "deep sky blue"))))
-
+ '(org-super-agenda-header ((t (:inherit default :foreground "#a3f7ff" :weight bold))))
  '(quote (mode-line-inactive nil)))
 
+(message (emacs-init-time))
 ;;; init.el ends here
