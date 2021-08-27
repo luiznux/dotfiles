@@ -123,7 +123,7 @@ install_packages(){
 
     printer=" cups cups-pdf system-config-printer "
 
-    security=" ufw gnome-keyring seahorse"
+    security=" ufw gnome-keyring keychain seahorse"
 
     network=" dhcp dhcpcd "
 
