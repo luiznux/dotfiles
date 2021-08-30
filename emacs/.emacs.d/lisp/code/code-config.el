@@ -133,11 +133,6 @@
    ("C-c e" . quickrun)
    ("C-c C-e" . quickrun-shell)))
 
-(use-package exec-path-from-shell
-  :config
-  (when (daemonp)
-    (exec-path-from-shell-initialize)))
-
 (use-package format-all)
 (use-package sudo-edit)
 
@@ -270,6 +265,11 @@
 
   (use-package magit
     :defer t)
+
+  (use-package exec-path-from-shell
+    :init
+    (setq exec-path-from-shell-variables '("SSH_AGENT_PID" "SSH_AUTH_SOCK"))
+    (exec-path-from-shell-initialize))
 
   (use-package diff-hl
     :init
