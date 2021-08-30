@@ -43,6 +43,7 @@
   :if (executable-find "aspell")
   :commands ispell-init-process
   :hook
+
   ((org-mode yaml-mode markdown-mode git-commit-mode) . flyspell-mode)
   (prog-mode . flyspell-prog-mode)
   (before-save-hook . flyspell-buffer)
@@ -131,6 +132,11 @@
    ("M-<f5>" . quickrun-shell)
    ("C-c e" . quickrun)
    ("C-c C-e" . quickrun-shell)))
+
+(use-package exec-path-from-shell
+  :config
+  (when (daemonp)
+    (exec-path-from-shell-initialize)))
 
 (use-package format-all)
 (use-package sudo-edit)
