@@ -93,7 +93,7 @@ install_packages(){
 
     essencials=" xorg xclip cmake libxss llvm xorg-xinit "
 
-    linux_gadgets=" man tree colordiff wget check file highlight atool mlocate nmap ntp ncdu haveged "
+    linux_gadgets=" man tree colordiff wget check file highlight atool mlocate nmap ntp ncdu haveged dmidecode hwdetect "
 
     utilities=" htop calcurse cpupower dmenu rofi cmatrix neofetch ranger sl youtube-dl pacmanlogviewer expac xfce4-settings lxinput "
 
