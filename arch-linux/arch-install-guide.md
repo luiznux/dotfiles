@@ -28,7 +28,7 @@ The figure below illustrates how my partitioning is configured.
 +----------------+ +----------------+ +--------------------------------------------------------------------+
 | Boot partition | | Boot partition | | Logical volume 1     | Logical volume 2     |  Logical volume 3    |
 |                | |                | |                      |                      |                      |
-| /boot/efi       | | /boot          | |        /             |       /home          |      [SWAP]          |
+| /boot/efi      | | /boot          | |        /             |       /home          |      [SWAP]          |
 |                | |                | |                      |                      |                      |
 |                | |                | | /dev/MyVolGroup/root | /dev/MyVolGroup/home | /dev/MyVolGroup/swap |
 |                | |                | |_ _ _ _ _ _ _ _ _ _ __|_ _ _ _ _ _ _ _ _ _ __|_ _ _ _ _ _ _ _ _ _ _ |
@@ -325,10 +325,20 @@ $ pacman -S grub --noconfirm
 $ vim /etc/default/grub
 ```
 
-* look for   GRUB_CMDLINE_LINUX=”“, and the set:
+* look for  GRUB_CMDLINE_LINUX="", and the set:
 
 ```bash
-GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=/dev/sda3:linux:allow-discards quiet splash pci=nomsi"
+GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=/dev/sda3:linux:allow-discards quiet splash "
+```
+
+For notebooks that you want to disable the graphic card, add
+```bash
+pci=nomsi
+```
+
+__OBS__ Use this flag to enable full cpu temperature for lm\_sensors
+```bash
+GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=/dev/sda3:linux:allow-discards quiet splash acpi_enforce_resources=lax"
 ```
 
 3. after that, write or update those variables to:
