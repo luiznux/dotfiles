@@ -95,7 +95,7 @@ install_packages(){
 
     linux_gadgets=" man tree colordiff wget check file highlight atool mlocate nmap ntp ncdu haveged dmidecode hwdetect "
 
-    utilities=" htop calcurse cpupower dmenu rofi cmatrix neofetch ranger sl youtube-dl pacmanlogviewer expac xfce4-settings lxinput "
+    utilities=" htop calcurse cpupower dmenu rofi cmatrix neofetch ranger sl youtube-dl pacmanlogviewer expac xfce4-settings lxinput lm_sensors "
 
     program_languages=" clang ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure leiningen ispell nodejs "
 
@@ -201,6 +201,20 @@ AUR_install(){
 
     log echo "------------------------------------------------ AUR pkgs Done {OK}" && break_line || log erro_msg
     break_line
+}
+
+AMD_CPU(){
+
+    if [ $amd_option == "y" ]; then
+       log echo "#----------------------------------------- Installing AMD Cpu packages"
+       log_error sudo pacman -Syu amd-ucode --noconfirm --needed \
+       && log_error yay -S it87-dkms-git --noconfirm --nocleanmenu --nodiffmenu \
+       && log echo "#-------------------------------------- AMD packages {OK}" && break_line || log erro_msg
+
+    else
+        log echo "#------------------------------------ AMD packages {SKIPED}" && break_line
+        break_line
+    fi
 }
 
 #### Emacs install and copy my config file
@@ -472,6 +486,10 @@ nvidia_xorg_config(){
 log echo "Which graphics card will you use?"
 log echo -e "1 - INTEL \n2 - NVIDIA \n3 - AMD \n4 - ALL"
 read -p "--> " GPU
+break_line
+
+log echo "Are you using a AMD CPU ? (answer with y or n)"
+read -p "--> " amd_option
 break_line
 
 log echo "Do you want install laptop configs ?(answer with y or n)"
