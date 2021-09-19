@@ -350,6 +350,12 @@ GRUB_ENABLE_CRYPTODISK=y
 GRUB_DISABLE_SUBMENU=y
 ```
 
+__OBS__ If you are using dualboot config with windows and installed "os-prober" already package, you will need to add the following line for grub identify the other S.O:
+```bash
+#Enable os-prober
+GRUB_DISABLE_OS_PROBER=false
+```
+
 4. Installing
 
 **UEFI**
