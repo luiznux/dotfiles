@@ -127,7 +127,7 @@ install_packages(){
 
     network=" dhcp dhcpcd "
 
-    others=" transmission-gtk gparted discord code gnome-calculator firefox chromium torbrowser-launcher bleachbit kdenlive "
+    others=" transmission-gtk gparted discord code gnome-calculator firefox chromium torbrowser-launcher bleachbit kdenlive mesa-demos "
 
     log_error sudo pacman -Syu $essencials $linux_gadgets $utilities $program_languages $graphic $file_open $themes $font $gnome $audio $image $android_device $gnu_things $term_shell $printer $security $network $others  --noconfirm --needed \
     && log echo "        Packages {OK}" && break_line || log erro_msg
@@ -146,16 +146,16 @@ Graphic_drivers(){
 
     log echo "#----------------------------------------------- Graphic drives" && break_line
     if [ $GPU == "1" ]; then
-        log_error sudo pacman -Sy xf86-video-intel vulkan-intel mesa-demos --noconfirm --needed
+        log_error sudo pacman -Sy xf86-video-intel vulkan-intel --noconfirm --needed
 
     elif [ $GPU == "2" ]; then
         log_error sudo pacman -Sy nvidia nvidia-utils nvidia-settings --noconfirm --needed
 
     elif [ $GPU == "3" ]; then
-        log_error sudo pacman -Sy xf86-video-amdgpu --noconfirm --needed
+        log_error sudo pacman -Sy xf86-video-amdgpu vulkan-radeon --noconfirm --needed
 
     else
-        log_error sudo pacman -Sy xf86-video-intel vulkan-intel mesa-demos nvidia nvidia-utils nvidia-settings --noconfirm --needed
+        log echo "GPU Packages skipped " && break_line || log erro_msg
     fi
 
     log echo "	     Graphic Drivers {OK}" && break_line || log erro_msg
