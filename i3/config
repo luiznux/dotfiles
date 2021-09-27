@@ -358,13 +358,10 @@ client.placeholder      #0F0F17 #0F0F17 #0F0F17 #0F0F17   #0F0F17
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 #Picom
-exec_always --no-startup-id picom
+exec_always --no-startup-id ~/.config/scripts/picom-config
 
 #Nvidia Shit
 #exec_always --no-startup-id ~/.config/scripts/nvidia-config
-
-#fanconfig
-#exec_always --no-startup-id ~/.config/scripts/nvidia-fan-setup
 
 #Adjusting typematic delay and rate
 exec_always --no-startup-id sleep 1; xset r rate 500 37
