@@ -81,7 +81,7 @@ clean_AUR(){
 dir_tree(){
 
     log echo "#----------------------------------------------- Setup directory tree"
-    mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,sandbox,projects/{personal,work},.vim,.config/{i3,polybar,ranger,rofi,alacritty,scripts}} \
+    mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,sandbox,projects/{personal,work},.vim,.config/{i3,polybar,ranger,rofi,alacritty,scripts,picom}} \
     && log echo "        Directory tree {OK}" && break_line || log erro_msg
 }
 
@@ -397,6 +397,8 @@ other_config(){
     && cp -r config/alacritty/alacritty.yml ~/.config/alacritty/ \
     && cp -r config/rofi/config.rasi ~/.config/rofi/ \
     && sudo cp config/scripts/{ca,simple-push,volume,nvidia-fan-setup} /usr/local/bin/ \
+    && cp -r config/scripts/ ~/.config \
+    && cp -r config/picom ~/.config \
     && cp -r config/sxiv ~/.config/ \
     && cp -r config/dunst ~/.config/ \
     && cp -r config/vis ~/.config \
