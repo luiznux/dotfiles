@@ -361,7 +361,7 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id picom
 
 #Nvidia Shit
-exec_always --no-startup-id ~/.config/scripts/nvidia-config
+#exec_always --no-startup-id ~/.config/scripts/nvidia-config
 
 #fanconfig
 #exec_always --no-startup-id ~/.config/scripts/nvidia-fan-setup
