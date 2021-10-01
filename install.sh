@@ -95,7 +95,7 @@ install_packages(){
 
     linux_gadgets=" man tree colordiff wget check file highlight atool mlocate nmap ntp ncdu haveged dmidecode hwdetect "
 
-    utilities=" htop calcurse cpupower dmenu rofi cmatrix neofetch ranger sl youtube-dl pacmanlogviewer expac xfce4-settings lxinput lm_sensors "
+    utilities=" htop atop calcurse cpupower dmenu rofi cmatrix neofetch ranger sl youtube-dl pacmanlogviewer expac xfce4-settings lxinput lm_sensors "
 
     program_languages=" clang ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure leiningen ispell nodejs "
 
