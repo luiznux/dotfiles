@@ -204,7 +204,6 @@ plugins=(
     colored-man-pages
     extract
     vi-mode
-    zsh_reload
     history
 )
 
