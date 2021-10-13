@@ -1,0 +1,13 @@
+# This file was created by Fancontrol-GUI
+INTERVAL=10
+DEVPATH=hwmon2=devices/platform/nct6775.656 
+DEVNAME=hwmon2=nct6798 
+FCTEMPS=hwmon2/pwm1=hwmon2/temp2_input hwmon2/pwm2=hwmon2/temp2_input hwmon2/pwm4=hwmon2/temp2_input hwmon2/pwm5=hwmon2/temp2_input 
+FCFANS=hwmon2/pwm1=hwmon2/fan1_input hwmon2/pwm2=hwmon2/fan2_input hwmon2/pwm4=hwmon2/fan4_input hwmon2/pwm5=hwmon2/fan5_input 
+MINTEMP=hwmon2/pwm1=35 hwmon2/pwm2=35 hwmon2/pwm4=35 hwmon2/pwm5=34 
+MAXTEMP=hwmon2/pwm1=75 hwmon2/pwm2=76 hwmon2/pwm4=75 hwmon2/pwm5=75 
+MINSTART=hwmon2/pwm1=150 hwmon2/pwm2=150 hwmon2/pwm4=150 hwmon2/pwm5=150 
+MINSTOP=hwmon2/pwm1=64 hwmon2/pwm2=64 hwmon2/pwm4=64 hwmon2/pwm5=75 
+MINPWM=hwmon2/pwm1=0 hwmon2/pwm2=0 hwmon2/pwm4=0 hwmon2/pwm5=0 
+MAXPWM=hwmon2/pwm1=255 hwmon2/pwm2=255 hwmon2/pwm4=255 hwmon2/pwm5=255 
+AVERAGE=hwmon2/pwm1=1 hwmon2/pwm2=1 hwmon2/pwm4=1 hwmon2/pwm5=1 
