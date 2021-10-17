@@ -95,7 +95,7 @@ install_packages(){
 
     linux_gadgets=" man tree colordiff wget check file highlight atool mlocate nmap ntp ncdu haveged dmidecode hwdetect "
 
-    utilities=" htop atop calcurse cpupower dmenu rofi cmatrix neofetch ranger sl youtube-dl pacmanlogviewer expac xfce4-settings lxinput lm_sensors "
+    utilities=" htop atop calcurse cpupower dmenu rofi cmatrix neofetch ranger sl youtube-dl pacmanlogviewer expac xfce4-settings lxinput lm_sensors gedit baobab "
 
     program_languages=" global ctags clang ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure leiningen ispell nodejs "
 
@@ -107,13 +107,13 @@ install_packages(){
 
     font=" noto-fonts-cjk noto-fonts-emoji noto-fonts ttf-font-awesome gnome-font-viewer "
 
-    gnome=" intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor gnome-control-center "
+    gnome=" intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor gnome-control-center gnome-calendar gnome-characters "
 
     # with pipewire packages
-    audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack pavucontrol libmpdclient fftw playerctl vlc cadence paprefs audacity "
+    audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack pavucontrol libmpdclient fftw playerctl vlc cadence paprefs audacity gnome-music "
     #audio=" alsa alsa-utils alsa-firmware alsa-plugins pulseaudio pulseaudio-alsa pavucontrol libmpdclient fftw playerctl vlc paprefs "
 
-    image=" eog feh tumbler gthumb ffmpegthumbnailer imagemagick sxiv gimp scrot deepin-screenshot w3m ueberzug "
+    image=" eog feh tumbler gthumb ffmpegthumbnailer imagemagick sxiv gimp scrot deepin-screenshot w3m ueberzug gnome-video-effects cheese "
 
     android_device=" mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp yasm "
 
