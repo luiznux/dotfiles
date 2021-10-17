@@ -99,7 +99,7 @@ install_packages(){
 
     program_languages=" global ctags clang ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure leiningen ispell nodejs "
 
-    graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom "
+    graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom lightdm "
 
     file_open=" nemo nemo-fileroller i7z xreader calibre evince pandoc texlive-most "
 
@@ -427,7 +427,7 @@ git_repository_setup(){
 systemd_init(){
 
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
-    log_error sudo systemctl enable ufw.service ntpd.service cpupower.service \
+    log_error sudo systemctl enable lightdm.service ufw.service ntpd.service cpupower.service \
     && log_error sudo ufw enable \
     && log echo "Done" && break_line || log erro_msg
 }
