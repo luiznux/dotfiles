@@ -107,7 +107,7 @@ install_packages(){
 
     font=" noto-fonts-cjk noto-fonts-emoji noto-fonts ttf-font-awesome gnome-font-viewer "
 
-    gnome=" intltool dbus-glib gdm gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor gnome-control-center "
+    gnome=" intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor gnome-control-center "
 
     # with pipewire packages
     audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack pavucontrol libmpdclient fftw playerctl vlc cadence paprefs audacity "
@@ -427,7 +427,7 @@ git_repository_setup(){
 systemd_init(){
 
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
-    log_error sudo systemctl enable gdm.service ufw.service ntpd.service cpupower.service \
+    log_error sudo systemctl enable ufw.service ntpd.service cpupower.service \
     && log_error sudo ufw enable \
     && log echo "Done" && break_line || log erro_msg
 }
