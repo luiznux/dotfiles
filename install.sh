@@ -99,7 +99,7 @@ install_packages(){
 
     program_languages=" global ctags clang ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure leiningen ispell nodejs "
 
-    graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom lightdm lightdm-webkit2-greeter lightdm-webkit-theme-litarvan "
+    graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom lightdm lightdm-webkit2-greeter "
 
     file_open=" nemo nemo-fileroller i7z xreader calibre evince pandoc texlive-most "
 
@@ -196,6 +196,7 @@ AUR_install(){
     && log_error make_pkg_AUR pipewire-jack-dropin \
     && log_error make_pkg_AUR ttf-wps-fonts \
     && log_error make_pkg_AUR wps-office \
+    && log_error make_pkg_AUR lightdm-webkit-theme-aether \
     && log echo "----------------------------- AUR General packages  Done " && break_line || log erro_msg
     break_line
 
