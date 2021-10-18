@@ -330,7 +330,9 @@ gitignore_setup(){
 background_img_setup(){
 
     log echo "#---------------------------------------- Setup background image" && break_line
-    cd $dotfiles && cp config/wallpapers/morpho.jpg  ~/.config/wallpaper.jpg  \
+    sudo mkdir -p /usr/share/backgrounds/luiznux \
+    && cd $dotfiles && cp config/wallpapers/morpho.jpg  ~/.config/wallpaper.jpg  \
+    && sudo cp -r $dotfiles/config/wallpapers/* /usr/share/backgrounds/luiznux/ \
     && log echo "     Wallppaer setup {OK} " && break_line || log erro_msg
 }
 
