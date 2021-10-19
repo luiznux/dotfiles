@@ -179,6 +179,7 @@ AUR_install(){
 
     log echo "-------------------------------- Installing some AUR Packages" && break_line
     log_error make_pkg_AUR polybar \
+    && log_error make_pkg_AUR archlinux-artwork \
     && log_error make_pkg_AUR i3lock-color-git \
     && log_error make_pkg_AUR thermald \
     && log_error make_pkg_AUR mictray \
