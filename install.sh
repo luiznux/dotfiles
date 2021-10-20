@@ -99,7 +99,7 @@ install_packages(){
 
     program_languages=" global ctags clang ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure leiningen ispell nodejs "
 
-    graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom lightdm lightdm-slick-greeter "
+    graphic=" i3-gaps lxrandr-gtk3 qt zenity dunst picom lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-slick-greeter "
 
     file_open=" nemo nemo-fileroller i7z xreader calibre evince pandoc texlive-most "
 
@@ -342,7 +342,7 @@ theme_setup(){
 
     log echo "#---------------------------------------- Setup Themes" && break_line
     cd $dotfiles/themes/gtk/ && tar -xvf Sweet-Dark.tar.xz  && sudo mv Sweet-Dark /usr/share/themes/ \
-    && cd $dotfiles/config/lightdm/ && sudo cp lightdm.conf slick-greeter.conf /etc/lightdm/ \
+    && sudo cp $dotfiles/config/lightdm/* /etc/lightdm/ \
     && cd $dotfiles/config/gtk/ && cp -r gtk-2.0 gtk-3.0 ~/.config \
     && cp .gtkrc-2.0 ~/.gtkrc-2.0 \
     && log echo "     GTK themes setup {OK} " && break_line || log erro_msg
