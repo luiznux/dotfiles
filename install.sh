@@ -110,7 +110,7 @@ install_packages(){
     gnome=" intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor gnome-control-center gnome-calendar gnome-characters "
 
     # with pipewire packages
-    audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack pavucontrol libmpdclient fftw playerctl vlc cadence paprefs audacity gnome-music "
+    audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack wireplumber wireplumber-docs pavucontrol libmpdclient fftw playerctl vlc cadence paprefs audacity gnome-music "
     #audio=" alsa alsa-utils alsa-firmware alsa-plugins pulseaudio pulseaudio-alsa pavucontrol libmpdclient fftw playerctl vlc paprefs "
 
     image=" eog feh tumbler gthumb ffmpegthumbnailer imagemagick sxiv gimp scrot deepin-screenshot w3m ueberzug gnome-video-effects cheese "
@@ -432,6 +432,8 @@ systemd_init(){
 
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
     log_error sudo systemctl enable lightdm.service ufw.service ntpd.service cpupower.service \
+    && log_error systemctl --user --now disable pipewire-media-session  \
+    && log_error systemctl --user --now enable wireplumber \
     && log_error sudo ufw enable \
     && log echo "Done" && break_line || log erro_msg
 }
