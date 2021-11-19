@@ -12,7 +12,8 @@
 #██║██║ ╚████║███████║   ██║   ██║  ██║███████╗███████╗
 #╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝
 #
-#TODO: Terminar o script
+
+## TODO: Terminar o script
 
 #Variables
 $BIOS
