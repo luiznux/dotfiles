@@ -1,35 +1,28 @@
-# Daemon config file for PipeWire version "0.3.27" #
-
+# Daemon config file for PipeWire version "0.3.23" #
 context.properties = {
     ## Configure properties in the system.
     #library.name.system                   = support/libspa-support
     #context.data-loop.library.name.system = support/libspa-support
     #support.dbus                          = true
-    #link.max-buffers                      = 64
-    link.max-buffers                       = 16                       # version < 3 clients can't handle more
+    link.max-buffers                       = 64
+    #link.max-buffers                      = 16                       # version < 3 clients can't handle more
     #mem.warn-mlock                        = false
     #mem.allow-mlock                       = true
     #mem.mlock-all                         = false
-    #clock.power-of-two-quantum            = true
     #log.level                             = 2
 
     core.daemon                            = true                     # listening for socket connections
     core.name                              = pipewire-0               # core name and socket name
 
     ## Properties for the DSP configuration.
-    default.clock.rate        = 192000
+    default.clock.rate         = 192000
     #default.clock.quantum     = 1024
-    #default.clock.min-quantum = 32
-    #default.clock.max-quantum = 8192
+    default.clock.min-quantum  = 32
+    default.clock.max-quantum  = 8192
     #default.video.width       = 640
     #default.video.height      = 480
     #default.video.rate.num    = 25
     #default.video.rate.denom  = 1
-    #
-    # These overrides are only applied when running in a vm.
-    vm.overrides = {
-        default.clock.min-quantum     = 1024
-    }
 }
 
 context.spa-libs = {
@@ -51,8 +44,8 @@ context.spa-libs = {
     #audiotestsrc   = audiotestsrc/libspa-audiotestsrc
 }
 
-context.modules = [
-    #{   name = <module-name>
+context.modules = {
+    #<module-name> = {
     #    [ args = { <key> = <value> ... } ]
     #    [ flags = [ [ ifexists ] [ nofail ] ]
     #}
@@ -63,7 +56,7 @@ context.modules = [
     #
 
     # Uses RTKit to boost the data thread priority.
-    {   name = libpipewire-module-rtkit
+    libpipewire-module-rtkit = {
         args = {
             #nice.level   = -11
             #rt.prio      = 88
@@ -74,44 +67,44 @@ context.modules = [
     }
 
     # The native communication protocol.
-    {   name = libpipewire-module-protocol-native }
+    libpipewire-module-protocol-native = null
 
     # The profile module. Allows application to access profiler
     # and performance data. It provides an interface that is used
     # by pw-top and pw-profiler.
-    {   name = libpipewire-module-profiler }
+    libpipewire-module-profiler = null
 
     # Allows applications to create metadata objects. It creates
     # a factory for Metadata objects.
-    {   name = libpipewire-module-metadata }
+    libpipewire-module-metadata = null
 
     # Creates a factory for making devices that run in the
     # context of the PipeWire server.
-    {   name = libpipewire-module-spa-device-factory }
+    libpipewire-module-spa-device-factory = null
 
     # Creates a factory for making nodes that run in the
     # context of the PipeWire server.
-    {   name = libpipewire-module-spa-node-factory }
+    libpipewire-module-spa-node-factory = null
 
     # Allows creating nodes that run in the context of the
     # client. Is used by all clients that want to provide
     # data to PipeWire.
-    {   name = libpipewire-module-client-node }
+    libpipewire-module-client-node = null
 
     # Allows creating devices that run in the context of the
     # client. Is used by the session manager.
-    {   name = libpipewire-module-client-device }
+    libpipewire-module-client-device = null
 
     # The portal module monitors the PID of the portal process
     # and tags connections with the same PID as portal
     # connections.
-    {   name = libpipewire-module-portal
+    libpipewire-module-portal = {
         flags = [ ifexists nofail ]
     }
 
     # The access module can perform access checks and block
     # new clients.
-    {   name = libpipewire-module-access
+    libpipewire-module-access = {
         args = {
             # access.allowed to list an array of paths of allowed
             # apps.
@@ -133,17 +126,17 @@ context.modules = [
 
     # Makes a factory for wrapping nodes in an adapter with a
     # converter and resampler.
-    {   name = libpipewire-module-adapter }
+    libpipewire-module-adapter = null
 
     # Makes a factory for creating links between ports.
-    {   name = libpipewire-module-link-factory }
+    libpipewire-module-link-factory = null
 
     # Provides factories to make session manager objects.
-    {   name = libpipewire-module-session-manager }
-]
+    libpipewire-module-session-manager = null
+}
 
-context.objects = [
-    #{   factory = <factory-name>
+context.objects = {
+    #<factory-name> = {
     #    [ args  = { <key> = <value> ... } ]
     #    [ flags = [ [ nofail ] ]
     #}
@@ -151,16 +144,16 @@ context.objects = [
     # Creates an object from a PipeWire factory with the given parameters.
     # If nofail is given, errors are ignored (and no object is created).
     #
-    #{ factory = spa-node-factory args = { factory.name = videotestsrc node.name = videotestsrc Spa:Pod:Object:Param:Props:patternType = 1 } }
-    #{ factory = spa-device-factory args = { factory.name = api.jack.device foo=bar } flags = [ nofail ] }
-    #{ factory = spa-device-factory args = { factory.name = api.alsa.enum.udev } }
-    #{ factory = spa-device-factory args = { factory.name = api.alsa.seq.bridge node.name = Internal-MIDI-Bridge } }
-    #{ factory = adapter            args = { factory.name = audiotestsrc node.name = my-test } }
-    #{ factory = spa-node-factory   args = { factory.name = api.vulkan.compute.source node.name = my-compute-source } }
+    #spa-node-factory   = { args = { factory.name = videotestsrc node.name = videotestsrc Spa:Pod:Object:Param:Props:patternType = 1 } }
+    #spa-device-factory = { args = { factory.name = api.jack.device foo=bar } flags = [ nofail ] }
+    #spa-device-factory = { args = { factory.name = api.alsa.enum.udev } }
+    #spa-device-factory = { args = { factory.name = api.alsa.seq.bridge node.name = Internal-MIDI-Bridge } }
+    #adapter            = { args = { factory.name = audiotestsrc node.name = my-test } }
+    #spa-node-factory   = { args = { factory.name = api.vulkan.compute.source node.name = my-compute-source } }
 
     # A default dummy driver. This handles nodes marked with the "node.always-driver"
     # property when no other driver is currently active. JACK clients need this.
-    {   factory = spa-node-factory
+    spa-node-factory = {
         args = {
             factory.name    = support.node.driver
             node.name       = Dummy-Driver
@@ -169,7 +162,7 @@ context.objects = [
     }
     # This creates a new Source node. It will have input ports
     # that you can link, to provide audio for this source.
-    #{   factory = adapter
+    #adapter = {
     #    args = {
     #        factory.name     = support.null-audio-sink
     #        node.name        = "my-mic"
@@ -182,7 +175,7 @@ context.objects = [
     # This creates a single PCM source device for the given
     # alsa device path hw:0. You can change source to sink
     # to make a sink in the same way.
-    #{   factory = adapter
+    #adapter = {
     #    args = {
     #        factory.name            = api.alsa.pcm.source
     #        node.name               = "alsa-source"
@@ -199,10 +192,10 @@ context.objects = [
     #        #audio.position         = "FL,FR"
     #    }
     #}
-]
+}
 
-context.exec = [
-    #{ path = <program-name> [ args = "<arguments>" ] }
+context.exec = {
+    #<program-name> = { [ args = "<arguments>" ] }
     #
     # Execute the given program with arguments.
     #
@@ -217,5 +210,5 @@ context.exec = [
     # It can be interesting to start another daemon here that listens
     # on another address with the -a option (eg. -a tcp:4713).
     #
-    #{ path = "/usr/bin/pipewire" args = "-c pipewire-pulse.conf" }
-]
+    #"/usr/bin/pipewire" = { args = "-c pipewire-pulse.conf" }
+}
