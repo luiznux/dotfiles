@@ -7,6 +7,7 @@
 ██║  ██║██║  ██║╚██████╗██║  ██║
 ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
 ```
+<!-- TODO Arrumar as explicaçao -->
 
 # Arch linux Install guide
 This archive contains some of instructions for install arch linux distro.
