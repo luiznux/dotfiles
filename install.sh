@@ -418,7 +418,7 @@ git_repository_setup(){
 }
 
 #### enable some services
-systemd_init(){
+systemd_init_core_services(){
 
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
     log_error sudo systemctl enable lightdm.service ufw.service ntpd.service cpupower.service \
@@ -526,7 +526,7 @@ other_config
 git_repository_setup
 laptop_config
 nvidia_xorg_config
-systemd_init
+systemd_init_core_services
 
 
 log echo "------------- END OF INSTALL ------------" && break_line
