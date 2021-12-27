@@ -222,7 +222,7 @@ AMD_CPU(){
 emacs(){
 
     log echo "#---------------------------------------- EMACS INSTALL" && break_line
-    log_error cd $dotfiles && cp -r emacs/.emacs.d  ~/.emacs.d/ \
+    log_error cd $dotfiles && cp -r emacs/emacs.d/.emacs.d  ~/.emacs.d/ \
     && log echo "     Emacs config {OK} " && break_line || log erro_msg
 
     log_error cd ~/ && log_error wget gnu.c3sl.ufpr.br/ftp/emacs/emacs-27.1.tar.xz && log_error tar -xvf emacs-27.1.tar.xz && rm emacs-27.1.tar.xz \
