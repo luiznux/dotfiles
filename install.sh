@@ -275,7 +275,6 @@ i3_polybar_setup(){
     && log echo "     i3 and Polybar config {OK} " && break_line || log erro_msg
 }
 
-#### Setup ranger files
 ranger_setup(){
 
     log echo "#---------------------------------------- Ranger Setup" && break_line
@@ -283,7 +282,6 @@ ranger_setup(){
     && log echo "     Ranger config file setup {OK} " && break_line || log erro_msg
 }
 
-#### Vim setup files
 vim_setup(){
 
     log echo "#---------------------------------------- Vim config setup" && break_line
@@ -292,7 +290,6 @@ vim_setup(){
     && log echo "     Vim setup {OK} " && break_line || log erro_msg
 }
 
-#### Setup system fonts
 font_setup(){
 
     log echo "#---------------------------------------- Setup font" && break_line
@@ -301,7 +298,6 @@ font_setup(){
     && log echo "     Fount setup {OK} " && break_line || log erro_msg
 }
 
-#### Setup locale files
 locale_setup(){
 
     log echo "#---------------------------------------- Setup Locale" && break_line
@@ -309,7 +305,6 @@ locale_setup(){
     && log echo "     Locale setup {OK}" && break_line || log erro_msg
 }
 
-#### Setup xresources file
 xresources_setup(){
 
     log echo "#---------------------------------------- Setup Xresources" && break_line
@@ -317,7 +312,6 @@ xresources_setup(){
     && log echo "     Xresources setup {OK} " && break_line || log erro_msg
 }
 
-#### Setup git ignore file
 gitignore_setup(){
 
     log echo "#---------------------------------------- Setup gitignore global file" && break_line
@@ -327,7 +321,6 @@ gitignore_setup(){
     && log echo "     Gitconfig setup {OK} " && break_line || log erro_msg
 }
 
-#### Setup background img
 background_img_setup(){
 
     log echo "#---------------------------------------- Setup background image" && break_line
@@ -348,7 +341,6 @@ theme_setup(){
     && log echo "     GTK themes setup {OK} " && break_line || log erro_msg
 }
 
-#### Setup pacman files
 pacman_setup(){
 
     log echo "#---------------------------------------- Setup Pacman config" && break_line
@@ -368,7 +360,6 @@ zsh_setup(){
     && log echo "     Zsh config {OK} " && break_line || log erro_msg
 }
 
-#### St terminal install and setup
 st_terminal_setup(){
 
     log echo "#---------------------------------------- Setup st-terminal" && break_line
@@ -376,8 +367,7 @@ st_terminal_setup(){
     && log echo "     St terminal config {OK} " && break_line || log erro_msg
 }
 
-#### Setup xorg config files
-xorg_config(){
+xorg_setup(){
 
     log echo "#---------------------------------------- Setup Xorg config files" && break_line
     cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
@@ -385,8 +375,7 @@ xorg_config(){
     && log echo "     Xorg config {OK} " && break_line || log erro_msg
 }
 
-#### Urxvt Config
-urxvt_package(){
+urxvt_setup(){
 
     log echo "#---------------------------------------- URXVT Configs " && break_line
     cd $dotfiles && sudo cp config/urxvt/urxvt-resize-font/resize-font /usr/lib64/urxvt/perl/ &&  sudo chmod +x /usr/lib64/urxvt/perl/resize-font \
@@ -531,8 +520,8 @@ theme_setup
 pacman_setup
 zsh_setup
 st_terminal_setup
-xorg_config
-urxvt_package
+xorg_setup
+urxvt_setup
 other_config
 git_repository_setup
 laptop_config
