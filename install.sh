@@ -479,7 +479,7 @@ nvidia_xorg_config(){
 }
 
 
-####################### MAIN
+####################### MAIN ########################
 
 log echo "Which graphics card will you use?"
 log echo -e "1 - INTEL \n2 - NVIDIA \n3 - AMD \n4 - ALL"
