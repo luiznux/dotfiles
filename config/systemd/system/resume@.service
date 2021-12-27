@@ -1,0 +1,12 @@
+[Unit]
+Description=User resume actions
+After=suspend.target
+
+[Service]
+User=%I
+Type=simple
+ExecStart=/usr/local/bin/ssh-connect.sh
+ExecStartPost=/usr/bin/sleep 1
+
+[Install]
+WantedBy=suspend.target
