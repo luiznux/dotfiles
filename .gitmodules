@@ -16,3 +16,6 @@
 [submodule "emacs/.emacs.d/lisp/local-packages/awesome-tab"]
 	path = emacs/.emacs.d/lisp/local/awesome-tab
 	url = https://github.com/manateelazycat/awesome-tab
+[submodule "emacs/emacs.d"]
+	path = emacs/emacs.d
+	url = https://github.com/luiznux/emacs.d
