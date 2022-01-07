@@ -236,6 +236,25 @@ export ARCHFLAGS="-arch x86_64"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
-#Custom plugins paths
+# Custom plugins paths
 source /home/luiznux/Github/prog/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /home/luiznux/Github/prog/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+### Vterm Emacs config
+
+# vterm-clear-scrollback
+if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+    alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
+fi
+
+# vterm-buffer-name-string
+autoload -U add-zsh-hook
+add-zsh-hook -Uz chpwd (){ print -Pn "\e]2;%m:%2~\a" }
+
+vterm_prompt_end() {
+    vterm_printf "51;A$(whoami)@$(hostname):$(pwd)";
+}
+
+# Directory tracking and Prompt tracking
+setopt PROMPT_SUBST
+PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
