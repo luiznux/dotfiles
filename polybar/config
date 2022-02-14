@@ -90,9 +90,9 @@ module-margin-right = 0.5
 ;fonts config
 font-0 = "Source Code Pro:size=11:antialias=true;3"
 font-1 = "Source Code Pro:size=11:style=Bold:antialias=true;3"
-font-2 = "Font Awesome 5 Free:size=10;3"
-font-3 = "Font Awesome 5 Free Solid:pixelsize=12;3"
-font-4 = "Font Awesome 5 Brands:pixelsize=12;3"
+font-2 = "Font Awesome 6 Free:size=10;3"
+font-3 = "Font Awesome 6 Free Solid:pixelsize=12;3"
+font-4 = "Font Awesome 6 Brands:pixelsize=12;3"
 font-5 = "Weather Icons:size=12;1:style:Regular"
 font-6 = "Inconsolata Nerd Font:size=14;3"
 
