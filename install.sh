@@ -355,8 +355,8 @@ zsh_setup(){
     log echo "#---------------------------------------- Setup Zsh" && break_line
     log sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
     && cp $dotfiles/config/.zshrc ~/ \
-    && cd $GIT/prog/ && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-    && git clone  https://github.com/zsh-users/zsh-autosuggestions.git \
+    && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions \
+    && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting \
     && log echo "     Zsh config {OK} " && break_line || log erro_msg
 }
 
