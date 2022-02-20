@@ -194,6 +194,7 @@ AUR_install(){
     && log_error make_pkg_AUR jetbrains-toolbox \
     && log_error make_pkg_AUR mon2cam-git \
     && log_error make_pkg_AUR auctex \
+    && log_error make_pkg_AUR themix-full-git  \
     && log_error make_pkg_AUR pipewire-jack-dropin \
     && log_error make_pkg_AUR ttf-wps-fonts \
     && log_error make_pkg_AUR wps-office \
