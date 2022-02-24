@@ -105,7 +105,7 @@ install_packages(){
 
     themes=" papirus-icon-theme lxappearance gtk-chtheme "
 
-    font=" noto-fonts-cjk noto-fonts-emoji noto-fonts ttf-font-awesome gnome-font-viewer "
+    font=" adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts ttf-font-awesome gnome-font-viewer "
 
     gnome=" intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor gnome-control-center gnome-calendar gnome-characters gnome-power-manager "
 
@@ -290,14 +290,6 @@ vim_setup(){
     cd $dotfiles && cp vim/.vimrc ~/.vimrc \
     && cd $dotfiles && cp -r vim/.vim/ ~/ \
     && log echo "     Vim setup {OK} " && break_line || log erro_msg
-}
-
-font_setup(){
-
-    log echo "#---------------------------------------- Setup font" && break_line
-    sudo mkdir -p /usr/share/fonts/ \
-    && cd $dotfiles && sudo cp -R config/fonts/source-code-pro /usr/local/share/fonts/ \
-    && log echo "     Fount setup {OK} " && break_line || log erro_msg
 }
 
 locale_setup(){
@@ -513,7 +505,6 @@ dropbox_setup
 i3_polybar_setup
 ranger_setup
 vim_setup
-font_setup
 locale_setup
 xresources_setup
 gitignore_setup
