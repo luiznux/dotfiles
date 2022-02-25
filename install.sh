@@ -103,7 +103,7 @@ install_packages(){
 
     file_open=" nemo nemo-fileroller i7z xreader calibre evince pandoc texlive-most "
 
-    themes=" papirus-icon-theme lxappearance gtk-chtheme "
+    themes=" papirus-icon-theme lxappearance gtk-chtheme gpick "
 
     font=" adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts ttf-font-awesome gnome-font-viewer "
 
