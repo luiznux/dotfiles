@@ -3,7 +3,7 @@
     name = luiznux
 
 [core]
-    excludesfile = /home/luiznux/.gitignore_global
+    excludesfile = ~/.gitignore_global
 
 [core]
     editor = vim
