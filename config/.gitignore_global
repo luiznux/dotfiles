@@ -87,3 +87,8 @@ flycheck_*.el
 ## ccls
 .ccls-cache/
 
+# JEnv local Java version configuration file
+.java-version
+
+# Used by previous versions of JEnv
+.jenv-version
