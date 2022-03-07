@@ -501,6 +501,7 @@ Python_config
 Graphic_drivers
 AUR_install
 emacs
+emacs_lsp_packages
 dropbox_setup
 i3_polybar_setup
 ranger_setup
