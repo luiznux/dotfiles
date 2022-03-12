@@ -41,7 +41,7 @@ new_window pixel 0
 #gaps config
 gaps inner 10
 gaps outer 6
-gaps top 9
+gaps top 30
 gaps right 0
 gaps left 0
 gaps bottom 0
@@ -363,8 +363,11 @@ exec_always --no-startup-id ~/.config/scripts/picom-config
 #Nvidia Shit
 #exec_always --no-startup-id ~/.config/scripts/nvidia-config
 
+#Keyboard Layout
+exec_always --no-startup-id setxkbmap -layout us -variant intl
+
 #Adjusting typematic delay and rate
-exec_always --no-startup-id sleep 1; xset r rate 500 37
+exec_always --no-startup-id sleep 1; xset r rate 500 37 &
 
 #Emacs(optional)
 #exec_always --no-startup-id emacs; move to workspace $ws2

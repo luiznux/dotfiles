@@ -61,11 +61,12 @@ radius-bottom = 0.0
 dpi-x = 100
 dpi-y = 100
 
-override-redirect = false
+override-redirect = true
 enable-ipc = true
 fixed-center = true
+bottom = false
 
-;wm-restack = i3
+wm-restack = i3
 wm-name = i3
 
 ; Opacity value between 0.0 and 1.0 used on fade in/out
@@ -519,7 +520,7 @@ animation-discharging-framerate     = 750
 type                            = internal/date
 interval                        = 1
 date                            = "%{T4}%{F#282828}%{B#E5A561}  %{T- F- B-}%{B#2f343f} %a, %d/%m %{B-}"
-date-alt                        = "%d/%m/%Y"
+date-alt                        = "%{T4}%{F#282828}%{B#E5A561}  %{T- F- B-}%{B#2f343f} %d/%m/%Y %{B-}"
 
 format-prefix                   =
 ;format-prefix-foreground        = ${colors.foreground-alt}
@@ -533,8 +534,8 @@ label                           = %date%
 type                            = internal/date
 interval                        = 1
 time                            = "%{T4}%{F#282828}%{B#0856c4}  %{T- F- B-}%{B#2f343f} %H:%M %{B-}"
-time-alt                        = "%H:%M:%S"
-;#0a6cf5
+time-alt                        = "%{T4}%{F#282828}%{B#0856c4}  %{T- F- B-}%{B#2f343f} %H:%M:%S %{B-}"
+
 format-prefix                   =
 ;format-prefix-foreground        = ${colors.foreground-alt}
 format-underline                = ${colors.background}
