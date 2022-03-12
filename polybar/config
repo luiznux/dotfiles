@@ -61,6 +61,7 @@ radius-bottom = 0.0
 dpi-x = 100
 dpi-y = 100
 
+; see https://github.com/polybar/polybar/wiki/Known-Issues#override-redirect-in-i3
 override-redirect = true
 enable-ipc = true
 fixed-center = true
@@ -118,9 +119,9 @@ modules-right  = microphone volume filesystem cpu memory system-cpu-temppercore 
 ;
 tray-position = right
 tray-padding  = 2
-tray-size = 3
-tray-maxsize = 20
-tray-scale = 1.0
+tray-size     = 3
+tray-maxsize  = 20
+tray-scale    = 1.0
 
 
 ; Requires polybar to be built with xcursor support (xcb-util-cursor)
@@ -195,7 +196,7 @@ exec                        = ~/.config/polybar/scripts/spotify.sh %title%
 tail                        = true
 interval                    = 1
 
-format-prefix               =%{T4}%{T-}
+format-prefix               = %{T4}%{T-}
 format-prefix-background    = #0f0
 format-prefix-foreground    = ${colors.background}
 format-prefix-padding       = 1
@@ -243,7 +244,7 @@ format-muted-prefix-background     = #de0000
 format-muted-prefix-foreground     = ${colors.background}
 format-muted-prefix-padding        = 1
 label-muted                        = %{T1} mute%{T-}
-label-muted-background             =  ${colors.background-alt}
+label-muted-background             = ${colors.background-alt}
 label-muted-foreground             = #de0000
 label-muted-padding                = 1
 format-muted-underline             = ${colors.background}
@@ -343,7 +344,7 @@ format-connected                        = <label-connected>
 format-connected-underline              = ${colors.background}
 format-connected-overline               = ${colors.background}
 ;format-connected-underline              = #9e00de
-label-connected                         =  %downspeed%
+label-connected                         = %downspeed%
 ;label-connected                         =  %upspeed%  %downspeed%
 label-connected-background              = ${colors.background-alt}
 label-connected-padding                 = 1
@@ -436,7 +437,7 @@ format-prefix-background    = #906cff
 format-prefix-foreground    = ${colors.background}
 format-prefix-padding       = 1
 format-underline            = ${colors.background}
-format-overline            = ${colors.background}
+format-overline             = ${colors.background}
 ;format-underline            = #906cff
 label                       = %{T1}%percentage_used%%%{T-}
 label-background            = ${colors.background-alt}
