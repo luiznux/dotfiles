@@ -185,6 +185,7 @@ AUR_install(){
     && log_error make_pkg_AUR thermald \
     && log_error make_pkg_AUR mictray \
     && log_error make_pkg_AUR ttf-weather-icons \
+    && log_error make_pkg_AUR nerd-fonts-inconsolata \
     && log_error make_pkg_AUR qdirstat \
     && log_error make_pkg_AUR jmtpfs \
     && log_error make_pkg_AUR sublime-text-dev \
