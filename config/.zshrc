@@ -67,7 +67,7 @@ alias wifispeed='speedometer -r wlp3s0'
 
 ## My configs
 alias i3conf='vim ~/.config/i3/config'
-alias polyconf='vim ~/.config/polybar/config'
+alias polyconf='vim ~/.config/polybar/config.ini'
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 
