@@ -188,7 +188,6 @@ AUR_install(){
     && log_error make_pkg_AUR ttf-weather-icons \
     && log_error make_pkg_AUR qdirstat \
     && log_error make_pkg_AUR jmtpfs \
-    && log_error make_pkg_AUR sublime-text-dev \
     && log_error make_pkg_AUR clojure-lsp-bin \
     && log_error make_pkg_AUR speedometer \
     && log_error make_pkg_AUR cli-visualizer \
