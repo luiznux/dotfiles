@@ -238,7 +238,7 @@ emacs_lsp_packages(){
 
     log echo "#---------------------------------------- EMACS LSP Packages INSTALL" && break_line
     log echo "Installing using npm the following packages:"
-    log echo "html-lsp, css-lsp, json-lsp yaml-lsp, dockerfile-lsp, bash-lsp and vim-lsp" && break_line
+    log echo "html-lsp, css-lsp, json-lsp yaml-lsp, dockerfile-lsp, bash-lsp and vim-lsp sql-lsp" && break_line
 
     log_error npm install -g vscode-html-languageserver-bin \
               vscode-css-languageserver-bin \
@@ -247,6 +247,7 @@ emacs_lsp_packages(){
               dockerfile-language-server-nodejs \
               bash-language-server \
               vim-language-server \
+              sql-language-server \
     && log echo "     Emacs LSP Packages config {OK} " && break_line || log erro_msg
 }
 
