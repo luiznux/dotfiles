@@ -207,12 +207,13 @@ AUR_install(){
     break_line
 }
 
+# If you using ryzen cpu, see https://wiki.archlinux.org/title/Ryzen
 AMD_CPU(){
 
     if [ $amd_option == "y" ]; then
-       log echo "#----------------------------------------- Installing AMD Cpu packages"
+       log echo "#----------------------------------------- Installing AMD CPU packages"
        log_error sudo pacman -Syu amd-ucode --noconfirm --needed \
-       && log_error yay -S it87-dkms-git --noconfirm --nocleanmenu --nodiffmenu \
+       && log_error yay -S it87-dkms-git zenmonitor3-git --noconfirm --nocleanmenu --nodiffmenu \
        && log echo "#-------------------------------------- AMD packages {OK}" && break_line || log erro_msg
 
     else
