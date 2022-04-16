@@ -222,15 +222,16 @@ AMD_CPU(){
     fi
 }
 
-#### Emacs install and copy my config file
+#### Setup my custom emacs config, also clone the master branch from
+#### gnu savannah, build and install
 emacs(){
 
     log echo "#---------------------------------------- EMACS INSTALL" && break_line
     log_error cd $dotfiles && cp -r emacs/emacs.d/.emacs.d  ~/.emacs.d/ \
     && log echo "     Emacs config {OK} " && break_line || log erro_msg
 
-    log_error cd ~/ && log_error wget gnu.c3sl.ufpr.br/ftp/emacs/emacs-27.1.tar.xz && log_error tar -xvf emacs-27.1.tar.xz && rm emacs-27.1.tar.xz \
-    && log_error cd ~/emacs-27.1 && log_error ./autogen.sh && log_error ./configure && log_error make && log_error sudo make install \
+    log_error cd ~/  && log_error git clone https://git.savannah.gnu.org/git/emacs.git \
+    && log_error cd ~/emacs && log_error ./autogen.sh && log_error ./configure && log_error make -j6 && log_error sudo make install \
     && log echo "     Emacs  Install  {OK}" && break_line || log erro_msg
 }
 
