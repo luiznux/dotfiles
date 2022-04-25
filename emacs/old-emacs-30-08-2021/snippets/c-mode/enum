@@ -1,8 +1,0 @@
-# -*- coding: utf-8; mode: snippet -*-
-# name : enum
-# key: enum
-# contributor: Edison Neto
-# --
-enum ${1:name} {
-$0
-};

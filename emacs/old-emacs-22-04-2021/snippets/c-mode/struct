@@ -1,8 +1,0 @@
-# -*- coding: utf-8; mode: snippet -*-
-# name: struct
-# key: struct
-# contributor: Edison Neto
-# --
-struct ${1:name} {
-    $0
-};
