@@ -19,3 +19,18 @@
 [submodule "emacs/emacs.d"]
 	path = emacs/emacs.d
 	url = https://github.com/luiznux/emacs.d
+[submodule "vim/.vim/plugged/ranger.vim"]
+	path = vim/.vim/plugged/ranger.vim
+	url = https://github.com/francoiscabrol/ranger.vim.git
+[submodule "vim/.vim/plugged/ale"]
+	path = vim/.vim/plugged/ale
+	url = https://github.com/dense-analysis/ale.git
+[submodule "vim/.vim/plugged/lightline.vim"]
+	path = vim/.vim/plugged/lightline.vim
+	url = https://github.com/itchyny/lightline.vim
+[submodule "vim/.vim/plugged/vim-startify"]
+	path = vim/.vim/plugged/vim-startify
+	url = https://github.com/mhinz/vim-startify
+[submodule "vim/.vim/plugged/wpgtk.vim"]
+	path = vim/.vim/plugged/wpgtk.vim
+	url = https://github.com/deviantfero/wpgtk.vim
