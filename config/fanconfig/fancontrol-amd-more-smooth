@@ -17,10 +17,10 @@ FCFANS=hwmon2/pwm1=hwmon2/fan1_input hwmon2/pwm2=hwmon2/fan2_input hwmon2/pwm3=h
 MINTEMP=hwmon2/pwm1=46 hwmon2/pwm2=46 hwmon2/pwm3=46 hwmon2/pwm4=46 hwmon2/pwm5=38 hwmon2/pwm7=46
 MAXTEMP=hwmon2/pwm1=85 hwmon2/pwm2=85 hwmon2/pwm3=85 hwmon2/pwm4=85 hwmon2/pwm5=85 hwmon2/pwm7=85
 
-MINSTART=hwmon2/pwm1=150 hwmon2/pwm2=150 hwmon2/pwm3=150 hwmon2/pwm4=150 hwmon2/pwm5=150 hwmon2/pwm7=150
-MINSTOP=hwmon2/pwm1=83 hwmon2/pwm2=83 hwmon2/pwm3=83 hwmon2/pwm4=83 hwmon2/pwm5=79 hwmon2/pwm7=83
+MINSTART=hwmon2/pwm1=200 hwmon2/pwm2=150 hwmon2/pwm3=150 hwmon2/pwm4=150 hwmon2/pwm5=150 hwmon2/pwm7=150
+MINSTOP=hwmon2/pwm1=90 hwmon2/pwm2=84 hwmon2/pwm3=84 hwmon2/pwm4=84 hwmon2/pwm5=79 hwmon2/pwm7=84
 
-MINPWM=hwmon2/pwm1=83 hwmon2/pwm2=83 hwmon2/pwm3=83 hwmon2/pwm4=83 hwmon2/pwm5=79 hwmon2/pwm7=83
+MINPWM=hwmon2/pwm1=84 hwmon2/pwm2=84 hwmon2/pwm3=84 hwmon2/pwm4=84 hwmon2/pwm5=79 hwmon2/pwm7=84
 MAXPWM=hwmon2/pwm1=255 hwmon2/pwm2=255 hwmon2/pwm3=255 hwmon2/pwm4=255 hwmon2/pwm5=255 hwmon2/pwm7=255
 
 AVERAGE=hwmon2/pwm1=1 hwmon2/pwm2=1 hwmon2/pwm3=1 hwmon2/pwm4=1 hwmon2/pwm5=1 hwmon2/pwm7=1
