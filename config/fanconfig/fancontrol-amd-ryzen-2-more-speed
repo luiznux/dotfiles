@@ -7,7 +7,7 @@ DEVNAME=hwmon0=zenpower hwmon2=nct6798
 FCTEMPS=hwmon2/pwm1=hwmon0/temp2_input hwmon2/pwm2=hwmon0/temp2_input hwmon2/pwm3=hwmon0/temp2_input hwmon2/pwm4=hwmon0/temp2_input hwmon2/pwm5=hwmon2/temp2_input hwmon2/pwm7=hwmon0/temp2_input
 FCFANS=hwmon2/pwm1=hwmon2/fan1_input hwmon2/pwm2=hwmon2/fan2_input hwmon2/pwm3=hwmon2/fan3_input hwmon2/pwm4=hwmon2/fan4_input hwmon2/pwm5=hwmon2/fan5_input hwmon2/pwm7=hwmon2/fan7_input
 
-MINTEMP=hwmon2/pwm1=45 hwmon2/pwm2=45 hwmon2/pwm3=45 hwmon2/pwm4=45 hwmon2/pwm5=38 hwmon2/pwm7=45
+MINTEMP=hwmon2/pwm1=46 hwmon2/pwm2=46 hwmon2/pwm3=46 hwmon2/pwm4=46 hwmon2/pwm5=38 hwmon2/pwm7=46
 MAXTEMP=hwmon2/pwm1=85 hwmon2/pwm2=85 hwmon2/pwm3=85 hwmon2/pwm4=85 hwmon2/pwm5=85 hwmon2/pwm7=85
 
 MINSTART=hwmon2/pwm1=201 hwmon2/pwm2=150 hwmon2/pwm3=150 hwmon2/pwm4=150 hwmon2/pwm5=150 hwmon2/pwm7=0
