@@ -386,6 +386,7 @@ exec_always --no-startup-id sleep 1; xset r rate 500 37 &
 assign [class="discord"] $ws6
 assign [class="Transmission"]  $ws8
 assign [class="Steam"]  $ws9
+
 for_window [instance="slack"] move container to workspace  $ws6
 for_window [class="Slack"] move container to workspace $ws6
 
@@ -397,11 +398,16 @@ for_window [class="Spotify"] move to workspace $ws7
 ## Enable floating window some windows, use $xwininfo
 for_window [window_role="task_dialog|app|bubble|pop-up|page-info|Preferences"] floating enable
 for_window [instance="qtpass|vitetris|xfontsel|xfd|gpicsview|gufw.py|Toplevel|gvim|arandr|blueman-manager|blueman-services|lxappearance|catfish|pavucontrol|pavumeter|xpad|galculator|engrampa|eom|guvcview|gpicview|simplescreenrecorder|radiotray|mate-search-tool|qtfm|yad|gsimplecal|deluge|WiFi-Menu|mate-dictionary|system-config-printer.py|dconf-editor|stalonetray"] floating enable
+
+for_window [title="Calendar|Clocks|System Monitor"]  floating enable, resize set 900 600
+for_window [class="QjackCtl"]	                     floating enable, resize set 900 600
+
 for_window [class="Gnome-control-center" instance="gnome-control-center"] floating enable
+
 for_window [title="Steam - Update*|Event Tester|Taakbeheer -*"] floating enable
+
 for_window [title="Calculator"]	      floating enable
 for_window [title="Volume Control"]	  floating enable
-for_window [class="QjackCtl"]	      floating enable
 
 #---------------------------------#
 #------ Two monitors config ------#
