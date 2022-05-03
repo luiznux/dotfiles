@@ -97,7 +97,7 @@ install_packages(){
 
     utilities=" htop atop calcurse cpupower dmenu rofi cmatrix neofetch ranger sl youtube-dl pacmanlogviewer expac xfce4-settings lxinput hddtemp lm_sensors xsensors psensor gedit baobab s-tui "
 
-    program_languages=" global ctags clang ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure leiningen nodejs "
+    program_languages=" global ctags clang ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure leiningen nodejs m17n-lib "
 
     graphic=" i3-gaps lxrandr-gtk3 arandr qt zenity dunst picom lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-slick-greeter "
 
