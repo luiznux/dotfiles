@@ -11,7 +11,7 @@
 #---------------------------------#
 #------------ Exports ------------#
 #
-export PATH="${PATH}:${HOME}/.local/bin/"
+export PATH="${PATH}:${HOME}/.local/bin/:${HOME}/.config/scripts/"
 
 #export TERM="xterm-256color"  # getting proper colors
 export EDITOR=vim
