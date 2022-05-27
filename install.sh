@@ -385,8 +385,7 @@ urxvt_setup(){
 other_config(){
 
     log echo "#---------------------------------------- Other Configs " && break_line
-    cd $dotfiles && cp config/scripts/screenshots.sh ~/.config/ \
-    && sudo cp -r config/pipewire/pipewire.conf /etc/pipewire/pipewire.conf \
+    cd $dotfiles && sudo cp -r config/pipewire/pipewire.conf /etc/pipewire/pipewire.conf \
     && cp -r config/alacritty/alacritty.yml ~/.config/alacritty/ \
     && cp -r config/rofi/config.rasi ~/.config/rofi/ \
     && sudo cp config/scripts/{ca,simple-push,volume,nvidia-fan-setup} /usr/local/bin/ \
