@@ -107,7 +107,7 @@ install_packages(){
 
     font=" adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts ttf-font-awesome gnome-font-viewer "
 
-    gnome=" intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor gnome-control-center gnome-calendar gnome-characters gnome-power-manager "
+    gnome=" intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor gnome-control-center gnome-calculator gnome-calendar gnome-characters gnome-power-manager "
 
     # with pipewire packages
     audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack wireplumber wireplumber-docs pavucontrol libmpdclient fftw playerctl vlc audacity gnome-music easyeffects "
@@ -123,22 +123,46 @@ install_packages(){
 
     printer=" cups cups-pdf system-config-printer "
 
-    security=" ufw gnome-keyring keychain seahorse"
+    security=" ufw gnome-keyring keychain seahorse "
 
     network=" dhcp dhcpcd "
 
-    others=" transmission-gtk gparted discord code gnome-calculator firefox chromium torbrowser-launcher bleachbit kdenlive mesa-demos ispell aspell aspell-pt aspell-en"
+    browsers=" firefox chromium torbrowser-launcher "
 
-    log_error sudo pacman -Syu $essencials $linux_gadgets $utilities $program_languages $graphic $file_open $themes $font $gnome $audio $image $android_device $gnu_things $term_shell $printer $security $network $others  --noconfirm --needed \
-    && log echo "        Packages {OK}" && break_line || log erro_msg
+    others=" transmission-gtk gparted discord  bleachbit kdenlive mesa-demos ispell aspell aspell-pt aspell-en cowsay "
+
+    log_error sudo pacman -Syu --noconfirm --needed \
+              $essencials \
+              $linux_gadgets \
+              $utilities \
+              $program_languages \
+              $graphic \
+              $file_open \
+              $themes \
+              $font \
+              $gnome \
+              $audio \
+              $image \
+              $android_device \
+              $gnu_things \
+              $term_shell \
+              $printer \
+              $security \
+              $network \
+              $browsers \
+              $others  \
+        && log echo "        Packages {OK}" && break_line || log erro_msg
 }
 
 #### install some python packages
 Python_config(){
 
     log echo "#----------------------------------------------- PYTHON CONFIG" && break_line
-    log_error sudo pacman -S python-pip python-sphinx dbus-python python2-gobject python-psutil python-urwid python-pywal python-pdftotext python-language-server --noconfirm \
-    && log echo "	     Python {OK}" && break_line || log erro_msg
+    log_error sudo pacman -Syu --noconfirm --needed \
+              python-pip python-sphinx dbus-python \
+              python2-gobject python-psutil python-urwid python-pywal \
+              python-pdftotext python-language-server  \
+        && log echo "	     Python {OK}" && break_line || log erro_msg
 }
 
 #### install the graphic drivers(depends of your hardware)
@@ -146,13 +170,13 @@ Graphic_drivers(){
 
     log echo "#----------------------------------------------- Graphic drives" && break_line
     if [ $GPU == "1" ]; then
-        log_error sudo pacman -Sy xf86-video-intel vulkan-intel --noconfirm --needed
+        log_error sudo pacman -Suy xf86-video-intel vulkan-intel --noconfirm --needed
 
     elif [ $GPU == "2" ]; then
-        log_error sudo pacman -Sy nvidia nvidia-utils nvidia-settings --noconfirm --needed
+        log_error sudo pacman -Suy nvidia nvidia-utils nvidia-settings --noconfirm --needed
 
     elif [ $GPU == "3" ]; then
-        log_error sudo pacman -Sy xf86-video-amdgpu vulkan-radeon --noconfirm --needed
+        log_error sudo pacman -Suy xf86-video-amdgpu vulkan-radeon --noconfirm --needed
 
     else
         log echo "GPU Packages skipped " && break_line || log erro_msg
