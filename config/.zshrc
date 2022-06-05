@@ -236,7 +236,10 @@ plugins=(
     history
     zsh-autosuggestions
     zsh-syntax-highlighting
+    zsh-fzf-history-search
 )
+
+zstyle :omz:plugins:ssh-agent identities ~/.ssh/*_rsa
 
 source $ZSH/oh-my-zsh.sh
 
