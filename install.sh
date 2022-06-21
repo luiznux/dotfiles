@@ -225,6 +225,7 @@ AUR_install(){
     && log_error make_pkg_AUR themix-full-git  \
     && log_error make_pkg_AUR pipewire-jack-dropin \
     && log_error make_pkg_AUR ttf-wps-fonts \
+    && log_error make_pkg_AUR wps-office-mui-pt-br \
     && log_error make_pkg_AUR wps-office \
     && log echo "----------------------------- AUR General packages  Done " && break_line || log erro_msg
     break_line
