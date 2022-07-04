@@ -129,7 +129,9 @@ install_packages(){
 
     browsers=" firefox chromium torbrowser-launcher "
 
-    others=" transmission-gtk gparted discord  bleachbit kdenlive mesa-demos ispell aspell aspell-pt aspell-en cowsay "
+    python=" python-pip python-sphinx dbus-python python-psutil python-urwid python-pywal python-pdftotext "
+
+    others=" transmission-gtk gparted discord bleachbit kdenlive mesa-demos ispell aspell aspell-pt aspell-en cowsay "
 
     log_error sudo pacman -Syu --noconfirm --needed \
               $essencials \
@@ -150,19 +152,9 @@ install_packages(){
               $security \
               $network \
               $browsers \
-              $others  \
+              $python \
+              $others \
         && log echo "        Packages {OK}" && break_line || log erro_msg
-}
-
-#### install some python packages
-Python_config(){
-
-    log echo "#----------------------------------------------- PYTHON CONFIG" && break_line
-    log_error sudo pacman -Syu --noconfirm --needed \
-              python-pip python-sphinx dbus-python \
-              python2-gobject python-psutil python-urwid python-pywal \
-              python-pdftotext python-language-server  \
-        && log echo "	     Python {OK}" && break_line || log erro_msg
 }
 
 #### install the graphic drivers(depends of your hardware)
@@ -192,45 +184,16 @@ AUR_install(){
 
     log echo "-------------------------------- Installing yay package" && break_line
     log_error make_pkg_AUR yay \
-    && log echo "----------------------------- YAY Package Installed!" && break_line || log erro_msg
+    && log echo "----------------------------- YAY Installed!" && break_line || log erro_msg
     break_line
 
-    log echo "-------------------------------- Python AUR packages" && break_line
-    log_error make_pkg_AUR python2-twodict-git \
-    && log_error yay -S pygtk --noconfirm --nocleanmenu --nodiffmenu \
-    && log echo "----------------------------- AUR Python packages  Done " && break_line || log erro_msg
-    break_line
+    log echo "----------------------------- Installing AUR General packages" && break_line || log erro_msg
+    packages=" polybar archlinux-artwork i3lock-color-git autotiling nwg-launchers thermald mictray nerd-fonts-source-code-pro ttf-weather-icons qdirstat jmtpfs zscroll-git clojure-lsp-bin speedometer cli-visualizer rar mon2cam-git themix-full-git ttf-wps-fonts wps-office-mui-pt-br wps-office  pygtk "
 
-    log echo "-------------------------------- Installing some AUR Packages" && break_line
-    log_error make_pkg_AUR polybar \
-    && log_error make_pkg_AUR archlinux-artwork \
-    && log_error make_pkg_AUR i3lock-color-git \
-    && log_error make_pkg_AUR autotiling \
-    && log_error make_pkg_AUR nwg-launchers \
-    && log_error make_pkg_AUR thermald \
-    && log_error make_pkg_AUR mictray \
-    && log_error make_pkg_AUR nerd-fonts-source-code \
-    && log_error make_pkg_AUR ttf-weather-icons \
-    && log_error make_pkg_AUR qdirstat \
-    && log_error make_pkg_AUR jmtpfs \
-    && log_error make_pkg_AUR zscroll-git \
-    && log_error make_pkg_AUR clojure-lsp-bin \
-    && log_error make_pkg_AUR speedometer \
-    && log_error make_pkg_AUR cli-visualizer \
-    && log_error make_pkg_AUR rar \
-    && log_error make_pkg_AUR youtube-dl-gui-git \
-    && log_error make_pkg_AUR jetbrains-toolbox \
-    && log_error make_pkg_AUR mon2cam-git \
-    && log_error make_pkg_AUR auctex \
-    && log_error make_pkg_AUR themix-full-git  \
-    && log_error make_pkg_AUR pipewire-jack-dropin \
-    && log_error make_pkg_AUR ttf-wps-fonts \
-    && log_error make_pkg_AUR wps-office-mui-pt-br \
-    && log_error make_pkg_AUR wps-office \
-    && log echo "----------------------------- AUR General packages  Done " && break_line || log erro_msg
-    break_line
+#python2-gobject python2-twodict-git
 
-    log echo "------------------------------------------------ AUR pkgs Done {OK}" && break_line || log erro_msg
+    log_error yay -Syu $packages --noconfirm --needed --nocleanmenu --nodiffmenu \
+        && log echo "----------------------------- AUR General packages  Done " && break_line || log erro_msg
     break_line
 }
 
@@ -240,7 +203,7 @@ AMD_CPU(){
     if [ $amd_option == "y" ]; then
        log echo "#----------------------------------------- Installing AMD CPU packages"
        log_error sudo pacman -Syu amd-ucode --noconfirm --needed \
-       && log_error yay -S it87-dkms-git zenmonitor3-git --noconfirm --nocleanmenu --nodiffmenu \
+       && log_error yay -Syu it87-dkms-git zenmonitor3-git --noconfirm --needed --nocleanmenu --nodiffmenu \
        && log echo "#-------------------------------------- AMD packages {OK}" && break_line || log erro_msg
 
     else
@@ -253,13 +216,12 @@ AMD_CPU(){
 #### gnu savannah, build and install
 emacs(){
 
-    log echo "#---------------------------------------- EMACS INSTALL" && break_line
+    log echo "#---------------------------------------- EMACS Config" && break_line
     log_error cd $dotfiles && cp -r emacs/emacs.d/.emacs.d  ~/.emacs.d/ \
     && log echo "     Emacs config {OK} " && break_line || log erro_msg
 
     log_error cd ~/  && log_error git clone https://git.savannah.gnu.org/git/emacs.git \
-    && log_error cd ~/emacs && log_error ./autogen.sh && log_error ./configure && log_error make -j6 && log_error sudo make install \
-    && log echo "     Emacs  Install  {OK}" && break_line || log erro_msg
+    && log echo "     Emacs savannah cloned  {OK}" && break_line || log erro_msg
 }
 
 #### Install some lsp servers packages(using npm)
@@ -294,8 +256,7 @@ dropbox_setup(){
 
     log_error cd $AUR/dropbox && log_error wget https://linux.dropbox.com/fedora/rpm-public-key.asc \
     && log_error gpg --import rpm-public-key.asc && break_line && log echo " Key imported" \
-    && log_error make_pkg_AUR dropbox \
-    && log_error make_pkg_AUR nemo-dropbox \
+    && log_error yay -Syu  dropbox nemo-dropbox --noconfirm --needed --nocleanmenu --nodiffmenu \
     && log echo "     Dropbox install packages {OK}" && break_line || log erro_msg
 }
 
@@ -359,7 +320,7 @@ background_img_setup(){
 theme_setup(){
 
     log echo "#---------------------------------------- Setup Themes" && break_line
-    cd $dotfiles/themes/gtk/ && tar -xvf Sweet-Dark.tar.xz  && sudo mv Sweet-Dark /usr/share/themes/ \
+    cd $dotfiles/themes/gtk/ && tar -xvf Sweet-Dark.tar.xz  && sudo mv -f Sweet-Dark /usr/share/themes/ \
     && sudo cp $dotfiles/config/lightdm/* /etc/lightdm/ \
     && cd $dotfiles/config/gtk/ && cp -r gtk-2.0 gtk-3.0 ~/.config \
     && cp .gtkrc-2.0 ~/.gtkrc-2.0 \
@@ -369,8 +330,7 @@ theme_setup(){
 pacman_setup(){
 
     log echo "#---------------------------------------- Setup Pacman config" && break_line
-    cd $dotfiles && log_error sudo cp config/pacman/mirrorlist /etc/pacman.d/ \
-    && sudo rm /etc/pacman.conf && cd $dotfiles && sudo cp config/pacman/pacman.conf  /etc/ \
+    cd $dotfiles && sudo rm /etc/pacman.conf && cd $dotfiles && sudo cp config/pacman/pacman.conf  /etc/ \
     && log echo "     Pacman config {OK} " && break_line || log erro_msg
 }
 
@@ -384,13 +344,6 @@ zsh_setup(){
     && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting \
     && git clone https://github.com/joshskidmore/zsh-fzf-history-search ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-fzf-history-search \
     && log echo "     Zsh config {OK} " && break_line || log erro_msg
-}
-
-st_terminal_setup(){
-
-    log echo "#---------------------------------------- Setup st-terminal" && break_line
-    cd $GIT/prog && git clone https://github.com/luiznux/st && cd st/ && make && sudo make clean install \
-    && log echo "     St terminal config {OK} " && break_line || log erro_msg
 }
 
 xorg_setup(){
@@ -528,7 +481,6 @@ break_line
 clean_log
 dir_tree
 install_packages
-Python_config
 Graphic_drivers
 AUR_install
 emacs
@@ -544,7 +496,6 @@ background_img_setup
 theme_setup
 pacman_setup
 zsh_setup
-st_terminal_setup
 xorg_setup
 urxvt_setup
 other_config
