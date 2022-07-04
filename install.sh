@@ -129,7 +129,7 @@ install_packages(){
 
     browsers=" firefox chromium torbrowser-launcher "
 
-    others=" transmission-gtk gparted discord  bleachbit kdenlive mesa-demos ispell aspell aspell-pt aspell-en cowsay "
+    others=" transmission-gtk gparted discord bleachbit kdenlive mesa-demos ispell aspell aspell-pt aspell-en cowsay "
 
     log_error sudo pacman -Syu --noconfirm --needed \
               $essencials \
@@ -160,8 +160,8 @@ Python_config(){
     log echo "#----------------------------------------------- PYTHON CONFIG" && break_line
     log_error sudo pacman -Syu --noconfirm --needed \
               python-pip python-sphinx dbus-python \
-              python2-gobject python-psutil python-urwid python-pywal \
-              python-pdftotext python-language-server  \
+              python-psutil python-urwid python-pywal \
+              python-pdftotext \
         && log echo "	     Python {OK}" && break_line || log erro_msg
 }
 
@@ -192,45 +192,19 @@ AUR_install(){
 
     log echo "-------------------------------- Installing yay package" && break_line
     log_error make_pkg_AUR yay \
-    && log echo "----------------------------- YAY Package Installed!" && break_line || log erro_msg
+    && log echo "----------------------------- YAY Installed!" && break_line || log erro_msg
+    break_line
+
+    log echo "----------------------------- Installing AUR General packages" && break_line || log erro_msg
+    packages=" polybar archlinux-artwork i3lock-color-git autotiling nwg-launchers thermald mictray nerd-fonts-source-code-pro ttf-weather-icons qdirstat jmtpfs zscroll-git clojure-lsp-bin speedometer cli-visualizer rar mon2cam-git auctex themix-full-git pipewire-jack-dropin ttf-wps-fonts wps-office-mui-pt-br wps-office python2-gobject "
+
+    log_error yay -Syu $packages --noconfirm --nocleanmenu --nodiffmenu \
+        && log echo "----------------------------- AUR General packages  Done " && break_line || log erro_msg
     break_line
 
     log echo "-------------------------------- Python AUR packages" && break_line
-    log_error make_pkg_AUR python2-twodict-git \
-    && log_error yay -S pygtk --noconfirm --nocleanmenu --nodiffmenu \
+    log_error yay -S python2-twodict-git pygtk --noconfirm --nocleanmenu --nodiffmenu \
     && log echo "----------------------------- AUR Python packages  Done " && break_line || log erro_msg
-    break_line
-
-    log echo "-------------------------------- Installing some AUR Packages" && break_line
-    log_error make_pkg_AUR polybar \
-    && log_error make_pkg_AUR archlinux-artwork \
-    && log_error make_pkg_AUR i3lock-color-git \
-    && log_error make_pkg_AUR autotiling \
-    && log_error make_pkg_AUR nwg-launchers \
-    && log_error make_pkg_AUR thermald \
-    && log_error make_pkg_AUR mictray \
-    && log_error make_pkg_AUR nerd-fonts-source-code \
-    && log_error make_pkg_AUR ttf-weather-icons \
-    && log_error make_pkg_AUR qdirstat \
-    && log_error make_pkg_AUR jmtpfs \
-    && log_error make_pkg_AUR zscroll-git \
-    && log_error make_pkg_AUR clojure-lsp-bin \
-    && log_error make_pkg_AUR speedometer \
-    && log_error make_pkg_AUR cli-visualizer \
-    && log_error make_pkg_AUR rar \
-    && log_error make_pkg_AUR youtube-dl-gui-git \
-    && log_error make_pkg_AUR jetbrains-toolbox \
-    && log_error make_pkg_AUR mon2cam-git \
-    && log_error make_pkg_AUR auctex \
-    && log_error make_pkg_AUR themix-full-git  \
-    && log_error make_pkg_AUR pipewire-jack-dropin \
-    && log_error make_pkg_AUR ttf-wps-fonts \
-    && log_error make_pkg_AUR wps-office-mui-pt-br \
-    && log_error make_pkg_AUR wps-office \
-    && log echo "----------------------------- AUR General packages  Done " && break_line || log erro_msg
-    break_line
-
-    log echo "------------------------------------------------ AUR pkgs Done {OK}" && break_line || log erro_msg
     break_line
 }
 
@@ -253,13 +227,12 @@ AMD_CPU(){
 #### gnu savannah, build and install
 emacs(){
 
-    log echo "#---------------------------------------- EMACS INSTALL" && break_line
+    log echo "#---------------------------------------- EMACS Config" && break_line
     log_error cd $dotfiles && cp -r emacs/emacs.d/.emacs.d  ~/.emacs.d/ \
     && log echo "     Emacs config {OK} " && break_line || log erro_msg
 
     log_error cd ~/  && log_error git clone https://git.savannah.gnu.org/git/emacs.git \
-    && log_error cd ~/emacs && log_error ./autogen.sh && log_error ./configure && log_error make -j6 && log_error sudo make install \
-    && log echo "     Emacs  Install  {OK}" && break_line || log erro_msg
+    && log echo "     Emacs savannah cloned  {OK}" && break_line || log erro_msg
 }
 
 #### Install some lsp servers packages(using npm)
@@ -369,8 +342,7 @@ theme_setup(){
 pacman_setup(){
 
     log echo "#---------------------------------------- Setup Pacman config" && break_line
-    cd $dotfiles && log_error sudo cp config/pacman/mirrorlist /etc/pacman.d/ \
-    && sudo rm /etc/pacman.conf && cd $dotfiles && sudo cp config/pacman/pacman.conf  /etc/ \
+    cd $dotfiles && sudo rm /etc/pacman.conf && cd $dotfiles && sudo cp config/pacman/pacman.conf  /etc/ \
     && log echo "     Pacman config {OK} " && break_line || log erro_msg
 }
 
