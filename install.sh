@@ -24,48 +24,40 @@ errors=0
 
 #### break line with echo command
 break_line(){
-
     echo $'\n\n'
 }
 
 #### delete old log file
 clean_log(){
-
     rm -f $dotfiles/install.log
 }
 
 #### write some installings  process in the archive 'install.log'
 log(){
-
     $*
     $* >> $dotfiles/install.log
 }
 
 #### this func will only write on the archive 'install.log' if a bash error occurred
 log_error(){
-
     $* 2>> $dotfiles/install.log
 }
 
 #### print erro mgs
 erro_msg(){
-
     ((errors+=1)) && echo "  ERROR[$[errors]]" && break_line
 }
 
 #### exit dir
 exit_dir(){
-
     cd ..
 }
 
 #### install aur packages
 make_pkg_AUR(){
-
     #in case the dir already exists
     if [ -d "$AUR/$1" ];then
         cd $AUR/$1 && makepkg -csi --noconfirm && exit_dir
-
     else
         cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -csi --noconfirm && exit_dir
     fi
@@ -79,7 +71,6 @@ clean_AUR(){
 
 #### setup my directory tree
 dir_tree(){
-
     log echo "#----------------------------------------------- Setup directory tree"
     mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,sandbox,projects/{personal,work},.vim,.config/{i3,polybar,ranger,rofi,alacritty,scripts,picom}} \
     && log echo "        Directory tree {OK}" && break_line || log erro_msg
@@ -87,7 +78,6 @@ dir_tree(){
 
 #### install packages on arch linux
 install_packages(){
-
     log echo "#----------------------------------------------- Packages"
     log echo "     Installing packages"
 
@@ -159,7 +149,6 @@ install_packages(){
 
 #### install the graphic drivers(depends of your hardware)
 Graphic_drivers(){
-
     log echo "#----------------------------------------------- Graphic drives" && break_line
     if [ $GPU == "1" ]; then
         log_error sudo pacman -Suy xf86-video-intel vulkan-intel --noconfirm --needed
@@ -179,7 +168,6 @@ Graphic_drivers(){
 
 #### AUR Packges installation func(with MAKEPKG and others with yay)
 AUR_install(){
-
     log echo "#---------------------------------------- AUR packages" && break_line
 
     log echo "-------------------------------- Installing yay package" && break_line
@@ -197,23 +185,21 @@ AUR_install(){
 
 # If you using ryzen cpu, see https://wiki.archlinux.org/title/Ryzen
 AMD_CPU(){
-
     if [ $amd_option == "y" ]; then
        log echo "#----------------------------------------- Installing AMD CPU packages"
        log_error sudo pacman -Syu amd-ucode --noconfirm --needed \
        && log_error yay -Syu it87-dkms-git zenmonitor3-git --noconfirm --needed --nocleanmenu --nodiffmenu \
        && log echo "#-------------------------------------- AMD packages {OK}" && break_line || log erro_msg
-
     else
         log echo "#------------------------------------ AMD packages {SKIPED}" && break_line
         break_line
     fi
 }
 
+#TODO: tratar exceçao quando arquivo ja existe
 #### Setup my custom emacs config, also clone the master branch from
 #### gnu savannah, build and install
 emacs(){
-
     log echo "#---------------------------------------- EMACS Config" && break_line
     log_error cd $dotfiles && cp -r emacs/emacs.d/.emacs.d  ~/.emacs.d/ \
     && log echo "     Emacs config {OK} " && break_line || log erro_msg
@@ -224,7 +210,6 @@ emacs(){
 
 #### Install some lsp servers packages(using npm)
 emacs_lsp_packages(){
-
     log echo "#---------------------------------------- EMACS LSP Packages INSTALL" && break_line
     log echo "Installing using npm the following packages:"
     log echo "html-lsp, css-lsp, json-lsp yaml-lsp, dockerfile-lsp, bash-lsp and vim-lsp sql-lsp" && break_line
@@ -240,6 +225,7 @@ emacs_lsp_packages(){
     && log echo "     Emacs LSP Packages config {OK} " && break_line || log erro_msg
 }
 
+#TODO: tratar exceçao quando arquivo ja existe
 #### Config my dropbox sync folder
 dropbox_setup(){
 
@@ -260,7 +246,6 @@ dropbox_setup(){
 
 #### I3 and Polybar config
 i3_polybar_setup(){
-
     log echo "#---------------------------------------- Setup i3 and polybar" && break_line
     cd $dotfiles && cp i3/config ~/.config/i3/ \
     && cd $dotfiles && cp -r polybar/*  ~/.config/polybar/ \
@@ -268,14 +253,12 @@ i3_polybar_setup(){
 }
 
 ranger_setup(){
-
     log echo "#---------------------------------------- Ranger Setup" && break_line
     cd $dotfiles && cp config/rc.conf  ~/.config/ranger/ \
     && log echo "     Ranger config file setup {OK} " && break_line || log erro_msg
 }
 
 vim_setup(){
-
     log echo "#---------------------------------------- Vim config setup" && break_line
     cd $dotfiles && cp vim/.vimrc ~/.vimrc \
     && cd $dotfiles && cp -r vim/.vim/ ~/ \
@@ -283,21 +266,18 @@ vim_setup(){
 }
 
 locale_setup(){
-
     log echo "#---------------------------------------- Setup Locale" && break_line
     log_error cd $dotfiles && sudo cp config/locale.conf  /etc/ && log sudo locale-gen \
     && log echo "     Locale setup {OK}" && break_line || log erro_msg
 }
 
 xresources_setup(){
-
     log echo "#---------------------------------------- Setup Xresources" && break_line
     cd $dotfiles && cp config/.Xresources ~/.Xresources \
     && log echo "     Xresources setup {OK} " && break_line || log erro_msg
 }
 
 gitignore_setup(){
-
     log echo "#---------------------------------------- Setup gitignore global file" && break_line
     cd $dotfiles && cp config/.gitignore_global  ~/ \
     && log echo "     Gitignore global setup {OK} " && break_line || log erro_msg
@@ -306,7 +286,6 @@ gitignore_setup(){
 }
 
 background_img_setup(){
-
     log echo "#---------------------------------------- Setup background image" && break_line
     sudo mkdir -p /usr/share/backgrounds/luiznux \
     && cd $dotfiles && cp config/wallpapers/morpho.jpg  ~/.config/wallpaper.jpg  \
@@ -314,9 +293,9 @@ background_img_setup(){
     && log echo "     Wallppaer setup {OK} " && break_line || log erro_msg
 }
 
+#TODO: tratar exceçao quando arquivo ja existe
 #### Setup gtk themes files
 theme_setup(){
-
     log echo "#---------------------------------------- Setup Themes" && break_line
     cd $dotfiles/themes/gtk/ && tar -xvf Sweet-Dark.tar.xz  && sudo mv -f Sweet-Dark /usr/share/themes/ \
     && sudo cp $dotfiles/config/lightdm/* /etc/lightdm/ \
@@ -326,15 +305,14 @@ theme_setup(){
 }
 
 pacman_setup(){
-
     log echo "#---------------------------------------- Setup Pacman config" && break_line
     cd $dotfiles && sudo rm /etc/pacman.conf && cd $dotfiles && sudo cp config/pacman/pacman.conf  /etc/ \
     && log echo "     Pacman config {OK} " && break_line || log erro_msg
 }
 
+#TODO: tratar exceçao quando arquivo ja existe
 #### Zsh install and setup config files
 zsh_setup(){
-
     log echo "#---------------------------------------- Setup Zsh" && break_line
     log sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
     && cp $dotfiles/config/.zshrc ~/ \
@@ -345,7 +323,6 @@ zsh_setup(){
 }
 
 xorg_setup(){
-
     log echo "#---------------------------------------- Setup Xorg config files" && break_line
     cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
     && sudo cp config/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/ \
@@ -353,7 +330,6 @@ xorg_setup(){
 }
 
 urxvt_setup(){
-
     log echo "#---------------------------------------- URXVT Configs " && break_line
     cd $dotfiles && sudo cp config/urxvt/urxvt-resize-font/resize-font /usr/lib64/urxvt/perl/ &&  sudo chmod +x /usr/lib64/urxvt/perl/resize-font \
     && log echo "     URXVT Config {OK} " && break_line || log erro_msg
@@ -361,7 +337,6 @@ urxvt_setup(){
 
 #### move all the others dotfiles
 other_config(){
-
     log echo "#---------------------------------------- Other Configs " && break_line
     cd $dotfiles && sudo cp -r config/pipewire/pipewire.conf /etc/pipewire/pipewire.conf \
     && cp -r config/alacritty/alacritty.yml ~/.config/alacritty/ \
@@ -395,7 +370,6 @@ git_repository_setup(){
 
 #### enable some services
 systemd_init_core_services(){
-
     log echo "#---------------------------------------- ENABLE SYSTEMCTL SERVICES" && break_line
     log_error sudo systemctl enable lightdm.service ufw.service ntpd.service cpupower.service \
     && log_error systemctl --user --now disable pipewire-media-session  \
@@ -406,7 +380,6 @@ systemd_init_core_services(){
 
 #### install laptoptools
 laptop_config(){
-
     if [ $laptop_Option == "y" ]; then
         log echo "#----------------------------------------- Laptop config" && break_line
         log_error sudo pacman -Sy acpi tlp bumblebee xf86-input-synaptics xfce4-power-manager light bluez-utils --noconfirm --needed \
@@ -444,7 +417,6 @@ laptop_config(){
 
 #### run nvidia xconfig
 nvidia_xorg_config(){
-
     if [ $nvidia_Option == "y" ]; then
        log echo "#----------------------------------------- Nvidia Xconfig"
        log sudo nvidia-xconfig
