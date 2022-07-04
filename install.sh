@@ -185,7 +185,6 @@ AUR_install(){
     log echo "-------------------------------- Installing yay package" && break_line
     log_error make_pkg_AUR yay \
     && log echo "----------------------------- YAY Installed!" && break_line || log erro_msg
-    break_line
 
     log echo "----------------------------- Installing AUR General packages" && break_line || log erro_msg
     packages=" polybar archlinux-artwork i3lock-color-git autotiling nwg-launchers thermald mictray nerd-fonts-source-code-pro ttf-weather-icons qdirstat jmtpfs zscroll-git clojure-lsp-bin speedometer cli-visualizer rar mon2cam-git themix-full-git ttf-wps-fonts wps-office-mui-pt-br wps-office  pygtk "
@@ -194,7 +193,6 @@ AUR_install(){
 
     log_error yay -Syu $packages --noconfirm --needed --nocleanmenu --nodiffmenu \
         && log echo "----------------------------- AUR General packages  Done " && break_line || log erro_msg
-    break_line
 }
 
 # If you using ryzen cpu, see https://wiki.archlinux.org/title/Ryzen
