@@ -30,7 +30,7 @@ set $browser    firefox
 set $mail       mailspring
 
 #font config
-font pango:Source Code Pro 10
+font pango:Source Code Pro 9
 
 #background config
 exec_always feh --bg-fill ~/.config/wallpaper.jpg
