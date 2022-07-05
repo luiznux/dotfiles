@@ -295,7 +295,7 @@ $ vim /etc/mkinitcpio.conf
 * look for HOOKS="...." and add:
 
 ```bash
-HOOKS=(base udev autodetect keyboard keymap consolefont modconf block lvm2 resume encrypt filesystems fsck)
+HOOKS=(base udev autodetect keyboard keymap consolefont modconf block lvm2 encrypt resume filesystems fsck)
 ```
 * **ADD THIS AT THE SAME ORDER**
 * save, exit and reload
@@ -328,7 +328,7 @@ $ vim /etc/default/grub
 * look for  GRUB_CMDLINE_LINUX="", and the set:
 
 ```bash
-GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=/dev/sda3:linux:allow-discards quiet splash "
+GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=/dev/sda3:linux:allow-discards resume=/dev/mapper/linux-swap quiet splash"
 ```
 
 For notebooks that you want to disable the graphic card, add
@@ -338,7 +338,7 @@ pci=nomsi
 
 __OBS__ Use this flag to enable full cpu temperature for lm\_sensors
 ```bash
-GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=/dev/sda3:linux:allow-discards quiet splash acpi_enforce_resources=lax"
+GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=/dev/sda3:linux:allow-discards resume=/dev/mapper/linux-swap quiet splash acpi_enforce_resources=lax"
 ```
 
 3. after that, write or update those variables to:
