@@ -119,7 +119,7 @@ install_packages(){
 
     browsers=" firefox chromium torbrowser-launcher "
 
-    python=" python-pip python-sphinx dbus-python python-psutil python-urwid python-pywal python-pdftotext "
+    python=" python-pip python-sphinx dbus-python python-psutil python-urwid python-pywal python-pdftotext python-mutagen "
 
     others=" transmission-gtk gparted discord bleachbit kdenlive mesa-demos ispell aspell aspell-pt aspell-en cowsay "
 
