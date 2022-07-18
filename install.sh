@@ -340,7 +340,7 @@ other_config(){
     log echo "#---------------------------------------- Other Configs " && break_line
     cd $dotfiles && sudo cp -r config/pipewire/pipewire.conf /etc/pipewire/pipewire.conf \
     && cp -r config/alacritty/alacritty.yml ~/.config/alacritty/ \
-    && cp -r config/rofi/config.rasi ~/.config/rofi/ \
+    && cp -r config/rofi/* ~/.config/rofi/ \
     && sudo cp config/scripts/{ca,simple-push,volume,nvidia-fan-setup} /usr/local/bin/ \
     && cp -r config/scripts/ ~/.config \
     && cp -r config/picom ~/.config \
