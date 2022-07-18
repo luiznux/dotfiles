@@ -19,7 +19,6 @@
 #### Variables
 dotfiles=$(pwd)
 AUR=~/AUR
-GIT=~/Github
 errors=0
 
 #### break line with echo command
@@ -72,8 +71,8 @@ clean_AUR(){
 #### setup my directory tree
 dir_tree(){
     log echo "#----------------------------------------------- Setup directory tree"
-    mkdir -vp ~/{Github/{luiznux,prog,other},AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,sandbox,projects/{personal,work},.vim,.config/{i3,polybar,ranger,rofi,alacritty,scripts,picom}} \
-    && log echo "        Directory tree {OK}" && break_line || log erro_msg
+    mkdir -vp ~/{AUR,Torrents,Mangas,Books,Isos,Calibre-Library,Videos,Music,Downloads,Pictures/Screenshots,Documents,Desktop,sandbox,projects/luiznux,.vim,.config/{i3,polybar,ranger,rofi,alacritty,scripts,picom}} \
+        && log echo "        Directory tree {OK}" && break_line || log erro_msg
 }
 
 #### install packages on arch linux
@@ -297,8 +296,7 @@ background_img_setup(){
 #### Setup gtk themes files
 theme_setup(){
     log echo "#---------------------------------------- Setup Themes" && break_line
-    cd $dotfiles/themes/gtk/ && tar -xvf Sweet-Dark.tar.xz  && sudo mv -f Sweet-Dark /usr/share/themes/ \
-    && sudo cp $dotfiles/config/lightdm/* /etc/lightdm/ \
+    sudo cp $dotfiles/config/lightdm/* /etc/lightdm/ \
     && cd $dotfiles/config/gtk/ && cp -r gtk-2.0 gtk-3.0 ~/.config \
     && cp .gtkrc-2.0 ~/.gtkrc-2.0 \
     && log echo "     GTK themes setup {OK} " && break_line || log erro_msg
@@ -350,22 +348,6 @@ other_config(){
     && cp config/.bashrc ~/ \
     && gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty \
     && log echo " Other config {OK}" && break_line || log error_msg
-}
-
-#### Clone other repositories
-git_repository_setup(){
-
-    log echo "#---------------------------------------- Git Repositories Clone " && break_line
-    cd $GIT/other && git clone https://github.com/stark/Color-Scripts.git \
-    && git clone https://github.com/morpheusthewhite/spicetify-themes.git \
-    && git clone https://github.com/sebastiencs/icons-in-terminal.git \
-    && git clone https://github.com/Brettm12345/github-moonlight \
-    && git clone https://github.com/EliverLara/firefox-sweet-theme.git \
-    && git clone https://github.com/PlusInsta/discord-plus \
-    && curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl \
-    && chmod +x betterdiscordctl && sudo mv betterdiscordctl /usr/local/bin && sudo betterdiscordctl upgrade && exit_dir \
-    && cd $GIT/luiznux && git clone git@github.com:luiznux/codes.git && ln -s $GIT/luiznux/codes ~/projects/ && exit_dir
-    log echo " Git rep  Done" && break_line
 }
 
 #### enable some services
@@ -469,7 +451,6 @@ zsh_setup
 xorg_setup
 urxvt_setup
 other_config
-git_repository_setup
 laptop_config
 nvidia_xorg_config
 systemd_init_core_services
