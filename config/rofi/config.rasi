@@ -14,7 +14,10 @@ configuration {
   kb-accept-entry:               "Control+m,Return,KP_Enter";
   kb-remove-to-eol:              "Control+Shift+e";
   kb-remove-char-back:           "BackSpace";
-  terminal:                      "mate-terminal";
+  terminal:                      "alacritty";
+  hover-select:                  true;
+  me-select-entry:               "";
+  me-accept-entry:               "MousePrimary";
 }
 
 element-icon {
