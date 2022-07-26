@@ -358,10 +358,10 @@ client.placeholder      #0F0F17 #0F0F17 #0F0F17 #0F0F17   #0F0F17
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 #Picom
-exec_always --no-startup-id ~/.config/scripts/picom-config
+exec_always --no-startup-id ~/.config/scripts/start-picom
 
 #Autotiling
-exec_always --no-startup-id autotiling -w 4 5 6 7 8 9 10 11 12
+#exec_always --no-startup-id autotiling -w 4 5 6 7 8 9 10 11 12
 
 #Nvidia Shit
 #exec_always --no-startup-id ~/.config/scripts/nvidia-config
