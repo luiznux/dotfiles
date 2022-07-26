@@ -1,0 +1,17 @@
+#!/bin/bash
+# Terminate already running bar instances
+killall -qw picom
+
+## Launch picom
+
+# normal picom
+picom --config ~/.config/picom/picom.conf &
+
+# forked picom with animationsm install
+# picom-jonaburg-git from AUR for this features
+# picom --config ~/.config/picom/picom.conf \
+#      --experimental-backends \
+#      --backend glx \
+#      &
+
+echo "Picom launched..."
