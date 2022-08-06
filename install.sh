@@ -28,7 +28,7 @@ break_line(){
 
 #### delete old log file
 clean_log(){
-    rm -f $dotfiles/install.log
+    rm -f "$dotfiles"/install.log
 }
 
 #### write some installings  process in the archive 'install.log'
@@ -174,11 +174,19 @@ AUR_install(){
     && log echo "----------------------------- YAY Installed!" && break_line || log erro_msg
 
     log echo "----------------------------- Installing AUR General packages" && break_line || log erro_msg
-    packages=" polybar archlinux-artwork i3lock-color-git autotiling nwg-launchers thermald mictray nerd-fonts-source-code-pro ttf-weather-icons qdirstat jmtpfs zscroll-git clojure-lsp-bin speedometer cli-visualizer rar mon2cam-git themix-full-git ttf-wps-fonts wps-office-mui-pt-br wps-office pygtk fancontrol-gui "
+    packages=" polybar archlinux-artwork i3lock-color-git autotiling nwg-launchers thermald mictray qdirstat jmtpfs zscroll-git clojure-lsp-bin speedometer cli-visualizer rar mon2cam-git pygtk fancontrol-gui "
+    fonts="nerd-fonts-source-code-pro ttf-weather-icons "
+    themes=" catppuccin-gtk-theme themix-full-git "
+    wps_office=" ttf-wps-fonts wps-office-mui-pt-br wps-office "
 
-#python2-gobject python2-twodict-git
+    #python2-gobject python2-twodict-git
 
-    log_error yay -Syu $packages --noconfirm --needed --nocleanmenu --nodiffmenu \
+    log_error yay -Syu \
+              $packages \
+              $fonts \
+              $themes \
+              $wps_office \
+              --noconfirm --needed --nocleanmenu --nodiffmenu \
         && log echo "----------------------------- AUR General packages  Done " && break_line || log erro_msg
 }
 
