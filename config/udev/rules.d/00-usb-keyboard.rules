@@ -1,1 +1,1 @@
-ACTION=="add", SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="1ea7", ATTRS{idProduct}=="0907", RUN+="/bin/sh  /usr/local/bin/keyboard-repeat"
+ACTION=="bind", SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="1ea7", ATTRS{idProduct}=="0907", RUN+="/bin/sh  /usr/local/bin/keyboard-repeat"
