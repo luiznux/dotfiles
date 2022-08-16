@@ -1,7 +1,7 @@
 Luiznux' Configs
 =================================
 
-# Install
+## Install
 
 ## Clone my repository
 To install my dotfiles just clone this repository(with submodules).
@@ -25,5 +25,5 @@ After the end of the execute the script, a install.log file will be
 created as a log file to see eventual errors.
 
 
-### Screenshot 
+### Screenshot
 ![luiznux-img](https://github.com/luiznux/luiznux-config/blob/master/images/screenshot.png)
