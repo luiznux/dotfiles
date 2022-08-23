@@ -1,0 +1,10 @@
+[Unit]
+Description=Restart of fancontrol.service after suspend
+After=hibernate.target suspend.target
+
+[Service]
+Type=simple
+ExecStart=systemctl restart fancontrol.service
+
+[Install]
+WantedBy=hibernate.target suspend.target
