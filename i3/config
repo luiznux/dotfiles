@@ -383,9 +383,10 @@ exec_always --no-startup-id sleep 1; xset r rate 500 37 &
 ##--------- specific windows config ---------##
 
 ## Assigns some windows for specifics workspaces
-assign [class="discord"] $ws6
-assign [class="Transmission"]  $ws8
-assign [class="Steam"]  $ws9
+assign [class="discord"] $ws3
+assign [class="Transmission"] $ws8
+assign [title="Tor Browser"] $ws8
+assign [class="Steam"] $ws9
 
 for_window [instance="slack"] move container to workspace  $ws6
 for_window [class="Slack"] move container to workspace $ws6
