@@ -2,21 +2,21 @@
 #+author: luiznux
 #+email: luiz@luiznux.com
 
-* Considerations
+** Considerations
 For more info of fancontrol, read the official doc witch contains more details
 about all parameters of configs and parameters
 
-* Why?
+** Why?
 Amd ryzen 5000 series has different temperature curve, since its normal
 temperature around 39℃- 49℃. So if you configure fancontrol like another
 processor temperature curve it will be noisy and starts spinning with the
 minimum temperature oscillation(which is very often).
 
-* Workarounds tips
+** Workarounds tips
 - Set good and safety values in *MINPWM* parameter, since we only don't need to
   worry about any temperature around the normal curve.
 
-- Set *MINSTART* = *MINSTOP* = *MINPWM* so fans Will never stops spinning
+- Set *MINSTART* = *MINSTOP* = *MINPWM* so fans will never stops spinning
 
 - Set *MINTEMP* to the last safe value of the normal temperature curve, because
   after this temperature we need the fans to do their job of cooling the PC
@@ -25,5 +25,5 @@ minimum temperature oscillation(which is very often).
   spike, the fans won't start make so much noise instantly.
 
 
-*  The example files
+**  The example files
 - Use those files only for example values, since every fan has its own efficiently
