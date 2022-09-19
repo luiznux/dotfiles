@@ -3,7 +3,7 @@ Description=Restart ethernet adapter after resume because it won't work
 After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
 
 [Service]
-ExecStartPre=/bin/sleep 10
+ExecStartPre=/bin/sleep 5
 ExecStartPre=/usr/bin/nmcli networking off
 ExecStart=/usr/bin/nmcli networking on
 
