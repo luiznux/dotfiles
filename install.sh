@@ -102,7 +102,7 @@ install_packages(){
     audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack wireplumber wireplumber-docs pavucontrol libmpdclient fftw playerctl vlc audacity gnome-music easyeffects vvave rhythmbox "
     #audio=" alsa alsa-utils alsa-firmware alsa-plugins pulseaudio pulseaudio-alsa pavucontrol libmpdclient fftw playerctl vlc paprefs "
 
-    image=" eog feh tumbler gthumb ffmpegthumbnailer webp-pixbuf-loader mplayer gst-libav imagemagick sxiv gimp scrot deepin-screenshot w3m ueberzug gnome-video-effects cheese pdf2svg "
+    image=" eog feh tumbler gthumb ffmpegthumbnailer webp-pixbuf-loader mplayer gst-libav imagemagick sxiv gimp scrot flameshot w3m ueberzug gnome-video-effects cheese pdf2svg "
 
     android_device=" mtpfs gvfs-mtp gvfs-gphoto2 android-file-transfer libmtp yasm "
 
