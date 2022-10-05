@@ -33,18 +33,18 @@ clean_log(){
 
 #### write some installings  process in the archive 'install.log'
 log(){
-    $*
-    $* >> $dotfiles/install.log
+    "$*"
+    "$*" >> "$dotfiles"/install.log
 }
 
 #### this func will only write on the archive 'install.log' if a bash error occurred
 log_error(){
-    $* 2>> $dotfiles/install.log
+    "$*" 2>> "$dotfiles"/install.log
 }
 
 #### print erro mgs
 erro_msg(){
-    ((errors+=1)) && echo "  ERROR[$[errors]]" && break_line
+    ((errors+=1)) && echo "  ERROR[$(errors)]" && break_line
 }
 
 #### exit dir
@@ -56,16 +56,10 @@ exit_dir(){
 make_pkg_AUR(){
     #in case the dir already exists
     if [ -d "$AUR/$1" ];then
-        cd $AUR/$1 && makepkg -csi --noconfirm && exit_dir
+        cd $AUR/"$1" && makepkg -csi --noconfirm && exit_dir
     else
-        cd $AUR && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -csi --noconfirm && exit_dir
+        cd $AUR && git clone https://aur.archlinux.org/"$1".git && cd "$1" && makepkg -csi --noconfirm && exit_dir
     fi
-}
-
-#### clean AUR dir
-clean_AUR(){
-
-    rm -rf $AUR/*
 }
 
 #### setup my directory tree
@@ -123,39 +117,39 @@ install_packages(){
     others=" transmission-gtk gparted discord bleachbit kdenlive mesa-demos ispell aspell aspell-pt aspell-en cowsay "
 
     log_error sudo pacman -Syu --noconfirm --needed \
-              $essencials \
-              $linux_gadgets \
-              $utilities \
-              $program_languages \
-              $graphic \
-              $file_open \
-              $themes \
-              $font \
-              $gnome \
-              $audio \
-              $image \
-              $android_device \
-              $gnu_things \
-              $term_shell \
-              $printer \
-              $security \
-              $network \
-              $browsers \
-              $python \
-              $others \
+              "$essencials" \
+              "$linux_gadgets" \
+              "$utilities" \
+              "$program_languages" \
+              "$graphic" \
+              "$file_open" \
+              "$themes" \
+              "$font" \
+              "$gnome" \
+              "$audio" \
+              "$image" \
+              "$android_device" \
+              "$gnu_things" \
+              "$term_shell" \
+              "$printer" \
+              "$security" \
+              "$network" \
+              "$browsers" \
+              "$python" \
+              "$others" \
         && log echo "        Packages {OK}" && break_line || log erro_msg
 }
 
 #### install the graphic drivers(depends of your hardware)
 Graphic_drivers(){
     log echo "#----------------------------------------------- Graphic drives" && break_line
-    if [ $GPU == "1" ]; then
+    if [ "$GPU" == "1" ]; then
         log_error sudo pacman -Suy xf86-video-intel vulkan-intel --noconfirm --needed
 
-    elif [ $GPU == "2" ]; then
+    elif [ "$GPU" == "2" ]; then
         log_error sudo pacman -Suy nvidia nvidia-utils nvidia-settings --noconfirm --needed
 
-    elif [ $GPU == "3" ]; then
+    elif [ "$GPU" == "3" ]; then
         log_error sudo pacman -Suy xf86-video-amdgpu vulkan-radeon --noconfirm --needed
 
     else
@@ -180,21 +174,21 @@ AUR_install(){
     wps_office=" ttf-wps-fonts wps-office-mui-pt-br wps-office "
 
     log_error yay -Syu \
-              $packages \
-              $fonts \
-              $themes \
-              $wps_office \
+              "$packages" \
+              "$fonts" \
+              "$themes" \
+              "$wps_office" \
               --noconfirm --needed --nocleanmenu --nodiffmenu \
         && log echo "----------------------------- AUR General packages  Done " && break_line || log erro_msg
 }
 
 # If you using ryzen cpu, see https://wiki.archlinux.org/title/Ryzen
 AMD_CPU(){
-    if [ $amd_option == "y" ]; then
-       log echo "#----------------------------------------- Installing AMD CPU packages"
-       log_error sudo pacman -Syu amd-ucode --noconfirm --needed \
-       && log_error yay -Syu it87-dkms-git zenmonitor3-git zenpower3-dkms --noconfirm --needed --nocleanmenu --nodiffmenu \
-       && log echo "#-------------------------------------- AMD packages {OK}" && break_line || log erro_msg
+    if [ "$amd_option" == "y" ]; then
+        log echo "#----------------------------------------- Installing AMD CPU packages"
+        log_error sudo pacman -Syu amd-ucode --noconfirm --needed \
+            && log_error yay -Syu it87-dkms-git zenmonitor3-git zenpower3-dkms --noconfirm --needed --nocleanmenu --nodiffmenu \
+            && log echo "#-------------------------------------- AMD packages {OK}" && break_line || log erro_msg
     else
         log echo "#------------------------------------ AMD packages {SKIPED}" && break_line
         break_line
@@ -206,10 +200,11 @@ AMD_CPU(){
 #### gnu savannah, build and install
 emacs(){
     log echo "#---------------------------------------- EMACS Config" && break_line
-    log_error cd $dotfiles && cp -r emacs/emacs.d/.emacs.d  ~/.emacs.d/ \
-    && log echo "     Emacs config {OK} " && break_line || log erro_msg
+    log_error cd ~/ && git clone https://github.com/luiznux/emacs.d.git git-emacs \
+        && mv  git-emacs/.emacs.d ./ && rm -rf git-emacs \
+        && log echo "     Emacs config {OK} " && break_line || log erro_msg
 
-    log_error cd ~/  && log_error git clone https://git.savannah.gnu.org/git/emacs.git \
+    log_error cd ~/ && log_error git clone https://git.savannah.gnu.org/git/emacs.git \
     && log echo "     Emacs savannah cloned  {OK}" && break_line || log erro_msg
 }
 
@@ -252,49 +247,49 @@ dropbox_setup(){
 #### I3 and Polybar config
 i3_polybar_setup(){
     log echo "#---------------------------------------- Setup i3 and polybar" && break_line
-    cd $dotfiles && cp i3/config ~/.config/i3/ \
-    && cd $dotfiles && cp -r polybar/*  ~/.config/polybar/ \
-    && log echo "     i3 and Polybar config {OK} " && break_line || log erro_msg
+    cd "$dotfiles" && cp -r config/i3 ~/.config/i3 \
+        && cp -r config/polybar  ~/.config/polybar \
+        && log echo "     i3 and Polybar config {OK} " && break_line || log erro_msg
 }
 
 ranger_setup(){
     log echo "#---------------------------------------- Ranger Setup" && break_line
-    cd $dotfiles && cp config/rc.conf  ~/.config/ranger/ \
+    cd "$dotfiles" && cp config/rc.conf  ~/.config/ranger/ \
     && log echo "     Ranger config file setup {OK} " && break_line || log erro_msg
 }
 
 vim_setup(){
     log echo "#---------------------------------------- Vim config setup" && break_line
-    cd $dotfiles && cp vim/.vimrc ~/.vimrc \
-    && cd $dotfiles && cp -r vim/.vim/ ~/ \
-    && log echo "     Vim setup {OK} " && break_line || log erro_msg
+    cd "$dotfiles" && cp config/vim/.vimrc ~/.vimrc \
+        && cp -r config/vim/.vim/ ~/ \
+        && log echo "     Vim setup {OK} " && break_line || log erro_msg
 }
 
 locale_setup(){
     log echo "#---------------------------------------- Setup Locale" && break_line
-    log_error cd $dotfiles && sudo cp config/locale.conf  /etc/ && log sudo locale-gen \
+    log_error cd "$dotfiles" && sudo cp config/locale.conf  /etc/ && log sudo locale-gen \
     && log echo "     Locale setup {OK}" && break_line || log erro_msg
 }
 
 xresources_setup(){
     log echo "#---------------------------------------- Setup Xresources" && break_line
-    cd $dotfiles && cp config/.Xresources ~/.Xresources \
+    cd "$dotfiles" && cp config/.Xresources ~/.Xresources \
     && log echo "     Xresources setup {OK} " && break_line || log erro_msg
 }
 
 gitignore_setup(){
     log echo "#---------------------------------------- Setup gitignore global file" && break_line
-    cd $dotfiles && cp config/.gitignore_global  ~/ \
+    cd "$dotfiles" && cp config/.gitignore_global  ~/ \
     && log echo "     Gitignore global setup {OK} " && break_line || log erro_msg
-    cd $dotfiles && cp config/.gitconfig ~/ \
+    cd "$dotfiles" && cp config/.gitconfig ~/ \
     && log echo "     Gitconfig setup {OK} " && break_line || log erro_msg
 }
 
 background_img_setup(){
     log echo "#---------------------------------------- Setup background image" && break_line
     sudo mkdir -p /usr/share/backgrounds/luiznux \
-    && cd $dotfiles && cp config/wallpapers/morpho.jpg  ~/.config/wallpaper.jpg  \
-    && sudo cp -r $dotfiles/config/wallpapers/* /usr/share/backgrounds/luiznux/ \
+    && cd "$dotfiles" && cp config/wallpapers/morpho.jpg  ~/.config/wallpaper.jpg  \
+    && sudo cp -r "$dotfiles"/config/wallpapers/* /usr/share/backgrounds/luiznux/ \
     && log echo "     Wallppaer setup {OK} " && break_line || log erro_msg
 }
 
@@ -302,15 +297,15 @@ background_img_setup(){
 #### Setup gtk themes files
 theme_setup(){
     log echo "#---------------------------------------- Setup Themes" && break_line
-    sudo cp $dotfiles/config/lightdm/* /etc/lightdm/ \
-    && cd $dotfiles/config/gtk/ && cp -r gtk-2.0 gtk-3.0 ~/.config \
+    sudo cp "$dotfiles"/config/lightdm/* /etc/lightdm/ \
+    && cd "$dotfiles"/config/gtk/ && cp -r gtk-2.0 gtk-3.0 ~/.config \
     && cp .gtkrc-2.0 ~/.gtkrc-2.0 \
     && log echo "     GTK themes setup {OK} " && break_line || log erro_msg
 }
 
 pacman_setup(){
     log echo "#---------------------------------------- Setup Pacman config" && break_line
-    cd $dotfiles && sudo rm /etc/pacman.conf && cd $dotfiles && sudo cp config/pacman/pacman.conf  /etc/ \
+    cd "$dotfiles" && sudo rm /etc/pacman.conf && cd "$dotfiles" && sudo cp config/pacman/pacman.conf  /etc/ \
     && log echo "     Pacman config {OK} " && break_line || log erro_msg
 }
 
@@ -319,30 +314,30 @@ pacman_setup(){
 zsh_setup(){
     log echo "#---------------------------------------- Setup Zsh" && break_line
     log sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
-    && cp $dotfiles/config/.zshrc ~/ \
-    && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions \
-    && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting \
-    && git clone https://github.com/joshskidmore/zsh-fzf-history-search ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-fzf-history-search \
+    && cp "$dotfiles"/config/.zshrc ~/ \
+    && git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions \
+    && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting \
+    && git clone https://github.com/joshskidmore/zsh-fzf-history-search "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}"/plugins/zsh-fzf-history-search \
     && log echo "     Zsh config {OK} " && break_line || log erro_msg
 }
 
 xorg_setup(){
     log echo "#---------------------------------------- Setup Xorg config files" && break_line
-    cd $dotfiles && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
+    cd "$dotfiles" && sudo cp config/X11/xinit/xinitrc /etc/X11/xinit/ \
     && sudo cp config/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/ \
     && log echo "     Xorg config {OK} " && break_line || log erro_msg
 }
 
 urxvt_setup(){
     log echo "#---------------------------------------- URXVT Configs " && break_line
-    cd $dotfiles && sudo cp config/urxvt/urxvt-resize-font/resize-font /usr/lib64/urxvt/perl/ &&  sudo chmod +x /usr/lib64/urxvt/perl/resize-font \
+    cd "$dotfiles" && sudo cp config/urxvt/urxvt-resize-font/resize-font /usr/lib64/urxvt/perl/ &&  sudo chmod +x /usr/lib64/urxvt/perl/resize-font \
     && log echo "     URXVT Config {OK} " && break_line || log erro_msg
 }
 
 #### move all the others dotfiles
 other_config(){
     log echo "#---------------------------------------- Other Configs " && break_line
-    cd $dotfiles && sudo cp -r config/pipewire/pipewire.conf /etc/pipewire/pipewire.conf \
+    cd "$dotfiles" && sudo cp -r config/pipewire/pipewire.conf /etc/pipewire/pipewire.conf \
     && cp -r config/alacritty/alacritty.yml ~/.config/alacritty/ \
     && cp -r config/rofi/* ~/.config/rofi/ \
     && sudo cp config/scripts/{ca,simple-push,volume,nvidia-fan-setup} /usr/local/bin/ \
@@ -368,7 +363,7 @@ systemd_init_core_services(){
 
 #### install laptoptools
 laptop_config(){
-    if [ $laptop_Option == "y" ]; then
+    if [ "$laptop_Option" == "y" ]; then
         log echo "#----------------------------------------- Laptop config" && break_line
         log_error sudo pacman -Sy acpi tlp bumblebee xf86-input-synaptics xfce4-power-manager light bluez-utils --noconfirm --needed \
         && log_error make_pkg_AUR nvidia-xrun \
@@ -383,13 +378,13 @@ laptop_config(){
         log echo "#----------------------------------------- Bbswitch CONFIG (LAPTOP ONLY)" && break_line
         log sudo mkdir -vp /etc/modprobe.d/ && log sudo mkdir -vp /proc/acpi/ \
         && log_error sudo touch /proc/acpi/bbswitch \
-        && log_error sudo gpasswd -a $USER bumblebee \
-        && cd $dotfiles && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
+        && log_error sudo gpasswd -a "$USER" bumblebee \
+        && cd "$dotfiles" && log_error sudo cp config/bbswitch.conf /etc/modprobe.d/bbswitch.conf \
         && log_error sudo tee /proc/acpi/bbswitch <<<OFF \
         && log echo "#-------------------------------------- Bbswitch {OK}" && break_line || log erro_msg
 
         log echo "#----------------------------------------- TLP CONFIG (LAPTOP ONLY)" && break_line
-        cd $dotfiles && sudo cp config/tlp.conf /etc/tlp.conf \
+        cd "$dotfiles" && sudo cp config/tlp.conf /etc/tlp.conf \
         && log echo "#-------------------------------------- TLP config {OK}" && break_line || log erro_msg
 
         log echo "#----------------------------------------- Systemctl for laptop services"
@@ -405,10 +400,10 @@ laptop_config(){
 
 #### run nvidia xconfig
 nvidia_xorg_config(){
-    if [ $nvidia_Option == "y" ]; then
-       log echo "#----------------------------------------- Nvidia Xconfig"
-       log sudo nvidia-xconfig
-       log echo "#----------------------------------------- Nvidia Xconfig Done!" && break_line
+    if [ "$nvidia_Option" == "y" ]; then
+        log echo "#----------------------------------------- Nvidia Xconfig"
+        log sudo nvidia-xconfig
+        log echo "#----------------------------------------- Nvidia Xconfig Done!" && break_line
     else
        log echo "#------------------------------------ Nvidia xconfig {SKIPED}" && break_line
     fi
@@ -419,20 +414,20 @@ nvidia_xorg_config(){
 
 log echo "Which graphics card will you use?"
 log echo -e "1 - INTEL \n2 - NVIDIA \n3 - AMD \n4 - ALL"
-read -p "--> " GPU
+read -rp "--> " GPU
 break_line
 
 log echo "Are you using a AMD CPU ? (answer with y or n)"
-read -p "--> " amd_option
+read -rp "--> " amd_option
 break_line
 
 log echo "Do you want install laptop configs ?(answer with y or n)"
-read -p "--> " laptop_Option
+read -rp "--> " laptop_Option
 break_line
 
 log echo "Do you want run nvidia-xconfig to generate a xconfig file ? (answer with y or n)"
 log echo "Only answer 'y' if you are using nvidia graphic card"
-read -p "--> " nvidia_Option
+read -rp "--> " nvidia_Option
 break_line
 
 
@@ -463,4 +458,4 @@ systemd_init_core_services
 
 
 log echo "------------- END OF INSTALL ------------" && break_line
-log echo " [$[errors]] Errors reported, see 'install.log' for more details" && break_line
+log echo " [$(errors)] Errors reported, see 'install.log' for more details" && break_line
