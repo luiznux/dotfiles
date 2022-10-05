@@ -10,15 +10,6 @@
 [submodule "themes/icons/papirus-icon-theme"]
 	path = themes/icons/papirus-icon-theme
     url = https://github.com/PapirusDevelopmentTeam/papirus-icon-theme.git
-[submodule "emacs/.emacs.d/lisp/local-packages/parrot"]
-	path = emacs/.emacs.d/lisp/local/parrot
-	url = https://github.com/dp12/parrot
-[submodule "emacs/.emacs.d/lisp/local-packages/awesome-tab"]
-	path = emacs/.emacs.d/lisp/local/awesome-tab
-	url = https://github.com/manateelazycat/awesome-tab
-[submodule "emacs/emacs.d"]
-	path = emacs/emacs.d
-	url = https://github.com/luiznux/emacs.d
 [submodule "vim/.vim/plugged/ranger.vim"]
 	path = vim/.vim/plugged/ranger.vim
 	url = https://github.com/francoiscabrol/ranger.vim.git
