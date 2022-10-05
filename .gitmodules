@@ -1,27 +1,9 @@
 [submodule "fonts/source-code-pro"]
 	path = config/fonts/source-code-pro
 	url = https://github.com/adobe-fonts/source-code-pro
-[submodule "vim/.vim/bundle/base16-vim"]
-	path = vim/.vim/bundle/base16-vim
-	url = https://github.com/chriskempson/base16-vim
 [submodule "system/urxvt-resize-font"]
 	path = config/urxvt/urxvt-resize-font
 	url = https://github.com/simmel/urxvt-resize-font
 [submodule "themes/icons/papirus-icon-theme"]
 	path = themes/icons/papirus-icon-theme
     url = https://github.com/PapirusDevelopmentTeam/papirus-icon-theme.git
-[submodule "vim/.vim/plugged/ranger.vim"]
-	path = vim/.vim/plugged/ranger.vim
-	url = https://github.com/francoiscabrol/ranger.vim.git
-[submodule "vim/.vim/plugged/ale"]
-	path = vim/.vim/plugged/ale
-	url = https://github.com/dense-analysis/ale.git
-[submodule "vim/.vim/plugged/lightline.vim"]
-	path = vim/.vim/plugged/lightline.vim
-	url = https://github.com/itchyny/lightline.vim
-[submodule "vim/.vim/plugged/vim-startify"]
-	path = vim/.vim/plugged/vim-startify
-	url = https://github.com/mhinz/vim-startify
-[submodule "vim/.vim/plugged/wpgtk.vim"]
-	path = vim/.vim/plugged/wpgtk.vim
-	url = https://github.com/deviantfero/wpgtk.vim
