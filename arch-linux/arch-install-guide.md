@@ -1,38 +1,40 @@
 <!--toc:start-->
 - [Arch linux Install guide](#arch-linux-install-guide)
 - [My config](#my-config)
-- [1. Basics](#1-basics)
-- [2. Load crypt modules](#2-load-crypt-modules)
-- [3. Create particions](#3-create-particions)
-- [4. Encrypt the "LINUX LVM" particion](#4-encrypt-the-linux-lvm-particion)
-- [5. Open your crypt](#5-open-your-crypt)
-- [6. Create a Physical Volume (PV)](#6-create-a-physical-volume-pv)
-- [7. Create Volume Group (VG)](#7-create-volume-group-vg)
-- [8. Create a Logical Volume (LV)](#8-create-a-logical-volume-lv)
-- [9. Create the other two LV, "home" and "/"](#9-create-the-other-two-lv-home-and)
-- [10. Format particions](#10-format-particions)
-- [11. Mount particions](#11-mount-particions)
-- [12. Packages](#12-packages)
-- [13. Mv chroot to /mnt](#13-mv-chroot-to-mnt)
-- [14. Install some packages](#14-install-some-packages)
-- [15. Set locale](#15-set-locale)
-- [16. Hosts and users](#16-hosts-and-users)
-- [17. mkinitcpio.conf](#17-mkinitcpioconf)
-- [18. GRUB](#18-grub)
-- [19. Exit, be happy and pray for the grub to work :)](#19-exit-be-happy-and-pray-for-the-grub-to-work)
+1. [Basics](#1-basics)
+2. [Load crypt modules](#2-load-crypt-modules)
+3. [Create particions](#3-create-particions)
+   1. [UEFI](#uefi)
+   2. [Non-UEFI](#non-uefi)
+4. [Encrypt the "LINUX LVM" particion](#4-encrypt-the-linux-lvm-particion)
+5. [Open your crypt](#5-open-your-crypt)
+6. [Create a Physical Volume (PV)](#6-create-a-physical-volume-pv)
+7. [Create Volume Group (VG)](#7-create-volume-group-vg)
+8. [Create a Logical Volume (LV)](#8-create-a-logical-volume-lv)
+9. [Create the other two LV, "home" and "/"](#9-create-the-other-two-lv-home-and)
+10. [Format particions](#10-format-particions)
+11. [Mount particions](#11-mount-particions)
+12. [Packages](#12-packages)
+13. [Mv chroot to /mnt](#13-mv-chroot-to-mnt)
+14. [Install some packages](#14-install-some-packages)
+15. [Set locale](#15-set-locale)
+16. [Hosts and users](#16-hosts-and-users)
+17. [mkinitcpio.conf](#17-mkinitcpioconf)
+18. [GRUB](#18-grub)
+19. [Exit, be happy and pray for the grub to work :)](#19-exit-be-happy-and-pray-for-the-grub-to-work)
 <!--toc:end-->
+-----------------
 
+# Arch linux Install guide
 ```ascii
 
  █████╗ ██████╗  ██████╗██╗  ██╗
- ██╔══██╗██╔══██╗██╔════╝██║  ██║
- ███████║██████╔╝██║     ███████║
- ██╔══██║██╔══██╗██║     ██╔══██║
- ██║  ██║██║  ██║╚██████╗██║  ██║
- ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
- ```
-
-# Arch linux Install guide
+██╔══██╗██╔══██╗██╔════╝██║  ██║
+███████║██████╔╝██║     ███████║
+██╔══██║██╔══██╗██║     ██╔══██║
+██║  ██║██║  ██║╚██████╗██║  ██║
+╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+```
 This archive contains some of instructions for install arch linux distro.
 Remembering that all the steps that I will take can be changed at your discretion
 without any problem. The great advantage of this distro is that each one adapts the
@@ -95,7 +97,7 @@ $ modprobe -a dm-mod dm-crypt
 ## 3. Create particions
 
 
-**UEFI**
+### UEFI
 * In case of using uefi bios, use GPT partition table with a separate boot partition
 
 ```bash
@@ -108,7 +110,7 @@ $ fdisk -l && cfdisk /dev/sdx
 | `/dev/sda3` | LINUX LVM     |  any     |EXT4      |
 
 
-**Non-UEFI**
+### Non-UEFI
 * In case of using a non-uefi bios, use MRB(or DOS) partition table with a separe boot particion too
 
 ```bash
