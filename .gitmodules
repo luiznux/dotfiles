@@ -1,9 +1,3 @@
-[submodule "fonts/source-code-pro"]
-	path = config/fonts/source-code-pro
-	url = https://github.com/adobe-fonts/source-code-pro
 [submodule "system/urxvt-resize-font"]
 	path = config/urxvt/urxvt-resize-font
 	url = https://github.com/simmel/urxvt-resize-font
-[submodule "themes/icons/papirus-icon-theme"]
-	path = themes/icons/papirus-icon-theme
-    url = https://github.com/PapirusDevelopmentTeam/papirus-icon-theme.git
