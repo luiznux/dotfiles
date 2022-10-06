@@ -88,7 +88,7 @@ install_packages(){
 
     themes=" papirus-icon-theme lxappearance gtk-chtheme gpick "
 
-    font=" adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts ttf-font-awesome gnome-font-viewer "
+    font=" adobe-source-code-pro-fonts ttf-sourcecodepro-nerd noto-fonts-cjk noto-fonts-emoji noto-fonts ttf-font-awesome gnome-font-viewer "
 
     gnome=" intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor gnome-control-center gnome-calculator gnome-calendar gnome-characters gnome-power-manager "
 
@@ -169,7 +169,7 @@ AUR_install(){
 
     log echo "----------------------------- Installing AUR General packages" && break_line || log erro_msg
     packages=" polybar archlinux-artwork i3lock-color-git autotiling nwg-launchers thermald mictray qdirstat jmtpfs zscroll-git clojure-lsp-bin speedometer cli-visualizer rar mon2cam-git fancontrol-gui "
-    fonts="nerd-fonts-source-code-pro ttf-weather-icons "
+    fonts=" ttf-weather-icons "
     themes=" catppuccin-gtk-theme themix-full-git "
     wps_office=" ttf-wps-fonts wps-office-mui-pt-br wps-office "
 
