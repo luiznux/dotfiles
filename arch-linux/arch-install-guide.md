@@ -21,7 +21,7 @@
 16. [Hosts and users](#16-hosts-and-users)
 17. [mkinitcpio.conf](#17-mkinitcpioconf)
 18. [GRUB](#18-grub)
-19. [Exit, be happy and pray for the grub to work :)](#19-exit-be-happy-and-pray-for-the-grub-to-work)
+19. [Exit, be happy and pray for the grub to work](#19-exit-be-happy-and-pray-for-the-grub-to-work)
 <!--toc:end-->
 -----------------
 
@@ -54,7 +54,7 @@ The figure below illustrates how my partitioning is configured.
 +----------------+ +----------------+ +--------------------------------------------------------------------+
 | Boot partition | | Boot partition | | Logical volume 1     | Logical volume 2     |  Logical volume 3    |
 |                | |                | |                      |                      |                      |
-| /boot/efi      | | /boot          | |        /             |       /home          |      [SWAP]          |
+| /boot/efi      | | /boot          | |        /             |       /home          | [SWAP FOR HIBERNATE] |
 |                | |                | |                      |                      |                      |
 |                | |                | | /dev/MyVolGroup/root | /dev/MyVolGroup/home | /dev/MyVolGroup/swap |
 |                | |                | |_ _ _ _ _ _ _ _ _ _ __|_ _ _ _ _ _ _ _ _ _ __|_ _ _ _ _ _ _ _ _ _ _ |
@@ -116,7 +116,7 @@ $ fdisk -l && cfdisk /dev/sdx
 ```bash
 $ fdisk -l && cfdisk /dev/sdx
 ```
-**Note**: You will need to specify the boot partition when using cfdisk in MRB(or DOS) table, in this case is /dev/sda1
+**NOTE**: You will need to specify the boot partition when using cfdisk in MRB(or DOS) table, in this case is /dev/sda1
 |Device       |Type           | Size     | Format   |
 | ----------- |:-------------:|:--------:|:--------:|
 | `/dev/sda1` | BOOT          | 500MB    |EXT4      |
@@ -404,7 +404,7 @@ $ cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 $ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-## 19. Exit, be happy and pray for the grub to work :)
+## 19. Exit, be happy and pray for the grub to work
 
 * Remember to enable network
 ```bash
