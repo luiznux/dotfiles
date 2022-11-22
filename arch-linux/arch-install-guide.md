@@ -321,7 +321,7 @@ $ vim /etc/mkinitcpio.conf
 * look for HOOKS="...." and add:
 
 ```bash
-HOOKS=(base udev autodetect keyboard keymap consolefont modconf block lvm2 encrypt resume filesystems fsck)
+HOOKS=(base udev keyboard autodetect keymap consolefont modconf block lvm2 encrypt resume filesystems fsck)
 ```
 * **ADD THIS AT THE SAME ORDER**
 * save, exit and reload
