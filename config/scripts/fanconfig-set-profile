@@ -1,0 +1,46 @@
+#!/bin/bash
+
+FANCTRL_DIR=$HOME/.config/fanconfig-profiles
+SMOOTH=$FANCTRL_DIR/fancontrol-smooth
+TURBO=$FANCTRL_DIR/fancontrol-turbo
+
+verify_fanconfig_profile_dir() {
+    # Verify if fancontrol dir exits. If not, create one
+    if ! [ -d "$FANCTRL_DIR" ]; then
+        echo "'$FANCTRL_DIR' does not exists, creating new one..."
+        mkdir -vp "$HOME"/.config/fanconfig-profiles
+    else
+        echo "" > /dev/null
+    fi
+}
+
+set_fanconfig_profile() {
+    # Verify if fancontrol profile files exists
+    if ! [ -f  "$SMOOTH" ] || ! [ -f "$TURBO" ]; then
+        printf "%s" "Fancontrol files not found! Please, create both of them(turbo and normal)."
+    else
+        printf "%s\n" "Type witch fan profile do you want to use it:"
+        printf "%s\n" " 1 -> smooth - low noise, low rotation" " 2 -> turbo - more noise and high rotation"
+        printf "%s\n" "Or type 'exit' to exit."
+        read -rp "--> " option
+
+        if [ "$option" != "1" ] && [ "$option" != "2" ] && [ "$option" != "exit" ]; then
+            printf "\n%s\n" "Error! wrong time of input :/"
+
+        elif [ "$option" == "exit" ]; then
+            printf "\n%s\n" "Exiting... No configs were set"
+
+        elif [ "$option" == "1" ]; then
+            sudo cp "$SMOOTH" /etc/fancontrol && sudo systemctl restart fancontrol.service
+            printf "\n%s\n" "Fans are now with SMOTH profile active!"
+
+        else [ "$option" == "2" ]
+            sudo cp "$TURBO" /etc/fancontrol && sudo systemctl restart fancontrol.service
+            printf "\n%s\n" "Fans are now with TURBO profile active!"
+        fi
+    fi
+}
+
+########## MAIN ############
+verify_fanconfig_profile_dir
+set_fanconfig_profile
