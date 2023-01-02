@@ -82,7 +82,7 @@ install_packages(){
 
     program_languages=" global ctags clang bear ccls go gopls gobject-introspection bash-language-server clisp cargo openjdk11-src shellcheck clojure leiningen nodejs m17n-lib "
 
-    graphic=" i3-gaps lxrandr-gtk3 arandr qt zenity dunst picom lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-slick-greeter "
+    graphic=" i3-wm lxrandr-gtk3 arandr qt zenity dunst picom lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-slick-greeter "
 
     file_open=" nemo nemo-fileroller i7z xreader calibre evince pandoc texlive-most "
 
