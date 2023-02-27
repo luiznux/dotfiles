@@ -170,7 +170,7 @@ AUR_install(){
     log echo "----------------------------- Installing AUR General packages" && break_line || log erro_msg
     packages=" polybar archlinux-artwork i3lock-color-git autotiling nwg-launchers thermald mictray qdirstat jmtpfs zscroll-git clojure-lsp-bin speedometer cli-visualizer rar mon2cam-git fancontrol-gui "
     fonts=" ttf-weather-icons "
-    themes=" catppuccin-gtk-theme themix-full-git "
+    themes=" catppuccin-gtk-theme-mocha themix-full-git "
     wps_office=" ttf-wps-fonts wps-office-mui-pt-br wps-office "
 
     log_error yay -Syu \
