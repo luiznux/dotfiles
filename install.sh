@@ -114,7 +114,7 @@ install_packages(){
 
     python=" python-pip python-sphinx dbus-python python-psutil python-urwid python-pywal python-pdftotext python-mutagen "
 
-    others=" transmission-gtk gparted discord bleachbit kdenlive mesa-demos ispell aspell aspell-pt aspell-en cowsay "
+    others=" transmission-gtk gparted discord bleachbit kdenlive mesa-demos ispell aspell aspell-pt aspell-en cowsay podman podman-compose "
 
     log_error sudo pacman -Syu --noconfirm --needed \
               "$essencials" \
