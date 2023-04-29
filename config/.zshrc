@@ -11,14 +11,12 @@
 #---------------------------------#
 #------------ Exports ------------#
 #
-export PATH="${PATH}:${HOME}/.local/bin/:${HOME}/.config/scripts/"
-
-#export TERM="xterm-256color"  # getting proper colors
 export EDITOR=vim
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
-
+export TERM="xterm-256color"  # getting proper colors
+export PATH="${PATH}:${HOME}/.local/bin:${HOME}/.config/scripts"
 
 #---------------------------------#
 #------------ Aliases-------------#
