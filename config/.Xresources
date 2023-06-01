@@ -142,7 +142,7 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 !----------------------------------------------------
 !--------------- Global settings --------------------
 !
-*font:     Source Code Pro:pixelsize=15:antialias=true:autohint=true
+!*font:     Source Code Pro:pixelsize=15:antialias=true:autohint=true
 
 
 !---------------------------------------------------
@@ -431,4 +431,3 @@ URxvt.keysym.M-v:          perl:clipboard:paste
 !*.color14:       #9d96b2
 !*.color7:        #cac8dc
 !*.color15:       #cac8dc
-
