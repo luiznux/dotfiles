@@ -114,7 +114,7 @@ install_packages(){
 
     python=" python-pip python-sphinx dbus-python python-psutil python-urwid python-pywal python-pdftotext python-mutagen "
 
-    others=" transmission-gtk gparted discord bleachbit kdenlive mesa-demos ispell aspell aspell-pt aspell-en cowsay podman podman-compose "
+    others=" transmission-gtk gparted discord bleachbit kdenlive mesa-demos ispell aspell aspell-pt aspell-en cowsay podman podman-compose corectrl "
 
     log_error sudo pacman -Syu --noconfirm --needed \
               "$essencials" \
@@ -150,7 +150,7 @@ Graphic_drivers(){
         log_error sudo pacman -Suy nvidia nvidia-utils nvidia-settings --noconfirm --needed
 
     elif [ "$GPU" == "3" ]; then
-        log_error sudo pacman -Suy xf86-video-amdgpu vulkan-radeon --noconfirm --needed
+        log_error sudo pacman -Suy mesa xf86-video-amdgpu vulkan-radeon --noconfirm --needed
 
     else
         log echo "GPU Packages skipped " && break_line || log erro_msg
@@ -171,13 +171,11 @@ AUR_install(){
     packages=" polybar archlinux-artwork i3lock-color-git autotiling nwg-launchers thermald mictray qdirstat jmtpfs zscroll-git clojure-lsp-bin speedometer cli-visualizer rar mon2cam-git fancontrol-gui "
     fonts=" ttf-weather-icons "
     themes=" catppuccin-gtk-theme-mocha themix-full-git "
-    wps_office=" ttf-wps-fonts wps-office-mui-pt-br wps-office "
 
     log_error yay -Syu \
               "$packages" \
               "$fonts" \
               "$themes" \
-              "$wps_office" \
               --noconfirm --needed --nocleanmenu --nodiffmenu \
         && log echo "----------------------------- AUR General packages  Done " && break_line || log erro_msg
 }
