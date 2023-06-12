@@ -82,7 +82,7 @@ install_packages(){
 
     program_languages=" global ctags clang bear ccls go gopls gobject-introspection bash-language-server clisp cargo shellcheck clojure leiningen nodejs m17n-lib pgformatter "
 
-    graphic=" i3-wm lxrandr-gtk3 arandr qt zenity dunst picom lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-slick-greeter "
+    graphic=" i3-wm polybar lxrandr-gtk3 arandr qt zenity dunst picom lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-slick-greeter "
 
     file_open=" nemo nemo-fileroller i7z xreader calibre evince pandoc-cli texlive-most "
 
@@ -144,13 +144,13 @@ install_packages(){
 Graphic_drivers(){
     log echo "#----------------------------------------------- Graphic drives" && break_line
     if [ "$GPU" == "1" ]; then
-        log_error sudo pacman -Suy xf86-video-intel vulkan-intel --noconfirm --needed
+        log_error sudo pacman -Syu xf86-video-intel vulkan-intel lib32-mesa --noconfirm --needed
 
     elif [ "$GPU" == "2" ]; then
-        log_error sudo pacman -Suy nvidia nvidia-utils nvidia-settings --noconfirm --needed
+        log_error sudo pacman -Syu nvidia nvidia-settings nvidia-utils lib32-nvidia-utils --noconfirm --needed
 
     elif [ "$GPU" == "3" ]; then
-        log_error sudo pacman -Suy mesa xf86-video-amdgpu vulkan-radeon --noconfirm --needed
+        log_error sudo pacman -Syu xf86-video-amdgpu vulkan-radeon mesa lib32-mesa --noconfirm --needed
 
     else
         log echo "GPU Packages skipped " && break_line || log erro_msg
@@ -168,7 +168,9 @@ AUR_install(){
     && log echo "----------------------------- YAY Installed!" && break_line || log erro_msg
 
     log echo "----------------------------- Installing AUR General packages" && break_line || log erro_msg
-    packages=" polybar archlinux-artwork i3lock-color-git autotiling nwg-launchers thermald mictray qdirstat jmtpfs zscroll-git clojure-lsp-bin speedometer cli-visualizer rar mon2cam-git fancontrol-gui "
+    packages=" archlinux-artwork i3lock-color-git nwg-launchers thermald mictray \
+               qdirstat jmtpfs zscroll-git clojure-lsp-bin speedometer cli-visualizer \
+               rar mon2cam-git fancontrol-gui "
     fonts=" ttf-weather-icons "
     themes=" catppuccin-gtk-theme-mocha themix-full-git "
 
@@ -194,6 +196,7 @@ AMD_CPU(){
 }
 
 #TODO: tratar exceçao quando arquivo ja existe
+#TODO: Adptar o código para os padroes de projetos(projects/emacs-projects/savannah)
 #### Setup my custom emacs config, also clone the master branch from
 #### gnu savannah, build and install
 emacs(){
