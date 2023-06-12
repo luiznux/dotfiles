@@ -90,7 +90,7 @@ install_packages(){
 
     font=" adobe-source-code-pro-fonts ttf-sourcecodepro-nerd noto-fonts-cjk noto-fonts-emoji noto-fonts ttf-font-awesome gnome-font-viewer "
 
-    gnome=" intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor gnome-control-center gnome-calculator gnome-calendar gnome-characters gnome-power-manager "
+    gnome=" intltool dbus-glib gnome-shell gnome-session yelp-tools docbook-xsl gnome-system-monitor gnome-control-center gnome-calculator gnome-calendar gnome-characters gnome-power-manager deja-dup "
 
     # with pipewire packages
     audio=" alsa alsa-utils alsa-firmware alsa-plugins pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack wireplumber wireplumber-docs pavucontrol libmpdclient fftw playerctl vlc audacity gnome-music easyeffects vvave rhythmbox "
