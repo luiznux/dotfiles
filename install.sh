@@ -108,7 +108,7 @@ install_packages(){
 
     security=" ufw gnome-keyring keychain seahorse "
 
-    network=" dhcp dhcpcd "
+    network=" dhcp dhcpcd dnsutils "
 
     browsers=" firefox chromium torbrowser-launcher "
 
@@ -299,7 +299,7 @@ background_img_setup(){
 theme_setup(){
     log echo "#---------------------------------------- Setup Themes" && break_line
     sudo cp "$dotfiles"/config/lightdm/* /etc/lightdm/ \
-    && cd "$dotfiles"/config/gtk/ && cp -r gtk-2.0 gtk-3.0 ~/.config \
+    && cd "$dotfiles"/config/gtk/ && cp -r gtk-2.0 gtk-3.0 gtk-4.0 ~/.config \
     && cp .gtkrc-2.0 ~/.gtkrc-2.0 \
     && log echo "     GTK themes setup {OK} " && break_line || log erro_msg
 }
