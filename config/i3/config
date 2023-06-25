@@ -339,7 +339,7 @@ bindsym $mod+Shift+equal	move container to workspace $ws12
 #
 
 # class                 border  bground text    indicator child_border
-client.focused          #4575c7 #4575C7 #0F0F17 #4575C7   #4575C7
+client.focused          #4E54BF #4E54BF #0F0F17 #4E54BF   #4E54BF
 client.focused_inactive #0F0F17 #6D8090 #0F0F17 #6D8090   #495661
 client.unfocused        #0F0F17 #222222 #888888 #292D2E   #0F0F17
 client.urgent           #A4252C #A4252C #0F0F17 #A4252C   #A4252C
@@ -390,7 +390,7 @@ exec_always --no-startup-id sleep 1; xset r rate 500 37 &
 assign [class="discord"] $ws3
 assign [class="Transmission"] $ws8
 assign [title="Tor Browser"] $ws8
-assign [class="Steam"] $ws9
+assign [class="steam"] $ws9
 
 for_window [instance="slack"] move container to workspace  $ws6
 for_window [class="Slack"] move container to workspace $ws6
@@ -411,6 +411,10 @@ for_window [class="QjackCtl"]	                     floating enable, resize set 9
 for_window [class="Gnome-control-center" instance="gnome-control-center"] floating enable
 
 for_window [title="Steam - Update*|Event Tester|Taakbeheer -*"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
 
 for_window [title="Calculator"]	      floating enable
 for_window [title="Volume Control"]	  floating enable
