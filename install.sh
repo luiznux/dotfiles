@@ -114,6 +114,8 @@ install_packages(){
 
     python=" python-pip python-sphinx dbus-python python-psutil python-urwid python-pywal python-pdftotext python-mutagen "
 
+    gaming=" steam lutris mangohud "
+
     others=" transmission-gtk gparted discord bleachbit kdenlive mesa-demos ispell aspell aspell-pt aspell-en cowsay podman podman-compose corectrl "
 
     log_error sudo pacman -Syu --noconfirm --needed \
@@ -136,6 +138,7 @@ install_packages(){
               "$network" \
               "$browsers" \
               "$python" \
+              "$gaming" \
               "$others" \
         && log echo "        Packages {OK}" && break_line || log erro_msg
 }
