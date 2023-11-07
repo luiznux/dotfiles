@@ -4,5 +4,5 @@ sleep 1
 export DISPLAY=:0
 export XAUTHORITY=/home/luiznux/.Xauthority
 
-su luiznux -c "DISPLAY=:0 xset r rate 500 37"
+su luiznux -c "DISPLAY=:0 xset r rate 500 50"
 )&
