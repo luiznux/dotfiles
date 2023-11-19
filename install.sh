@@ -82,7 +82,7 @@ install_packages(){
 
     program_languages=" global ctags clang bear ccls go gopls gobject-introspection bash-language-server clisp cargo shellcheck clojure leiningen nodejs m17n-lib pgformatter "
 
-    graphic=" i3-wm polybar lxrandr-gtk3 arandr qt zenity dunst picom lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-slick-greeter "
+    graphic=" i3-wm polybar lxrandr-gtk3 arandr qt zenity dunst picom lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-slick-greeter xdg-desktop-portal-gtk "
 
     file_open=" nemo nemo-fileroller i7z xreader calibre evince pandoc-cli texlive-most "
 
