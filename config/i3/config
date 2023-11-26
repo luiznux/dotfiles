@@ -374,7 +374,7 @@ exec_always --no-startup-id /usr/lib/deja-dup/deja-dup-monitor
 exec_always --no-startup-id setxkbmap -layout us -variant intl
 
 #Adjusting typematic delay and rate
-exec_always --no-startup-id sleep 1; xset r rate 500 37 &
+exec_always --no-startup-id sleep 1; xset r rate 500 50 &
 
 #Emacs(optional)
 #exec_always --no-startup-id emacs; move to workspace $ws2
