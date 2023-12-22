@@ -116,7 +116,7 @@ install_packages(){
 
     gaming=" steam lutris mangohud "
 
-    others=" transmission-gtk gparted discord bleachbit kdenlive mesa-demos ispell aspell aspell-pt aspell-en cowsay podman podman-compose corectrl "
+    others=" transmission-gtk gparted discord bleachbit kdenlive mesa-demos ispell aspell aspell-pt aspell-en cowsay podman podman-compose corectrl thunderbird systray-x-common "
 
     log_error sudo pacman -Syu --noconfirm --needed \
               "$essencials" \
