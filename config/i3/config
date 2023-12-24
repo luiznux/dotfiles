@@ -6,9 +6,9 @@
 #    ██║██████╔╝    ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝
 #    ╚═╝╚═════╝      ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝
 #
-# i3-gaps config file
+# i3wm config file
 #
-# source: https://github.com/luiznux/dotfiles/i3
+# source: https://github.com/luiznux/dotfiles/config/i3
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 #
@@ -24,16 +24,16 @@ set $mod	    Mod4
 set $term       alacritty
 
 #define browser
-set $browser    firefox
+set $browser    brave
 
 #define mailclient
-set $mail       mailspring
+set $mail       thunderbird
 
 #font config
 font pango:Source Code Pro 9
 
 #background config
-exec_always feh --bg-fill ~/.config/wallpaper.jpg
+exec_always feh --bg-fill ~/.config/wallpaper.png
 
 #remove border
 new_window pixel 0
@@ -80,7 +80,7 @@ bindsym $mod+e	            exec emacs
 #start rofi
 bindsym $mod+d              exec rofi -show drun
 
-# start firefox
+# start browser
 bindsym $mod+y              exec $browser
 
 # start mailclient
@@ -373,6 +373,9 @@ exec_always --no-startup-id /usr/lib/deja-dup/deja-dup-monitor
 #Keyboard Layout
 exec_always --no-startup-id setxkbmap -layout us -variant intl
 
+#Keyboard map
+#exec_always --no-startup-id xmodmap ~/.Xmodmap
+
 #Adjusting typematic delay and rate
 exec_always --no-startup-id sleep 1; xset r rate 500 50 &
 
@@ -393,13 +396,15 @@ assign [title="Tor Browser"] $ws8
 assign [class="steam"] $ws9
 assign [class="Lutris"] $ws9
 
+for_window [class="thunderbird"] move container to workspace $ws1, layout tabbed
+
 for_window [instance="slack"] move container to workspace  $ws6
 for_window [class="Slack"] move container to workspace $ws6
 
 #for spotify its a bit diffente than the others above, since for some reason
 #spotify doesn't work with assing, must be manualy moved with the command bellow
 # info --> https://wiki.archlinux.org/index.php/i3#Default_workspace_for_Spotify
-for_window [class="Spotify"] move to workspace $ws7
+for_window [class="Spotify"] move to workspace $ws7, layout tabbed
 
 ## Enable floating window some windows, use $xwininfo
 for_window [window_role="task_dialog|app|bubble|pop-up|page-info|Preferences"] floating enable
@@ -407,7 +412,7 @@ for_window [instance="qtpass|vitetris|xfontsel|xfd|gpicsview|gufw.py|Toplevel|gv
 
 for_window [class="gnome-calendar|org.gnome.clocks|Gnome-system-monitor"]  floating enable, resize set 900 600
 
-for_window [class="QjackCtl"]	                     floating enable, resize set 900 600
+for_window [class="QjackCtl"] floating enable, resize set 900 600
 
 for_window [class="Gnome-control-center" instance="gnome-control-center"] floating enable
 
