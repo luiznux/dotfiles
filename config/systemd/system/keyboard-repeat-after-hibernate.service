@@ -1,0 +1,9 @@
+[Unit]
+Description=Set keyboard repeat rate after hibernate/suspend
+After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+
+[Service]
+ExecStart=/usr/local/bin/keyboard-repeat
+
+[Install]
+WantedBy=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target

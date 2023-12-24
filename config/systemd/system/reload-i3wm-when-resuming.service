@@ -1,0 +1,9 @@
+[Unit]
+Description=Reload i3wm config after resume in order to enchace
+After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+
+[Service]
+ExecStart=/usr/local/bin/restart-i3wm
+
+[Install]
+WantedBy=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
