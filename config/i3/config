@@ -398,6 +398,8 @@ assign [class="Lutris"] $ws9
 
 for_window [class="thunderbird"] move container to workspace $ws1, layout tabbed
 
+for_window [class="discord"] move container to workspace $ws3, layout tabbed
+
 for_window [instance="slack"] move container to workspace  $ws6
 for_window [class="Slack"] move container to workspace $ws6
 
