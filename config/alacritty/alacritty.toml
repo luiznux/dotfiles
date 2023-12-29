@@ -1,0 +1,77 @@
+#---------------------------------------------------
+#-------------------- Env --------------------------
+#[env]
+#WINIT_X11_SCALE_FACTOR = "1.0"
+
+#---------------------------------------------------
+#------------------- Window ------------------------
+[window]
+opacity = 0.6
+decorations = "None"
+dynamic_padding = true
+startup_mode = "Maximized"
+
+[scrolling]
+history = 100000
+multiplier = 3
+
+#---------------------------------------------------
+#-------------------  Fonts  -----------------------
+[font]
+size = 10
+normal      = {family =  "Source Code Pro", style = "Regular"}
+bold        = {family = "Source Code Pro", style = "Bold"}
+italic      = {family = "Source Code Pro", style = "Italic"}
+bold_italic = {family = "Source Code Pro", style = "Bold Italic"}
+
+builtin_box_drawing = false
+
+#---------------------------------------------------
+#------------------  Colors  -----------------------
+
+[colors]
+cursor = {text = "CellBackground", cursor = "#4e4e8f"}
+vi_mode_cursor = {text = "CellBackground", cursor = "#4e4e8f"}
+
+[colors.primary]
+background = "#000000"
+foreground = "#c5c8c6"
+
+[colors.normal]
+black    = "#282a36"
+red      = "#f07178"
+green    = "#c3e88d"
+yellow   = "#ffcb6b"
+blue     = "#82aaff"
+magenta  = "#c792ea"
+cyan     = "#89ddff"
+white    = "#d0d0d0"
+
+[colors.bright]
+black   = "#434758"
+red     = "#ff8b92"
+green   = "#ddffa7"
+yellow  = "#ffe585"
+blue    = "#9cc4ff"
+magenta = "#e1acff"
+cyan    = "#a3f7ff"
+white   = "#ffffff"
+
+#---------------------------------------------------
+#----------------- Keyboard  -----------------------
+[keyboard]
+bindings = [
+{key = "Key0",     mods = "Command", action = "ResetFontSize"},
+{key = "Equals",   mods = "Command", action = "IncreaseFontSize"},
+{key = "Minus",    mods = "Command", action = "DecreaseFontSize"},
+{key = "V",    mods = "Alt", action = "Paste"},
+{key = "C",    mods = "Alt", action = "Copy"},
+]
+
+#---------------------------------------------------
+#-------------------  Mouse  -----------------------
+[mouse]
+bindings = [
+{ mouse = "Right", mods = "Control", action = "Paste" },
+{ mouse = "Left", mods = "Control", action = "Copy"},
+]
