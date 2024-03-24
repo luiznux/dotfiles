@@ -12,6 +12,7 @@ picom --config ~/.config/picom/picom.conf &
 # picom --config ~/.config/picom/picom.conf \
 #      --experimental-backends \
 #      --backend glx \
+#      --daemon \
 #      &
 
 echo "Picom launched..."
