@@ -252,7 +252,7 @@ $ vim /etc/pacman.d/mirrorlist
 * Install the base packages and genfstab
 
 ```bash
-$ pacstrap -i /mnt base-devel base linux linux-firmware
+$ pacstrap -i /mnt base-devel base linux linux-firmware linux-firmware-qlogic
 
 $ genfstab -U -p /mnt >> /mnt/etc/fstab
 ```
