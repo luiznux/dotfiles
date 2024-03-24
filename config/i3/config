@@ -90,7 +90,7 @@ bindsym $mod+Shift+m        exec $mail
 bindsym $mod+n              exec nemo
 
 # start
-bindsym $mod+c              exec gnome-control-center
+#bindsym $mod+c
 
 # full screem
 bindsym $mod+f	            fullscreen toggle
