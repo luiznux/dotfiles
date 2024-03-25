@@ -9,5 +9,5 @@
 #desktop Intel format
 #sensors | grep "Package id 0" | cut -b 17,18,21,22,23 | awk '{print $1}'
 
-#Amd CPU format
+#Amd CPU format with zenpower
 #sensors | grep "Tctl" | cut -b 16,17,20,21,22 | awk '{print $1}'
