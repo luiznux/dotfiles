@@ -64,6 +64,8 @@ bindings = [
 {key = "Key0",     mods = "Command", action = "ResetFontSize"},
 {key = "Equals",   mods = "Command", action = "IncreaseFontSize"},
 {key = "Minus",    mods = "Command", action = "DecreaseFontSize"},
+{key = "D",        mods = "Alt",     action = "ScrollPageDown"},
+{key = "U",        mods = "Alt",     action = "ScrollPageUp"},
 {key = "V",    mods = "Alt", action = "Paste"},
 {key = "C",    mods = "Alt", action = "Copy"},
 ]
