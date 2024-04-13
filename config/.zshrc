@@ -230,7 +230,7 @@ plugins=(
     colorize
     colored-man-pages
     extract
-    vi-mode
+    #vi-mode
     history
     zsh-autosuggestions
     zsh-syntax-highlighting
