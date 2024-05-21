@@ -1,0 +1,29 @@
+/*
+    see:
+
+    http://developer.gnome.org/gtk3/3.4/GtkCssProvider.html
+    http://www.gnu.org/software/emacs/manual/html_node/emacs/GTK-resources.html
+    http://thegnomejournal.wordpress.com/2011/03/15/styling-gtk-with-css/
+    http://www.gtkforums.com/viewtopic.php?f=3&t=988&p=72088=GTK3+with+CSS#p72088
+*/
+
+/*----------------------------------------------------------------*/
+/*
+General notes:
+- try to make selectors as long as possible, so as not to interfere
+  with the controls of other applications; this can be achieved only partly
+  (e.g., #pane is a very general selector)
+
+/* also give the menus a slightly larger font */
+#pane #menubar,
+#pane #menubar GtkMenuShell,
+#pane #menubar GtkMenuShell * {
+  font-family: "SauceCodePro Nerd Font";
+  font-size: 15px;
+}
+
+/*----------------------------------------------------------------*/
+#pane #menubar {
+  background-color: #21242b;
+  border: 1px solid #21242b;
+}
