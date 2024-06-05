@@ -377,7 +377,7 @@ exec_always --no-startup-id setxkbmap -layout us -variant intl
 #exec_always --no-startup-id xmodmap ~/.Xmodmap
 
 #Adjusting typematic delay and rate
-exec_always --no-startup-id sleep 1; xset r rate 500 50 &
+exec_always --no-startup-id sleep 1; xset r rate 500 60 &
 
 #Emacs(optional)
 #exec_always --no-startup-id emacs; move to workspace $ws2
