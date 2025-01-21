@@ -173,7 +173,7 @@ AUR_install(){
     log echo "----------------------------- Installing AUR General packages" && break_line || log erro_msg
     packages=" archlinux-artwork i3lock-color-git nwg-launchers thermald mictray \
                qdirstat jmtpfs zscroll-git clojure-lsp-bin speedometer cli-visualizer \
-               rar mon2cam-git fancontrol-gui "
+               rar fancontrol-gui-git downgrade"
     fonts=" ttf-weather-icons "
     themes=" catppuccin-gtk-theme-mocha themix-full-git "
 
@@ -190,7 +190,7 @@ AMD_CPU(){
     if [ "$amd_option" == "y" ]; then
         log echo "#----------------------------------------- Installing AMD CPU packages"
         log_error sudo pacman -Syu amd-ucode --noconfirm --needed \
-            && log_error yay -Syu it87-dkms-git zenmonitor3-git zenpower3-dkms --noconfirm --needed --nocleanmenu --nodiffmenu \
+            && log_error yay -Syu it87-dkms-git zenmonitor3-git zenpower3-dkms-git --noconfirm --needed --nocleanmenu --nodiffmenu \
             && log echo "#-------------------------------------- AMD packages {OK}" && break_line || log erro_msg
     else
         log echo "#------------------------------------ AMD packages {SKIPED}" && break_line
@@ -421,7 +421,7 @@ log echo -e "1 - INTEL \n2 - NVIDIA \n3 - AMD \n4 - ALL"
 read -rp "--> " GPU
 break_line
 
-log echo "Are you using a AMD CPU ? (answer with y or n)"
+log echo "Are you using a AMD CPU(Zen 3) ? (answer with y or n)"
 read -rp "--> " amd_option
 break_line
 
