@@ -212,23 +212,6 @@ emacs(){
     && log echo "     Emacs savannah cloned  {OK}" && break_line || log erro_msg
 }
 
-#### Install some lsp servers packages(using npm)
-emacs_lsp_packages(){
-    log echo "#---------------------------------------- EMACS LSP Packages INSTALL" && break_line
-    log echo "Installing using npm the following packages:"
-    log echo "html-lsp, css-lsp, json-lsp yaml-lsp, dockerfile-lsp, bash-lsp and vim-lsp sql-lsp" && break_line
-
-    log_error npm install -g vscode-html-languageserver-bin \
-              vscode-css-languageserver-bin \
-              vscode-json-languageserver \
-              yaml-language-server \
-              dockerfile-language-server-nodejs \
-              bash-language-server \
-              vim-language-server \
-              sql-language-server \
-    && log echo "     Emacs LSP Packages config {OK} " && break_line || log erro_msg
-}
-
 #TODO: tratar exceçao quando arquivo ja existe
 #### Config my dropbox sync folder
 dropbox_setup(){
@@ -441,7 +424,6 @@ install_packages
 Graphic_drivers
 AUR_install
 emacs
-emacs_lsp_packages
 dropbox_setup
 i3_polybar_setup
 ranger_setup
