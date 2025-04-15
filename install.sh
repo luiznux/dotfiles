@@ -190,7 +190,7 @@ AMD_CPU(){
     if [ "$amd_option" == "y" ]; then
         log echo "#----------------------------------------- Installing AMD CPU packages"
         log_error sudo pacman -Syu amd-ucode --noconfirm --needed \
-            && log_error yay -Syu it87-dkms-git zenmonitor3-git zenpower3-dkms-git --noconfirm --needed --nocleanmenu --nodiffmenu \
+            && log_error yay -Syu it87-dkms-git zenmonitor3-git zenpower3-dkms --noconfirm --needed --nocleanmenu --nodiffmenu \
             && log echo "#-------------------------------------- AMD packages {OK}" && break_line || log erro_msg
     else
         log echo "#------------------------------------ AMD packages {SKIPED}" && break_line
