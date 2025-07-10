@@ -16,7 +16,11 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export TERM="xterm-256color"  # getting proper colors
-export PATH="${PATH}:${HOME}/.local/bin:${HOME}/.config/scripts"
+export GOPATH=$HOME/go
+export LSP_USE_PLISTS=true
+
+#PATH
+export PATH="${PATH}:${HOME}/.local/bin:${HOME}/.config/scripts:$GOPATH/bin"
 
 #---------------------------------#
 #------------ Aliases-------------#
@@ -46,7 +50,7 @@ alias p='sudo pacman'
 alias pc='sudo pacman -Scc'                      # clean all pacman cache
 alias update='sudo pacman -Syu'                  # update all packages(Archlinux)
 alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
-alias cleanup='sudo pacman -Rns (pacman -Qtdq)'  # remove orphaned packages
+alias cleanup='sudo pacman -R $(pacman -Qtdq)'   # remove orphaned packages
 alias yaysua='yay -Sua --noconfirm'              # update only AUR pkgs (yay)
 
 ## Monitors
