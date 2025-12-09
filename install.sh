@@ -172,8 +172,8 @@ AUR_install(){
 
     log echo "----------------------------- Installing AUR General packages" && break_line || log erro_msg
     packages=" archlinux-artwork i3lock-color-git nwg-launchers thermald mictray \
-               qdirstat jmtpfs zscroll-git clojure-lsp-bin speedometer cli-visualizer \
-               rar fancontrol-gui-git downgrade"
+               qdirstat jmtpfs zscroll-git speedometer cli-visualizer \
+               rar downgrade"
     fonts=" ttf-weather-icons "
     themes=" catppuccin-gtk-theme-mocha themix-full-git "
 
