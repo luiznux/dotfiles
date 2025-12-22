@@ -16,11 +16,17 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export TERM="xterm-256color"  # getting proper colors
-export GOPATH=$HOME/go
 export LSP_USE_PLISTS=true
 
-#PATH
-export PATH="${PATH}:${HOME}/.local/bin:${HOME}/.config/scripts:$GOPATH/bin"
+##PATH
+export LOCAL_BIN="${HOME}/.local/bin"
+export SCRIPTS_BIN=${HOME}/.config/scripts
+export GOPATH="${HOME}/go"
+export GO_BIN="${GOPATH}/bin"
+export CARGO_BIN="${HOME}/.cargo/bin"
+export EMACS_BIN="${HOME}/.config/emacs/bin"
+
+export PATH="${PATH}:$LOCAL_BIN:$SCRIPTS_BIN:$GO_BIN:$CARGO_BIN:$EMACS_BIN"
 
 #---------------------------------#
 #------------ Aliases-------------#
