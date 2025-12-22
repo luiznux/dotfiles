@@ -29,6 +29,8 @@
   - [19. Exit and restart](#19-exit-and-restart)
   - [20. Post install](#20-post-install)
     - [Secure Boot](#secure-boot)
+    - [Adding other OS(windows) to boot options](#adding-other-oswindows-to-boot-options)
+    - [Set CPU frequency scaling](#set-cpu-frequency-scaling)
 <!--toc:end-->
 
 
@@ -212,7 +214,7 @@ $ vgcreate linux /dev/mapper/linux
 
 
 ## 8. Create a Logical Volume (LV)
-NOTE: swap must be bigger than your ram size
+**NOTE**: swap must be bigger than your ram size
 ```bash
 $ lvcreate -L 8G linux -n swap
 ```
@@ -631,9 +633,18 @@ $ sudo vim /boot/loader/entries/windows.conf
 title   Windows 11
 efi     /EFI/Microsoft/Boot/bootmgfw.efi
 ```
-NOTE: The linux ESP must be mounted on /boot and Windows EFI files ate copied to there.
+**NOTE**: The linux ESP must be mounted on /boot and Windows EFI files ate copied to there.
 
 5. Update boot entries
 ```bash
 $ sudo bootctl update
+```
+
+### Set CPU frequency scaling
+* See [ArchWiki](https://wiki.archlinux.org/title/CPU_frequency_scaling)
+
+1. Using `cpupower`
+* edit the file  `/etc/default/cpupower` and set:
+```
+governor='performance'
 ```
